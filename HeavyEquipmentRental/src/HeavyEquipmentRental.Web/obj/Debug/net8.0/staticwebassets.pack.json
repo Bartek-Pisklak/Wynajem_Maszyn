@@ -1,0 +1,25 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\HeavyEquipmentRental\\src\\HeavyEquipmentRental.Web\\wwwroot\\.gitkeep",
+      "PackagePath": "staticwebassets\\.gitkeep"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.HeavyEquipmentRental.Web.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.HeavyEquipmentRental.Web.props",
+      "PackagePath": "build\\HeavyEquipmentRental.Web.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.HeavyEquipmentRental.Web.props",
+      "PackagePath": "buildMultiTargeting\\HeavyEquipmentRental.Web.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.HeavyEquipmentRental.Web.props",
+      "PackagePath": "buildTransitive\\HeavyEquipmentRental.Web.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

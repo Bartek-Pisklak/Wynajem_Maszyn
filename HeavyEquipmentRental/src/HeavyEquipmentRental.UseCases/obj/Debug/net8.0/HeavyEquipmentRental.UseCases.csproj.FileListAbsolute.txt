@@ -1,0 +1,15 @@
+D:\HeavyEquipmentRental\src\HeavyEquipmentRental.UseCases\bin\Debug\net8.0\HeavyEquipmentRental.UseCases.deps.json
+D:\HeavyEquipmentRental\src\HeavyEquipmentRental.UseCases\bin\Debug\net8.0\HeavyEquipmentRental.UseCases.dll
+D:\HeavyEquipmentRental\src\HeavyEquipmentRental.UseCases\bin\Debug\net8.0\HeavyEquipmentRental.UseCases.pdb
+D:\HeavyEquipmentRental\src\HeavyEquipmentRental.UseCases\bin\Debug\net8.0\HeavyEquipmentRental.Core.dll
+D:\HeavyEquipmentRental\src\HeavyEquipmentRental.UseCases\bin\Debug\net8.0\HeavyEquipmentRental.Core.pdb
+D:\HeavyEquipmentRental\src\HeavyEquipmentRental.UseCases\obj\Debug\net8.0\HeavyEquipmentRental.UseCases.csproj.AssemblyReference.cache
+D:\HeavyEquipmentRental\src\HeavyEquipmentRental.UseCases\obj\Debug\net8.0\HeavyEquipmentRental.UseCases.GeneratedMSBuildEditorConfig.editorconfig
+D:\HeavyEquipmentRental\src\HeavyEquipmentRental.UseCases\obj\Debug\net8.0\HeavyEquipmentRental.UseCases.AssemblyInfoInputs.cache
+D:\HeavyEquipmentRental\src\HeavyEquipmentRental.UseCases\obj\Debug\net8.0\HeavyEquipmentRental.UseCases.AssemblyInfo.cs
+D:\HeavyEquipmentRental\src\HeavyEquipmentRental.UseCases\obj\Debug\net8.0\HeavyEquipmentRental.UseCases.csproj.CoreCompileInputs.cache
+D:\HeavyEquipmentRental\src\HeavyEquipmentRental.UseCases\obj\Debug\net8.0\HeavyEqu.546AD01E.Up2Date
+D:\HeavyEquipmentRental\src\HeavyEquipmentRental.UseCases\obj\Debug\net8.0\HeavyEquipmentRental.UseCases.dll
+D:\HeavyEquipmentRental\src\HeavyEquipmentRental.UseCases\obj\Debug\net8.0\refint\HeavyEquipmentRental.UseCases.dll
+D:\HeavyEquipmentRental\src\HeavyEquipmentRental.UseCases\obj\Debug\net8.0\HeavyEquipmentRental.UseCases.pdb
+D:\HeavyEquipmentRental\src\HeavyEquipmentRental.UseCases\obj\Debug\net8.0\ref\HeavyEquipmentRental.UseCases.dll
