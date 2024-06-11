@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = WynajemMaszyn.Application
-build_property.ProjectDir = H:\GitHub\WynajemMaszyn\WynajemMaszyn.Application\
+build_property.ProjectDir = D:\Github\Wynajem_Maszyn\WynajemMaszyn.Application\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

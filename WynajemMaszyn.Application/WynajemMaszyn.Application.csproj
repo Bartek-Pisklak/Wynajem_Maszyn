@@ -7,10 +7,10 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AutoMapper" Version="12.0.1" />
-		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
-		<PackageReference Include="MediatR" Version="12.0.1" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
+		<PackageReference Include="ErrorOr" Version="1.3.0" />
+		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.8.0" />
+		<PackageReference Include="MediatR" Version="12.2.0" />
+		<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -20,7 +20,9 @@
 	<ItemGroup>
 	  <Folder Include="Features\Excavators\Command\" />
 	  <Folder Include="Features\Rollers\Command\" />
+	  <Folder Include="Features\Rollers\Queries\" />
 	  <Folder Include="Features\Users\Command\" />
+	  <Folder Include="Features\Users\Queries\" />
 	</ItemGroup>
 
 

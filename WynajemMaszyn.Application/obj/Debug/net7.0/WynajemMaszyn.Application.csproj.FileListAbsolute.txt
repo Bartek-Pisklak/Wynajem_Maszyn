@@ -1,0 +1,6 @@
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.Application\obj\Debug\net7.0\WynajemMaszyn.Application.csproj.AssemblyReference.cache
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.Application\obj\Debug\net7.0\WynajemMaszyn.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.Application\obj\Debug\net7.0\WynajemMaszyn.Application.AssemblyInfoInputs.cache
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.Application\obj\Debug\net7.0\WynajemMaszyn.Application.AssemblyInfo.cs
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.Application\obj\Debug\net7.0\WynajemMaszyn.Application.csproj.CoreCompileInputs.cache
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.Application\obj\Debug\net7.0\WynajemMaszyn.Application.sourcelink.json

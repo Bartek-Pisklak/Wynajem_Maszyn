@@ -9,12 +9,12 @@
 
 
 	<ItemGroup>
-		<PackageReference Include="MediatR" Version="12.0.1" />
+		<PackageReference Include="MediatR" Version="12.2.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\WynajemMaszyn.Application\WynajemMaszyn.Application.csproj" />
-		<ProjectReference Include="..\WynajemMaszyn.Persistence\WynajemMaszyn.Persistence.csproj" />
+		<ProjectReference Include="..\..\Core\WynajemMaszyn.Application\WynajemMaszyn.Application.csproj" />
+		<ProjectReference Include="..\..\External\WynajemMaszyn.Infrastructure\WynajemMaszyn.Infrastructure.csproj" />
 	</ItemGroup>
 
 	

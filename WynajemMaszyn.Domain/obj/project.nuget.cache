@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "Da3F2pd32au9k381PRtSQedRm4S7xOvFJ4V7FYeJIg/EaQVvZIMkS9wKAe098ThafDJDABLeV8clHT3YGatDTw==",
+  "dgSpecHash": "ZjP8S92qS0f11afxF0HIwYb0LHbKHFzhRn6uz1Thxsx+TFNFDU/eNlxECo9d8NHxrUtg6fIcBpUvcgDxC0YQVw==",
   "success": true,
-  "projectFilePath": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.Domain\\WynajemMaszyn.Domain.csproj",
+  "projectFilePath": "D:\\Github\\Wynajem_Maszyn\\WynajemMaszyn.Domain\\WynajemMaszyn.Domain.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\barte\\.nuget\\packages\\mediatr\\12.0.1\\mediatr.12.0.1.nupkg.sha512",
+    "C:\\Users\\barte\\.nuget\\packages\\mediatr\\12.2.0\\mediatr.12.2.0.nupkg.sha512",
     "C:\\Users\\barte\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
-    "C:\\Users\\barte\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512"
+    "C:\\Users\\barte\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512"
   ],
   "logs": []
 }

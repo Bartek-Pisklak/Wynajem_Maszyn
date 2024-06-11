@@ -1,0 +1,6 @@
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.Persistence\obj\Debug\net7.0\WynajemMaszyn.Persistence.csproj.AssemblyReference.cache
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.Persistence\obj\Debug\net7.0\WynajemMaszyn.Persistence.GeneratedMSBuildEditorConfig.editorconfig
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.Persistence\obj\Debug\net7.0\WynajemMaszyn.Persistence.AssemblyInfoInputs.cache
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.Persistence\obj\Debug\net7.0\WynajemMaszyn.Persistence.AssemblyInfo.cs
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.Persistence\obj\Debug\net7.0\WynajemMaszyn.Persistence.csproj.CoreCompileInputs.cache
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.Persistence\obj\Debug\net7.0\WynajemMaszyn.Persistence.sourcelink.json

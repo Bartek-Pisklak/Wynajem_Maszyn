@@ -29,3 +29,6 @@ H:\GitHub\WynajemMaszyn\WynajemMaszyn.WebUI\obj\Debug\net7.0\refint\WynajemMaszy
 H:\GitHub\WynajemMaszyn\WynajemMaszyn.WebUI\obj\Debug\net7.0\WynajemMaszyn.WebUI.pdb
 H:\GitHub\WynajemMaszyn\WynajemMaszyn.WebUI\obj\Debug\net7.0\WynajemMaszyn.WebUI.genruntimeconfig.cache
 H:\GitHub\WynajemMaszyn\WynajemMaszyn.WebUI\obj\Debug\net7.0\ref\WynajemMaszyn.WebUI.dll
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.WebUI\obj\Debug\net7.0\WynajemMaszyn.WebUI.dll
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.WebUI\obj\Debug\net7.0\refint\WynajemMaszyn.WebUI.dll
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.WebUI\obj\Debug\net7.0\WynajemMaszyn.WebUI.pdb

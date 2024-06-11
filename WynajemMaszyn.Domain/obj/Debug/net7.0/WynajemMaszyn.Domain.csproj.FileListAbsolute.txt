@@ -1,0 +1,13 @@
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.Domain\bin\Debug\net7.0\WynajemMaszyn.Domain.deps.json
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.Domain\bin\Debug\net7.0\WynajemMaszyn.Domain.dll
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.Domain\bin\Debug\net7.0\WynajemMaszyn.Domain.pdb
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.Domain\obj\Debug\net7.0\WynajemMaszyn.Domain.csproj.AssemblyReference.cache
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.Domain\obj\Debug\net7.0\WynajemMaszyn.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.Domain\obj\Debug\net7.0\WynajemMaszyn.Domain.AssemblyInfoInputs.cache
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.Domain\obj\Debug\net7.0\WynajemMaszyn.Domain.AssemblyInfo.cs
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.Domain\obj\Debug\net7.0\WynajemMaszyn.Domain.csproj.CoreCompileInputs.cache
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.Domain\obj\Debug\net7.0\WynajemMaszyn.Domain.sourcelink.json
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.Domain\obj\Debug\net7.0\WynajemMaszyn.Domain.dll
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.Domain\obj\Debug\net7.0\refint\WynajemMaszyn.Domain.dll
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.Domain\obj\Debug\net7.0\WynajemMaszyn.Domain.pdb
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.Domain\obj\Debug\net7.0\ref\WynajemMaszyn.Domain.dll
