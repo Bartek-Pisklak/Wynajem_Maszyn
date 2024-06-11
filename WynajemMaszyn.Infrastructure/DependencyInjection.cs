@@ -7,7 +7,6 @@ using Microsoft.IdentityModel.Tokens;
 using WynajemMaszyn.Application.Common.Interfaces.Authentication;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Infrastructure.Authentication;
-using WynajemMaszyn.Infrastructure.Persistance;
 using WynajemMaszyn.Infrastructure.Persistance.Repositories;
 using WynajemMaszyn.Infrastructure.Persistance.Seeders;
 

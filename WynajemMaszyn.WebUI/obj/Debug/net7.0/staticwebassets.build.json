@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "jqR9fMNZqFFaneLHWX13oyysdWwyks6G+7e2WOS5euU=",
+  "Hash": "NKCAIvu78oAcSDrvxB+cS7AwD4uD7h+ufwzeDLkMHys=",
   "Source": "WynajemMaszyn.WebUI",
   "BasePath": "_content/WynajemMaszyn.WebUI",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "WynajemMaszyn.WebUI\\wwwroot",
       "Source": "WynajemMaszyn.WebUI",
-      "ContentRoot": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.WebUI\\wwwroot\\",
+      "ContentRoot": "D:\\Github\\Wynajem_Maszyn\\WynajemMaszyn.WebUI\\wwwroot\\",
       "BasePath": "_content/WynajemMaszyn.WebUI",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.WebUI\\obj\\Debug\\net7.0\\scopedcss\\bundle\\WynajemMaszyn.WebUI.styles.css",
+      "Identity": "D:\\Github\\Wynajem_Maszyn\\WynajemMaszyn.WebUI\\obj\\Debug\\net7.0\\scopedcss\\bundle\\WynajemMaszyn.WebUI.styles.css",
       "SourceId": "WynajemMaszyn.WebUI",
       "SourceType": "Computed",
-      "ContentRoot": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.WebUI\\obj\\Debug\\net7.0\\scopedcss\\bundle\\",
+      "ContentRoot": "D:\\Github\\Wynajem_Maszyn\\WynajemMaszyn.WebUI\\obj\\Debug\\net7.0\\scopedcss\\bundle\\",
       "BasePath": "_content/WynajemMaszyn.WebUI",
       "RelativePath": "WynajemMaszyn.WebUI.styles.css",
       "AssetKind": "All",
@@ -33,13 +33,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.WebUI\\obj\\Debug\\net7.0\\scopedcss\\bundle\\WynajemMaszyn.WebUI.styles.css"
+      "OriginalItemSpec": "D:\\Github\\Wynajem_Maszyn\\WynajemMaszyn.WebUI\\obj\\Debug\\net7.0\\scopedcss\\bundle\\WynajemMaszyn.WebUI.styles.css"
     },
     {
-      "Identity": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.WebUI\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\WynajemMaszyn.WebUI.bundle.scp.css",
+      "Identity": "D:\\Github\\Wynajem_Maszyn\\WynajemMaszyn.WebUI\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\WynajemMaszyn.WebUI.bundle.scp.css",
       "SourceId": "WynajemMaszyn.WebUI",
       "SourceType": "Computed",
-      "ContentRoot": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.WebUI\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "D:\\Github\\Wynajem_Maszyn\\WynajemMaszyn.WebUI\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/WynajemMaszyn.WebUI",
       "RelativePath": "WynajemMaszyn.WebUI.bundle.scp.css",
       "AssetKind": "All",
@@ -52,13 +52,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.WebUI\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\WynajemMaszyn.WebUI.bundle.scp.css"
+      "OriginalItemSpec": "D:\\Github\\Wynajem_Maszyn\\WynajemMaszyn.WebUI\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\WynajemMaszyn.WebUI.bundle.scp.css"
     },
     {
-      "Identity": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.WebUI\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "Identity": "D:\\Github\\Wynajem_Maszyn\\WynajemMaszyn.WebUI\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "SourceId": "WynajemMaszyn.WebUI",
       "SourceType": "Discovered",
-      "ContentRoot": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.WebUI\\wwwroot\\",
+      "ContentRoot": "D:\\Github\\Wynajem_Maszyn\\WynajemMaszyn.WebUI\\wwwroot\\",
       "BasePath": "_content/WynajemMaszyn.WebUI",
       "RelativePath": "css/bootstrap/bootstrap.min.css",
       "AssetKind": "All",
@@ -74,10 +74,10 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Identity": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.WebUI\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "Identity": "D:\\Github\\Wynajem_Maszyn\\WynajemMaszyn.WebUI\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
       "SourceId": "WynajemMaszyn.WebUI",
       "SourceType": "Discovered",
-      "ContentRoot": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.WebUI\\wwwroot\\",
+      "ContentRoot": "D:\\Github\\Wynajem_Maszyn\\WynajemMaszyn.WebUI\\wwwroot\\",
       "BasePath": "_content/WynajemMaszyn.WebUI",
       "RelativePath": "css/bootstrap/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -93,10 +93,10 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Identity": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.WebUI\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
+      "Identity": "D:\\Github\\Wynajem_Maszyn\\WynajemMaszyn.WebUI\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
       "SourceId": "WynajemMaszyn.WebUI",
       "SourceType": "Discovered",
-      "ContentRoot": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.WebUI\\wwwroot\\",
+      "ContentRoot": "D:\\Github\\Wynajem_Maszyn\\WynajemMaszyn.WebUI\\wwwroot\\",
       "BasePath": "_content/WynajemMaszyn.WebUI",
       "RelativePath": "css/open-iconic/font/css/open-iconic-bootstrap.min.css",
       "AssetKind": "All",
@@ -112,10 +112,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css"
     },
     {
-      "Identity": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.WebUI\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot",
+      "Identity": "D:\\Github\\Wynajem_Maszyn\\WynajemMaszyn.WebUI\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot",
       "SourceId": "WynajemMaszyn.WebUI",
       "SourceType": "Discovered",
-      "ContentRoot": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.WebUI\\wwwroot\\",
+      "ContentRoot": "D:\\Github\\Wynajem_Maszyn\\WynajemMaszyn.WebUI\\wwwroot\\",
       "BasePath": "_content/WynajemMaszyn.WebUI",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.eot",
       "AssetKind": "All",
@@ -131,10 +131,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot"
     },
     {
-      "Identity": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.WebUI\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf",
+      "Identity": "D:\\Github\\Wynajem_Maszyn\\WynajemMaszyn.WebUI\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf",
       "SourceId": "WynajemMaszyn.WebUI",
       "SourceType": "Discovered",
-      "ContentRoot": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.WebUI\\wwwroot\\",
+      "ContentRoot": "D:\\Github\\Wynajem_Maszyn\\WynajemMaszyn.WebUI\\wwwroot\\",
       "BasePath": "_content/WynajemMaszyn.WebUI",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.otf",
       "AssetKind": "All",
@@ -150,10 +150,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf"
     },
     {
-      "Identity": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.WebUI\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg",
+      "Identity": "D:\\Github\\Wynajem_Maszyn\\WynajemMaszyn.WebUI\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg",
       "SourceId": "WynajemMaszyn.WebUI",
       "SourceType": "Discovered",
-      "ContentRoot": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.WebUI\\wwwroot\\",
+      "ContentRoot": "D:\\Github\\Wynajem_Maszyn\\WynajemMaszyn.WebUI\\wwwroot\\",
       "BasePath": "_content/WynajemMaszyn.WebUI",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.svg",
       "AssetKind": "All",
@@ -169,10 +169,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg"
     },
     {
-      "Identity": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.WebUI\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf",
+      "Identity": "D:\\Github\\Wynajem_Maszyn\\WynajemMaszyn.WebUI\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf",
       "SourceId": "WynajemMaszyn.WebUI",
       "SourceType": "Discovered",
-      "ContentRoot": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.WebUI\\wwwroot\\",
+      "ContentRoot": "D:\\Github\\Wynajem_Maszyn\\WynajemMaszyn.WebUI\\wwwroot\\",
       "BasePath": "_content/WynajemMaszyn.WebUI",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.ttf",
       "AssetKind": "All",
@@ -188,10 +188,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf"
     },
     {
-      "Identity": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.WebUI\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
+      "Identity": "D:\\Github\\Wynajem_Maszyn\\WynajemMaszyn.WebUI\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
       "SourceId": "WynajemMaszyn.WebUI",
       "SourceType": "Discovered",
-      "ContentRoot": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.WebUI\\wwwroot\\",
+      "ContentRoot": "D:\\Github\\Wynajem_Maszyn\\WynajemMaszyn.WebUI\\wwwroot\\",
       "BasePath": "_content/WynajemMaszyn.WebUI",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.woff",
       "AssetKind": "All",
@@ -207,10 +207,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
     },
     {
-      "Identity": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.WebUI\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
+      "Identity": "D:\\Github\\Wynajem_Maszyn\\WynajemMaszyn.WebUI\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
       "SourceId": "WynajemMaszyn.WebUI",
       "SourceType": "Discovered",
-      "ContentRoot": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.WebUI\\wwwroot\\",
+      "ContentRoot": "D:\\Github\\Wynajem_Maszyn\\WynajemMaszyn.WebUI\\wwwroot\\",
       "BasePath": "_content/WynajemMaszyn.WebUI",
       "RelativePath": "css/open-iconic/FONT-LICENSE",
       "AssetKind": "All",
@@ -226,10 +226,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\FONT-LICENSE"
     },
     {
-      "Identity": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.WebUI\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
+      "Identity": "D:\\Github\\Wynajem_Maszyn\\WynajemMaszyn.WebUI\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
       "SourceId": "WynajemMaszyn.WebUI",
       "SourceType": "Discovered",
-      "ContentRoot": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.WebUI\\wwwroot\\",
+      "ContentRoot": "D:\\Github\\Wynajem_Maszyn\\WynajemMaszyn.WebUI\\wwwroot\\",
       "BasePath": "_content/WynajemMaszyn.WebUI",
       "RelativePath": "css/open-iconic/ICON-LICENSE",
       "AssetKind": "All",
@@ -245,10 +245,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\ICON-LICENSE"
     },
     {
-      "Identity": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.WebUI\\wwwroot\\css\\open-iconic\\README.md",
+      "Identity": "D:\\Github\\Wynajem_Maszyn\\WynajemMaszyn.WebUI\\wwwroot\\css\\open-iconic\\README.md",
       "SourceId": "WynajemMaszyn.WebUI",
       "SourceType": "Discovered",
-      "ContentRoot": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.WebUI\\wwwroot\\",
+      "ContentRoot": "D:\\Github\\Wynajem_Maszyn\\WynajemMaszyn.WebUI\\wwwroot\\",
       "BasePath": "_content/WynajemMaszyn.WebUI",
       "RelativePath": "css/open-iconic/README.md",
       "AssetKind": "All",
@@ -264,10 +264,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\README.md"
     },
     {
-      "Identity": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.WebUI\\wwwroot\\css\\site.css",
+      "Identity": "D:\\Github\\Wynajem_Maszyn\\WynajemMaszyn.WebUI\\wwwroot\\css\\site.css",
       "SourceId": "WynajemMaszyn.WebUI",
       "SourceType": "Discovered",
-      "ContentRoot": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.WebUI\\wwwroot\\",
+      "ContentRoot": "D:\\Github\\Wynajem_Maszyn\\WynajemMaszyn.WebUI\\wwwroot\\",
       "BasePath": "_content/WynajemMaszyn.WebUI",
       "RelativePath": "css/site.css",
       "AssetKind": "All",
@@ -283,10 +283,10 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.WebUI\\wwwroot\\favicon.png",
+      "Identity": "D:\\Github\\Wynajem_Maszyn\\WynajemMaszyn.WebUI\\wwwroot\\favicon.png",
       "SourceId": "WynajemMaszyn.WebUI",
       "SourceType": "Discovered",
-      "ContentRoot": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.WebUI\\wwwroot\\",
+      "ContentRoot": "D:\\Github\\Wynajem_Maszyn\\WynajemMaszyn.WebUI\\wwwroot\\",
       "BasePath": "_content/WynajemMaszyn.WebUI",
       "RelativePath": "favicon.png",
       "AssetKind": "All",

@@ -1,8 +1,8 @@
 ﻿@page "/Excavator"
 @using WynajemMaszyn.Application.Features.Excavators.Queries.DTOs
 @using WynajemMaszyn.Application.Features.Excavators.Queries.GetAllExcavators;
-@using MediatR
-@inject IMediator Mediator
+@using WynajemMaszyn.WebUI.Data
+@inject ExcavatorService ExcavatorService
 
 <PageTitle>Excavator</PageTitle>
 
@@ -18,11 +18,11 @@ else
         <thead>
             <tr>
                 <th>Name</th>
-                <th>City</th>
-                <th>Capacity</th>
-                <th>Built Year</th>
-                <th>Pitch Length</th>
-                <th>Pitch Width</th>
+                <th>ProductionYear</th>
+                <th>OperatingHours</th>
+                <th>Weight</th>
+                <th>Engine</th>
+                <th>EnginePower</th>
             </tr>
         </thead>
         <tbody>
@@ -30,7 +30,6 @@ else
             {
                 <tr>
                     <td>@machine.Name</td>
-                    <td>@machine.ProductionYear</td>
                     <td>@machine.ProductionYear</td>
                     <td>@machine.OperatingHours</td>
                     <td>@machine.Weight</td>
@@ -45,13 +44,10 @@ else
 
 @code {
     private List<GetExcavatorDto>? excavator;
-    private readonly ISender _mediator;
+
     protected override async Task OnInitializedAsync()
     {
-       // excavator = await Mediator.Send(new GetAllExcavators());
-        var response =  await _mediator.Send(new GetAllExcavators());
-        excavator = response.Match(
-                    WorkTaskResponse => Ok(WorkTaskResponse),
-                    errors => Problem(errors));
+        var query = new GetAllExcavatorsQuery();
+        excavator = await ExcavatorService.GetAllExcavator(query);
     }
 }

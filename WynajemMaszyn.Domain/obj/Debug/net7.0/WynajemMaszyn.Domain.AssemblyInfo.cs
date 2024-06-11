@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WynajemMaszyn.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+655f0bb60782403da1c46df26e6183f1ab35c173")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5933cf0be4157c40d839f7600b5911435dd00885")]
 [assembly: System.Reflection.AssemblyProductAttribute("WynajemMaszyn.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WynajemMaszyn.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

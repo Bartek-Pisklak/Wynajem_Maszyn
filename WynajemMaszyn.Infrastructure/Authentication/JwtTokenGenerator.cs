@@ -8,7 +8,7 @@ using WynajemMaszyn.Application.Common.Interfaces.Authentication;
 using WynajemMaszyn.Infrastructure.Authentication;
 using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
 
-namespace StudentsDashboard.Infrastructure.Authentication;
+namespace WynajemMaszyn.Infrastructure.Authentication;
 
 public class JwtTokenGenerator : IJwtTokenGenerator
 {

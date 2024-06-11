@@ -4,7 +4,7 @@ using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using WynajemMaszyn.Application.Common.Behaviors;
 
-namespace StudentsDashboard.Application;
+namespace WynajemMaszyn.Application;
 
 public static class DependencyInjection
 {

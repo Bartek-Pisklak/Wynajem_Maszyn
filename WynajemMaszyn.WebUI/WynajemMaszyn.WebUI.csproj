@@ -13,8 +13,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\Core\WynajemMaszyn.Application\WynajemMaszyn.Application.csproj" />
-		<ProjectReference Include="..\..\External\WynajemMaszyn.Infrastructure\WynajemMaszyn.Infrastructure.csproj" />
+		<ProjectReference Include="..\WynajemMaszyn.Application\WynajemMaszyn.Application.csproj" />
+		<ProjectReference Include="..\WynajemMaszyn.Infrastructure\WynajemMaszyn.Infrastructure.csproj" />
 	</ItemGroup>
 
 	
