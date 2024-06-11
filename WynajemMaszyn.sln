@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{12ED1B80-16AF-4692-AAAE-D297B45523ED}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{4622D1E8-9FFE-496A-8523-7F775B337D5B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{944B55BA-6701-4B30-A97D-938AD35D0E5C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WynajemMaszyn.Domain", "WynajemMaszyn.Domain\WynajemMaszyn.Domain.csproj", "{A10C3728-9311-46E4-BED7-64B81AAB6BA6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WynajemMaszyn.Application", "WynajemMaszyn.Application\WynajemMaszyn.Application.csproj", "{9AFB4A30-1724-4E01-9A80-E555A749D0E6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WynajemMaszyn.Persistence", "WynajemMaszyn.Persistence\WynajemMaszyn.Persistence.csproj", "{C7CD2EED-C270-4775-A806-7A236448FB74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WynajemMaszyn.WebUI", "WynajemMaszyn.WebUI\WynajemMaszyn.WebUI.csproj", "{E524B774-812B-4513-A378-05F13FDAD367}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A10C3728-9311-46E4-BED7-64B81AAB6BA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A10C3728-9311-46E4-BED7-64B81AAB6BA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A10C3728-9311-46E4-BED7-64B81AAB6BA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A10C3728-9311-46E4-BED7-64B81AAB6BA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AFB4A30-1724-4E01-9A80-E555A749D0E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AFB4A30-1724-4E01-9A80-E555A749D0E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AFB4A30-1724-4E01-9A80-E555A749D0E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AFB4A30-1724-4E01-9A80-E555A749D0E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7CD2EED-C270-4775-A806-7A236448FB74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7CD2EED-C270-4775-A806-7A236448FB74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7CD2EED-C270-4775-A806-7A236448FB74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7CD2EED-C270-4775-A806-7A236448FB74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E524B774-812B-4513-A378-05F13FDAD367}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E524B774-812B-4513-A378-05F13FDAD367}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E524B774-812B-4513-A378-05F13FDAD367}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E524B774-812B-4513-A378-05F13FDAD367}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A10C3728-9311-46E4-BED7-64B81AAB6BA6} = {12ED1B80-16AF-4692-AAAE-D297B45523ED}
+		{9AFB4A30-1724-4E01-9A80-E555A749D0E6} = {12ED1B80-16AF-4692-AAAE-D297B45523ED}
+		{C7CD2EED-C270-4775-A806-7A236448FB74} = {4622D1E8-9FFE-496A-8523-7F775B337D5B}
+		{E524B774-812B-4513-A378-05F13FDAD367} = {944B55BA-6701-4B30-A97D-938AD35D0E5C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6EB545EE-5797-433D-8C53-3494164A5D88}
+	EndGlobalSection
+EndGlobal

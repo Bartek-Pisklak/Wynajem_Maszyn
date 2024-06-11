@@ -1,0 +1,139 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "H:\\GitHub\\WynajemMaszyn\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9AFB4A30-1724-4E01-9A80-E555A749D0E6}|WynajemMaszyn.Application\\WynajemMaszyn.Application.csproj|h:\\github\\wynajemmaszyn\\wynajemmaszyn.application\\features\\excavators\\queries\\gerallexcavators\\getallexcavatorhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AFB4A30-1724-4E01-9A80-E555A749D0E6}|WynajemMaszyn.Application\\WynajemMaszyn.Application.csproj|solutionrelative:wynajemmaszyn.application\\features\\excavators\\queries\\gerallexcavators\\getallexcavatorhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9AFB4A30-1724-4E01-9A80-E555A749D0E6}|WynajemMaszyn.Application\\WynajemMaszyn.Application.csproj|h:\\github\\wynajemmaszyn\\wynajemmaszyn.application\\features\\excavators\\queries\\gerallexcavators\\getallexcavatorsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AFB4A30-1724-4E01-9A80-E555A749D0E6}|WynajemMaszyn.Application\\WynajemMaszyn.Application.csproj|solutionrelative:wynajemmaszyn.application\\features\\excavators\\queries\\gerallexcavators\\getallexcavatorsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9AFB4A30-1724-4E01-9A80-E555A749D0E6}|WynajemMaszyn.Application\\WynajemMaszyn.Application.csproj|h:\\github\\wynajemmaszyn\\wynajemmaszyn.application\\features\\excavators\\queries\\gerallexcavators\\getallexcavatorsquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AFB4A30-1724-4E01-9A80-E555A749D0E6}|WynajemMaszyn.Application\\WynajemMaszyn.Application.csproj|solutionrelative:wynajemmaszyn.application\\features\\excavators\\queries\\gerallexcavators\\getallexcavatorsquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9AFB4A30-1724-4E01-9A80-E555A749D0E6}|WynajemMaszyn.Application\\WynajemMaszyn.Application.csproj|h:\\github\\wynajemmaszyn\\wynajemmaszyn.application\\features\\excavators\\queries\\getallstadiums\\getallstadiumsquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AFB4A30-1724-4E01-9A80-E555A749D0E6}|WynajemMaszyn.Application\\WynajemMaszyn.Application.csproj|solutionrelative:wynajemmaszyn.application\\features\\excavators\\queries\\getallstadiums\\getallstadiumsquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9AFB4A30-1724-4E01-9A80-E555A749D0E6}|WynajemMaszyn.Application\\WynajemMaszyn.Application.csproj|h:\\github\\wynajemmaszyn\\wynajemmaszyn.application\\features\\excavators\\queries\\getallstadiums\\getallstadiumsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AFB4A30-1724-4E01-9A80-E555A749D0E6}|WynajemMaszyn.Application\\WynajemMaszyn.Application.csproj|solutionrelative:wynajemmaszyn.application\\features\\excavators\\queries\\getallstadiums\\getallstadiumsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9AFB4A30-1724-4E01-9A80-E555A749D0E6}|WynajemMaszyn.Application\\WynajemMaszyn.Application.csproj|h:\\github\\wynajemmaszyn\\wynajemmaszyn.application\\wynajemmaszyn.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{9AFB4A30-1724-4E01-9A80-E555A749D0E6}|WynajemMaszyn.Application\\WynajemMaszyn.Application.csproj|solutionrelative:wynajemmaszyn.application\\wynajemmaszyn.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E524B774-812B-4513-A378-05F13FDAD367}|WynajemMaszyn.WebUI\\WynajemMaszyn.WebUI.csproj|h:\\github\\wynajemmaszyn\\wynajemmaszyn.webui\\pages\\excavator.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E524B774-812B-4513-A378-05F13FDAD367}|WynajemMaszyn.WebUI\\WynajemMaszyn.WebUI.csproj|solutionrelative:wynajemmaszyn.webui\\pages\\excavator.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GetAllExcavatorHandler.cs",
+              "DocumentMoniker": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.Application\\Features\\Excavators\\Queries\\GerAllExcavators\\GetAllExcavatorHandler.cs",
+              "RelativeDocumentMoniker": "WynajemMaszyn.Application\\Features\\Excavators\\Queries\\GerAllExcavators\\GetAllExcavatorHandler.cs",
+              "ToolTip": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.Application\\Features\\Excavators\\Queries\\GerAllExcavators\\GetAllExcavatorHandler.cs",
+              "RelativeToolTip": "WynajemMaszyn.Application\\Features\\Excavators\\Queries\\GerAllExcavators\\GetAllExcavatorHandler.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-11T13:25:30.546Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GetAllExcavatorsQuery.cs",
+              "DocumentMoniker": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.Application\\Features\\Excavators\\Queries\\GerAllExcavators\\GetAllExcavatorsQuery.cs",
+              "RelativeDocumentMoniker": "WynajemMaszyn.Application\\Features\\Excavators\\Queries\\GerAllExcavators\\GetAllExcavatorsQuery.cs",
+              "ToolTip": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.Application\\Features\\Excavators\\Queries\\GerAllExcavators\\GetAllExcavatorsQuery.cs",
+              "RelativeToolTip": "WynajemMaszyn.Application\\Features\\Excavators\\Queries\\GerAllExcavators\\GetAllExcavatorsQuery.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-11T13:21:59.784Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GetAllStadiumsQuery.cs",
+              "DocumentMoniker": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.Application\\Features\\Excavators\\Queries\\GetAllStadiums\\GetAllStadiumsQuery.cs",
+              "RelativeDocumentMoniker": "WynajemMaszyn.Application\\Features\\Excavators\\Queries\\GetAllStadiums\\GetAllStadiumsQuery.cs",
+              "ToolTip": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.Application\\Features\\Excavators\\Queries\\GetAllStadiums\\GetAllStadiumsQuery.cs",
+              "RelativeToolTip": "WynajemMaszyn.Application\\Features\\Excavators\\Queries\\GetAllStadiums\\GetAllStadiumsQuery.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABkAAABBAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-11T13:12:56.187Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GetAllStadiumsDto.cs",
+              "DocumentMoniker": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.Application\\Features\\Excavators\\Queries\\GetAllStadiums\\GetAllStadiumsDto.cs",
+              "RelativeDocumentMoniker": "WynajemMaszyn.Application\\Features\\Excavators\\Queries\\GetAllStadiums\\GetAllStadiumsDto.cs",
+              "ToolTip": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.Application\\Features\\Excavators\\Queries\\GetAllStadiums\\GetAllStadiumsDto.cs",
+              "RelativeToolTip": "WynajemMaszyn.Application\\Features\\Excavators\\Queries\\GetAllStadiums\\GetAllStadiumsDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-11T13:12:50.355Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GetAllExcavatorsDto.cs",
+              "DocumentMoniker": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.Application\\Features\\Excavators\\Queries\\GerAllExcavators\\GetAllExcavatorsDto.cs",
+              "RelativeDocumentMoniker": "WynajemMaszyn.Application\\Features\\Excavators\\Queries\\GerAllExcavators\\GetAllExcavatorsDto.cs",
+              "ToolTip": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.Application\\Features\\Excavators\\Queries\\GerAllExcavators\\GetAllExcavatorsDto.cs",
+              "RelativeToolTip": "WynajemMaszyn.Application\\Features\\Excavators\\Queries\\GerAllExcavators\\GetAllExcavatorsDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAA6AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-11T13:12:47.773Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "WynajemMaszyn.Application",
+              "DocumentMoniker": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.Application\\WynajemMaszyn.Application.csproj",
+              "RelativeDocumentMoniker": "WynajemMaszyn.Application\\WynajemMaszyn.Application.csproj",
+              "ToolTip": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.Application\\WynajemMaszyn.Application.csproj",
+              "RelativeToolTip": "WynajemMaszyn.Application\\WynajemMaszyn.Application.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-06-11T13:22:17.059Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Excavator.razor",
+              "DocumentMoniker": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.WebUI\\Pages\\Excavator.razor",
+              "RelativeDocumentMoniker": "WynajemMaszyn.WebUI\\Pages\\Excavator.razor",
+              "ToolTip": "H:\\GitHub\\WynajemMaszyn\\WynajemMaszyn.WebUI\\Pages\\Excavator.razor",
+              "RelativeToolTip": "WynajemMaszyn.WebUI\\Pages\\Excavator.razor",
+              "ViewState": "AQIAABgAAAAAAAAAAAAAACsAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-11T13:09:41.589Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

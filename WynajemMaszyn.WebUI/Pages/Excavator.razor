@@ -1,0 +1,50 @@
+﻿@page "/Excavator"
+@using WynajemMaszyn.Application.Features.Excavators.Queries.GetAllExcavators;
+@using MediatR
+@inject IMediator Mediator
+
+<PageTitle>Excavator</PageTitle>
+
+<h1>Excavator</h1>
+
+@if (excavator == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>City</th>
+                <th>Capacity</th>
+                <th>Built Year</th>
+                <th>Pitch Length</th>
+                <th>Pitch Width</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var machine in excavator)
+            {
+                <tr>
+                    <td>@machine.Name</td>
+                    <td>@machine.City</td>
+                    <td>@machine.Capacity</td>
+                    <td>@machine.BuiltYear</td>
+                    <td>@machine.PitchLength</td>
+                    <td>@machine.PitchWidth</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<GetAllExcavators>? excavator;
+
+    protected override async Task OnInitializedAsync()
+    {
+        excavator = await Mediator.Send(new GetAllExcavators());
+    }
+}
