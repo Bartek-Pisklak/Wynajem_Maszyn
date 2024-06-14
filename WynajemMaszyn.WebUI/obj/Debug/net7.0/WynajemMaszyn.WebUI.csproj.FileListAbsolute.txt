@@ -99,3 +99,14 @@ D:\Github\Wynajem_Maszyn\WynajemMaszyn.WebUI\obj\Debug\net7.0\refint\WynajemMasz
 D:\Github\Wynajem_Maszyn\WynajemMaszyn.WebUI\obj\Debug\net7.0\WynajemMaszyn.WebUI.pdb
 D:\Github\Wynajem_Maszyn\WynajemMaszyn.WebUI\obj\Debug\net7.0\WynajemMaszyn.WebUI.genruntimeconfig.cache
 D:\Github\Wynajem_Maszyn\WynajemMaszyn.WebUI\obj\Debug\net7.0\ref\WynajemMaszyn.WebUI.dll
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.WebUI\bin\Debug\net7.0\Humanizer.dll
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.WebUI\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.WebUI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.WebUI\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.WebUI\bin\Debug\net7.0\Microsoft.OpenApi.dll
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.WebUI\bin\Debug\net7.0\Mono.TextTemplating.dll
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.WebUI\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.WebUI\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.WebUI\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.WebUI\bin\Debug\net7.0\System.CodeDom.dll
+D:\Github\Wynajem_Maszyn\WynajemMaszyn.WebUI\obj\Debug\net7.0\WynajemMaszyn.WebUI.MvcApplicationPartsAssemblyInfo.cs
