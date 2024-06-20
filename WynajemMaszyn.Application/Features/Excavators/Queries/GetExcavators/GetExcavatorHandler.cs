@@ -3,11 +3,12 @@ using ErrorOr;
 using WynajemMaszyn.Application.Common.Errors;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Application.Features.Excavators.Queries.DTOs;
-using Excavator = WynajemMaszyn.Domain.Entities.Excavator;
+using WynajemMaszyn.Domain.Entities;
 
-namespace WynajemMaszyn.Application.Features.Excavators.Queries.GetAllExcavators
+
+namespace WynajemMaszyn.Application.Features.Excavators.Queries.GetExcavators
 {
-    public class GetExcavatorHandler : IRequestHandler<GetExcavatorsQuery, ErrorOr<List<GetExcavatorDto>>>
+    public class GetExcavatorHandler : IRequestHandler<GetExcavatorsQuery, ErrorOr<GetExcavatorDto>>
     {
         private readonly IExcavatorRepository _excavatorRepository;
 
@@ -17,27 +18,27 @@ namespace WynajemMaszyn.Application.Features.Excavators.Queries.GetAllExcavators
         }
 
 
-        public async Task<ErrorOr<List<GetExcavatorDto>>> Handle(GetExcavatorsQuery request, CancellationToken cancellationToken)
+        public async Task<ErrorOr<GetExcavatorDto>> Handle(GetExcavatorsQuery request, CancellationToken cancellationToken)
         {
 
-            IEnumerable<Excavator> excavators;
+            
 
             //excavators = await _excavatorRepository.GetAllExcavator();
-            excavators = _excavatorRepository.GetAllExcavator();
+            var excavator = _excavatorRepository.GetExcavator(1);
 
-            if (!excavators.Any()) return Errors.Excavator.NotDataToDisplay;
+            if (excavator == null) return Errors.Excavator.NotDataToDisplay;
 
-            List<GetExcavatorDto> workExcavators = excavators.Select(x => new GetExcavatorDto
+            var workExcavators = new GetExcavatorDto
             {
-                Id=x.Id,
-                Name=x.Name,
-                ProductionYear=x.ProductionYear,
-                OperatingHours=x.OperatingHours,
-                Weight= x.Weight,
-                Engine = x.Engine,
-                EnginePower = x.EnginePower,
-                DrivingSpeed = x.DrivingSpeed
-            }).ToList();
+                Id=excavator.Id,
+                Name=excavator.Name,
+                ProductionYear=excavator.ProductionYear,
+                OperatingHours=excavator.OperatingHours,
+                Weight= excavator.Weight,
+                Engine = excavator.Engine,
+                EnginePower = excavator.EnginePower,
+                DrivingSpeed = excavator.DrivingSpeed
+            };
 
             return workExcavators;
         }

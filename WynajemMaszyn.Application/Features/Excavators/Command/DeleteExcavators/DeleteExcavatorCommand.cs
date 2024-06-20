@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WynajemMaszyn.Application.Features.Excavators.Command.DeleteExcavators
 {
-    internal class AddExcavatorCommand
+    internal class DeleteExcavatorCommand
     {
     }
 }

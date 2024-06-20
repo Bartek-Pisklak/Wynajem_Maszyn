@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WynajemMaszyn.Application.Features.Excavators.Command.AddExcavators
 {
-    internal class AddExcavatorHandler
+    internal class AddExcavatorCommandHandler
     {
     }
 }

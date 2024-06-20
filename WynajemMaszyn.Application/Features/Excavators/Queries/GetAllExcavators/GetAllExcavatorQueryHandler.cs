@@ -3,15 +3,15 @@ using ErrorOr;
 using WynajemMaszyn.Application.Common.Errors;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Application.Features.Excavators.Queries.DTOs;
-using Excavator = WynajemMaszyn.Domain.Entities.Excavator;
+using WynajemMaszyn.Domain.Entities;
 
 namespace WynajemMaszyn.Application.Features.Excavators.Queries.GetAllExcavators
 {
-    public class GetAllExcavatorHandler : IRequestHandler<GetAllExcavatorsQuery, ErrorOr<List<GetExcavatorDto>>>
+    public class GetAllExcavatorQueryHandler : IRequestHandler<GetAllExcavatorsQuery, ErrorOr<List<GetExcavatorDto>>>
     {
         private readonly IExcavatorRepository _excavatorRepository;
 
-        public GetAllExcavatorHandler(IExcavatorRepository excavatorRepository)
+        public GetAllExcavatorQueryHandler(IExcavatorRepository excavatorRepository)
         {
             _excavatorRepository=excavatorRepository;
         }
@@ -19,7 +19,7 @@ namespace WynajemMaszyn.Application.Features.Excavators.Queries.GetAllExcavators
 
         public async Task<ErrorOr<List<GetExcavatorDto>>> Handle(GetAllExcavatorsQuery request, CancellationToken cancellationToken)
         {
-
+            
             IEnumerable<Excavator> excavators;
 
             //excavators = await _excavatorRepository.GetAllExcavator();

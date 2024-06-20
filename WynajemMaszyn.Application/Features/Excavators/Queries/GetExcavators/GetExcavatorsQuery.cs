@@ -3,8 +3,8 @@ using ErrorOr;
 using WynajemMaszyn.Application.Features.Excavators.Queries.DTOs;
 
 
-namespace WynajemMaszyn.Application.Features.Excavators.Queries.GetAllExcavators
+namespace WynajemMaszyn.Application.Features.Excavators.Queries.GetExcavators
 {
         public record GetExcavatorsQuery(
-        ) : IRequest<ErrorOr<List<GetExcavatorDto>>>;
+        ) : IRequest<ErrorOr<GetExcavatorDto>>;
 }
