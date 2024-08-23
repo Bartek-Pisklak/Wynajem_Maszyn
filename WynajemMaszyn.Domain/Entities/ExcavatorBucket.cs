@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WynajemMaszyn.Domain.Entities
 {
-    public class ExcavatorBuckets
+    public class ExcavatorBucket
     {
         public int Id { get; set; }
         public string Name { get; set; }

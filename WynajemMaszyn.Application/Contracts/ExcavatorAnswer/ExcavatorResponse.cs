@@ -1,4 +1,4 @@
 ﻿namespace WynajemMaszyn.Application.Contracts.ExcavatorAnswer
 {
-    public record ExcavatorResponsestring (string message);
+    public record ExcavatorResponse(string message);
 }

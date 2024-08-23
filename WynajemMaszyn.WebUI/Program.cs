@@ -1,23 +1,22 @@
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 using WynajemMaszyn.WebUI.Data;
-using WynajemMaszyn.Application.Features;
-//using WynajemMaszyn. ;
-
-
 using WynajemMaszyn.Application;
 using WynajemMaszyn.Infrastructure;
+
+using WynajemMaszyn.Api.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
-builder.Services.AddSingleton<ExcavatorService>();
+builder.Services.AddScoped<WeatherForecastService>();
+builder.Services.AddScoped<ApiController>();
+builder.Services.AddScoped<ExcavatorService>();
 
+builder.Services.AddControllers();
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
+
 
 var app = builder.Build();
 
@@ -34,5 +33,10 @@ app.UseRouting();
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
-
+app.MapControllers();
 app.Run();
+
+
+public partial class Program { }
+
+

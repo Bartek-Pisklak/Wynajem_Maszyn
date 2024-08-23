@@ -1,8 +1,7 @@
 ﻿@page "/Excavator"
 @using WynajemMaszyn.Application.Features.Excavators.Queries.DTOs
-@using WynajemMaszyn.Application.Features.Excavators.Queries.GetAllExcavators;
 @using WynajemMaszyn.WebUI.Data
-@inject ExcavatorService ExcavatorService
+@inject ExcavatorService excavatorService
 
 <PageTitle>Excavator</PageTitle>
 
@@ -11,6 +10,10 @@
 @if (excavator == null)
 {
     <p><em>Loading...</em></p>
+}
+else if (excavator.Count == 0)
+{
+    <p><em>No data available</em></p>
 }
 else
 {
@@ -23,6 +26,7 @@ else
                 <th>Weight</th>
                 <th>Engine</th>
                 <th>EnginePower</th>
+                <th>DrivingSpeed</th>
             </tr>
         </thead>
         <tbody>
@@ -47,7 +51,19 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        var query = new GetAllExcavatorsQuery();
-        excavator = await ExcavatorService.GetAllExcavator(query);
+        try
+        {
+            excavator = await excavatorService.GetAllExcavators();
+        }
+        catch (InvalidCastException ex)
+        {
+            Console.WriteLine($"Invalid cast exception: {ex.Message}");
+            // Możesz wyświetlić użytkownikowi odpowiednią wiadomość
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Unhandled exception: {ex.Message}");
+            // Możesz również wyświetlić użytkownikowi wiadomość o błędzie
+        }
     }
 }
