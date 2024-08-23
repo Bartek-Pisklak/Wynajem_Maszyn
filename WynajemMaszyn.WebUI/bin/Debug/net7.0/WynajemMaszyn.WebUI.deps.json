@@ -8,7 +8,7 @@
     ".NETCoreApp,Version=v7.0": {
       "WynajemMaszyn.WebUI/1.0.0": {
         "dependencies": {
-          "MediatR": "12.2.0",
+          "MediatR": "12.4.0",
           "Microsoft.AspNetCore.OpenApi": "7.0.10",
           "Microsoft.EntityFrameworkCore.Design": "7.0.11",
           "Swashbuckle.AspNetCore": "6.5.0",
@@ -27,31 +27,31 @@
           }
         }
       },
-      "ErrorOr/1.3.0": {
+      "ErrorOr/2.0.1": {
         "runtime": {
           "lib/net6.0/ErrorOr.dll": {
-            "assemblyVersion": "1.3.0.0",
-            "fileVersion": "1.3.0.0"
+            "assemblyVersion": "2.0.1.0",
+            "fileVersion": "2.0.1.0"
           }
         }
       },
-      "FluentValidation/11.8.0": {
+      "FluentValidation/11.9.2": {
         "runtime": {
           "lib/net7.0/FluentValidation.dll": {
             "assemblyVersion": "11.0.0.0",
-            "fileVersion": "11.8.0.0"
+            "fileVersion": "11.9.2.0"
           }
         }
       },
-      "FluentValidation.DependencyInjectionExtensions/11.8.0": {
+      "FluentValidation.DependencyInjectionExtensions/11.9.2": {
         "dependencies": {
-          "FluentValidation": "11.8.0",
+          "FluentValidation": "11.9.2",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0"
         },
         "runtime": {
           "lib/netstandard2.1/FluentValidation.DependencyInjectionExtensions.dll": {
             "assemblyVersion": "11.0.0.0",
-            "fileVersion": "11.8.0.0"
+            "fileVersion": "11.9.2.0"
           }
         }
       },
@@ -63,7 +63,7 @@
           }
         }
       },
-      "MediatR/12.2.0": {
+      "MediatR/12.4.0": {
         "dependencies": {
           "MediatR.Contracts": "2.0.1",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0"
@@ -71,7 +71,7 @@
         "runtime": {
           "lib/net6.0/MediatR.dll": {
             "assemblyVersion": "12.0.0.0",
-            "fileVersion": "12.2.0.0"
+            "fileVersion": "12.4.0.0"
           }
         }
       },
@@ -85,7 +85,7 @@
       },
       "MediatR.Extensions.Microsoft.DependencyInjection/11.1.0": {
         "dependencies": {
-          "MediatR": "12.2.0",
+          "MediatR": "12.4.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0"
         },
         "runtime": {
@@ -498,9 +498,9 @@
       },
       "WynajemMaszyn.Application/1.0.0": {
         "dependencies": {
-          "ErrorOr": "1.3.0",
-          "FluentValidation.DependencyInjectionExtensions": "11.8.0",
-          "MediatR": "12.2.0",
+          "ErrorOr": "2.0.1",
+          "FluentValidation.DependencyInjectionExtensions": "11.9.2",
+          "MediatR": "12.4.0",
           "MediatR.Extensions.Microsoft.DependencyInjection": "11.1.0",
           "WynajemMaszyn.Domain": "1.0.0"
         },
@@ -510,7 +510,7 @@
       },
       "WynajemMaszyn.Domain/1.0.0": {
         "dependencies": {
-          "MediatR": "12.2.0"
+          "MediatR": "12.4.0"
         },
         "runtime": {
           "WynajemMaszyn.Domain.dll": {}
@@ -548,26 +548,26 @@
       "path": "bcrypt.net-next/4.0.3",
       "hashPath": "bcrypt.net-next.4.0.3.nupkg.sha512"
     },
-    "ErrorOr/1.3.0": {
+    "ErrorOr/2.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Pr7fPsggiTauAXbxp8D2z/5wZvhgB1zgQ5ScsUeHrRCMT5Rzw3W6k6l1KzJPf8c0ExSSMJBLaaYiCF0hDs3EIw==",
-      "path": "erroror/1.3.0",
-      "hashPath": "erroror.1.3.0.nupkg.sha512"
+      "sha512": "sha512-aje9lUVEAsusPFmaRcVM5EUqWBofd7hYtb9N8+ycgPYrtOzyFajMpzRgIO4uuiCllNLBc3x48+cpA+4v4koUDQ==",
+      "path": "erroror/2.0.1",
+      "hashPath": "erroror.2.0.1.nupkg.sha512"
     },
-    "FluentValidation/11.8.0": {
+    "FluentValidation/11.9.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-TiEaaYqSIAS+wXQv46LRm8Mca092XYNePD0n231Hqlkmm5FuToZoWnjI1ef/vJUxBzqR7/k2vaVQXxijNgVKRQ==",
-      "path": "fluentvalidation/11.8.0",
-      "hashPath": "fluentvalidation.11.8.0.nupkg.sha512"
+      "sha512": "sha512-XeHp9LvFvu1fsQ/NvDCymV02GOCB1nz7ZUhfpI3uMhCcHTkV1K5bMkv+Nc/kuNYyAsX5+5bcmUanIEMd5QN+Eg==",
+      "path": "fluentvalidation/11.9.2",
+      "hashPath": "fluentvalidation.11.9.2.nupkg.sha512"
     },
-    "FluentValidation.DependencyInjectionExtensions/11.8.0": {
+    "FluentValidation.DependencyInjectionExtensions/11.9.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-fNfH9XEwevXb1JKCWGEkmkIKDYK3+gaAG8ugeOggd0oc8hdwsl3SNC59qAM1tcKVUhcD+AEDCI4hXX5WWshpWg==",
-      "path": "fluentvalidation.dependencyinjectionextensions/11.8.0",
-      "hashPath": "fluentvalidation.dependencyinjectionextensions.11.8.0.nupkg.sha512"
+      "sha512": "sha512-PMAdnR1fX1c8DyUvu5YvRa0V0JHES8vzXnVX0OSS3z9W/SkuHqcGrtiSOdW1QehG3vZhXsKhqf3wgDzW/OYahA==",
+      "path": "fluentvalidation.dependencyinjectionextensions/11.9.2",
+      "hashPath": "fluentvalidation.dependencyinjectionextensions.11.9.2.nupkg.sha512"
     },
     "Humanizer.Core/2.14.1": {
       "type": "package",
@@ -576,12 +576,12 @@
       "path": "humanizer.core/2.14.1",
       "hashPath": "humanizer.core.2.14.1.nupkg.sha512"
     },
-    "MediatR/12.2.0": {
+    "MediatR/12.4.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-8TUFrHapKi6D74PhnSNEguRsH91HNGyP3R4ZQdgDorJgl9Wac5Prh0vA33QfrniAaS6L2xNNhc6vxzg+5AIbwA==",
-      "path": "mediatr/12.2.0",
-      "hashPath": "mediatr.12.2.0.nupkg.sha512"
+      "sha512": "sha512-s8xhhvsTQqt7jI1XeVqcniiph/QoRmJb1qxVgk7UFpAgOzpzZ0VTl8zV+lFJgxISVqZuJRjmxF+P3AuHyelCrg==",
+      "path": "mediatr/12.4.0",
+      "hashPath": "mediatr.12.4.0.nupkg.sha512"
     },
     "MediatR.Contracts/2.0.1": {
       "type": "package",
