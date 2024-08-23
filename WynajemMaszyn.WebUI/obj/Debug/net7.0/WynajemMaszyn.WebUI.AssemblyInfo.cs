@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WynajemMaszyn.WebUI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c58d6d79a3e2e92918d126dc2bfd24f2912fb80f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+35f389a154ade0b5234aea415974043205e453b8")]
 [assembly: System.Reflection.AssemblyProductAttribute("WynajemMaszyn.WebUI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WynajemMaszyn.WebUI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

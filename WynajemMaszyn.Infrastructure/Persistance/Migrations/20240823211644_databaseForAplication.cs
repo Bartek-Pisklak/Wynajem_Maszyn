@@ -19,7 +19,7 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: false),
-                    ProductionYear = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    ProductionYear = table.Column<int>(type: "integer", nullable: false),
                     OperatingHours = table.Column<int>(type: "integer", nullable: false),
                     Weight = table.Column<int>(type: "integer", nullable: false),
                     Engine = table.Column<string>(type: "text", nullable: false),

@@ -12,7 +12,7 @@ using WynajemMaszyn.Infrastructure;
 namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240823205724_databaseForAplication")]
+    [Migration("20240823211644_databaseForAplication")]
     partial class databaseForAplication
     {
         /// <inheritdoc />
@@ -50,8 +50,8 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                     b.Property<int>("OperatingHours")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("ProductionYear")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<int>("ProductionYear")
+                        .HasColumnType("integer");
 
                     b.Property<int>("Weight")
                         .HasColumnType("integer");
