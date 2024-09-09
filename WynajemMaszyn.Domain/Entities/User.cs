@@ -9,6 +9,6 @@ namespace WynajemMaszyn.Domain.Entities
         public string Password { get; set; } = null!;
         public int IdPermision { get; set; } = 1;
 
-        //public virtual Permision {
+        public virtual Permision Permision { get; set; }
     }
 }
