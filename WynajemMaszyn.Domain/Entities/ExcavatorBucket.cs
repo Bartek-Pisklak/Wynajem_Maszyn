@@ -15,6 +15,7 @@ namespace WynajemMaszyn.Domain.Entities
 
         public int ProductionYear { get; set; }
         public int BucketCapacity { get; set; }
+        public int Weight { get; set; }
 
         public int Width { get; set; } // Szerokość łyżki (w mm)
         public int PinDiameter { get; set; } // Średnica sworzni (w mm)

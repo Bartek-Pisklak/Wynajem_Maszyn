@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Domain.Entities;
 using WynajemMaszyn.Infrastructure;
@@ -14,25 +15,27 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
             _dbContext = dbContext;
         }
 
-        public void createExcavator(Excavator newExcavator)
+        public async Task CreateExcavator(Excavator newExcavator)
         {
 
-            _dbContext.Excavators.Add(newExcavator);
-            _dbContext.SaveChanges();
+            await _dbContext.Excavators.AddAsync(newExcavator);
+            await _dbContext.SaveChangesAsync();
         }
 
-        public void deleteExcavator(int Id)
+        public async Task DeleteExcavator(int id)
         {
-            var result = _dbContext.Excavators.SingleOrDefault(c => c.Id == Id);
-
-
+            var result = await _dbContext.Excavators.FirstOrDefaultAsync(c => c.Id == id);
+            if (result == null)
+            {
+                return;
+            }
             _dbContext.Excavators.Remove(result);
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
         }
 
-        public void editExcavator(int Id, Excavator editedExcavator)
+        public async Task EditExcavator(int id, Excavator editedExcavator)
         {
-            var result = _dbContext.Excavators.FirstOrDefault(c => c.Id == Id);
+            var result = await _dbContext.Excavators.FirstOrDefaultAsync(c => c.Id == id);
 
             if (result == null)
             {
@@ -49,17 +52,17 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
             _dbContext.SaveChanges();
         }
 
-        public IEnumerable<Excavator> GetAllExcavator()
+        public async Task<IEnumerable<Excavator>> GetAllExcavator()
         {
-            var listMachinery = _dbContext.Excavators.ToList();
+            var excavatorList = await _dbContext.Excavators.ToListAsync();
 
-            return listMachinery;
+            return excavatorList;
         }
 
-        public Excavator GetExcavator(int id)
+        public async Task<Excavator?> GetExcavator(int id)
         {
-            var machinery = _dbContext.Excavators.FirstOrDefault();
-            return machinery;
+            var excavator = await _dbContext.Excavators.FirstOrDefaultAsync(r => r.Id == id);
+            return excavator;
         }
     }
 }

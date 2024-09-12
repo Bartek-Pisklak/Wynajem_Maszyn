@@ -4,10 +4,10 @@ namespace WynajemMaszyn.Application.Persistance
 {
     public interface IExcavatorBucketRepository
     {
-        ExcavatorBucket GetExcavator(int id);
-        IEnumerable<ExcavatorBucket> GetAllExcavator();
-        void createExcavator(ExcavatorBucket newExcavatorBucket);
-        void deleteExcavator(int Id);
-        void editExcavator(int Id, ExcavatorBucket editedExcavatorBucket);
+        Task<ExcavatorBucket?> GetExcavatorBucket(int id);
+        Task<IEnumerable<ExcavatorBucket>> GetAllExcavatorBucket();
+        Task CreateExcavatorBucket(ExcavatorBucket newExcavatorBucket);
+        Task DeleteExcavatorBucket(int id);
+        Task EditExcavatorBucket(int id, ExcavatorBucket editedExcavatorBucket);
     }
 }

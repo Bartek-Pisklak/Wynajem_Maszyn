@@ -1,7 +1,7 @@
 ﻿
 namespace WynajemMaszyn.Domain.Entities
 {
-    public class Machines
+    public class Machinery
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -13,7 +13,7 @@ namespace WynajemMaszyn.Domain.Entities
         public int IdWoodChipper { get; set; }
 
 
-        public virtual ICollection<MachinesRental> MachinesRentals { get; set; }
+        public virtual ICollection<MachineryRental> MachinesRentals { get; set; }
         public virtual Excavator? Excavator { get; set; } = null;
         public virtual ExcavatorBucket? ExcavatorBucket { get; set; } = null;
         public virtual Roller? Roller { get; set; } = null;

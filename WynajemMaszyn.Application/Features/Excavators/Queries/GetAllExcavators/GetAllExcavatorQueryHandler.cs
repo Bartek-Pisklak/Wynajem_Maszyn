@@ -22,8 +22,7 @@ namespace WynajemMaszyn.Application.Features.Excavators.Queries.GetAllExcavators
             
             IEnumerable<Excavator> excavators;
 
-            //excavators = await _excavatorRepository.GetAllExcavator();
-            excavators = _excavatorRepository.GetAllExcavator();
+            excavators = await _excavatorRepository.GetAllExcavator();
 
             if (!excavators.Any()) return Errors.Excavator.NotDataToDisplay;
 
