@@ -3,10 +3,12 @@ namespace WynajemMaszyn.Application.Persistance
 {
     public interface IMachineryRentalRepository
     {
-        IEnumerable<MachinesRental> getAllMachineryRental(int id);
-        MachinesRental getMachineryRental(int id, int idUser);
-        void addMachineryRental(MachinesRental machineryRental, int idUser);
-        void deleteMachineryRental(int id, int idUser);
-        void updateMachineryRental(MachinesRental machineryRental, int idUser);
+        Task <IEnumerable<MachineryRental?>> GetAllMachineryRentalUser(int idUser);
+        Task<IEnumerable<MachineryRental?>> GetAllMachineryRentalWorker();
+        Task<MachineryRental> GetMachineryRental(int id);
+
+        Task AddMachineryRental(MachineryRental machineryRental);
+        Task DeleteMachineryRental(int id);
+        Task EditMachineryRental(int id,MachineryRental editedMachineryRental);
     }
 }

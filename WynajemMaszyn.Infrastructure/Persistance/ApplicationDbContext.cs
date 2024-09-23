@@ -14,7 +14,15 @@ namespace WynajemMaszyn.Infrastructure
         }
 
         public DbSet<Excavator> Excavators => Set<Excavator>();
+        public DbSet<ExcavatorBucket> ExcavatorsBuckets => Set<ExcavatorBucket>();
+
+        public DbSet<WoodChipper> WoodChippers => Set<WoodChipper>();
+        public DbSet<Harvester> Harvesters => Set<Harvester>();
         public DbSet<Roller> Rollers => Set<Roller>();
+
+
+        public DbSet<Machinery> Machiners => Set<Machinery>(); 
+        public DbSet<MachineryRental> MachineryRentals => Set<MachineryRental>();
         public DbSet<Permision> Permisions => Set<Permision>();
         public DbSet<User> Users => Set<User>();
 
