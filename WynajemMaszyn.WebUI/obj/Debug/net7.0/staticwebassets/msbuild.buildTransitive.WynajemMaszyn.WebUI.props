@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\WynajemMaszyn.WebUI.props" />
-</Project>

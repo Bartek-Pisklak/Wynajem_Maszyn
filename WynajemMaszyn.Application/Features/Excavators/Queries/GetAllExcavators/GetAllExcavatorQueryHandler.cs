@@ -7,7 +7,7 @@ using WynajemMaszyn.Domain.Entities;
 
 namespace WynajemMaszyn.Application.Features.Excavators.Queries.GetAllExcavators
 {
-    public class GetAllExcavatorQueryHandler : IRequestHandler<GetAllExcavatorsQuery, ErrorOr<List<GetExcavatorDto>>>
+    public class GetAllExcavatorQueryHandler : IRequestHandler<GetAllExcavatorQuery, ErrorOr<List<GetExcavatorDto>>>
     {
         private readonly IExcavatorRepository _excavatorRepository;
 
@@ -17,7 +17,7 @@ namespace WynajemMaszyn.Application.Features.Excavators.Queries.GetAllExcavators
         }
 
 
-        public async Task<ErrorOr<List<GetExcavatorDto>>> Handle(GetAllExcavatorsQuery request, CancellationToken cancellationToken)
+        public async Task<ErrorOr<List<GetExcavatorDto>>> Handle(GetAllExcavatorQuery request, CancellationToken cancellationToken)
         {
             
             IEnumerable<Excavator> excavators;

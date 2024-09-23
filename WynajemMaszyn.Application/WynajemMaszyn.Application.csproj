@@ -18,8 +18,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Features\Rollers\Command\" />
-	  <Folder Include="Features\Rollers\Queries\" />
 	  <Folder Include="Features\Users\Command\" />
 	  <Folder Include="Features\Users\Queries\" />
 	</ItemGroup>
