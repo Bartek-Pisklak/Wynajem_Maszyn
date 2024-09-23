@@ -17,7 +17,6 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
 
         public async Task CreateExcavator(Excavator newExcavator)
         {
-
             await _dbContext.Excavators.AddAsync(newExcavator);
             await _dbContext.SaveChangesAsync();
         }

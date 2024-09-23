@@ -1,5 +1,4 @@
 ﻿
-using System.Reflection.PortableExecutable;
 
 namespace WynajemMaszyn.Domain.Entities
 {
@@ -10,7 +9,7 @@ namespace WynajemMaszyn.Domain.Entities
         public string Name { get; set; }
 
 
-        public int ProducitonYear { get; set; }
+        public int ProductionYear { get; set; }
         public int OperatingHours { get; set; }
         public int Weight { get; set; }
 
@@ -30,6 +29,6 @@ namespace WynajemMaszyn.Domain.Entities
 
         public string Description { get; set; }
 
-        public virtual User User { get; set; }
+        public virtual required User User { get; set; }
     }
 }

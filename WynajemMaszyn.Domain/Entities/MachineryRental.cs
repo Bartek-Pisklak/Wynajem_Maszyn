@@ -10,7 +10,7 @@ namespace WynajemMaszyn.Domain.Entities
     {
         public int Id { get; set; }
         public int IdUser { get; set; }
-        public int IdMachines { get; set; }
+        public IEnumerable<int> IdMachines { get; set; }
         public float Cost { get; set; }
         public DateTime BeginRent { get; set; }
         public DateTime EndRent { get; set; }

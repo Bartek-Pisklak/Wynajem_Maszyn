@@ -13,11 +13,11 @@ namespace WynajemMaszyn.Domain.Entities
         public int IdWoodChipper { get; set; }
 
 
-        public virtual ICollection<MachineryRental> MachinesRentals { get; set; }
-        public virtual Excavator? Excavator { get; set; } = null;
-        public virtual ExcavatorBucket? ExcavatorBucket { get; set; } = null;
-        public virtual Roller? Roller { get; set; } = null;
-        public virtual Harvester? Harvester { get; set; } = null;
-        public virtual WoodChipper? WoodChipper { get; set; } = null;
+        public virtual ICollection<MachineryRental> MachinesRentals { get; set; } 
+        public virtual Excavator? Excavator { get; set; }
+        public virtual ExcavatorBucket? ExcavatorBucket { get; set; }
+        public virtual Roller? Roller { get; set; }
+        public virtual Harvester? Harvester { get; set; }
+        public virtual WoodChipper? WoodChipper { get; set; }
     }
 }
