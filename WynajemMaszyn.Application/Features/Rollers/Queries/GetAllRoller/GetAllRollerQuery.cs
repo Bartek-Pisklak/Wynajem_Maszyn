@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WynajemMaszyn.Application.Features.Rollers.Queries.GetAllRoller
 {
-    internal class GetAllExcavatorBucketQuery
+    internal class GetAllRollerQuery
     {
     }
 }

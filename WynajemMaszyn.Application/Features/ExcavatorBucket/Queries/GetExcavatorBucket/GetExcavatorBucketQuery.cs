@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ErrorOr;
+using MediatR;
+
+using WynajemMaszyn.Application.Features.ExcavatorBucket.Queries.DTOs;
+
 
 namespace WynajemMaszyn.Application.Features.ExcavatorBucket.Queries.GetExcavatorBucket
 {
-    internal class GetExcavatorBucketQuery
-    {
-    }
+    public record GetExcavatorBucketQuery
+    () : IRequest<ErrorOr<List<GetExcavatorBucketDto>>>;
 }
