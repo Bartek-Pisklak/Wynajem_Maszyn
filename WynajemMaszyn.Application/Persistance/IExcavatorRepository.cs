@@ -6,7 +6,7 @@ namespace WynajemMaszyn.Application.Persistance
     {
         Task<Excavator?> GetExcavator(int id);
         Task<IEnumerable<Excavator>> GetAllExcavator();
-        Task CreateExcavator(Excavator newExcavator);
+        Task<int> CreateExcavator(Excavator newExcavator);
         Task DeleteExcavator(int id);
         Task EditExcavator(int id, Excavator editedExcavator);
     }

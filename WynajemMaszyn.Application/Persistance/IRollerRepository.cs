@@ -11,7 +11,7 @@ namespace WynajemMaszyn.Application.Persistance
     {
         Task<Roller?> GetRoller(int id);
         Task<IEnumerable<Roller?>> GetAllRoller();
-        Task AddRoller(Roller newRoller);
+        Task CreateRoller(Roller newRoller);
         Task DeleteRoller(int id);
         Task UpdateRoller(int id, Roller editedRoller);
     }

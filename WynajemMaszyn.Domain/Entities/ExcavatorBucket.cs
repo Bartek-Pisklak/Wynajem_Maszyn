@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WynajemMaszyn.Domain.Entities
+﻿namespace WynajemMaszyn.Domain.Entities
 {
     public class ExcavatorBucket
     {
         public int Id { get; set; }
-        public int Id_User { get; set; }
+        public int IdUser { get; set; }
         public string Name { get; set; }
-        public string Normal {  get; set; }
+        public string Normal { get; set; }
 
         public int ProductionYear { get; set; }
         public int BucketCapacity { get; set; }

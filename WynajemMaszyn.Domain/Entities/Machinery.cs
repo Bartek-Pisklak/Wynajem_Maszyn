@@ -1,5 +1,4 @@
-﻿
-namespace WynajemMaszyn.Domain.Entities
+﻿namespace WynajemMaszyn.Domain.Entities
 {
     public class Machinery
     {
@@ -18,6 +17,7 @@ namespace WynajemMaszyn.Domain.Entities
         public virtual ExcavatorBucket? ExcavatorBucket { get; set; }
         public virtual Roller? Roller { get; set; }
         public virtual Harvester? Harvester { get; set; }
+
         public virtual WoodChipper? WoodChipper { get; set; }
     }
 }

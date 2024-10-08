@@ -1,12 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ErrorOr;
+using MediatR;
+using WynajemMaszyn.Application.Contracts.ExcavatorAnswer;
 
 namespace WynajemMaszyn.Application.Features.Excavators.Command.CreateExcavators
 {
-    internal class CreateExcavatorCommand
-    {
-    }
+    public record CreateExcavatorCommand
+    (
+    int Id,
+    int IdUser,
+    string Name,
+    DateTime ProductionYear,
+    int OperatingHours,
+    int Weight,
+    int Engine,
+    int EnginePower,
+    int DrivingSpeed,
+    string Description
+
+                ) : IRequest<ErrorOr<ExcavatorResponse>>;
+
+
 }

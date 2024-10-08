@@ -8,7 +8,8 @@
     int Weight,
     int Engine,
     int EnginePower,
-    int DrivingSpeed
+    int DrivingSpeed,
+    string Description
         );
 }
 

@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WynajemMaszyn.Domain.Entities
+﻿namespace WynajemMaszyn.Domain.Entities
 {
     public class Excavator
     {
         public int Id { get; set; }
-        public int Id_User { get; set; }
+        public int IdUser { get; set; }
         public string Name { get; set; }
         public string Type { get; set; } // małe,średnie, duże, koparko-ładowarki
         public string TypeChassis { get; set; } // podwozie koła,koparki
@@ -25,6 +19,7 @@ namespace WynajemMaszyn.Domain.Entities
         public string FuelType { get; set; }  //ropa, benzyna
         public string Gearbox { get; set; }
 
+        public string Description { get; set; }
 
         public int MaxDiggingDepth { get; set; } 
 

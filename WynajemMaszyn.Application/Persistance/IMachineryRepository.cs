@@ -9,7 +9,7 @@ namespace WynajemMaszyn.Application.Persistance
 {
     public interface IMachineryRepository
     {
-        Task<IEnumerable<Machinery>> GetAllMachinery();
+        Task<IEnumerable<Machinery?>> GetAllMachinery();
         Task CreateMachinery(Machinery newMachinery);
         Task DeleteMachinery(int id);
     }

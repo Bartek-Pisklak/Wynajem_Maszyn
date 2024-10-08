@@ -15,10 +15,11 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task CreateExcavator(Excavator newExcavator)
+        public async Task<int> CreateExcavator(Excavator newExcavator)
         {
             await _dbContext.Excavators.AddAsync(newExcavator);
             await _dbContext.SaveChangesAsync();
+            return newExcavator.Id;
         }
 
         public async Task DeleteExcavator(int id)

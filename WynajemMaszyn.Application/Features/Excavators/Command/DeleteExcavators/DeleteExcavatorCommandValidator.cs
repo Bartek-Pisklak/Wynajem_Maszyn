@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FluentValidation;
+
 
 namespace WynajemMaszyn.Application.Features.Excavators.Command.DeleteExcavators
 {
-    internal class DeleteExcavatorCommandValidator
+
+    public class DeleteExcavatorCommandValidator : AbstractValidator<DeleteExcavatorCommand> 
     {
+
+        public DeleteExcavatorCommandValidator()
+        {
+            RuleFor(x => x.Id)
+            .NotEmpty().WithMessage("Id is required");
+        }
     }
 }
