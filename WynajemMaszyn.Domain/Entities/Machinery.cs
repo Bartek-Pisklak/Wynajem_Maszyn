@@ -13,6 +13,7 @@
 
 
         public virtual ICollection<MachineryRental> MachinesRentals { get; set; } 
+
         public virtual Excavator? Excavator { get; set; }
         public virtual ExcavatorBucket? ExcavatorBucket { get; set; }
         public virtual Roller? Roller { get; set; }

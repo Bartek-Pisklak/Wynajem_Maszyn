@@ -6,12 +6,20 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.CreateExca
 {
     public record CreateExcavatorBucketCommand
     (
-    int Id,
-    int IdUser,
     string Name,
-    DateTime ProductionYear,
+    string BucketType,
+    int ProductionYear,
+    int BucketCapacity,
     int Weight,
+    int Width,
+    int PinDiameter,
+    int ArmWidth,
+    int PinSpacing,
+    string Material,
+    int MaxLoadCapacity,
+    float RentalPricePerDay,
+    string CompatibleExcavators,
+    string ImagePath,
     string Description
-
                 ) : IRequest<ErrorOr<ExcavatorBucketResponse>>;
 }

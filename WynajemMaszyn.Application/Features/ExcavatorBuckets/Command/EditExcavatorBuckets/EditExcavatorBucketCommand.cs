@@ -1,12 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ErrorOr;
+using MediatR;
+using WynajemMaszyn.Application.Contracts.ExcavatorBucketAnswer;
 
 namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.EditExcavatorBuckets
 {
-    internal class EditExcavatorBucketCommand
-    {
-    }
+    public record EditExcavatorBucketCommand
+    (
+    string Name,
+    string BucketType,
+    int ProductionYear,
+    int BucketCapacity,
+    int Weight,
+    int Width,
+    int PinDiameter,
+    int ArmWidth,
+    int PinSpacing,
+    string Material,
+    int MaxLoadCapacity,
+    float RentalPricePerDay,
+    string CompatibleExcavators,
+    string ImagePath,
+    string Description
+
+
+        ) : IRequest<ErrorOr<ExcavatorBucketResponse>>;
 }

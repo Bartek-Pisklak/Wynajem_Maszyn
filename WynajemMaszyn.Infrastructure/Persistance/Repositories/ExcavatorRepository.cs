@@ -42,12 +42,20 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
                 return;
             }
             result.Name = editedExcavator.Name;
+            result.Type = editedExcavator.Type;
+            result.TypeChassis = editedExcavator.TypeChassis;
+            result.RentalPricePerDay = editedExcavator.RentalPricePerDay;
             result.ProductionYear = editedExcavator.ProductionYear;
             result.OperatingHours = editedExcavator.OperatingHours;
             result.Weight = editedExcavator.Weight;
             result.Engine = editedExcavator.Engine;
             result.EnginePower = editedExcavator.EnginePower;
             result.DrivingSpeed = editedExcavator.DrivingSpeed;
+            result.FuelConsumption = editedExcavator.FuelConsumption;
+            result.FuelType = editedExcavator.FuelType;
+            result.Gearbox = editedExcavator.Gearbox;
+            result.MaxDiggingDepth = editedExcavator.MaxDiggingDepth;
+            result.Description = editedExcavator.Description;
 
             _dbContext.SaveChanges();
         }

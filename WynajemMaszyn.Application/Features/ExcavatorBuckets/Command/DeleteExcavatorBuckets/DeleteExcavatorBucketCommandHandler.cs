@@ -15,11 +15,15 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.DeleteExca
     {
         private readonly IExcavatorBucketRepository _excavatorBucketRepository;
         private readonly IUserContextGetIdService _userContextGetId;
+        private readonly IMachineryRepository _machineryRepository;
 
-        public DeleteExcavatorBucketCommandHandler(IExcavatorBucketRepository excavatorBucketRepository, IUserContextGetIdService userContextGetId)
+        public DeleteExcavatorBucketCommandHandler(IExcavatorBucketRepository excavatorBucketRepository,
+            IUserContextGetIdService userContextGetId,
+            IMachineryRepository machineryRepository)
         {
-            _excavatorBucketRepository = excavatorBucketRepository;
-            _userContextGetId = userContextGetId;
+            _excavatorBucketRepository=excavatorBucketRepository;
+            _userContextGetId=userContextGetId;
+            _machineryRepository=machineryRepository;
         }
 
         public async Task<ErrorOr<ExcavatorBucketResponse>> Handle(DeleteExcavatorBucketCommand request, CancellationToken cancellationToken)
@@ -33,6 +37,8 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.DeleteExca
             int id = request.Id;
             await _excavatorBucketRepository.DeleteExcavatorBucket(id);
 
+
+            await _machineryRepository.DeleteMachinery(userId);
             return new ExcavatorBucketResponse("ExcavatorBucket delete");
         }
     }

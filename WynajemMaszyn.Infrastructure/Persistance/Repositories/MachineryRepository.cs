@@ -22,14 +22,71 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task DeleteMachinery(int id)
+        public async Task DeleteMachinery(Machinery newMachinery)
         {
-            var result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.Id == id);
+            var result = new Machinery();
+
+            if (newMachinery.IdExcavator == null)
+            {
+                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdExcavator == newMachinery.IdExcavator);
+            }
+            else if (newMachinery.IdExcavatorBucket == null)
+            {
+                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdExcavatorBucket == newMachinery.IdExcavatorBucket);
+            }
+            else if(newMachinery.IdRoller == null)
+            {
+                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdRoller == newMachinery.IdRoller);
+            }
+            else if (newMachinery.IdHarvester == null)
+            {
+                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdHarvester == newMachinery.IdHarvester);
+            }
+            else if (newMachinery.IdWoodChipper == null)
+            {
+                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdWoodChipper == newMachinery.IdWoodChipper);
+            }
+
             if (result == null)
             {
                 return;
             }
             _dbContext.Machiners.Remove(result);
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task EditMachinery(Machinery newMachinery)
+        {
+            var result = new Machinery();
+
+            if (newMachinery.IdExcavator == null)
+            {
+                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdExcavator == newMachinery.IdExcavator);
+            }
+            else if (newMachinery.IdExcavatorBucket == null)
+            {
+                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdExcavatorBucket == newMachinery.IdExcavatorBucket);
+            }
+            else if (newMachinery.IdRoller == null)
+            {
+                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdRoller == newMachinery.IdRoller);
+            }
+            else if (newMachinery.IdHarvester == null)
+            {
+                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdHarvester == newMachinery.IdHarvester);
+            }
+            else if (newMachinery.IdWoodChipper == null)
+            {
+                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdWoodChipper == newMachinery.IdWoodChipper);
+
+            }
+
+            if (result == null)
+            {
+                return;
+            }
+
+            result.Name = newMachinery.Name;
             await _dbContext.SaveChangesAsync();
         }
 

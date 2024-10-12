@@ -30,7 +30,7 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task UpdateRoller(int id, Roller editedRoller)
+        public async Task EditRoller(int id, Roller editedRoller)
         {
             var result = await _dbContext.Rollers.FirstOrDefaultAsync(c => c.Id == id);
 

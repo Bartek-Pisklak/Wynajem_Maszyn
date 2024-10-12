@@ -10,11 +10,17 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.CreateExcavators
     {
         private readonly IExcavatorRepository _excavatorRepository;
         private readonly IUserContextGetIdService _userContextGetId;
+        private readonly IMachineryRepository _machineryRepository;
 
-        public CreateExcavatorCommandHandler(IExcavatorRepository excavatorRepository, IUserContextGetIdService userContextGetId)
+
+
+        public CreateExcavatorCommandHandler(IExcavatorRepository excavatorRepository,
+            IUserContextGetIdService userContextGetId,
+            IMachineryRepository machineryRepository)
         {
             _excavatorRepository = excavatorRepository;
             _userContextGetId = userContextGetId;
+            _machineryRepository = machineryRepository;
         }
 
         public async Task<ErrorOr<ExcavatorResponse>> Handle(CreateExcavatorCommand request, CancellationToken cancellationToken)
@@ -30,11 +36,29 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.CreateExcavators
             {
                 IdUser = (int)userId,
                 Name = request.Name,
+                Type = request.Type,
+                TypeChassis = request.TypeChassis,
+                RentalPricePerDay = request.RentalPricePerDay,
+                ProductionYear = request.ProductionYear,
+                OperatingHours = request.OperatingHours,
+                Weight = request.Weight,
+                Engine = request.Engine,
+                EnginePower = request.EnginePower,
+                DrivingSpeed = request.DrivingSpeed,
+                FuelConsumption = request.FuelConsumption,
+                FuelType = request.FuelType,
+                Gearbox = request.Gearbox,
+                MaxDiggingDepth = request.MaxDiggingDepth,
                 Description = request.Description
+        };
+
+            var machine = new Machinery
+            {
+                Name= excavator.Name,
+                IdExcavator=excavator.Id
             };
-
-            int idMachine = await _excavatorRepository.CreateExcavator(excavator);
-
+            await _excavatorRepository.CreateExcavator(excavator);
+            await _machineryRepository.CreateMachinery(machine);
 
 
             return new ExcavatorResponse("Excavator added");

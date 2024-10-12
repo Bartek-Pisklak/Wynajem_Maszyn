@@ -10,11 +10,15 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.DeleteExcavators
     {
         private readonly IExcavatorRepository _excavatorRepository;
         private readonly IUserContextGetIdService _userContextGetId;
+        private readonly IMachineryRepository _machineryRepository;
 
-        public DeleteExcavatorCommandHandler(IExcavatorRepository excavatorRepository, IUserContextGetIdService userContextGetId)
+        public DeleteExcavatorCommandHandler(IExcavatorRepository excavatorRepository, 
+            IUserContextGetIdService userContextGetId,
+            IMachineryRepository machineryRepository)
         {
             _excavatorRepository = excavatorRepository;
             _userContextGetId = userContextGetId;
+            _machineryRepository=machineryRepository;   
         }
 
         public async Task<ErrorOr<ExcavatorResponse>> Handle(DeleteExcavatorCommand request, CancellationToken cancellationToken)
@@ -27,7 +31,7 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.DeleteExcavators
                         }*/
             int id = request.Id;
             await _excavatorRepository.DeleteExcavator(id);
-
+            await _machineryRepository.DeleteMachinery(id);
             return new ExcavatorResponse("Task delete");
         }
     }

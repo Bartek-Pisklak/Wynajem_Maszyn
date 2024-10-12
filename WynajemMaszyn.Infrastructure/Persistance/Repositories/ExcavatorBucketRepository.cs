@@ -41,16 +41,22 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
                 return;
             }
             result.Name = editedExcavatorBucket.Name;
-            result.Normal = editedExcavatorBucket.Normal;
+            result.BucketType = editedExcavatorBucket.BucketType;
             result.ProductionYear = editedExcavatorBucket.ProductionYear;
-            result.Weight = editedExcavatorBucket.Weight;
             result.BucketCapacity = editedExcavatorBucket.BucketCapacity;
+            result.Weight = editedExcavatorBucket.Weight;
 
             result.Width = editedExcavatorBucket.Width;
             result.PinDiameter = editedExcavatorBucket.PinDiameter;
             result.ArmWidth = editedExcavatorBucket.ArmWidth;
             result.PinSpacing = editedExcavatorBucket.PinSpacing;
 
+            result.Material = editedExcavatorBucket.Material;
+            result.MaxLoadCapacity = editedExcavatorBucket.MaxLoadCapacity;
+            result.RentalPricePerDay = editedExcavatorBucket.RentalPricePerDay;
+            result.CompatibleExcavators = editedExcavatorBucket.CompatibleExcavators;
+
+            result.ImagePath = editedExcavatorBucket.ImagePath;
             result.Description = editedExcavatorBucket.Description;
 
             await _dbContext.SaveChangesAsync();

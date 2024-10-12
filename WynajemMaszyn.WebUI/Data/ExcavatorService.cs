@@ -25,18 +25,16 @@ namespace WynajemMaszyn.WebUI.Data
             return response.Match(
                    ExcavatorResponse =>
                    {
-                       // Jeśli operacja się powiodła, zwracamy listę excavatorów
                        return ExcavatorResponse;
                    },
                    errors =>
                    {
-                       // Jeśli są błędy, logujemy je i rzucamy wyjątek
                        foreach (var error in errors)
                        {
                            Console.WriteLine($"Error: {error.Description} (Code: {error.Code})");
                        }
 
-                       // Możesz obsłużyć błędy w inny sposób, np. zwrócić null lub pustą listę
+                       // Możesz obsłużyć błędy w inny sposób np. zwrócić null lub pustą listę
                        throw new Exception("Failed to retrieve excavators.");
                    }
                );
