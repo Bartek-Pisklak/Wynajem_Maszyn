@@ -18,6 +18,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Folder Include="Features\Harvesters\Command\DeleteHarvesters\" />
+	  <Folder Include="Features\Harvesters\Command\EditHarvesters\" />
+	  <Folder Include="Features\Harvesters\Queries\" />
 	  <Folder Include="Features\Users\Command\" />
 	  <Folder Include="Features\Users\Queries\" />
 	</ItemGroup>
