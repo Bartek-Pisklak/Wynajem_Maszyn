@@ -39,11 +39,23 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
                 return;
             }
 
-
-
-
-
-
+            result.Name = editedRoller.Name;
+            result.ProductionYear = editedRoller.ProductionYear;
+            result.OperatingHours = editedRoller.OperatingHours;
+            result.Weight = editedRoller.Weight;
+            result.Engine = editedRoller.Engine;
+            result.EnginePower = editedRoller.EnginePower;
+            result.DrivingSpeed = editedRoller.DrivingSpeed;
+            result.FuelConsumption = editedRoller.FuelConsumption;
+            result.FuelType = editedRoller.FuelType;
+            result.Gearbox = editedRoller.Gearbox;
+            result.NumberOfDrums = editedRoller.NumberOfDrums;
+            result.RollerType = editedRoller.RollerType;
+            result.DrumWidth = editedRoller.DrumWidth;
+            result.MaxCompactionForce = editedRoller.MaxCompactionForce;
+            result.IsVibratory = editedRoller.IsVibratory;
+            result.KnigeAsfalt = editedRoller.KnigeAsfalt;
+            result.Description = editedRoller.Description;
 
             await _dbContext.SaveChangesAsync();
         }

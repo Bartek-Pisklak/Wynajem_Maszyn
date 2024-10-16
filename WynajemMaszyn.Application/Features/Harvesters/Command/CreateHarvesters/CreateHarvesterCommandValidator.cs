@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FluentValidation;
+
 
 namespace WynajemMaszyn.Application.Features.Harvesters.Command.CreateHarvesters
 {
-    public class CreateHarvesterCommandValidator
+    public class CreateHarvesterCommandValidator : AbstractValidator<CreateHarvesterCommand>
     {
-        CreateHarvesterCommandValidator() 
-        { 
-        
+        public CreateHarvesterCommandValidator()
+        {
+            RuleFor(x => x.Name)
+                        .NotEmpty().WithMessage("Name is required");
         }
-
     }
+
 }
+

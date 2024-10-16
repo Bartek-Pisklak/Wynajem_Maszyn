@@ -1,5 +1,6 @@
 ﻿
 
+
 namespace WynajemMaszyn.Domain.Entities
 {
     public class WoodChipper
@@ -8,7 +9,7 @@ namespace WynajemMaszyn.Domain.Entities
         public int Id_User { get; set; }
         public string Name { get; set; }
 
-
+        public float RentalPricePerDay { get; set; }
         public int ProductionYear { get; set; }
         public int OperatingHours { get; set; }
         public int Weight { get; set; }

@@ -6,11 +6,23 @@ namespace WynajemMaszyn.Application.Features.Rollers.Command.CreateRollers
 {
     public record CreateRollerCommand
     (
-    int Id,
-    int IdUser,
     string Name,
-    DateTime ProductionYear,
+    int ProductionYear,
+    int OperatingHours,
     int Weight,
+    int Engine,
+    int EnginePower,
+    int DrivingSpeed,
+    int FuelConsumption,
+    string FuelType,
+    string Gearbox,
+    int NumberOfDrums,
+    string RollerType,
+    int DrumWidth,
+    int MaxCompactionForce,
+    bool IsVibratory,
+    bool KnigeAsfalt,
+    float RentalPricePerDay,
     string Description
 
     ) : IRequest<ErrorOr<RollerResponse>>;

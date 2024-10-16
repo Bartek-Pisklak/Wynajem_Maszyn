@@ -3,19 +3,16 @@ using MediatR;
 using WynajemMaszyn.Application.Contracts.HarversterAnswer;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Domain.Entities;
-using static WynajemMaszyn.Application.Common.Errors.Errors;
 
-namespace WynajemMaszyn.Application.Features.Harvesters.Command.CreateHarvesters
+namespace WynajemMaszyn.Application.Features.Harvesters.Command.EditHarvesters
 {
-    public class CreateHarvesterCommandHandler : IRequestHandler<CreateHarvesterCommand, ErrorOr<HarvesterResponse>>
+    public class EditHarvesterCommandHandler : IRequestHandler<EditHarvesterCommand, ErrorOr<HarvesterResponse>>
     {
-
         private readonly IHarvesterRepository _harvesterRepository;
         private readonly IUserContextGetIdService _userContextGetId;
         private readonly IMachineryRepository _machineryRepository;
 
-
-        public CreateHarvesterCommandHandler(IHarvesterRepository harvesterRepository,
+        public EditHarvesterCommandHandler(IHarvesterRepository harvesterRepository,
                                             IUserContextGetIdService userContextGetId,
                                             IMachineryRepository machineryRepository)
         {
@@ -24,7 +21,7 @@ namespace WynajemMaszyn.Application.Features.Harvesters.Command.CreateHarvesters
             _machineryRepository = machineryRepository;
         }
 
-        public async Task<ErrorOr<HarvesterResponse>> Handle(CreateHarvesterCommand request, CancellationToken cancellationToken)
+        public async Task<ErrorOr<HarvesterResponse>> Handle(EditHarvesterCommand request, CancellationToken cancellationToken)
         {
             var userId = 1;//_userContextGetId.GetUserId;
 
@@ -32,6 +29,7 @@ namespace WynajemMaszyn.Application.Features.Harvesters.Command.CreateHarvesters
                         {
                             return Errors.WorkTask.UserDoesNotLogged;
                         }*/
+
 
             var harvester = new Harvester
             {
@@ -57,13 +55,10 @@ namespace WynajemMaszyn.Application.Features.Harvesters.Command.CreateHarvesters
                 IdHarvester=harvester.Id
             };
 
+            await _harvesterRepository.EditHarvester(request.Id, harvester);
+            await _machineryRepository.EditMachinery(machinery);
 
-
-            await _harvesterRepository.CreateHarvester(harvester);
-            await _machineryRepository.CreateMachinery(machinery);
-
-            return new HarvesterResponse("Harvester added");
+            return new HarvesterResponse("Harvester edit");
         }
     }
 }
-

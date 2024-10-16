@@ -2,6 +2,7 @@
 using MediatR;
 using WynajemMaszyn.Application.Contracts.ExcavatorAnswer;
 using WynajemMaszyn.Application.Persistance;
+using WynajemMaszyn.Domain.Entities;
 
 
 namespace WynajemMaszyn.Application.Features.Excavators.Command.DeleteExcavators
@@ -30,8 +31,12 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.DeleteExcavators
                             return Errors.WorkTask.UserDoesNotLogged;
                         }*/
             int id = request.Id;
+            var machinery = new Machinery
+            {
+                IdExcavator= id
+            };
             await _excavatorRepository.DeleteExcavator(id);
-            await _machineryRepository.DeleteMachinery(id);
+            await _machineryRepository.DeleteMachinery(machinery);
             return new ExcavatorResponse("Task delete");
         }
     }

@@ -9,7 +9,5 @@ namespace WynajemMaszyn.Application.Features.Rollers.Command.EditRoller
             RuleFor(x => x.Id)
             .NotEmpty().WithMessage("Id is required");
         }
-
-
     }
 }

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using WynajemMaszyn.Application.Contracts.ExcavatorAnswer;
 using WynajemMaszyn.Application.Contracts.ExcavatorBucketAnswer;
 using WynajemMaszyn.Application.Persistance;
+using WynajemMaszyn.Domain.Entities;
 
 namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.DeleteExcavatorBuckets
 {
@@ -35,10 +36,13 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.DeleteExca
                             return Errors.WorkTask.UserDoesNotLogged;
                         }*/
             int id = request.Id;
+            var machinery = new Machinery
+            {
+                IdExcavator= id
+            };
             await _excavatorBucketRepository.DeleteExcavatorBucket(id);
+            await _machineryRepository.DeleteMachinery(machinery);
 
-
-            await _machineryRepository.DeleteMachinery(userId);
             return new ExcavatorBucketResponse("ExcavatorBucket delete");
         }
     }

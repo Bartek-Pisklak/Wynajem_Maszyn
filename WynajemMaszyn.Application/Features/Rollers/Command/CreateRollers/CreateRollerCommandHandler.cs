@@ -10,11 +10,15 @@ namespace WynajemMaszyn.Application.Features.Rollers.Command.CreateRollers
     {
         private readonly IRollerRepository _rollerRepository;
         private readonly IUserContextGetIdService _userContextGetId;
+        private readonly IMachineryRepository _machineryRepository;
 
-        public CreateRollerCommandHandler(IRollerRepository rollerRepository, IUserContextGetIdService userContextGetId) 
+        public CreateRollerCommandHandler(IRollerRepository rollerRepository,
+                                            IUserContextGetIdService userContextGetId,
+                                            IMachineryRepository machineryRepository)
         {
             _rollerRepository = rollerRepository;
             _userContextGetId = userContextGetId;
+            _machineryRepository = machineryRepository;
         }
 
         public async Task<ErrorOr<RollerResponse>> Handle(CreateRollerCommand request, CancellationToken cancellationToken)
@@ -30,8 +34,26 @@ namespace WynajemMaszyn.Application.Features.Rollers.Command.CreateRollers
             {
                 IdUser = (int)userId,
                 Name = request.Name,
+                ProductionYear = request.ProductionYear,
+                OperatingHours = request.OperatingHours,
+                Weight = request.Weight,
+                Engine = request.Engine,
+                EnginePower = request.EnginePower,
+                DrivingSpeed = request.DrivingSpeed,
+                FuelConsumption = request.FuelConsumption,
+                FuelType = request.FuelType,
+                Gearbox = request.Gearbox,
+                NumberOfDrums = request.NumberOfDrums,
+                RollerType = request.RollerType,
+                DrumWidth = request.DrumWidth,
+                MaxCompactionForce = request.MaxCompactionForce,
+                IsVibratory = request.IsVibratory,
+                KnigeAsfalt = request.KnigeAsfalt,
+                RentalPricePerDay = request.RentalPricePerDay,
                 Description = request.Description
             };
+
+
 
             await _rollerRepository.CreateRoller(roller);
 

@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ErrorOr;
+using MediatR;
+using WynajemMaszyn.Application.Contracts.HarversterAnswer;
 
-namespace WynajemMaszyn.Application.Contracts.HarversterAnswer
+namespace WynajemMaszyn.Application.Features.Harvesters.Command.EditHarvesters
 {
-    public record HarvesterRequest
+    public record EditHarvesterCommand
     (
+    int Id,
     string Name,
     int ProductionYear,
     int OperatingHours,
@@ -22,5 +21,6 @@ namespace WynajemMaszyn.Application.Contracts.HarversterAnswer
     float RentalPricePerDay,
     string ImagePath,
     string Description
-    );
+
+        ) : IRequest<ErrorOr<HarvesterResponse>>;
 }
