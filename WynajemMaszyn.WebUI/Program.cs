@@ -4,6 +4,7 @@ using WynajemMaszyn.Infrastructure;
 
 using WynajemMaszyn.Api.Data;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,7 +17,7 @@ builder.Services.AddScoped<ExcavatorService>();
 builder.Services.AddControllers();
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
-
+builder.Services.AddAuthorization(builder.Configuration);
 
 var app = builder.Build();
 

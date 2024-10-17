@@ -2,7 +2,7 @@
 using MediatR;
 using WynajemMaszyn.Application.Contracts.RollerAnswer;
 
-namespace WynajemMaszyn.Application.Features.Rollers.Command.EditRoller
+namespace WynajemMaszyn.Application.Features.Rollers.Command.DeleteRollers
 {
     public record DeleteRollerCommand
     (

@@ -1,13 +1,8 @@
 ﻿using ErrorOr;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WynajemMaszyn.Application.Contracts.RollerAnswer;
 
-namespace WynajemMaszyn.Application.Features.Rollers.Command.EditRoller
+namespace WynajemMaszyn.Application.Features.Rollers.Command.EditRollers
 {
     public record EditRollerCommand
     (

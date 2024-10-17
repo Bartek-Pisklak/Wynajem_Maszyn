@@ -52,11 +52,12 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.EditExcavators
 
             var machine = new Machinery
             {
+                IdExcavator=request.Id,
                 Name= request.Name
             };
 
             await _excavatorRepository.EditExcavator(request.Id, excavator);
-            await _machineryRepository.EditMachinery(request.Id, machine);
+            await _machineryRepository.EditMachinery(machine);
 
             return new ExcavatorResponse("Excavator edited");
         }

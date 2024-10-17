@@ -8,19 +8,20 @@ namespace WynajemMaszyn.Application.Contracts.HarversterAnswer
 {
     public record HarvesterRequest
     (
-    string Name,
-    int ProductionYear,
-    int OperatingHours,
-    int Weight,
-    int EnginePower,
-    string FuelType,
-    int FuelConsumption,
-    int MaxSpeed,
-    int CuttingDiameter,
-    int MaxReach,
-    string WheelType,
-    float RentalPricePerDay,
-    string ImagePath,
-    string Description
+        int Id,
+        string Name,
+        int ProductionYear,
+        int OperatingHours,
+        int Weight,
+        int EnginePower,
+        string FuelType,
+        int FuelConsumption,
+        int MaxSpeed,
+        int CuttingDiameter,
+        int MaxReach,
+        string WheelType,
+        float RentalPricePerDay,
+        string ImagePath,
+        string Description
     );
 }

@@ -6,7 +6,7 @@ using WynajemMaszyn.Application.Contracts.RollerAnswer;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Domain.Entities;
 
-namespace WynajemMaszyn.Application.Features.Rollers.Command.EditRoller
+namespace WynajemMaszyn.Application.Features.Rollers.Command.DeleteRollers
 {
     public class DeleteRollerCommandHandler : IRequestHandler<DeleteRollerCommand, ErrorOr<RollerResponse>>
     {
@@ -38,7 +38,7 @@ namespace WynajemMaszyn.Application.Features.Rollers.Command.EditRoller
             int id = request.Id;
             var machinery = new Machinery
             {
-                IdExcavator= id
+                IdExcavator = id
             };
             await _rollerRepository.DeleteRoller(id);
             await _machineryRepository.DeleteMachinery(machinery);

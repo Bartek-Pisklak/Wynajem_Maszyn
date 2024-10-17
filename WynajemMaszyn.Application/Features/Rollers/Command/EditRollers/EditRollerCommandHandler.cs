@@ -4,7 +4,7 @@ using WynajemMaszyn.Application.Contracts.RollerAnswer;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Domain.Entities;
 
-namespace WynajemMaszyn.Application.Features.Rollers.Command.EditRoller
+namespace WynajemMaszyn.Application.Features.Rollers.Command.EditRollers
 {
     public class EditRollerCommandHandler : IRequestHandler<EditRollerCommand, ErrorOr<RollerResponse>>
     {
@@ -53,7 +53,7 @@ namespace WynajemMaszyn.Application.Features.Rollers.Command.EditRoller
                 Description = request.Description
             };
 
-        var machinery = new Machinery
+            var machinery = new Machinery
             {
                 Name= roller.Name,
                 IdRoller=roller.Id

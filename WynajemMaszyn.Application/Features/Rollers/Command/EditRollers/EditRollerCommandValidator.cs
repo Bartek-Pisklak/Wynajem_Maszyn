@@ -1,12 +1,12 @@
 ﻿using FluentValidation;
 
 
-namespace WynajemMaszyn.Application.Features.Rollers.Command.EditRoller
+namespace WynajemMaszyn.Application.Features.Rollers.Command.EditRollers
 {
     public class EditRollerCommandValidator : AbstractValidator<EditRollerCommand>
     {
 
-        public EditRollerCommandValidator() 
+        public EditRollerCommandValidator()
         {
             RuleFor(x => x.Id)
                         .NotEmpty().WithMessage("Id is required");
