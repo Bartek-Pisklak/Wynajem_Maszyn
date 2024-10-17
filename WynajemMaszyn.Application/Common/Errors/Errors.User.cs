@@ -6,13 +6,13 @@ public static partial class Errors
 {
     public static class User
     {
-        public static Error DuplicateEmail =>
-            Error.Conflict(
+        public static ErrorOr.Error DuplicateEmail =>
+            ErrorOr.Error.Conflict(
                 code: "User.DuplicateEmail",
                 description: "Email is already taken");
 
-        public static Error BadData => 
-            Error.Conflict(
+        public static ErrorOr.Error BadData =>
+            ErrorOr.Error.Conflict(
                 code:"User.BadData", 
                 description: "Wrong login data");
     }

@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
 using WynajemMaszyn.Application.Features.Excavators.Queries.GetAllExcavators;
 using WynajemMaszyn.Application.Features.Excavators.Queries.DTOs;
 using WynajemMaszyn.Api.Data;

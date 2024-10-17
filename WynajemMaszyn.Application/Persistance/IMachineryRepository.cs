@@ -7,7 +7,7 @@ namespace WynajemMaszyn.Application.Persistance
     {
         Task<IEnumerable<Machinery?>> GetAllMachinery();
         Task CreateMachinery(Machinery newMachinery);
-        Task EditMachinery(Machinery newMachinery);
-        Task DeleteMachinery(Machinery newMachinery);
+        Task EditMachinery(Machinery Machinery);
+        Task DeleteMachinery(Machinery Machinery);
     }
 }

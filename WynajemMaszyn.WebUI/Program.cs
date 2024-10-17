@@ -3,6 +3,7 @@ using WynajemMaszyn.Application;
 using WynajemMaszyn.Infrastructure;
 
 using WynajemMaszyn.Api.Data;
+using WynajemMaszyn.Domain.Entities;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,7 +13,11 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<WeatherForecastService>();
 builder.Services.AddScoped<ApiController>();
+
 builder.Services.AddScoped<ExcavatorService>();
+builder.Services.AddScoped<HarvesterService>();
+builder.Services.AddScoped<RollerService>();
+builder.Services.AddScoped<WoodChipperService>();
 
 builder.Services.AddControllers();
 builder.Services.AddApplication();

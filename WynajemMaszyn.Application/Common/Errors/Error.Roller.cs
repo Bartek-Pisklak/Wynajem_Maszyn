@@ -2,11 +2,10 @@
 
 namespace WynajemMaszyn.Application.Common.Errors
 {
-    public static partial class Errors
+    public static partial class Error
     {
-        public static class ExcavatorBucket
+        public static class Roller
         {
-
             public static ErrorOr.Error NotEnoughData => ErrorOr.Error.Conflict(
                 code: "not enough information",
                 description: "not enough information"

@@ -22,29 +22,29 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task DeleteMachinery(Machinery newMachinery)
+        public async Task DeleteMachinery(Machinery machinery)
         {
             var result = new Machinery();
 
-            if (newMachinery.IdExcavator == null)
+            if (machinery.IdExcavator == null)
             {
-                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdExcavator == newMachinery.IdExcavator);
+                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdExcavator == machinery.IdExcavator);
             }
-            else if (newMachinery.IdExcavatorBucket == null)
+            else if (machinery.IdExcavatorBucket == null)
             {
-                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdExcavatorBucket == newMachinery.IdExcavatorBucket);
+                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdExcavatorBucket == machinery.IdExcavatorBucket);
             }
-            else if(newMachinery.IdRoller == null)
+            else if(machinery.IdRoller == null)
             {
-                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdRoller == newMachinery.IdRoller);
+                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdRoller == machinery.IdRoller);
             }
-            else if (newMachinery.IdHarvester == null)
+            else if (machinery.IdHarvester == null)
             {
-                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdHarvester == newMachinery.IdHarvester);
+                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdHarvester == machinery.IdHarvester);
             }
-            else if (newMachinery.IdWoodChipper == null)
+            else if (machinery.IdWoodChipper == null)
             {
-                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdWoodChipper == newMachinery.IdWoodChipper);
+                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdWoodChipper == machinery.IdWoodChipper);
             }
 
             if (result == null)
@@ -55,30 +55,29 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task EditMachinery(Machinery newMachinery)
+        public async Task EditMachinery(Machinery machinery)
         {
             var result = new Machinery();
 
-            if (newMachinery.IdExcavator == null)
+            if (machinery.IdExcavator == null)
             {
-                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdExcavator == newMachinery.IdExcavator);
+                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdExcavator == machinery.IdExcavator);
             }
-            else if (newMachinery.IdExcavatorBucket == null)
+            else if (machinery.IdExcavatorBucket == null)
             {
-                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdExcavatorBucket == newMachinery.IdExcavatorBucket);
+                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdExcavatorBucket == machinery.IdExcavatorBucket);
             }
-            else if (newMachinery.IdRoller == null)
+            else if (machinery.IdRoller == null)
             {
-                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdRoller == newMachinery.IdRoller);
+                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdRoller == machinery.IdRoller);
             }
-            else if (newMachinery.IdHarvester == null)
+            else if (machinery.IdHarvester == null)
             {
-                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdHarvester == newMachinery.IdHarvester);
+                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdHarvester == machinery.IdHarvester);
             }
-            else if (newMachinery.IdWoodChipper == null)
+            else if (machinery.IdWoodChipper == null)
             {
-                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdWoodChipper == newMachinery.IdWoodChipper);
-
+                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdWoodChipper == machinery.IdWoodChipper);
             }
 
             if (result == null)
@@ -86,7 +85,7 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
                 return;
             }
 
-            result.Name = newMachinery.Name;
+            result.Name = machinery.Name;
             await _dbContext.SaveChangesAsync();
         }
 

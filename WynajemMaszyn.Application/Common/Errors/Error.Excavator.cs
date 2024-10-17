@@ -6,18 +6,18 @@ namespace WynajemMaszyn.Application.Common.Errors
     {
         public static class Excavator
         {
-            public static Error NotEnoughData => Error.Conflict(
+            public static ErrorOr.Error NotEnoughData => ErrorOr.Error.Conflict(
                 code: "not enough information",
                 description: "not enough information"
 
                 );
 
-            public static Error UserDoesNotLogged => Error.Conflict(
+            public static ErrorOr.Error UserDoesNotLogged => ErrorOr.Error.Conflict(
                 code: "You does not logged!",
                 description: "You should loggin before action!"
                 );
 
-            public static Error NotDataToDisplay => Error.Conflict(
+            public static ErrorOr.Error NotDataToDisplay => ErrorOr.Error.Conflict(
                 code: "Data error",
                 description: "You have not data to dispaly"
         );

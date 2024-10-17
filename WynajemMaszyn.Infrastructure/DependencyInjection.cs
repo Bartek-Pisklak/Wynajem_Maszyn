@@ -25,10 +25,18 @@ public static class DependencyInjection
                     r.MigrationsAssembly(typeof(AssemblyReference).Assembly.ToString())));
             
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IUserContextGetIdService, UserContextGetIdService>();
+        services.AddScoped<IMachineryRentalRepository, MachineryRentalRepository>();
+        
         services.AddScoped<Seeder>();
 
-        services.AddScoped<IExcavatorRepository, ExcavatorRepository>();
+        services.AddScoped<IMachineryRepository, MachineryRepository>();
 
+        services.AddScoped<IExcavatorRepository, ExcavatorRepository>();
+        services.AddScoped<IExcavatorBucketRepository, ExcavatorBucketRepository>();
+        services.AddScoped<IRollerRepository, RollerRepository>();
+        services.AddScoped<IHarvesterRepository, HarvesterRepository>();
+        services.AddScoped<IWoodChipperRepository, WoodChipperRepository>();
 
         services.AddHttpContextAccessor();
 
