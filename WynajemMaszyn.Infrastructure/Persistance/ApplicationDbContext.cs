@@ -23,7 +23,7 @@ namespace WynajemMaszyn.Infrastructure
 
         public DbSet<Machinery> Machiners => Set<Machinery>(); 
         public DbSet<MachineryRental> MachineryRentals => Set<MachineryRental>();
-        public DbSet<Permision> Permisions => Set<Permision>();
+        public DbSet<Permission> Permissions => Set<Permission>();
         public DbSet<User> Users => Set<User>();
 
 
@@ -35,6 +35,13 @@ namespace WynajemMaszyn.Infrastructure
             modelBuilder.Entity<User>()
                 .HasIndex(r => r.Email)
                 .IsUnique();
+
+            modelBuilder.Entity<MachineryRental>()
+                .HasMany(mr => mr.Machines)
+                .WithMany(m => m.MachineryRentals)
+                .UsingEntity(j => j.ToTable("MachineryRentalMachines"));
+
+
         }
     }
 }

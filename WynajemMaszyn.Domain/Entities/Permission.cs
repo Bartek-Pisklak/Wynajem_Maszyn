@@ -2,7 +2,7 @@
 
 namespace WynajemMaszyn.Domain.Entities
 {
-    public class Permision
+    public class Permission
     {
         public int Id { get; set; }
         public string Name { get; set; }

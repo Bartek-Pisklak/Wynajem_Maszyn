@@ -70,7 +70,7 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
 
             result.BeginRent = editedMachineryRental.BeginRent;
             result.EndRent = editedMachineryRental.EndRent;
-            result.IdMachines = editedMachineryRental.IdMachines;
+            //result.IdMachines = editedMachineryRental.IdMachines;
             result.Cost = editedMachineryRental.Cost;
 
             _dbContext.SaveChanges();

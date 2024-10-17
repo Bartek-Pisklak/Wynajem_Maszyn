@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using WynajemMaszyn.Domain.Entities;
 
 namespace WynajemMaszyn.Infrastructure.Persistance.Seeders;
 
@@ -11,8 +12,29 @@ public class Seeder
         _dbContext = dbContext;
     }
 
-    public void ApplyPendingMigrations()
+    public async Task SeedPermissionsAsync()
     {
+        // Define the initial permissions to seed
+        var permissions = new List<Permission>
+            {
+                new Permission { Name = "Klient" },
+                new Permission { Name = "Pracownik" },
+                new Permission { Name = "Admin" },
+            };
+
+        var existingPermissions = await _dbContext.Permissions.ToListAsync();
+
+        if (!existingPermissions.Any())
+        {
+            // If no permissions exist, add them
+            await _dbContext.Permissions.AddRangeAsync(permissions);
+            await _dbContext.SaveChangesAsync();
+        }
+    }
+
+
+        public void ApplyPendingMigrations()
+        {
         if (_dbContext.Database.CanConnect() && _dbContext.Database.IsRelational())
         {
             var pendingMigrations = _dbContext.Database.GetPendingMigrations();

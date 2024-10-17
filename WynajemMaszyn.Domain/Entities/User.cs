@@ -8,8 +8,8 @@ namespace WynajemMaszyn.Domain.Entities
         public string LastName { get; set; } = null!;
         public string Email { get; set; } = null!;
         public string Password { get; set; } = null!;
-        public int IdPermision { get; set; } = 1;
+        public int IdPermission { get; set; } = 1;
 
-        public virtual Permision Permision { get; set; }
+        public virtual Permission Permission { get; set; }
     }
 }
