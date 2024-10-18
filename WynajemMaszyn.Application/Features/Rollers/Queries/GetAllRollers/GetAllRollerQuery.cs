@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ErrorOr;
+using MediatR;
+using WynajemMaszyn.Application.Features.Rollers.Queries.DTOs;
 
 namespace WynajemMaszyn.Application.Features.Rollers.Queries.GetAllRollers
 {
-    internal class GetAllRollerQuery
-    {
-    }
+    public record GetAllRollerQuery(
+        ) : IRequest<ErrorOr<List<GetAllRollerDto>>>;
 }

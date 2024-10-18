@@ -3,7 +3,7 @@ using MediatR;
 using WynajemMaszyn.Application.Contracts.HarversterAnswer;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Domain.Entities;
-using static WynajemMaszyn.Application.Common.Errors.Errors;
+using WynajemMaszyn.Application.Common.Errors;
 
 namespace WynajemMaszyn.Application.Features.Harvesters.Command.CreateHarvesters
 {

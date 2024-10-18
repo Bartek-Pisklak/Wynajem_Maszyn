@@ -21,16 +21,30 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Queries.GetExcavat
         {
             ExcavatorBucket excavatorBucket;
 
-            excavatorBucket = await _excavatorBucketRepository.GetExcavatorBucket(1);
+            excavatorBucket = await _excavatorBucketRepository.GetExcavatorBucket(request.Id);
 
             if (excavatorBucket == null) return Errors.ExcavatorBucket.NotDataToDisplay;
 
             GetExcavatorBucketDto workExcavatorBucket = (new GetExcavatorBucketDto
             {
-                Id = excavatorBucket.Id,
                 Name = excavatorBucket.Name,
+                BucketType = excavatorBucket.BucketType,
                 ProductionYear = excavatorBucket.ProductionYear,
+                BucketCapacity = excavatorBucket.BucketCapacity,
                 Weight = excavatorBucket.Weight,
+
+                Width = excavatorBucket.Width,
+                PinDiameter = excavatorBucket.PinDiameter,
+                ArmWidth = excavatorBucket.ArmWidth,
+                PinSpacing = excavatorBucket.PinSpacing,
+
+                Material = excavatorBucket.Material,
+                MaxLoadCapacity = excavatorBucket.MaxLoadCapacity,
+                RentalPricePerDay = excavatorBucket.RentalPricePerDay,
+                CompatibleExcavators = excavatorBucket.CompatibleExcavators,
+
+                ImagePath = excavatorBucket.ImagePath,
+                Description = excavatorBucket.Description
             });
 
             return workExcavatorBucket;

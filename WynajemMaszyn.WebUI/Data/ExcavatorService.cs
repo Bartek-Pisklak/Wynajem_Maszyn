@@ -16,7 +16,7 @@ namespace WynajemMaszyn.WebUI.Data
         }
 
 
-        public async Task<List<GetExcavatorDto>> GetAllExcavators()
+        public async Task<List<GetAllExcavatorDto>> GetAllExcavators()
         {
             var query = new GetAllExcavatorQuery();
             var response = await _mediator.Send(query);

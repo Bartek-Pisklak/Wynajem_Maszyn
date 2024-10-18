@@ -3,7 +3,6 @@ using ErrorOr;
 using WynajemMaszyn.Application.Common.Errors;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Application.Features.Excavators.Queries.DTOs;
-using WynajemMaszyn.Domain.Entities;
 
 
 namespace WynajemMaszyn.Application.Features.Excavators.Queries.GetExcavators
@@ -29,14 +28,22 @@ namespace WynajemMaszyn.Application.Features.Excavators.Queries.GetExcavators
 
             var workExcavators = new GetExcavatorDto
             {
-                Id=excavator.Id,
-                Name=excavator.Name,
-                ProductionYear=excavator.ProductionYear,
-                OperatingHours=excavator.OperatingHours,
-                Weight= excavator.Weight,
+                Id = excavator.Id,
+                Name = excavator.Name,
+                Type = excavator.Type,
+                TypeChassis = excavator.TypeChassis,
+                RentalPricePerDay = excavator.RentalPricePerDay,
+                ProductionYear = excavator.ProductionYear,
+                OperatingHours = excavator.OperatingHours,
+                Weight = excavator.Weight,
                 Engine = excavator.Engine,
                 EnginePower = excavator.EnginePower,
-                DrivingSpeed = excavator.DrivingSpeed
+                DrivingSpeed = excavator.DrivingSpeed,
+                FuelConsumption = excavator.FuelConsumption,
+                FuelType = excavator.FuelType,
+                Gearbox = excavator.Gearbox,
+                MaxDiggingDepth = excavator.MaxDiggingDepth,
+                Description = excavator.Description
             };
 
             return workExcavators;

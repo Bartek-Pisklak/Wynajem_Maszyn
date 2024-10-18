@@ -2,13 +2,14 @@
 
 namespace WynajemMaszyn.Application.Common.Errors
 {
-    public static partial class Error
+    public static partial class Errors
     {
-        public static class Harvester
+        public static class Roller
         {
             public static ErrorOr.Error NotEnoughData => ErrorOr.Error.Conflict(
-            code: "not enough information",
-            description: "not enough information"
+                code: "not enough information",
+                description: "not enough information"
+
                 );
 
             public static ErrorOr.Error UserDoesNotLogged => ErrorOr.Error.Conflict(
@@ -21,6 +22,5 @@ namespace WynajemMaszyn.Application.Common.Errors
                 description: "You have not data to dispaly"
                 );
         }
-
     }
 }

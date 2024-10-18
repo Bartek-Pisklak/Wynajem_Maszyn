@@ -29,7 +29,9 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Queries.GetAllExca
             {
                 Id = x.Id,
                 Name = x.Name,
+                BucketType = x.BucketType,
                 ProductionYear = x.ProductionYear,
+                BucketCapacity = x.BucketCapacity,
                 Weight = x.Weight,
             }).ToList();
 

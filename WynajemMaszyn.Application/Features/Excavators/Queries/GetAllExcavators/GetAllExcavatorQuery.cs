@@ -6,5 +6,5 @@ using WynajemMaszyn.Application.Features.Excavators.Queries.DTOs;
 namespace WynajemMaszyn.Application.Features.Excavators.Queries.GetAllExcavators
 {
         public record GetAllExcavatorQuery(
-        ) : IRequest<ErrorOr<List<GetExcavatorDto>>>;
+        ) : IRequest<ErrorOr<List<GetAllExcavatorDto>>>;
 }
