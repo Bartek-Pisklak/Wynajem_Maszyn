@@ -13,7 +13,7 @@ namespace WynajemMaszyn.Domain.Entities
         public float Cost { get; set; }
         public DateTime BeginRent { get; set; }
         public DateTime EndRent { get; set; }
-
+        //public Enum trzeba robić
 
 
         public virtual ICollection<Machinery> Machines { get; set; }

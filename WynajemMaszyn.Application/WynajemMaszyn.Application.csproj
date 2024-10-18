@@ -17,10 +17,5 @@
 		<ProjectReference Include="..\WynajemMaszyn.Domain\WynajemMaszyn.Domain.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Features\Users\Command\" />
-	  <Folder Include="Features\Users\Queries\" />
-	</ItemGroup>
-
 
 </Project>

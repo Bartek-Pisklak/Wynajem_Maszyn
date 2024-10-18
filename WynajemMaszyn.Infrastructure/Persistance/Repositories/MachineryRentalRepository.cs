@@ -1,9 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Domain.Entities;
 
@@ -18,7 +13,7 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task AddMachineryRental(MachineryRental machineryRental)
+        public async Task CreateMachineryRental(MachineryRental machineryRental)
         {
             await _dbContext.MachineryRentals.AddAsync(machineryRental);
             await _dbContext.SaveChangesAsync();

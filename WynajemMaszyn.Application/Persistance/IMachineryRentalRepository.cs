@@ -7,7 +7,7 @@ namespace WynajemMaszyn.Application.Persistance
         Task<IEnumerable<MachineryRental?>> GetAllMachineryRentalWorker();
         Task<MachineryRental> GetMachineryRental(int id);
 
-        Task AddMachineryRental(MachineryRental machineryRental);
+        Task CreateMachineryRental(MachineryRental machineryRental);
         Task DeleteMachineryRental(int id);
         Task EditMachineryRental(int id,MachineryRental editedMachineryRental);
     }
