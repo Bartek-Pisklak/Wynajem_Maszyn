@@ -7,6 +7,26 @@ namespace WynajemMaszyn.Application.Features.WoodChippers.Command.CreateWoodChip
 {
     public record CreateWoodChipperCommand
     (
-        string Name
+         string Name,
+         float RentalPricePerDay,
+         int ProductionYear,
+         int OperatingHours,
+         int Weight,
+
+         string Engine,
+         int EnginePower,
+         string Gearbox,
+         int DrivingSpeed,
+         int FuelConsumption,
+
+
+         int MachineLength,
+         int TransportHeight,
+         int ChoppingHeight,
+         int MachineWidth,
+
+         int FlowMaterial,
+
+         string Description
         ) : IRequest<ErrorOr<WoodChipperResponse>>; 
 }

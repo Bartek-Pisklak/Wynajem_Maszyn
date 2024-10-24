@@ -31,6 +31,7 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
         public int Add(User user)
         {
             user.Password = BC.HashPassword(user.Password);
+            user.PermissionId = 1;
             _dbContext.Users.Add(user);
             _dbContext.SaveChanges();
 

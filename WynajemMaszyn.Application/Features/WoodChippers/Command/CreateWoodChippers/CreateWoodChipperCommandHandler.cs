@@ -1,5 +1,4 @@
-﻿
-using ErrorOr;
+﻿using ErrorOr;
 using MediatR;
 using WynajemMaszyn.Application.Contracts.WoodChipperAnswer;
 using WynajemMaszyn.Application.Persistance;
@@ -35,7 +34,23 @@ namespace WynajemMaszyn.Application.Features.WoodChippers.Command.CreateWoodChip
 
             var woodChipper = new WoodChipper
             {
-                Name=request.Name
+                IdUser= userId,
+                Name = request.Name,
+                RentalPricePerDay = request.RentalPricePerDay,
+                ProductionYear = request.ProductionYear,
+                OperatingHours = request.OperatingHours,
+                Weight = request.Weight,
+                Engine = request.Engine,
+                EnginePower = request.EnginePower,
+                Gearbox = request.Gearbox,
+                DrivingSpeed = request.DrivingSpeed,
+                FuelConsumption = request.FuelConsumption,
+                MachineLength = request.MachineLength,
+                TransportHeight = request.TransportHeight,
+                ChoppingHeight = request.ChoppingHeight,
+                MachineWidth = request.MachineWidth,
+                FlowMaterial = request.FlowMaterial,
+                Description = request.Description
             };
 
             var machinery = new Machinery

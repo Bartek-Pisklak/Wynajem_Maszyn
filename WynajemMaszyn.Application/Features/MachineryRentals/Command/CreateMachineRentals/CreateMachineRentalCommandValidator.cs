@@ -11,8 +11,8 @@ namespace WynajemMaszyn.Application.Features.MachineryRentals.Command.CreateMach
     {
         public CreateMachineRentalCommandValidator() 
         {
-            RuleFor(x => x.Name)
-                .NotEmpty().WithMessage("Name is required");
+            /*RuleFor(x => x.Name)
+                .NotEmpty().WithMessage("Name is required");*/
 
         }
     }

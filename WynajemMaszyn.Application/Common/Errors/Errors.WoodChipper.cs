@@ -4,12 +4,11 @@ namespace WynajemMaszyn.Application.Common.Errors
 {
     public static partial class Errors
     {
-        public static class Excavator
+        public static class WoodChipper
         {
             public static Error NotEnoughData => Error.Conflict(
                 code: "not enough information",
                 description: "not enough information"
-
                 );
 
             public static Error UserDoesNotLogged => Error.Conflict(
@@ -20,7 +19,7 @@ namespace WynajemMaszyn.Application.Common.Errors
             public static Error NotDataToDisplay => Error.Conflict(
                 code: "Data error",
                 description: "You have not data to dispaly"
-        );
+                );
         }
     }
 }

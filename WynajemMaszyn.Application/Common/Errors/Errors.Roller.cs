@@ -6,18 +6,18 @@ namespace WynajemMaszyn.Application.Common.Errors
     {
         public static class Roller
         {
-            public static ErrorOr.Error NotEnoughData => ErrorOr.Error.Conflict(
+            public static Error NotEnoughData => Error.Conflict(
                 code: "not enough information",
                 description: "not enough information"
 
                 );
 
-            public static ErrorOr.Error UserDoesNotLogged => ErrorOr.Error.Conflict(
+            public static Error UserDoesNotLogged => Error.Conflict(
                 code: "You does not logged!",
                 description: "You should loggin before action!"
                 );
 
-            public static ErrorOr.Error NotDataToDisplay => ErrorOr.Error.Conflict(
+            public static Error NotDataToDisplay => Error.Conflict(
                 code: "Data error",
                 description: "You have not data to dispaly"
                 );

@@ -3,7 +3,7 @@
     public class Excavator
     {
         public int Id { get; set; }
-        public int IdUser { get; set; }
+        public int UserId { get; set; }
         public string Name { get; set; }
         public string Type { get; set; } // małe,średnie, duże, koparko-ładowarki
         public string TypeChassis { get; set; } // podwozie koła,koparki

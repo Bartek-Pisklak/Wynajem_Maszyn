@@ -11,14 +11,12 @@
         public int IdHarvester { get; set; }
         public int IdWoodChipper { get; set; }
 
-
-        public virtual ICollection<MachineryRental> MachineryRentals { get; set; } 
+        public virtual MachineryRental MachineryRental { get; set; }
 
         public virtual Excavator? Excavator { get; set; }
         public virtual ExcavatorBucket? ExcavatorBucket { get; set; }
         public virtual Roller? Roller { get; set; }
         public virtual Harvester? Harvester { get; set; }
-
         public virtual WoodChipper? WoodChipper { get; set; }
     }
 }

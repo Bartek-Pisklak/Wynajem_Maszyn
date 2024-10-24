@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ErrorOr;
+using MediatR;
+using WynajemMaszyn.Application.Features.WoodChippers.Queries.DTOs;
 
 namespace WynajemMaszyn.Application.Features.WoodChippers.Queries.GetWoodChippers
 {
-    internal class GetWoodChipperQuery
-    {
-    }
+    public record class GetWoodChipperQuery(
+        int Id
+        ):IRequest<ErrorOr<GetWoodChipperDto>>;
 }

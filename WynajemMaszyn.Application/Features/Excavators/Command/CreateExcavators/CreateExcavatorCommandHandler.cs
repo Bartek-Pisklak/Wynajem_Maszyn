@@ -49,6 +49,7 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.CreateExcavators
                 FuelType = request.FuelType,
                 Gearbox = request.Gearbox,
                 MaxDiggingDepth = request.MaxDiggingDepth,
+                ImagePath=request.ImagePath,
                 Description = request.Description
         };
 

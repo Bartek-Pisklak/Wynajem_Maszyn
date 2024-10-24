@@ -11,7 +11,7 @@ using WynajemMaszyn.Domain.Entities;
 
 namespace WynajemMaszyn.Application.Features.MachineryRentals.Command.CreateMachineRentals
 {
-    public class CreateMachineRentalCommandHandler : IRequestHandler<CreateMachineRentalCommand, ErrorOr<MachineryRentalResponse>
+    public class CreateMachineRentalCommandHandler : IRequestHandler<CreateMachineRentalCommand, ErrorOr<MachineryRentalResponse>>
     {
         private readonly IMachineryRentalRepository _machineryRentalRepository;
         private readonly IUserContextGetIdService _userContextGetId;

@@ -36,12 +36,6 @@ namespace WynajemMaszyn.Infrastructure
                 .HasIndex(r => r.Email)
                 .IsUnique();
 
-            modelBuilder.Entity<MachineryRental>()
-                .HasMany(mr => mr.Machines)
-                .WithMany(m => m.MachineryRentals)
-                .UsingEntity(j => j.ToTable("MachineryRentalMachines"));
-
-
         }
     }
 }

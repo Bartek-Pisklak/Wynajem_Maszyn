@@ -6,22 +6,21 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.CreateExcavators
 {
     public record CreateExcavatorCommand
     (
-    int Id,
-    int IdUser,
     string Name,
-    string Type, // małe, średnie, duże, koparko-ładowarki
-    string TypeChassis, // podwozie koła, koparki
+    string Type,
+    string TypeChassis,
     float RentalPricePerDay,
     int ProductionYear,
     int OperatingHours,
     int Weight,
-    string Engine, // Model silnika
+    string Engine,
     int EnginePower,
     int DrivingSpeed,
-    int FuelConsumption, // 1/h
-    string FuelType, // ropa, benzyna
-    string Gearbox, // Skrzynia biegów
-    int MaxDiggingDepth, // Maksymalna głębokość kopania
+    int FuelConsumption,
+    string FuelType, 
+    string Gearbox,
+    int MaxDiggingDepth,
+    string ImagePath,
     string Description
                 ) : IRequest<ErrorOr<ExcavatorResponse>>;
 
