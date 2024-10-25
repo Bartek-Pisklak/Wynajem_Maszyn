@@ -33,7 +33,7 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
         public async Task<IEnumerable<MachineryRental?>> GetAllMachineryRentalUser(int idUser)
         {
 
-            var machineryRentalList = await _dbContext.MachineryRentals.Where(c => c.IdUser == idUser)
+            var machineryRentalList = await _dbContext.MachineryRentals.Where(c => c.UserId == idUser)
                                                                  .ToListAsync();
 
             return machineryRentalList;

@@ -34,7 +34,7 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.CreateExcavators
 
             var excavator = new Excavator
             {
-                IdUser = (int)userId,
+                UserId = (int)userId,
                 Name = request.Name,
                 Type = request.Type,
                 TypeChassis = request.TypeChassis,
@@ -53,12 +53,13 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.CreateExcavators
                 Description = request.Description
         };
 
+
+            int idNewMahine = await _excavatorRepository.CreateExcavator(excavator);
             var machine = new Machinery
             {
                 Name= excavator.Name,
-                IdExcavator=excavator.Id
+                ExcavatorId=idNewMahine
             };
-            await _excavatorRepository.CreateExcavator(excavator);
             await _machineryRepository.CreateMachinery(machine);
 
 

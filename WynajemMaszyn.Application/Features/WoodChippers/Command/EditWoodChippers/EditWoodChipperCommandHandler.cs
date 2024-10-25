@@ -55,7 +55,7 @@ namespace WynajemMaszyn.Application.Features.WoodChippers.Command.EditWoodChippe
             var machinery = new Machinery
             {
                 Name= woodChipper.Name,
-                IdWoodChipper=id
+                WoodChipperId=id
             };
 
             await _woodChipperRepository.EditWoodChipper(id,woodChipper);

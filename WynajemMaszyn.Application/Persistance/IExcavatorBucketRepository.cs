@@ -7,7 +7,7 @@ namespace WynajemMaszyn.Application.Persistance
 
         Task<ExcavatorBucket?> GetExcavatorBucket(int id);
         Task<IEnumerable<ExcavatorBucket>> GetAllExcavatorBucket();
-        Task CreateExcavatorBucket(ExcavatorBucket newExcavatorBucket);
+        Task<int> CreateExcavatorBucket(ExcavatorBucket newExcavatorBucket);
         Task DeleteExcavatorBucket(int id);
         Task EditExcavatorBucket(int id, ExcavatorBucket editedExcavatorBucket);
     }

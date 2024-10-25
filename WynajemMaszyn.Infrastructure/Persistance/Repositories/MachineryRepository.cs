@@ -26,25 +26,25 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
         {
             var result = new Machinery();
 
-            if (machinery.IdExcavator == null)
+            if (machinery.ExcavatorId == null)
             {
-                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdExcavator == machinery.IdExcavator);
+                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.ExcavatorId == machinery.ExcavatorId);
             }
-            else if (machinery.IdExcavatorBucket == null)
+            else if (machinery.ExcavatorBucketId == null)
             {
-                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdExcavatorBucket == machinery.IdExcavatorBucket);
+                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.ExcavatorBucketId == machinery.ExcavatorBucketId);
             }
-            else if(machinery.IdRoller == null)
+            else if (machinery.RollerId == null)
             {
-                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdRoller == machinery.IdRoller);
+                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.RollerId == machinery.RollerId);
             }
-            else if (machinery.IdHarvester == null)
+            else if (machinery.HarvesterId == null)
             {
-                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdHarvester == machinery.IdHarvester);
+                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.HarvesterId == machinery.HarvesterId);
             }
-            else if (machinery.IdWoodChipper == null)
+            else if (machinery.WoodChipperId == null)
             {
-                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdWoodChipper == machinery.IdWoodChipper);
+                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.WoodChipperId == machinery.WoodChipperId);
             }
 
             if (result == null)
@@ -59,25 +59,25 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
         {
             var result = new Machinery();
 
-            if (machinery.IdExcavator == null)
+            if (machinery.ExcavatorId == null)
             {
-                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdExcavator == machinery.IdExcavator);
+                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.ExcavatorId == machinery.ExcavatorId);
             }
-            else if (machinery.IdExcavatorBucket == null)
+            else if (machinery.ExcavatorBucketId == null)
             {
-                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdExcavatorBucket == machinery.IdExcavatorBucket);
+                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.ExcavatorBucketId == machinery.ExcavatorBucketId);
             }
-            else if (machinery.IdRoller == null)
+            else if (machinery.RollerId == null)
             {
-                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdRoller == machinery.IdRoller);
+                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.RollerId == machinery.RollerId);
             }
-            else if (machinery.IdHarvester == null)
+            else if (machinery.HarvesterId == null)
             {
-                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdHarvester == machinery.IdHarvester);
+                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.HarvesterId == machinery.HarvesterId);
             }
-            else if (machinery.IdWoodChipper == null)
+            else if (machinery.WoodChipperId == null)
             {
-                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.IdWoodChipper == machinery.IdWoodChipper);
+                result = await _dbContext.Machiners.FirstOrDefaultAsync(c => c.WoodChipperId == machinery.WoodChipperId);
             }
 
             if (result == null)

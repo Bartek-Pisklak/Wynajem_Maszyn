@@ -18,10 +18,11 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task CreateWoodChipper(WoodChipper newWoodChipper)
+        public async Task<int> CreateWoodChipper(WoodChipper newWoodChipper)
         {
             await _dbContext.WoodChippers.AddAsync(newWoodChipper);
             await _dbContext.SaveChangesAsync();
+            return newWoodChipper.Id;
         }
 
         public async Task DeleteWoodChipper(int id)

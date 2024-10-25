@@ -35,7 +35,7 @@ namespace WynajemMaszyn.Application.Features.Harvesters.Command.DeleteHarvesters
             int id = request.Id;
             var machinery = new Machinery
             {
-                IdExcavator= id
+                ExcavatorId= id
             };
             await _harvesterRepository.DeleteHarvester(id);
             await _machineryRepository.DeleteMachinery(machinery);

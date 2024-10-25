@@ -32,7 +32,7 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.CreateExca
 
             var excavatorBucket = new ExcavatorBucket
             {
-                IdUser = (int)userId,
+                UserId = (int)userId,
                 Name = request.Name,
                 BucketType = request.BucketType,
                 ProductionYear = request.ProductionYear,
@@ -56,7 +56,7 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.CreateExca
             var machine = new Machinery
             {
                 Name= excavatorBucket.Name,
-                IdExcavatorBucket = excavatorBucket.Id 
+                ExcavatorBucketId = excavatorBucket.Id 
             };
 
             await _excavatorBucketRepository.CreateExcavatorBucket(excavatorBucket);

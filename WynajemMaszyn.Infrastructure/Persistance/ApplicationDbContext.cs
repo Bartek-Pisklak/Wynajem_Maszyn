@@ -36,6 +36,21 @@ namespace WynajemMaszyn.Infrastructure
                 .HasIndex(r => r.Email)
                 .IsUnique();
 
+            modelBuilder.Entity<MachineryRental>()
+                    .HasMany(mr => mr.Machinery)
+                    .WithMany(m => m.MachineryRentals)
+                    .UsingEntity<Dictionary<string, object>>(
+                        "MachineryRentalMachinery",
+                        j => j.HasOne<Machinery>()
+                              .WithMany()
+                              .HasForeignKey("MachineryId")
+                              .OnDelete(DeleteBehavior.Cascade),
+                        j => j.HasOne<MachineryRental>()
+                              .WithMany()
+                              .HasForeignKey("MachineryRentalId")
+                              .OnDelete(DeleteBehavior.Cascade)
+                    );
+
         }
     }
 }

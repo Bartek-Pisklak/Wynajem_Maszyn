@@ -56,7 +56,7 @@ namespace WynajemMaszyn.Application.Features.Rollers.Command.EditRollers
             var machinery = new Machinery
             {
                 Name= roller.Name,
-                IdRoller=roller.Id
+                RollerId=roller.Id
             };
 
             await _rollerRepository.EditRoller(request.Id, roller);

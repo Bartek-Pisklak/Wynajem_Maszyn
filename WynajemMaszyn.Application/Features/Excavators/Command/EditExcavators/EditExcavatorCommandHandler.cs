@@ -52,7 +52,7 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.EditExcavators
 
             var machine = new Machinery
             {
-                IdExcavator=request.Id,
+                ExcavatorId=request.Id,
                 Name= request.Name
             };
 

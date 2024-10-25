@@ -7,7 +7,7 @@ namespace WynajemMaszyn.Application.Persistance
     {
         Task<IEnumerable<WoodChipper>> GetAllWoodChipper();
         Task<WoodChipper?> GetWoodChipper(int id);
-        Task CreateWoodChipper(WoodChipper newWoodChipper);
+        Task<int> CreateWoodChipper(WoodChipper newWoodChipper);
         Task DeleteWoodChipper(int id);
         Task EditWoodChipper(int id, WoodChipper editedWoodChipper);
     }

@@ -5,13 +5,13 @@
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public int IdExcavator { get; set; }
-        public int IdExcavatorBucket { get; set; }
-        public int IdRoller { get; set; }
-        public int IdHarvester { get; set; }
-        public int IdWoodChipper { get; set; }
+        public int? ExcavatorId { get; set; } = null;
+        public int? ExcavatorBucketId { get; set; } = null;
+        public int? RollerId { get; set; } = null;
+        public int? HarvesterId { get; set; } = null;
+        public int? WoodChipperId { get; set; } = null;
 
-        public virtual MachineryRental MachineryRental { get; set; }
+        public virtual ICollection<MachineryRental> MachineryRentals { get; set; } = new List<MachineryRental>();
 
         public virtual Excavator? Excavator { get; set; }
         public virtual ExcavatorBucket? ExcavatorBucket { get; set; }

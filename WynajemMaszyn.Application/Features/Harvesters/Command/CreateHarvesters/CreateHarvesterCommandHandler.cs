@@ -54,7 +54,7 @@ namespace WynajemMaszyn.Application.Features.Harvesters.Command.CreateHarvesters
             var machinery = new Machinery
             {
                 Name= harvester.Name,
-                IdHarvester=harvester.Id
+                HarvesterId=harvester.Id
             };
 
 

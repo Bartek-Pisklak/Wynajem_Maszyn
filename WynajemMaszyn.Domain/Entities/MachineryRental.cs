@@ -15,7 +15,6 @@ namespace WynajemMaszyn.Domain.Entities
         public DateTime BeginRent { get; set; }
         public DateTime EndRent { get; set; }
 
-        public ICollection<Machinery> MachineryId { get; set; }
         public float? Deposit { get; set; }       
         public float? LateFee { get; set; }
         public RentalStatus Status {get; set; }
@@ -26,8 +25,8 @@ namespace WynajemMaszyn.Domain.Entities
         public string AdditionalNotes { get; set; }
         public bool IsReturned { get; set; } = false;
 
+        public virtual ICollection<Machinery> Machinery { get; set; } = new List<Machinery>();
 
-        public virtual ICollection<Machinery> Machines { get; set; }
         public virtual User User { get; set; }
     }
 }

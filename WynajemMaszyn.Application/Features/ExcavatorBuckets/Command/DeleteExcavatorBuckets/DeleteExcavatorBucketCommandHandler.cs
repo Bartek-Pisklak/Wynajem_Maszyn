@@ -38,7 +38,7 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.DeleteExca
             int id = request.Id;
             var machinery = new Machinery
             {
-                IdExcavator= id
+                ExcavatorId= id
             };
             await _excavatorBucketRepository.DeleteExcavatorBucket(id);
             await _machineryRepository.DeleteMachinery(machinery);

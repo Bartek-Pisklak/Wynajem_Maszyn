@@ -13,10 +13,12 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task CreateRoller(Roller newRoller)
+        public async Task<int> CreateRoller(Roller newRoller)
         {
             await _dbContext.Rollers.AddAsync(newRoller);
             await _dbContext.SaveChangesAsync();
+
+            return newRoller.Id;
         }
 
         public async Task DeleteRoller(int id)

@@ -38,7 +38,7 @@ namespace WynajemMaszyn.Application.Features.Rollers.Command.DeleteRollers
             int id = request.Id;
             var machinery = new Machinery
             {
-                IdExcavator = id
+                ExcavatorId = id
             };
             await _rollerRepository.DeleteRoller(id);
             await _machineryRepository.DeleteMachinery(machinery);

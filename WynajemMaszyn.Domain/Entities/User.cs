@@ -11,6 +11,7 @@ namespace WynajemMaszyn.Domain.Entities
         public int PermissionId { get; set; } = 1;
 
         public virtual Permission Permission { get; set; }
+        public virtual ICollection<MachineryRental> MachineryRental { get; set; }
         public virtual ICollection<Excavator> Excavator { get; set; }
         public virtual ICollection<ExcavatorBucket> ExcavatorBucket { get; set; }
         public virtual ICollection<Roller> Roller { get; set; }

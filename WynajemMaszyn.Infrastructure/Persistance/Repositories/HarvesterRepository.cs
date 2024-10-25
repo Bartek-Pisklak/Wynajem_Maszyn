@@ -18,11 +18,11 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task CreateHarvester(Harvester newHarvester)
+        public async Task<int> CreateHarvester(Harvester newHarvester)
         {
             await _dbContext.Harvesters.AddAsync(newHarvester);
             await _dbContext.SaveChangesAsync();
-
+            return newHarvester.Id;
         }
 
         public async Task DeleteHarvester(int id)

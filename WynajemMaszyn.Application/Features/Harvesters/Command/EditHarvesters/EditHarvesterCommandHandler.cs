@@ -52,7 +52,7 @@ namespace WynajemMaszyn.Application.Features.Harvesters.Command.EditHarvesters
             var machinery = new Machinery
             {
                 Name= harvester.Name,
-                IdHarvester=harvester.Id
+                HarvesterId=harvester.Id
             };
 
             await _harvesterRepository.EditHarvester(request.Id, harvester);

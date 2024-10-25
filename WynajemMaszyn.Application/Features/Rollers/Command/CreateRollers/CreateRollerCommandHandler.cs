@@ -32,7 +32,7 @@ namespace WynajemMaszyn.Application.Features.Rollers.Command.CreateRollers
 
             var roller = new Roller
             {
-                IdUser = (int)userId,
+                UserId = (int)userId,
                 Name = request.Name,
                 ProductionYear = request.ProductionYear,
                 OperatingHours = request.OperatingHours,
@@ -55,7 +55,7 @@ namespace WynajemMaszyn.Application.Features.Rollers.Command.CreateRollers
 
             var machinery = new Machinery
             {
-                IdRoller = roller.Id,
+                RollerId = roller.Id,
                 Name = roller.Name,
             };
 

@@ -11,7 +11,7 @@ namespace WynajemMaszyn.Application.Persistance
     {
         Task<Harvester?> GetHarvester(int id);
         Task<IEnumerable<Harvester>> GetAllHarvester();
-        Task CreateHarvester(Harvester newHarvester);
+        Task<int> CreateHarvester(Harvester newHarvester);
         Task DeleteHarvester(int id);
         Task EditHarvester(int id, Harvester editedHarvester);
     }
