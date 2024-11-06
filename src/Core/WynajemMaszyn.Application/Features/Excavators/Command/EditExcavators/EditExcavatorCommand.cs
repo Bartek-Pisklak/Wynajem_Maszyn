@@ -7,7 +7,6 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.EditExcavators
     public record EditExcavatorCommand
     (
     int Id,
-    int IdUser,
     string Name,
     string Type, // małe, średnie, duże, koparko-ładowarki
     string TypeChassis, // podwozie koła, koparki
@@ -22,6 +21,7 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.EditExcavators
     string FuelType, // ropa, benzyna
     string Gearbox, // Skrzynia biegów
     int MaxDiggingDepth, // Maksymalna głębokość kopania
+    string ImagePath,
     string Description
                 ) : IRequest<ErrorOr<ExcavatorResponse>>;
 }

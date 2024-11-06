@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using WynajemMaszyn.Application.Common.Errors;
+
 
 namespace WynajemMaszyn.Application.Features.MachineryRentals.Command.DeleteMachineRentals
 {
-    internal class DeleteMachineRentalCommandHandler
+    public class DeleteMachineRentalCommandHandler
     {
+
+
     }
 }

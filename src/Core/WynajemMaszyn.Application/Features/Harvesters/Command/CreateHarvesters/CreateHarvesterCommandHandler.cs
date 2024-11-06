@@ -26,15 +26,16 @@ namespace WynajemMaszyn.Application.Features.Harvesters.Command.CreateHarvesters
 
         public async Task<ErrorOr<HarvesterResponse>> Handle(CreateHarvesterCommand request, CancellationToken cancellationToken)
         {
-            var userId = 1;//_userContextGetId.GetUserId;
+            var userId = _userContextGetId.GetUserId;
 
-            /*            if (userId is null)
-                        {
-                            return Errors.WorkTask.UserDoesNotLogged;
-                        }*/
+            if (userId is null)
+            {
+                return Errors.Harvester.UserDoesNotLogged;
+            }
 
             var harvester = new Harvester
             {
+                UserId = (int)userId,
                 Name = request.Name,
                 ProductionYear = request.ProductionYear,
                 OperatingHours = request.OperatingHours,

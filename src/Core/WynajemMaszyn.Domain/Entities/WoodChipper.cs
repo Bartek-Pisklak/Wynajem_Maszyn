@@ -28,6 +28,7 @@ namespace WynajemMaszyn.Domain.Entities
 
         public int FlowMaterial { get; set; }
 
+        public string ImagePath {  get; set; }
         public string Description { get; set; }
 
         public virtual User User { get; set; }

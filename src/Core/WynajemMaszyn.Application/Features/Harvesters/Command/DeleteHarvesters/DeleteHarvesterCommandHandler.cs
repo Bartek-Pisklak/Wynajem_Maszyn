@@ -3,6 +3,8 @@ using MediatR;
 using WynajemMaszyn.Application.Contracts.HarversterAnswer;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Domain.Entities;
+using WynajemMaszyn.Application.Common.Errors;
+
 
 namespace WynajemMaszyn.Application.Features.Harvesters.Command.DeleteHarvesters
 {
@@ -23,12 +25,12 @@ namespace WynajemMaszyn.Application.Features.Harvesters.Command.DeleteHarvesters
 
         public async Task<ErrorOr<HarvesterResponse>> Handle(DeleteHarvesterCommand request, CancellationToken cancellationToken)
         {
-            var userId = 1;//_userContextGetId.GetUserId;
+            var userId = _userContextGetId.GetUserId;
 
-            /*            if (userId is null)
-                        {
-                            return Errors.WorkTask.UserDoesNotLogged;
-                        }*/
+            if (userId is null)
+            {
+                return Errors.Harvester.UserDoesNotLogged;
+            }
 
 
 

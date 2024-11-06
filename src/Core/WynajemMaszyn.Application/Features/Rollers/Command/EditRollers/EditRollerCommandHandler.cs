@@ -3,6 +3,7 @@ using MediatR;
 using WynajemMaszyn.Application.Contracts.RollerAnswer;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Domain.Entities;
+using WynajemMaszyn.Application.Common.Errors;
 
 namespace WynajemMaszyn.Application.Features.Rollers.Command.EditRollers
 {
@@ -23,12 +24,12 @@ namespace WynajemMaszyn.Application.Features.Rollers.Command.EditRollers
 
         public async Task<ErrorOr<RollerResponse>> Handle(EditRollerCommand request, CancellationToken cancellationToken)
         {
-            var userId = 1;//_userContextGetId.GetUserId;
+            var userId = _userContextGetId.GetUserId;
 
-            /*            if (userId is null)
-                        {
-                            return Errors.WorkTask.UserDoesNotLogged;
-                        }*/
+            if (userId is null)
+            {
+                return Errors.Roller.UserDoesNotLogged;
+            }
 
 
             var roller = new Roller
@@ -50,6 +51,7 @@ namespace WynajemMaszyn.Application.Features.Rollers.Command.EditRollers
                 IsVibratory = request.IsVibratory,
                 KnigeAsfalt = request.KnigeAsfalt,
                 RentalPricePerDay = request.RentalPricePerDay,
+                ImagePath = request.ImagePath,
                 Description = request.Description
             };
 

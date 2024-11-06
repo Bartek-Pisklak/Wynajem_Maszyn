@@ -1,9 +1,10 @@
 ﻿using ErrorOr;
 using MediatR;
-using System.Runtime.InteropServices;
 using WynajemMaszyn.Application.Contracts.ExcavatorAnswer;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Domain.Entities;
+using WynajemMaszyn.Application.Common.Errors;
+
 
 namespace WynajemMaszyn.Application.Features.Excavators.Command.EditExcavators
 {
@@ -24,12 +25,12 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.EditExcavators
 
         public async  Task<ErrorOr<ExcavatorResponse>> Handle(EditExcavatorCommand request, CancellationToken cancellationToken)
         {
-            var userId = 1;//_userContextGetId.GetUserId;
+            var userId = _userContextGetId.GetUserId;
 
-            /*            if (userId is null)
-                        {
-                            return Errors.WorkTask.UserDoesNotLogged;
-                        }*/
+            if (userId is null)
+            {
+                return Errors.Excavator.UserDoesNotLogged;
+            }
 
             var excavator = new Excavator
             {

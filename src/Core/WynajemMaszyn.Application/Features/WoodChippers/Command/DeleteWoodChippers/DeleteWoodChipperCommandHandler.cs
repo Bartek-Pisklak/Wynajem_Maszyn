@@ -1,14 +1,9 @@
 ﻿using ErrorOr;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WynajemMaszyn.Application.Contracts.WoodChipperAnswer;
-using WynajemMaszyn.Application.Features.WoodChippers.Command.CreateWoodChippers;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Domain.Entities;
+using WynajemMaszyn.Application.Common.Errors;
 
 namespace WynajemMaszyn.Application.Features.WoodChippers.Command.DeleteWoodChippers
 {
@@ -29,12 +24,12 @@ namespace WynajemMaszyn.Application.Features.WoodChippers.Command.DeleteWoodChip
 
         public async Task<ErrorOr<WoodChipperResponse>> Handle(DeleteWoodChipperCommand request, CancellationToken cancellationToken)
         {
-            var userId = 1;//_userContextGetId.GetUserId;
+            var userId = _userContextGetId.GetUserId;
 
-            /*            if (userId is null)
-                        {
-                            return Errors.WorkTask.UserDoesNotLogged;
-                        }*/
+            if (userId is null)
+            {
+                return Errors.WoodChipper.UserDoesNotLogged;
+            }
 
             var id = request.Id;
             var machinery = new Machinery

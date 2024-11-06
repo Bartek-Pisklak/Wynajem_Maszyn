@@ -27,6 +27,7 @@ namespace WynajemMaszyn.Application.Features.WoodChippers.Command.CreateWoodChip
 
          int FlowMaterial,
 
+         string ImagePath,
          string Description
         ) : IRequest<ErrorOr<WoodChipperResponse>>; 
 }

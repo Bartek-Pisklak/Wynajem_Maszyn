@@ -25,16 +25,16 @@ namespace WynajemMaszyn.Application.Features.WoodChippers.Command.CreateWoodChip
 
         public async Task<ErrorOr<WoodChipperResponse>> Handle(CreateWoodChipperCommand request, CancellationToken cancellationToken)
         {
-            var userId = 1;//_userContextGetId.GetUserId;
+            var userId = _userContextGetId.GetUserId;
 
-            /*            if (userId is null)
-                        {
-                            return Errors.WorkTask.UserDoesNotLogged;
-                        }*/
+            if (userId is null)
+            {
+                return Errors.WoodChipper.UserDoesNotLogged;
+            }
 
             var woodChipper = new WoodChipper
             {
-                UserId= userId,
+                UserId= (int)userId,
                 Name = request.Name,
                 RentalPricePerDay = request.RentalPricePerDay,
                 ProductionYear = request.ProductionYear,
@@ -50,6 +50,7 @@ namespace WynajemMaszyn.Application.Features.WoodChippers.Command.CreateWoodChip
                 ChoppingHeight = request.ChoppingHeight,
                 MachineWidth = request.MachineWidth,
                 FlowMaterial = request.FlowMaterial,
+                ImagePath = request.ImagePath,
                 Description = request.Description
             };
 

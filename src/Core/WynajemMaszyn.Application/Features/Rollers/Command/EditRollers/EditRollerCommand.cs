@@ -24,6 +24,7 @@ namespace WynajemMaszyn.Application.Features.Rollers.Command.EditRollers
     bool IsVibratory,
     bool KnigeAsfalt,
     float RentalPricePerDay,
+    string ImagePath,
     string Description
 
     ) : IRequest<ErrorOr<RollerResponse>>;

@@ -27,6 +27,7 @@ namespace WynajemMaszyn.Domain.Entities
         public bool IsVibratory { get; set; }
         public bool KnigeAsfalt {  get; set; }
 
+        public string ImagePath { get; set; }
         public string Description { get; set; }
 
         public virtual User User { get; set; }

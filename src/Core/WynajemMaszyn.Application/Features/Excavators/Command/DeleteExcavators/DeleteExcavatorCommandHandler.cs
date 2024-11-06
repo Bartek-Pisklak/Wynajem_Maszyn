@@ -3,7 +3,7 @@ using MediatR;
 using WynajemMaszyn.Application.Contracts.ExcavatorAnswer;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Domain.Entities;
-
+using WynajemMaszyn.Application.Common.Errors;
 
 namespace WynajemMaszyn.Application.Features.Excavators.Command.DeleteExcavators
 {
@@ -24,12 +24,13 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.DeleteExcavators
 
         public async Task<ErrorOr<ExcavatorResponse>> Handle(DeleteExcavatorCommand request, CancellationToken cancellationToken)
         {
-            var userId = 1;//_userContextGetId.GetUserId;
+            var userId = _userContextGetId.GetUserId;
 
-            /*            if (userId is null)
-                        {
-                            return Errors.WorkTask.UserDoesNotLogged;
-                        }*/
+            if (userId is null)
+            {
+                return Errors.Excavator.UserDoesNotLogged;
+            }
+
             int id = request.Id;
             var machinery = new Machinery
             {

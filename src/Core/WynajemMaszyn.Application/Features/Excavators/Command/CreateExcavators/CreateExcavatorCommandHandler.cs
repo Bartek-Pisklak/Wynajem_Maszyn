@@ -3,6 +3,8 @@ using ErrorOr;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Domain.Entities;
 using WynajemMaszyn.Application.Contracts.ExcavatorAnswer;
+using WynajemMaszyn.Application.Common.Errors;
+
 
 namespace WynajemMaszyn.Application.Features.Excavators.Command.CreateExcavators
 {
@@ -25,12 +27,12 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.CreateExcavators
 
         public async Task<ErrorOr<ExcavatorResponse>> Handle(CreateExcavatorCommand request, CancellationToken cancellationToken)
         {
-            var userId = 1;//_userContextGetId.GetUserId;
+            var userId = _userContextGetId.GetUserId;
 
-            /*            if (userId is null)
-                        {
-                            return Errors.WorkTask.UserDoesNotLogged;
-                        }*/
+            if (userId is null)
+            {
+                return Errors.Excavator.UserDoesNotLogged;
+            }
 
             var excavator = new Excavator
             {

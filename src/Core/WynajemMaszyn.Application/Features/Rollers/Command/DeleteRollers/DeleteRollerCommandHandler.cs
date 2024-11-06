@@ -1,10 +1,9 @@
 ﻿using ErrorOr;
 using MediatR;
-using WynajemMaszyn.Application.Contracts.ExcavatorAnswer;
-using WynajemMaszyn.Application.Contracts.HarversterAnswer;
 using WynajemMaszyn.Application.Contracts.RollerAnswer;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Domain.Entities;
+using WynajemMaszyn.Application.Common.Errors;
 
 namespace WynajemMaszyn.Application.Features.Rollers.Command.DeleteRollers
 {
@@ -26,12 +25,12 @@ namespace WynajemMaszyn.Application.Features.Rollers.Command.DeleteRollers
         public async Task<ErrorOr<RollerResponse>> Handle(DeleteRollerCommand request, CancellationToken cancellationToken)
         {
 
-            var userId = 1;//_userContextGetId.GetUserId;
+            var userId = _userContextGetId.GetUserId;
 
-            /*            if (userId is null)
-                        {
-                            return Errors.WorkTask.UserDoesNotLogged;
-                        }*/
+            if (userId is null)
+            {
+                return Errors.Roller.UserDoesNotLogged;
+            }
 
 
 

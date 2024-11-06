@@ -3,6 +3,7 @@ using MediatR;
 using WynajemMaszyn.Application.Contracts.ExcavatorBucketAnswer;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Domain.Entities;
+using WynajemMaszyn.Application.Common.Errors;
 
 namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.CreateExcavatorBuckets
 {
@@ -23,12 +24,12 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.CreateExca
 
         public async Task<ErrorOr<ExcavatorBucketResponse>> Handle(CreateExcavatorBucketCommand request, CancellationToken cancellationToken)
         {
-            var userId = 1;//_userContextGetId.GetUserId;
+            var userId = _userContextGetId.GetUserId;
 
-            /*            if (userId is null)
-                        {
-                            return Errors.WorkTask.UserDoesNotLogged;
-                        }*/
+            if (userId is null)
+            {
+                return Errors.ExcavatorBucket.UserDoesNotLogged;
+            }
 
             var excavatorBucket = new ExcavatorBucket
             {

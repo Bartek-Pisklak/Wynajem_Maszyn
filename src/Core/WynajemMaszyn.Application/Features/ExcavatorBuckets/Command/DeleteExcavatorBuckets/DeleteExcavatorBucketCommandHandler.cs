@@ -1,14 +1,9 @@
 ﻿using ErrorOr;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WynajemMaszyn.Application.Contracts.ExcavatorAnswer;
 using WynajemMaszyn.Application.Contracts.ExcavatorBucketAnswer;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Domain.Entities;
+using WynajemMaszyn.Application.Common.Errors;
 
 namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.DeleteExcavatorBuckets
 {
@@ -29,12 +24,13 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.DeleteExca
 
         public async Task<ErrorOr<ExcavatorBucketResponse>> Handle(DeleteExcavatorBucketCommand request, CancellationToken cancellationToken)
         {
-            var userId = 1;//_userContextGetId.GetUserId;
+            var userId = _userContextGetId.GetUserId;
 
-            /*            if (userId is null)
-                        {
-                            return Errors.WorkTask.UserDoesNotLogged;
-                        }*/
+            if (userId is null)
+            {
+                return Errors.ExcavatorBucket.UserDoesNotLogged;
+            }
+
             int id = request.Id;
             var machinery = new Machinery
             {
