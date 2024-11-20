@@ -48,13 +48,14 @@ namespace WynajemMaszyn.Application.Features.Harvesters.Command.EditHarvesters
                 WheelType = request.WheelType,
                 RentalPricePerDay = request.RentalPricePerDay,
                 ImagePath = request.ImagePath,
-                Description = request.Description
+                Description = request.Description,
+                IsRepair = request.IsRepair
             };
 
             var machinery = new Machinery
             {
                 Name= harvester.Name,
-                HarvesterId=harvester.Id
+                HarvesterId=request.Id
             };
 
             await _harvesterRepository.EditHarvester(request.Id, harvester);

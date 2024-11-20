@@ -17,6 +17,7 @@ namespace WynajemMaszyn.Application.UnitTests.WoodChippers.TestUtils
                 Constants.WoodChipper.Gearbox,
                 Constants.WoodChipper.DrivingSpeed,
                 Constants.WoodChipper.FuelConsumption,
+                Constants.WoodChipper._FuelType,
                 Constants.WoodChipper.MachineLength,
                 Constants.WoodChipper.TransportHeight,
                 Constants.WoodChipper.ChoppingHeight,

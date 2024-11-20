@@ -50,7 +50,7 @@ public class LoginHandlerTests
         
         _mockIJwtTokenGenerator
             .Setup(x => 
-                x.GenerateToken(It.IsAny<int>(),It.IsAny<string>(),It.IsAny<string>()))
+                x.GenerateToken(It.IsAny<int>(),It.IsAny<string>(),It.IsAny<string>(),It.IsAny<string>()))
             .Verifiable();
 
         //Act

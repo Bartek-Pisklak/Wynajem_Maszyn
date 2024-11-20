@@ -2,6 +2,7 @@
 using ErrorOr;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Domain.Entities;
+using WynajemMaszyn.Domain.Enums;
 using WynajemMaszyn.Application.Contracts.ExcavatorAnswer;
 using WynajemMaszyn.Application.Common.Errors;
 
@@ -38,7 +39,7 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.CreateExcavators
             {
                 UserId = (int)userId,
                 Name = request.Name,
-                Type = request.Type,
+                TypeExcavator = request.TypeExcavator,
                 TypeChassis = request.TypeChassis,
                 RentalPricePerDay = request.RentalPricePerDay,
                 ProductionYear = request.ProductionYear,
@@ -51,7 +52,7 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.CreateExcavators
                 FuelType = request.FuelType,
                 Gearbox = request.Gearbox,
                 MaxDiggingDepth = request.MaxDiggingDepth,
-                ImagePath=request.ImagePath,
+                ImagePath = request.ImagePath,
                 Description = request.Description
         };
 

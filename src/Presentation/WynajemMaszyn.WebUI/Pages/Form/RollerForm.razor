@@ -1,0 +1,113 @@
+﻿
+@using MediatR
+@using WynajemMaszyn.Application.Features.Rollers.Queries.DTOs
+@using WynajemMaszyn.Application.Features.Rollers.Command.CreateRollers
+@using WynajemMaszyn.Application.Features.Rollers.Command.EditRollers
+@inject IMediator Mediator
+@page "/RollerForm"
+
+
+<h3>Walce</h3>
+
+<EditForm Model="@rollertable" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div>
+        <label for="name">Nazwa:</label>
+        <InputText id="name" @bind-Value="rollertable.Name" class="form-control" />
+    </div>
+
+    <div>
+        <label for="productionYear">Rok produkcji:</label>
+        <InputNumber id="productionYear" @bind-Value="rollertable.ProductionYear" class="form-control" />
+    </div>
+
+    <div>
+        <label for="operatingHours">Godziny pracy:</label>
+        <InputNumber id="operatingHours" @bind-Value="rollertable.OperatingHours" class="form-control" />
+    </div>
+
+    <div>
+        <label for="weight">Waga (kg):</label>
+        <InputNumber id="weight" @bind-Value="rollertable.Weight" class="form-control" />
+    </div>
+
+    <div>
+        <label for="engine">Silnik:</label>
+        <InputNumber id="engine" @bind-Value="rollertable.Engine" class="form-control" />
+    </div>
+
+    <div>
+        <label for="enginePower">Moc silnika (KM):</label>
+        <InputNumber id="enginePower" @bind-Value="rollertable.EnginePower" class="form-control" />
+    </div>
+
+    <div>
+        <label for="drivingSpeed">Prędkość jazdy (km/h):</label>
+        <InputNumber id="drivingSpeed" @bind-Value="rollertable.DrivingSpeed" class="form-control" />
+    </div>
+
+    <div>
+        <label for="fuelConsumption">Zużycie paliwa (l/h):</label>
+        <InputNumber id="fuelConsumption" @bind-Value="rollertable.FuelConsumption" class="form-control" />
+    </div>
+
+@*     <div>
+        <label for="fuelType">Rodzaj paliwa:</label>
+        <InputText id="fuelType" @bind-Value="rollertable.FuelType" class="form-control" />
+    </div>
+ *@
+    <div>
+        <label for="gearbox">Skrzynia biegów:</label>
+        <InputText id="gearbox" @bind-Value="rollertable.Gearbox" class="form-control" />
+    </div>
+
+    <div>
+        <label for="numberOfDrums">Liczba bębnów:</label>
+        <InputNumber id="numberOfDrums" @bind-Value="rollertable.NumberOfDrums" class="form-control" />
+    </div>
+
+@*     <div>
+        <label for="rollerType">Typ walca:</label>
+        <InputText id="rollerType" @bind-Value="rollertable.RollerType" class="form-control" />
+    </div> *@
+
+    <div>
+        <label for="drumWidth">Szerokość bębna (mm):</label>
+        <InputNumber id="drumWidth" @bind-Value="rollertable.DrumWidth" class="form-control" />
+    </div>
+
+    <div>
+        <label for="maxCompactionForce">Maksymalna siła zagęszczania (kN):</label>
+        <InputNumber id="maxCompactionForce" @bind-Value="rollertable.MaxCompactionForce" class="form-control" />
+    </div>
+
+    <div>
+        <label for="isVibratory">Czy jest wibracyjny?</label>
+        <InputCheckbox id="isVibratory" @bind-Value="rollertable.IsVibratory" class="form-check-input" />
+    </div>
+
+    <div>
+        <label for="knigeAsfalt">Czy posiada nóż asfaltowy?</label>
+        <InputCheckbox id="knigeAsfalt" @bind-Value="rollertable.KnigeAsfalt" class="form-check-input" />
+    </div>
+
+    <div>
+        <label for="rentalPricePerDay">Cena wynajmu za dzień (PLN):</label>
+        <InputNumber id="rentalPricePerDay" @bind-Value="rollertable.RentalPricePerDay" class="form-control" />
+    </div>
+
+    <div>
+        <label for="description">Opis:</label>
+        <InputTextArea id="description" @bind-Value="rollertable.Description" class="form-control" />
+    </div>
+
+    <div>
+        <label for="imagePath">Zdjęcie:</label>
+        <InputFile OnChange="HandleImageUpload" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Zapisz</button>
+</EditForm>
+

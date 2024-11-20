@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WynajemMaszyn.Application.Contracts.WoodChipperAnswer;
+using WynajemMaszyn.Domain.Enums;
 
 namespace WynajemMaszyn.Application.Features.WoodChippers.Command.EditWoodChippers
 {
@@ -13,6 +14,7 @@ namespace WynajemMaszyn.Application.Features.WoodChippers.Command.EditWoodChippe
     (
          int Id,
          string Name,
+
          float RentalPricePerDay,
          int ProductionYear,
          int OperatingHours,
@@ -23,7 +25,7 @@ namespace WynajemMaszyn.Application.Features.WoodChippers.Command.EditWoodChippe
          string Gearbox,
          int DrivingSpeed,
          int FuelConsumption,
-
+         FuelType FuelType,
 
          int MachineLength,
          int TransportHeight,
@@ -31,8 +33,8 @@ namespace WynajemMaszyn.Application.Features.WoodChippers.Command.EditWoodChippe
          int MachineWidth,
 
          int FlowMaterial,
-
          string ImagePath,
-         string Description
+         string Description,
+         bool IsRepair
         ) : IRequest<ErrorOr<WoodChipperResponse>>;
 }

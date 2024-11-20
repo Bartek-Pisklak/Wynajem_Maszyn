@@ -17,15 +17,13 @@ namespace WynajemMaszyn.Domain.Entities
 
         public float? Deposit { get; set; }       
         public float? LateFee { get; set; }
-        public RentalStatus Status {get; set; }
+        public RentalStatus RentalStatus {get; set; }
         public PaymentStatus PaymentStatus { get; set; }
         public string Facture { get; set; }
         public string Contract { get; set; }
         public string PaymentMethod { get; set; }
         public string AdditionalNotes { get; set; }
         public bool IsReturned { get; set; } = false;
-
-        public virtual ICollection<Machinery> Machinery { get; set; } = new List<Machinery>();
 
         public virtual User User { get; set; }
     }

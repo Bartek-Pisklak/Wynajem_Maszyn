@@ -18,13 +18,15 @@ namespace WynajemMaszyn.Application.UnitTests.WoodChippers.TestUtils
                 Constants.WoodChipper.Gearbox,
                 Constants.WoodChipper.DrivingSpeed,
                 Constants.WoodChipper.FuelConsumption,
+                Constants.WoodChipper._FuelType,
                 Constants.WoodChipper.MachineLength,
                 Constants.WoodChipper.TransportHeight,
                 Constants.WoodChipper.ChoppingHeight,
                 Constants.WoodChipper.MachineWidth,
                 Constants.WoodChipper.FlowMaterial,
                 Constants.WoodChipper.ImagePath,
-                Constants.WoodChipper.Description
+                Constants.WoodChipper.Description,
+                Constants.WoodChipper.IsRepair
 
                 );
     }

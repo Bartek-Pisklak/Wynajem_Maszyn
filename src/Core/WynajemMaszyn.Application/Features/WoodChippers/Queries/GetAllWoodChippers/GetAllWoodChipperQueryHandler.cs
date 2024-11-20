@@ -37,6 +37,7 @@ namespace WynajemMaszyn.Application.Features.WoodChippers.Queries.GetAllWoodChip
                 Gearbox = woodChipper.Gearbox,
                 DrivingSpeed = woodChipper.DrivingSpeed,
                 FuelConsumption = woodChipper.FuelConsumption,
+                FuelType = woodChipper.FuelType,
                 MachineLength = woodChipper.MachineLength,
                 TransportHeight = woodChipper.TransportHeight,
                 ChoppingHeight = woodChipper.ChoppingHeight,

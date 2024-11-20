@@ -19,9 +19,10 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.EditExcava
     string Material,
     int MaxLoadCapacity,
     float RentalPricePerDay,
-    string CompatibleExcavators,
+    //string CompatibleExcavators,
     string ImagePath,
-    string Description
+    string Description,
+     bool IsRepair
 
 
         ) : IRequest<ErrorOr<ExcavatorBucketResponse>>;

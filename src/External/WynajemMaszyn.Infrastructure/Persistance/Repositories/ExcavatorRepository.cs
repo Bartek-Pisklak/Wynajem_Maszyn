@@ -42,7 +42,7 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
                 return;
             }
             result.Name = editedExcavator.Name;
-            result.Type = editedExcavator.Type;
+            result.TypeExcavator = editedExcavator.TypeExcavator;
             result.TypeChassis = editedExcavator.TypeChassis;
             result.RentalPricePerDay = editedExcavator.RentalPricePerDay;
             result.ProductionYear = editedExcavator.ProductionYear;
@@ -56,6 +56,7 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
             result.Gearbox = editedExcavator.Gearbox;
             result.MaxDiggingDepth = editedExcavator.MaxDiggingDepth;
             result.Description = editedExcavator.Description;
+            result.IsRepair = editedExcavator.IsRepair;
 
             _dbContext.SaveChanges();
         }

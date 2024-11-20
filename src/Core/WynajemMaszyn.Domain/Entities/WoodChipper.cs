@@ -1,6 +1,8 @@
 ﻿
 
 
+using WynajemMaszyn.Domain.Enums;
+
 namespace WynajemMaszyn.Domain.Entities
 {
     public class WoodChipper
@@ -14,6 +16,7 @@ namespace WynajemMaszyn.Domain.Entities
         public int OperatingHours { get; set; }
         public int Weight { get; set; }
 
+        public FuelType FuelType {get; set; }
         public string Engine { get; set; }
         public int EnginePower { get; set; }
         public string Gearbox { get; set; }
@@ -30,6 +33,8 @@ namespace WynajemMaszyn.Domain.Entities
 
         public string ImagePath {  get; set; }
         public string Description { get; set; }
+        public bool IsRepair { get; set; } = false;
+
 
         public virtual User User { get; set; }
     }

@@ -1,5 +1,7 @@
 ﻿
 
+using WynajemMaszyn.Domain.Enums;
+
 namespace WynajemMaszyn.Domain.Entities
 {
     public class Roller
@@ -17,11 +19,11 @@ namespace WynajemMaszyn.Domain.Entities
         public int EnginePower { get; set; }
         public int DrivingSpeed { get; set; }
         public int FuelConsumption { get; set; }
-        public string FuelType { get; set; }
+        public FuelType FuelType { get; set; }
         public string Gearbox { get; set; }
 
         public int NumberOfDrums { get; set; }
-        public string RollerType { get; set; } // Typ walca (np. gładki, wibracyjny, siatkowy)
+        public RollerType RollerType { get; set; } // Typ walca (np. gładki, wibracyjny, siatkowy)
         public int DrumWidth { get; set; } // Szerokość bębna (w mm)
         public int MaxCompactionForce { get; set; } // Maksymalna siła zagęszczania (w kN)
         public bool IsVibratory { get; set; }
@@ -29,6 +31,7 @@ namespace WynajemMaszyn.Domain.Entities
 
         public string ImagePath { get; set; }
         public string Description { get; set; }
+        public bool IsRepair { get; set; } = false;
 
         public virtual User User { get; set; }
     }

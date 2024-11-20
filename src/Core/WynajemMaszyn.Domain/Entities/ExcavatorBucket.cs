@@ -6,7 +6,7 @@
         public int UserId { get; set; }
         public string Name { get; set; }
 
-        public string BucketType { get; set; } // Typ łyżki (np. kopiąca, skarpowa, hydrauliczna)
+        public string BucketType { get; set; } 
         public int ProductionYear { get; set; } 
         public int BucketCapacity { get; set; }
         public int Weight { get; set; }
@@ -24,8 +24,8 @@
 
         public string ImagePath { get; set; }
         public string Description { get; set; }
+        public bool IsRepair { get; set; } = false;
 
         public virtual User User { get; set; }
-        public virtual Excavator Excavator { get; set; }
     }
 }

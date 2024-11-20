@@ -45,12 +45,23 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
                 return;
             }
             result.Name = editedWoodChipper.Name;
+            result.RentalPricePerDay = editedWoodChipper.RentalPricePerDay;
             result.ProductionYear = editedWoodChipper.ProductionYear;
             result.OperatingHours = editedWoodChipper.OperatingHours;
             result.Weight = editedWoodChipper.Weight;
             result.Engine = editedWoodChipper.Engine;
             result.EnginePower = editedWoodChipper.EnginePower;
+            result.Gearbox = editedWoodChipper.Gearbox;
             result.DrivingSpeed = editedWoodChipper.DrivingSpeed;
+            result.FuelConsumption = editedWoodChipper.FuelConsumption;
+            result.MachineLength = editedWoodChipper.MachineLength;
+            result.TransportHeight = editedWoodChipper.TransportHeight;
+            result.ChoppingHeight = editedWoodChipper.ChoppingHeight;
+            result.MachineWidth = editedWoodChipper.MachineWidth;
+            result.FlowMaterial = editedWoodChipper.FlowMaterial;
+            result.ImagePath = editedWoodChipper.ImagePath;
+            result.Description = editedWoodChipper.Description;
+            result.IsRepair = editedWoodChipper.IsRepair;
 
             _dbContext.SaveChanges();
         }

@@ -18,17 +18,18 @@ namespace WynajemMaszyn.Application.UnitTests.Rollers.TestUtils
                 Constants.Roller.EnginePower,
                 Constants.Roller.DrivingSpeed,
                 Constants.Roller.FuelConsumption,
-                Constants.Roller.FuelType,
+                Constants.Roller._FuelType,
                 Constants.Roller.Gearbox,
                 Constants.Roller.NumberOfDrums,
-                Constants.Roller.RollerType,
+                Constants.Roller._RollerType,
                 Constants.Roller.DrumWidth,
                 Constants.Roller.MaxCompactionForce,
                 Constants.Roller.IsVibratory,
                 Constants.Roller.KnigeAsfalt,
                 Constants.Roller.RentalPricePerDay,
                 Constants.Roller.ImagePath,
-                Constants.Roller.Description
+                Constants.Roller.Description,
+                Constants.Roller.IsRepair
             );
     }
 }

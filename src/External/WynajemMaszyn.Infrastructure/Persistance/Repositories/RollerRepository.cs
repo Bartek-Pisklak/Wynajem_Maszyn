@@ -57,7 +57,9 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
             result.MaxCompactionForce = editedRoller.MaxCompactionForce;
             result.IsVibratory = editedRoller.IsVibratory;
             result.KnigeAsfalt = editedRoller.KnigeAsfalt;
+            result.ImagePath = editedRoller.ImagePath;
             result.Description = editedRoller.Description;
+            result.IsRepair = editedRoller.IsRepair;
 
             await _dbContext.SaveChangesAsync();
         }

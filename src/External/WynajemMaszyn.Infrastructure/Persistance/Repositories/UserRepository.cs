@@ -51,5 +51,14 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
 
             return user;
         }
+
+        public async Task<String> GetUserPermission(int permissionId)
+        {
+            var userPermision = await _dbContext.Permissions.FirstOrDefaultAsync(x => x.Id == permissionId);
+
+            if (userPermision is null) return null;
+
+            return userPermision.Name;
+        }
     }
 }

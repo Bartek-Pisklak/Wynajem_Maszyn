@@ -1,4 +1,4 @@
-using ErrorOr;
+﻿using ErrorOr;
 using MediatR;
 using WynajemMaszyn.Application.Common.Errors;
 using WynajemMaszyn.Application.Common.Interfaces.Authentication;
@@ -21,12 +21,12 @@ public class LoginHandler : IRequestHandler<LoginCommand, ErrorOr<LoginResponse>
     public async Task<ErrorOr<LoginResponse>> Handle(LoginCommand request, CancellationToken cancellationToken)
     {
         var user = await _userRepository.GetUser(request.Email, request.Password);
+        var permision = await _userRepository.GetUserPermission(user.PermissionId);
 
         //In the future we need to implement account verification confirmation here
 
-        if (user is null) return Errors.User.BadData;
 
-        _jwtTokenGenerator.GenerateToken(user.Id, user.FirstName, user.LastName);
+        if (user is null) return Errors.User.BadData;
 
         return new LoginResponse("Successfull!");
     }

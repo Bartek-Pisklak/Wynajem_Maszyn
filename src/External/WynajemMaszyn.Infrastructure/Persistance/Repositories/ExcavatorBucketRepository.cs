@@ -59,6 +59,7 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
 
             result.ImagePath = editedExcavatorBucket.ImagePath;
             result.Description = editedExcavatorBucket.Description;
+            result.IsRepair = editedExcavatorBucket.IsRepair;
 
             await _dbContext.SaveChangesAsync();
         }

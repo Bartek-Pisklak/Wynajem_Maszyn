@@ -1,5 +1,7 @@
 ﻿
 
+using WynajemMaszyn.Domain.Enums;
+
 namespace WynajemMaszyn.Application.Features.WoodChippers.Queries.DTOs
 {
     public class GetAllWoodChipperDto
@@ -17,7 +19,7 @@ namespace WynajemMaszyn.Application.Features.WoodChippers.Queries.DTOs
         public string Gearbox { get; set; }
         public int DrivingSpeed { get; set; }
         public int FuelConsumption { get; set; }
-
+        public FuelType FuelType { get; set; }
 
         public int MachineLength { get; set; }
         public int TransportHeight { get; set; }
@@ -25,7 +27,8 @@ namespace WynajemMaszyn.Application.Features.WoodChippers.Queries.DTOs
         public int MachineWidth { get; set; }
 
         public int FlowMaterial { get; set; }
-
+        public string ImagePath { get; set; }
         public string Description { get; set; }
+        public bool IsRepair {  get; set; }
     }
 }

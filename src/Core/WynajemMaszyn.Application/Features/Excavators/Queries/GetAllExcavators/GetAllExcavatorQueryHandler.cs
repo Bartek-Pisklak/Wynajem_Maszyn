@@ -36,7 +36,10 @@ namespace WynajemMaszyn.Application.Features.Excavators.Queries.GetAllExcavators
                 Engine = x.Engine,
                 EnginePower = x.EnginePower,
                 DrivingSpeed = x.DrivingSpeed
-            }).ToList();
+
+/*                        public string TypeExcavator { get; set; }
+        public string TypeChassis { get; set; }*/
+    }).ToList();
 
             return workExcavators;
         }

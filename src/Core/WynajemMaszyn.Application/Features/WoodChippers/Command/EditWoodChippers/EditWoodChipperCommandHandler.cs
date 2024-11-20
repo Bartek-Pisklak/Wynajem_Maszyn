@@ -32,9 +32,6 @@ namespace WynajemMaszyn.Application.Features.WoodChippers.Command.EditWoodChippe
                 return Errors.WoodChipper.UserDoesNotLogged;
             }
 
-
-
-            var id = request.Id;
             var woodChipper = new WoodChipper
             {
                 Name = request.Name,
@@ -52,15 +49,17 @@ namespace WynajemMaszyn.Application.Features.WoodChippers.Command.EditWoodChippe
                 ChoppingHeight = request.ChoppingHeight,
                 MachineWidth = request.MachineWidth,
                 FlowMaterial = request.FlowMaterial,
-                Description = request.Description
+                ImagePath = request.ImagePath,
+                Description = request.Description,
+                IsRepair = request.IsRepair
             };
             var machinery = new Machinery
             {
                 Name= woodChipper.Name,
-                WoodChipperId=id
+                WoodChipperId=request.Id
             };
 
-            await _woodChipperRepository.EditWoodChipper(id,woodChipper);
+            await _woodChipperRepository.EditWoodChipper(request.Id, woodChipper);
             await _machineryRepository.EditMachinery(machinery);
 
 

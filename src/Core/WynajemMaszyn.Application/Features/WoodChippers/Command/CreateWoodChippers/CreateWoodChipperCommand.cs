@@ -2,12 +2,14 @@
 using MediatR;
 
 using WynajemMaszyn.Application.Contracts.WoodChipperAnswer;
+using WynajemMaszyn.Domain.Enums;
 
 namespace WynajemMaszyn.Application.Features.WoodChippers.Command.CreateWoodChippers
 {
     public record CreateWoodChipperCommand
     (
          string Name,
+
          float RentalPricePerDay,
          int ProductionYear,
          int OperatingHours,
@@ -18,7 +20,7 @@ namespace WynajemMaszyn.Application.Features.WoodChippers.Command.CreateWoodChip
          string Gearbox,
          int DrivingSpeed,
          int FuelConsumption,
-
+         FuelType FuelType,
 
          int MachineLength,
          int TransportHeight,
@@ -26,7 +28,6 @@ namespace WynajemMaszyn.Application.Features.WoodChippers.Command.CreateWoodChip
          int MachineWidth,
 
          int FlowMaterial,
-
          string ImagePath,
          string Description
         ) : IRequest<ErrorOr<WoodChipperResponse>>; 

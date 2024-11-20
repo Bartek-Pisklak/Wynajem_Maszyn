@@ -14,7 +14,7 @@ namespace WynajemMaszyn.Application.UnitTests.Harvesters.TestUtils
                 Constants.Harvester.OperatingHours,
                 Constants.Harvester.Weight,
                 Constants.Harvester.EnginePower,
-                Constants.Harvester.FuelType,
+                Constants.Harvester._FuelType,
                 Constants.Harvester.FuelConsumption,
                 Constants.Harvester.MaxSpeed,
                 Constants.Harvester.CuttingDiameter,
@@ -22,7 +22,8 @@ namespace WynajemMaszyn.Application.UnitTests.Harvesters.TestUtils
                 Constants.Harvester.WheelType,
                 Constants.Harvester.RentalPricePerDay,
                 Constants.Harvester.ImagePath,
-                Constants.Harvester.Description
+                Constants.Harvester.Description,
+                Constants.Harvester.IsRepair
                     );
     }
 }

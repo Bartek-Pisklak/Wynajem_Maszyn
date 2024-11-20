@@ -52,13 +52,14 @@ namespace WynajemMaszyn.Application.Features.Rollers.Command.EditRollers
                 KnigeAsfalt = request.KnigeAsfalt,
                 RentalPricePerDay = request.RentalPricePerDay,
                 ImagePath = request.ImagePath,
-                Description = request.Description
+                Description = request.Description,
+                IsRepair = request.IsRepair
             };
 
             var machinery = new Machinery
             {
                 Name= roller.Name,
-                RollerId=roller.Id
+                RollerId=request.Id
             };
 
             await _rollerRepository.EditRoller(request.Id, roller);

@@ -30,7 +30,7 @@ namespace WynajemMaszyn.Application.Features.Excavators.Queries.GetExcavators
             {
                 Id = excavator.Id,
                 Name = excavator.Name,
-                Type = excavator.Type,
+                TypeExcavator = excavator.TypeExcavator,
                 TypeChassis = excavator.TypeChassis,
                 RentalPricePerDay = excavator.RentalPricePerDay,
                 ProductionYear = excavator.ProductionYear,

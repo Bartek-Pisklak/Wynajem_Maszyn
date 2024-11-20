@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WynajemMaszyn.Domain.Enums;
 
 namespace WynajemMaszyn.Application.Contracts.WoodChipperAnswer
 {
@@ -21,7 +22,7 @@ namespace WynajemMaszyn.Application.Contracts.WoodChipperAnswer
      string Gearbox,
      int DrivingSpeed,
      int FuelConsumption,
-
+     FuelType FuelType,
 
      int MachineLength,
      int TransportHeight,
@@ -30,6 +31,7 @@ namespace WynajemMaszyn.Application.Contracts.WoodChipperAnswer
 
      int FlowMaterial,
 
-     string Description 
+     string Description,
+     bool IsRepair
         );
 }

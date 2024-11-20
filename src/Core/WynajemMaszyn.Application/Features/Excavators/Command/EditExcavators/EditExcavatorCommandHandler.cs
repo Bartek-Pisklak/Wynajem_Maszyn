@@ -35,7 +35,7 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.EditExcavators
             var excavator = new Excavator
             {
                 Name = request.Name,
-                Type = request.Type,
+                TypeExcavator = request.TypeExcavator,
                 TypeChassis = request.TypeChassis,
                 RentalPricePerDay = request.RentalPricePerDay,
                 ProductionYear = request.ProductionYear,

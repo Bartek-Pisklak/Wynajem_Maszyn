@@ -22,6 +22,7 @@ namespace WynajemMaszyn.Application.UnitTests.TestUtils.Constants
             public const string CompatibleExcavators = "Excavator Model X, Model Y";
             public const string ImagePath = "/images/bucket_heavy_duty.png";
             public const string Description = "Durable rock bucket designed for extreme excavation tasks.";
+            public const bool IsRepair = false;
         }
     }
 }

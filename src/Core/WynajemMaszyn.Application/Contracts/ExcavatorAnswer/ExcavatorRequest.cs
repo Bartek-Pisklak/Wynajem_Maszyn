@@ -1,10 +1,12 @@
-﻿namespace WynajemMaszyn.Application.Contracts.ExcavatorAnswer
+﻿using WynajemMaszyn.Domain.Enums;
+
+namespace WynajemMaszyn.Application.Contracts.ExcavatorAnswer
 {
     public record ExcavatorRequest(
         int Id,
         string Name,
-        string Type,
-        string TypeChassis,
+        TypeExcavator TypeExcavator,
+        TypeChassis TypeChassis,
         float RentalPricePerDay,
         int ProductionYear,
         int OperatingHours,
@@ -13,10 +15,12 @@
         int EnginePower,
         int DrivingSpeed,
         int FuelConsumption,
-        string FuelType,
+        FuelType FuelType,
         string Gearbox,
         int MaxDiggingDepth,
-        string Description
+        string ImagePath,
+        string Description,
+        bool IsRepair
         );
 }
 

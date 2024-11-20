@@ -1,11 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Domain.Entities;
+using WynajemMaszyn.Domain.Enums;
 
 namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
 {
@@ -48,9 +44,19 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
             result.ProductionYear = editedHarvester.ProductionYear;
             result.OperatingHours = editedHarvester.OperatingHours;
             result.Weight = editedHarvester.Weight;
-           /* result.Engine = editedHarvester.Engine;
             result.EnginePower = editedHarvester.EnginePower;
-            result.DrivingSpeed = editedHarvester.DrivingSpeed;*/
+            result.FuelType = editedHarvester.FuelType;
+            result.FuelConsumption = editedHarvester.FuelConsumption;
+            result.MaxSpeed = editedHarvester.MaxSpeed;
+            result.CuttingDiameter = editedHarvester.CuttingDiameter;
+            result.MaxReach = editedHarvester.MaxReach;
+            result.WheelType = editedHarvester.WheelType;
+            result.RentalPricePerDay = editedHarvester.RentalPricePerDay;
+            result.ImagePath = editedHarvester.ImagePath;
+            result.Description = editedHarvester.Description;
+            result.IsRepair = editedHarvester.IsRepair;
+
+
 
             _dbContext.SaveChanges();
         }

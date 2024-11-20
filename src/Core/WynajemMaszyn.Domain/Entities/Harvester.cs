@@ -1,5 +1,7 @@
 ﻿
 
+using WynajemMaszyn.Domain.Enums;
+
 namespace WynajemMaszyn.Domain.Entities
 {
     public class Harvester
@@ -13,7 +15,7 @@ namespace WynajemMaszyn.Domain.Entities
         public int Weight { get; set; }
 
         public int EnginePower { get; set; } // KM
-        public string FuelType { get; set; } // Typ paliwa (ropa, benzyna)
+        public FuelType FuelType { get; set; } // Typ paliwa (ropa, benzyna)
         public int FuelConsumption { get; set; } // Zużycie paliwa (l/h)
         public int MaxSpeed { get; set; } // Maksymalna prędkość (km/h)
         public int CuttingDiameter { get; set; } // Średnica cięcia (w mm)
@@ -25,7 +27,7 @@ namespace WynajemMaszyn.Domain.Entities
 
         public string ImagePath { get; set; }
         public string Description { get; set; }
-
+        public bool IsRepair { get; set; } = false;
 
         public virtual User User { get; set; }
     }

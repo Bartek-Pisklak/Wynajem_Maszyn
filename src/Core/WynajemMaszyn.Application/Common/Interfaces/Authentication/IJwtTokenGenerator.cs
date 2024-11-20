@@ -2,5 +2,5 @@
 
 public interface IJwtTokenGenerator
 {
-    void GenerateToken(int userId, string firstName, string lastName);
+    void GenerateToken(int userId, string firstName, string lastName, string permission);
 }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace WynajemMaszyn.Application.Contracts.ExcavatorBucketAnswer;
 
 public record ExcavatorBucketRequest(
+    int Id,
     string Name,
     string BucketType,
     int ProductionYear,
@@ -19,7 +20,8 @@ public record ExcavatorBucketRequest(
     string Material,
     int MaxLoadCapacity,
     float RentalPricePerDay,
-    string CompatibleExcavators,
+    //string CompatibleExcavators,
     string ImagePath,
-    string Description
+    string Description,
+     bool IsRepair
     );

@@ -54,13 +54,15 @@ namespace WynajemMaszyn.Application.Features.WoodChippers.Command.CreateWoodChip
                 Description = request.Description
             };
 
+
+
+            var woodChipperId = await _woodChipperRepository.CreateWoodChipper(woodChipper);
+
             var machinery = new Machinery
             {
                 Name= woodChipper.Name,
-                WoodChipperId=woodChipper.Id
+                WoodChipperId=woodChipperId
             };
-
-            await _woodChipperRepository.CreateWoodChipper(woodChipper);
             await _machineryRepository.CreateMachinery(machinery);
 
             return new WoodChipperResponse("added WoodChipper");

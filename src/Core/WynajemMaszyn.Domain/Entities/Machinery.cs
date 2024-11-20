@@ -11,7 +11,7 @@
         public int? HarvesterId { get; set; } = null;
         public int? WoodChipperId { get; set; } = null;
 
-        public virtual ICollection<MachineryRental> MachineryRentals { get; set; } = new List<MachineryRental>();
+        
 
         public virtual Excavator? Excavator { get; set; }
         public virtual ExcavatorBucket? ExcavatorBucket { get; set; }

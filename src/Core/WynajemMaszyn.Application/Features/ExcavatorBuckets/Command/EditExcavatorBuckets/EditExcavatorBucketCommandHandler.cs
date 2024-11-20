@@ -48,7 +48,7 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.EditExcava
                 Material = request.Material,
                 MaxLoadCapacity = request.MaxLoadCapacity,
                 RentalPricePerDay = request.RentalPricePerDay,
-                CompatibleExcavators = request.CompatibleExcavators,
+                //CompatibleExcavators = request.CompatibleExcavators,
 
                 ImagePath = request.ImagePath,
                 Description = request.Description
@@ -57,10 +57,11 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.EditExcava
            
             var machine = new Machinery
             {
-                Name = excavatorBucket.Name
+                Name = excavatorBucket.Name,
+                ExcavatorBucketId = request.Id
             };
 
-            await _excavatorBucketRepository.CreateExcavatorBucket(excavatorBucket);
+            await _excavatorBucketRepository.EditExcavatorBucket(request.Id,excavatorBucket);
             await _machineryRepository.EditMachinery(machine);
 
 

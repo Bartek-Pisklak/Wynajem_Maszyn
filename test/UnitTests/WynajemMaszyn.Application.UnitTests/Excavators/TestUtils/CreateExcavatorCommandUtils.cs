@@ -10,8 +10,8 @@ namespace WynajemMaszyn.Application.UnitTests.Excavators.TestUtils
         public static CreateExcavatorCommand CreateExcavatorCommand() =>
             new CreateExcavatorCommand(
                     Constants.Excavator.Name,
-                    Constants.Excavator.Type,
-                    Constants.Excavator.TypeChassis,
+                    Constants.Excavator._TypeExcavator,
+                    Constants.Excavator._TypeChassis,
                     Constants.Excavator.RentalPricePerDay,
 
                     Constants.Excavator.ProductionYear,
@@ -22,7 +22,7 @@ namespace WynajemMaszyn.Application.UnitTests.Excavators.TestUtils
                     Constants.Excavator.EnginePower,
                     Constants.Excavator.DrivingSpeed,
                     Constants.Excavator.FuelConsumption,
-                    Constants.Excavator.FuelType,
+                    Constants.Excavator._FuelType,
 
                     Constants.Excavator.Gearbox,
                     Constants.Excavator.MaxDiggingDepth,

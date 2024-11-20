@@ -1,4 +1,6 @@
 ﻿
+using WynajemMaszyn.Domain.Enums;
+
 namespace WynajemMaszyn.Application.UnitTests.TestUtils.Constants
 {
     public static partial class Constants
@@ -12,6 +14,7 @@ namespace WynajemMaszyn.Application.UnitTests.TestUtils.Constants
             public const int OperatingHours = 1500; // liczba przepracowanych godzin
             public const int Weight = 3500; // masa w kg
 
+            public const FuelType _FuelType = FuelType.Benzyna;
             public const string Engine = "V8 Diesel Engine";
             public const int EnginePower = 200; // moc silnika w KM
             public const string Gearbox = "Manual";
@@ -27,6 +30,7 @@ namespace WynajemMaszyn.Application.UnitTests.TestUtils.Constants
 
             public const string ImagePath = "/images/wood_chipper_heavy_duty.png";
             public const string Description = "Robust wood chipper suitable for heavy-duty operations with high material throughput.";
+            public const bool IsRepair = false;
         }
     } 
 }

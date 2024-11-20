@@ -13,7 +13,7 @@ namespace WynajemMaszyn.Application.UnitTests.Harvesters.TestUtils
                 Constants.Harvester.OperatingHours,
                 Constants.Harvester.Weight,
                 Constants.Harvester.EnginePower,
-                Constants.Harvester.FuelType,
+                Constants.Harvester._FuelType,
                 Constants.Harvester.FuelConsumption,
                 Constants.Harvester.MaxSpeed,
                 Constants.Harvester.CuttingDiameter,

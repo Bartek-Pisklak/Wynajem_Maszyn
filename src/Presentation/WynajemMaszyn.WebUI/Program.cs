@@ -4,6 +4,7 @@ using WynajemMaszyn.Infrastructure;
 
 using WynajemMaszyn.Api.Data;
 using WynajemMaszyn.Infrastructure.Persistance.Seeders;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,14 +15,17 @@ builder.Services.AddScoped<WeatherForecastService>();
 builder.Services.AddScoped<ApiController>();
 
 builder.Services.AddScoped<ExcavatorService>();
-builder.Services.AddScoped<HarvesterService>();
-builder.Services.AddScoped<RollerService>();
-builder.Services.AddScoped<WoodChipperService>();
+
 
 builder.Services.AddControllers();
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
+
 builder.Services.AddAuthorization(builder.Configuration);
+
+//builder.Services.AddIdentityCore<>();
+
+
 
 var app = builder.Build();
 
@@ -41,10 +45,9 @@ using (var scope = app.Services.CreateScope())
 }
 
 app.UseStaticFiles();
-
 app.UseRouting();
-
 app.MapBlazorHub();
+app.UseAuthentication();
 app.MapFallbackToPage("/_Host");
 app.MapControllers();
 app.Run();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WynajemMaszyn.Domain.Enums;
 
 namespace WynajemMaszyn.Application.Contracts.HarversterAnswer
 {
@@ -14,7 +15,7 @@ namespace WynajemMaszyn.Application.Contracts.HarversterAnswer
         int OperatingHours,
         int Weight,
         int EnginePower,
-        string FuelType,
+        FuelType FuelType,
         int FuelConsumption,
         int MaxSpeed,
         int CuttingDiameter,
@@ -22,6 +23,7 @@ namespace WynajemMaszyn.Application.Contracts.HarversterAnswer
         string WheelType,
         float RentalPricePerDay,
         string ImagePath,
-        string Description
+        string Description,
+        bool IsRepair
     );
 }

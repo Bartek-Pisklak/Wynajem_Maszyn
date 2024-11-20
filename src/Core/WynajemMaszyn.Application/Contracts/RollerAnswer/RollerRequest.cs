@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using WynajemMaszyn.Domain.Enums;
 
 namespace WynajemMaszyn.Application.Contracts.RollerAnswer
 {
@@ -17,15 +13,17 @@ namespace WynajemMaszyn.Application.Contracts.RollerAnswer
         int EnginePower,
         int DrivingSpeed,
         int FuelConsumption,
-        string FuelType,
+        FuelType FuelType,
         string Gearbox,
         int NumberOfDrums,
-        string RollerType,
+        RollerType RollerType,
         int DrumWidth,
         int MaxCompactionForce,
         bool IsVibratory,
         bool KnigeAsfalt,
         float RentalPricePerDay,
-        string Description
+        string ImagePath,
+        string Description,
+        bool IsRepair
     );
 }

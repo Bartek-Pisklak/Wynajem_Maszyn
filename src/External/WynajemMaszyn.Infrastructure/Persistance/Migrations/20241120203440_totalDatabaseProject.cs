@@ -56,7 +56,7 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     UserId = table.Column<int>(type: "integer", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
-                    Type = table.Column<string>(type: "text", nullable: false),
+                    TypeExcavator = table.Column<string>(type: "text", nullable: false),
                     TypeChassis = table.Column<string>(type: "text", nullable: false),
                     RentalPricePerDay = table.Column<float>(type: "real", nullable: false),
                     ProductionYear = table.Column<int>(type: "integer", nullable: false),
@@ -70,13 +70,49 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                     Gearbox = table.Column<string>(type: "text", nullable: false),
                     MaxDiggingDepth = table.Column<int>(type: "integer", nullable: false),
                     ImagePath = table.Column<string>(type: "text", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: false)
+                    Description = table.Column<string>(type: "text", nullable: false),
+                    IsRepair = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Excavators", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Excavators_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ExcavatorsBuckets",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UserId = table.Column<int>(type: "integer", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    BucketType = table.Column<string>(type: "text", nullable: false),
+                    ProductionYear = table.Column<int>(type: "integer", nullable: false),
+                    BucketCapacity = table.Column<int>(type: "integer", nullable: false),
+                    Weight = table.Column<int>(type: "integer", nullable: false),
+                    Width = table.Column<int>(type: "integer", nullable: false),
+                    PinDiameter = table.Column<int>(type: "integer", nullable: false),
+                    ArmWidth = table.Column<int>(type: "integer", nullable: false),
+                    PinSpacing = table.Column<int>(type: "integer", nullable: false),
+                    Material = table.Column<string>(type: "text", nullable: false),
+                    MaxLoadCapacity = table.Column<int>(type: "integer", nullable: false),
+                    RentalPricePerDay = table.Column<float>(type: "real", nullable: false),
+                    CompatibleExcavators = table.Column<string>(type: "text", nullable: false),
+                    ImagePath = table.Column<string>(type: "text", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: false),
+                    IsRepair = table.Column<bool>(type: "boolean", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ExcavatorsBuckets", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ExcavatorsBuckets_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -103,7 +139,8 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                     WheelType = table.Column<string>(type: "text", nullable: false),
                     RentalPricePerDay = table.Column<float>(type: "real", nullable: false),
                     ImagePath = table.Column<string>(type: "text", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: false)
+                    Description = table.Column<string>(type: "text", nullable: false),
+                    IsRepair = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -128,8 +165,8 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                     EndRent = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     Deposit = table.Column<float>(type: "real", nullable: true),
                     LateFee = table.Column<float>(type: "real", nullable: true),
-                    Status = table.Column<int>(type: "integer", nullable: false),
-                    PaymentStatus = table.Column<int>(type: "integer", nullable: false),
+                    RentalStatus = table.Column<string>(type: "text", nullable: false),
+                    PaymentStatus = table.Column<string>(type: "text", nullable: false),
                     Facture = table.Column<string>(type: "text", nullable: false),
                     Contract = table.Column<string>(type: "text", nullable: false),
                     PaymentMethod = table.Column<string>(type: "text", nullable: false),
@@ -171,7 +208,9 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                     MaxCompactionForce = table.Column<int>(type: "integer", nullable: false),
                     IsVibratory = table.Column<bool>(type: "boolean", nullable: false),
                     KnigeAsfalt = table.Column<bool>(type: "boolean", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: false)
+                    ImagePath = table.Column<string>(type: "text", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: false),
+                    IsRepair = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -196,6 +235,7 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                     ProductionYear = table.Column<int>(type: "integer", nullable: false),
                     OperatingHours = table.Column<int>(type: "integer", nullable: false),
                     Weight = table.Column<int>(type: "integer", nullable: false),
+                    FuelType = table.Column<string>(type: "text", nullable: false),
                     Engine = table.Column<string>(type: "text", nullable: false),
                     EnginePower = table.Column<int>(type: "integer", nullable: false),
                     Gearbox = table.Column<string>(type: "text", nullable: false),
@@ -206,7 +246,9 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                     ChoppingHeight = table.Column<int>(type: "integer", nullable: false),
                     MachineWidth = table.Column<int>(type: "integer", nullable: false),
                     FlowMaterial = table.Column<int>(type: "integer", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: false)
+                    ImagePath = table.Column<string>(type: "text", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: false),
+                    IsRepair = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -220,44 +262,24 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ExcavatorsBuckets",
+                name: "ExcavatorBucketLists",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    UserId = table.Column<int>(type: "integer", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    BucketType = table.Column<string>(type: "text", nullable: false),
-                    ProductionYear = table.Column<int>(type: "integer", nullable: false),
-                    BucketCapacity = table.Column<int>(type: "integer", nullable: false),
-                    Weight = table.Column<int>(type: "integer", nullable: false),
-                    Width = table.Column<int>(type: "integer", nullable: false),
-                    PinDiameter = table.Column<int>(type: "integer", nullable: false),
-                    ArmWidth = table.Column<int>(type: "integer", nullable: false),
-                    PinSpacing = table.Column<int>(type: "integer", nullable: false),
-                    Material = table.Column<string>(type: "text", nullable: false),
-                    MaxLoadCapacity = table.Column<int>(type: "integer", nullable: false),
-                    RentalPricePerDay = table.Column<float>(type: "real", nullable: false),
-                    CompatibleExcavators = table.Column<string>(type: "text", nullable: false),
-                    ImagePath = table.Column<string>(type: "text", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: false),
-                    ExcavatorId = table.Column<int>(type: "integer", nullable: false)
+                    ExcavatorId = table.Column<int>(type: "integer", nullable: true),
+                    ExcavatorBucketId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ExcavatorsBuckets", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ExcavatorsBuckets_Excavators_ExcavatorId",
+                        name: "FK_ExcavatorBucketLists_ExcavatorsBuckets_ExcavatorBucketId",
+                        column: x => x.ExcavatorBucketId,
+                        principalTable: "ExcavatorsBuckets",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_ExcavatorBucketLists_Excavators_ExcavatorId",
                         column: x => x.ExcavatorId,
                         principalTable: "Excavators",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ExcavatorsBuckets_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -304,23 +326,22 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "MachineryRentalMachinery",
+                name: "MachineryRentalLists",
                 columns: table => new
                 {
-                    MachineryId = table.Column<int>(type: "integer", nullable: false),
-                    MachineryRentalId = table.Column<int>(type: "integer", nullable: false)
+                    MachineryRentalId = table.Column<int>(type: "integer", nullable: false),
+                    MachineryId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MachineryRentalMachinery", x => new { x.MachineryId, x.MachineryRentalId });
                     table.ForeignKey(
-                        name: "FK_MachineryRentalMachinery_Machiners_MachineryId",
+                        name: "FK_MachineryRentalLists_Machiners_MachineryId",
                         column: x => x.MachineryId,
                         principalTable: "Machiners",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_MachineryRentalMachinery_MachineryRentals_MachineryRentalId",
+                        name: "FK_MachineryRentalLists_MachineryRentals_MachineryRentalId",
                         column: x => x.MachineryRentalId,
                         principalTable: "MachineryRentals",
                         principalColumn: "Id",
@@ -328,14 +349,19 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_ExcavatorBucketLists_ExcavatorBucketId",
+                table: "ExcavatorBucketLists",
+                column: "ExcavatorBucketId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ExcavatorBucketLists_ExcavatorId",
+                table: "ExcavatorBucketLists",
+                column: "ExcavatorId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Excavators_UserId",
                 table: "Excavators",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ExcavatorsBuckets_ExcavatorId",
-                table: "ExcavatorsBuckets",
-                column: "ExcavatorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ExcavatorsBuckets_UserId",
@@ -373,8 +399,13 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                 column: "WoodChipperId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MachineryRentalMachinery_MachineryRentalId",
-                table: "MachineryRentalMachinery",
+                name: "IX_MachineryRentalLists_MachineryId",
+                table: "MachineryRentalLists",
+                column: "MachineryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MachineryRentalLists_MachineryRentalId",
+                table: "MachineryRentalLists",
                 column: "MachineryRentalId");
 
             migrationBuilder.CreateIndex(
@@ -408,7 +439,10 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "MachineryRentalMachinery");
+                name: "ExcavatorBucketLists");
+
+            migrationBuilder.DropTable(
+                name: "MachineryRentalLists");
 
             migrationBuilder.DropTable(
                 name: "Machiners");
@@ -420,6 +454,9 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                 name: "ExcavatorsBuckets");
 
             migrationBuilder.DropTable(
+                name: "Excavators");
+
+            migrationBuilder.DropTable(
                 name: "Harvesters");
 
             migrationBuilder.DropTable(
@@ -427,9 +464,6 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
 
             migrationBuilder.DropTable(
                 name: "WoodChippers");
-
-            migrationBuilder.DropTable(
-                name: "Excavators");
 
             migrationBuilder.DropTable(
                 name: "Users");

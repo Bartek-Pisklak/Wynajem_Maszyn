@@ -25,8 +25,8 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.CreateExca
         public async Task<ErrorOr<ExcavatorBucketResponse>> Handle(CreateExcavatorBucketCommand request, CancellationToken cancellationToken)
         {
             var userId = _userContextGetId.GetUserId;
-
-            if (userId is null)
+            //var userPermisionId = _userContextGetId.;
+            if (userId is null )//&& )
             {
                 return Errors.ExcavatorBucket.UserDoesNotLogged;
             }
@@ -48,7 +48,7 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.CreateExca
                 Material = request.Material,
                 MaxLoadCapacity = request.MaxLoadCapacity,
                 RentalPricePerDay = request.RentalPricePerDay,
-                CompatibleExcavators = request.CompatibleExcavators,
+                //CompatibleExcavators = request.CompatibleExcavators,
 
                 ImagePath = request.ImagePath,
                 Description = request.Description

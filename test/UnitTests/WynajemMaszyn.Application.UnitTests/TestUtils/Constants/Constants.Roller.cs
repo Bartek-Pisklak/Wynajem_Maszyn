@@ -1,5 +1,7 @@
 ﻿
 
+using WynajemMaszyn.Domain.Enums;
+
 namespace WynajemMaszyn.Application.UnitTests.TestUtils.Constants
 {
     public static partial class Constants
@@ -15,10 +17,10 @@ namespace WynajemMaszyn.Application.UnitTests.TestUtils.Constants
             public const int EnginePower = 150; 
             public const int DrivingSpeed = 10; 
             public const int FuelConsumption = 12; 
-            public const string FuelType = "Diesel";
+            public const FuelType _FuelType = FuelType.Benzyna;
             public const string Gearbox = "Automatic";
             public const int NumberOfDrums = 2;
-            public const string RollerType = "Tandem Roller";
+            public const RollerType _RollerType = RollerType.wibracyjny;
             public const int DrumWidth = 1500; 
             public const int MaxCompactionForce = 25000; 
             public const bool IsVibratory = true;
@@ -26,6 +28,7 @@ namespace WynajemMaszyn.Application.UnitTests.TestUtils.Constants
             public const float RentalPricePerDay = 300.0f;
             public const string ImagePath = "/images/Vibratory_Roller_Model300.jpg";
             public const string Description = "Highly efficient vibratory roller suitable for asphalt and soil compaction.";
+            public const bool IsRepair = false;
 
 
         }

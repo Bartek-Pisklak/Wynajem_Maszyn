@@ -2,10 +2,13 @@
 @using MediatR
 @using WynajemMaszyn.Application.Features.Excavators.Queries.DTOs
 @using WynajemMaszyn.Application.Features.Excavators.Command.CreateExcavators
-@inject IMediator Mediator
-@page "/ExcavatorAdd"
+@using WynajemMaszyn.Application.Features.Excavators.Command.EditExcavators
+@using WynajemMaszyn.Domain.Enums;
 
-<h3>Formularz wynajmu maszyny</h3>
+@inject IMediator Mediator
+@page "/ExcavatorForm"
+
+<h3>Formularz dodawania maszyn </h3>
 
 <EditForm Model="@machinery" OnValidSubmit="HandleValidSubmit">
     <DataAnnotationsValidator />
@@ -16,15 +19,15 @@
         <InputText id="name" class="form-control" @bind-Value="machinery.Name" />
     </div>
 
-    <div class="form-group">
+@*     <div class="form-group">
         <label for="type">Typ maszyny (małe, średnie, duże, koparko-ładowarki)</label>
-        <InputText id="type" class="form-control" @bind-Value="machinery.Type" />
+        <InputText id="type" class="form-control" @bind-Value="machinery.TypeExcavator" />
     </div>
 
     <div class="form-group">
         <label for="typeChassis">Typ podwozia (koła, koparki)</label>
         <InputText id="typeChassis" class="form-control" @bind-Value="machinery.TypeChassis" />
-    </div>
+    </div> *@
 
     <div class="form-group">
         <label for="rentalPricePerDay">Cena wynajmu za dzień</label>
@@ -66,10 +69,10 @@
         <InputNumber id="fuelConsumption" class="form-control" @bind-Value="machinery.FuelConsumption" />
     </div>
 
-    <div class="form-group">
+@*     <div class="form-group">
         <label for="fuelType">Rodzaj paliwa (ropa, benzyna)</label>
         <InputText id="fuelType" class="form-control" @bind-Value="machinery.FuelType" />
-    </div>
+    </div> *@
 
     <div class="form-group">
         <label for="gearbox">Skrzynia biegów</label>
@@ -92,48 +95,4 @@
     <button type="submit" class="btn btn-primary">Zapisz</button>
 </EditForm>
 
-@code {
-    private MachineryFormModel machinery = new MachineryFormModel();
-    public class MachineryFormModel
-    {
-        public string Name { get; set; }
-        public string Type { get; set; }
-        public string TypeChassis { get; set; }
-        public float RentalPricePerDay { get; set; }
-        public int ProductionYear { get; set; }
-        public int OperatingHours { get; set; }
-        public int Weight { get; set; }
-        public string Engine { get; set; }
-        public int EnginePower { get; set; }
-        public int DrivingSpeed { get; set; }
-        public int FuelConsumption { get; set; }
-        public string FuelType { get; set; }
-        public string Gearbox { get; set; }
-        public int MaxDiggingDepth { get; set; }
-        public string ImagePath { get; set; }
-        public string Description { get; set; }
-    }
-    private async void HandleValidSubmit()
-    {
-        var command = new CreateExcavatorCommand(
-                machinery.Name,
-                machinery.Type,
-                machinery.TypeChassis,
-                machinery.RentalPricePerDay,
-                machinery.ProductionYear,
-                machinery.OperatingHours,
-                machinery.Weight,
-                machinery.Engine,
-                machinery.EnginePower,
-                machinery.DrivingSpeed,
-                machinery.FuelConsumption,
-                machinery.FuelType,
-                machinery.Gearbox,
-                machinery.MaxDiggingDepth,
-                machinery.ImagePath,
-                machinery.Description
-        );
-        await Mediator.Send(command);
-    }
 
-}

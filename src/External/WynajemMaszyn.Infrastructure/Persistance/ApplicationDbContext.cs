@@ -1,5 +1,6 @@
 ﻿using WynajemMaszyn.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using WynajemMaszyn.Domain.Enums;
 
 
 namespace WynajemMaszyn.Infrastructure
@@ -20,12 +21,13 @@ namespace WynajemMaszyn.Infrastructure
         public DbSet<Harvester> Harvesters => Set<Harvester>();
         public DbSet<Roller> Rollers => Set<Roller>();
 
-
         public DbSet<Machinery> Machiners => Set<Machinery>(); 
         public DbSet<MachineryRental> MachineryRentals => Set<MachineryRental>();
         public DbSet<Permission> Permissions => Set<Permission>();
         public DbSet<User> Users => Set<User>();
 
+        public DbSet<MachineryRentalList> MachineryRentalLists => Set<MachineryRentalList>();
+        public DbSet<ExcavatorBucketList> ExcavatorBucketLists => Set<ExcavatorBucketList>();
 
 
 
@@ -36,21 +38,46 @@ namespace WynajemMaszyn.Infrastructure
                 .HasIndex(r => r.Email)
                 .IsUnique();
 
-            modelBuilder.Entity<MachineryRental>()
-                    .HasMany(mr => mr.Machinery)
-                    .WithMany(m => m.MachineryRentals)
-                    .UsingEntity<Dictionary<string, object>>(
-                        "MachineryRentalMachinery",
-                        j => j.HasOne<Machinery>()
-                              .WithMany()
-                              .HasForeignKey("MachineryId")
-                              .OnDelete(DeleteBehavior.Cascade),
-                        j => j.HasOne<MachineryRental>()
-                              .WithMany()
-                              .HasForeignKey("MachineryRentalId")
-                              .OnDelete(DeleteBehavior.Cascade)
-                    );
+            modelBuilder.Entity<ExcavatorBucketList>()
+                    .HasNoKey();
+            modelBuilder.Entity<MachineryRentalList>()
+                    .HasNoKey();
+        // enums
+        //fuel
+        modelBuilder.Entity<Excavator>()
+                   .Property(m => m.FuelType)
+                   .HasConversion<string>();
+            modelBuilder.Entity<Roller>()
+                   .Property(m => m.FuelType)
+                   .HasConversion<string>();
+            modelBuilder.Entity<Harvester>()
+                   .Property(m => m.FuelType)
+                   .HasConversion<string>();
+            modelBuilder.Entity<WoodChipper>()
+                   .Property(m => m.FuelType)
+                   .HasConversion<string>();
 
+            // machineryRental
+            modelBuilder.Entity<MachineryRental>()
+                   .Property(m => m.RentalStatus)
+                   .HasConversion<string>();
+            modelBuilder.Entity<MachineryRental>()
+                   .Property(m => m.PaymentStatus)
+                   .HasConversion<string>();
+
+
+            // roller
+            modelBuilder.Entity<Roller>()
+                   .Property(m => m.RollerType)
+                   .HasConversion<string>();
+
+            // excavator
+            modelBuilder.Entity<Excavator>()
+                   .Property(m => m.TypeChassis)
+                   .HasConversion<string>();
+            modelBuilder.Entity<Excavator>()
+                   .Property(m => m.TypeExcavator)
+                   .HasConversion<string>();
         }
     }
 }

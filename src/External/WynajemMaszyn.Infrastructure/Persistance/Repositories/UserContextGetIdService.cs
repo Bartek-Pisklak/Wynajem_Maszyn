@@ -14,9 +14,13 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
         }
 
         public ClaimsPrincipal User => _httpContextAccessor.HttpContext?.User;
+/*
+        public string? GetPermissionId => User is null
+            ? null
+            : User.FindFirst(c => c.Type == ClaimTypes.Authentication)?.Value;*/
 
-        public int? GetUserId => User is null ? null : (int?)int.Parse(User.FindFirst(c => c.Type == ClaimTypes.NameIdentifier).Value);
-
+        public int? GetUserId => User is null ? null : 
+            (int?)int.Parse(User.FindFirst(c => c.Type == ClaimTypes.NameIdentifier).Value);
     }
 }
 

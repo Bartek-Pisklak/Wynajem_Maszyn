@@ -22,21 +22,6 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("MachineryRentalMachinery", b =>
-                {
-                    b.Property<int>("MachineryId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("MachineryRentalId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("MachineryId", "MachineryRentalId");
-
-                    b.HasIndex("MachineryRentalId");
-
-                    b.ToTable("MachineryRentalMachinery");
-                });
-
             modelBuilder.Entity("WynajemMaszyn.Domain.Entities.Excavator", b =>
                 {
                     b.Property<int>("Id")
@@ -74,6 +59,9 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<bool>("IsRepair")
+                        .HasColumnType("boolean");
+
                     b.Property<int>("MaxDiggingDepth")
                         .HasColumnType("integer");
 
@@ -90,11 +78,11 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                     b.Property<float>("RentalPricePerDay")
                         .HasColumnType("real");
 
-                    b.Property<string>("Type")
+                    b.Property<string>("TypeChassis")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("TypeChassis")
+                    b.Property<string>("TypeExcavator")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -137,12 +125,12 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("ExcavatorId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("ImagePath")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<bool>("IsRepair")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Material")
                         .IsRequired()
@@ -178,11 +166,24 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ExcavatorId");
-
                     b.HasIndex("UserId");
 
                     b.ToTable("ExcavatorsBuckets");
+                });
+
+            modelBuilder.Entity("WynajemMaszyn.Domain.Entities.ExcavatorBucketList", b =>
+                {
+                    b.Property<int?>("ExcavatorBucketId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("ExcavatorId")
+                        .HasColumnType("integer");
+
+                    b.HasIndex("ExcavatorBucketId");
+
+                    b.HasIndex("ExcavatorId");
+
+                    b.ToTable("ExcavatorBucketLists");
                 });
 
             modelBuilder.Entity("WynajemMaszyn.Domain.Entities.Harvester", b =>
@@ -213,6 +214,9 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                     b.Property<string>("ImagePath")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<bool>("IsRepair")
+                        .HasColumnType("boolean");
 
                     b.Property<int>("MaxReach")
                         .HasColumnType("integer");
@@ -334,11 +338,13 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("PaymentStatus")
-                        .HasColumnType("integer");
+                    b.Property<string>("PaymentStatus")
+                        .IsRequired()
+                        .HasColumnType("text");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("integer");
+                    b.Property<string>("RentalStatus")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<int>("UserId")
                         .HasColumnType("integer");
@@ -348,6 +354,21 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("MachineryRentals");
+                });
+
+            modelBuilder.Entity("WynajemMaszyn.Domain.Entities.MachineryRentalList", b =>
+                {
+                    b.Property<int>("MachineryId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("MachineryRentalId")
+                        .HasColumnType("integer");
+
+                    b.HasIndex("MachineryId");
+
+                    b.HasIndex("MachineryRentalId");
+
+                    b.ToTable("MachineryRentalLists");
                 });
 
             modelBuilder.Entity("WynajemMaszyn.Domain.Entities.Permission", b =>
@@ -401,6 +422,13 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                     b.Property<string>("Gearbox")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsRepair")
+                        .HasColumnType("boolean");
 
                     b.Property<bool>("IsVibratory")
                         .HasColumnType("boolean");
@@ -512,9 +540,20 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                     b.Property<int>("FuelConsumption")
                         .HasColumnType("integer");
 
+                    b.Property<string>("FuelType")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Gearbox")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsRepair")
+                        .HasColumnType("boolean");
 
                     b.Property<int>("MachineLength")
                         .HasColumnType("integer");
@@ -551,21 +590,6 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                     b.ToTable("WoodChippers");
                 });
 
-            modelBuilder.Entity("MachineryRentalMachinery", b =>
-                {
-                    b.HasOne("WynajemMaszyn.Domain.Entities.Machinery", null)
-                        .WithMany()
-                        .HasForeignKey("MachineryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WynajemMaszyn.Domain.Entities.MachineryRental", null)
-                        .WithMany()
-                        .HasForeignKey("MachineryRentalId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("WynajemMaszyn.Domain.Entities.Excavator", b =>
                 {
                     b.HasOne("WynajemMaszyn.Domain.Entities.User", "User")
@@ -579,21 +603,28 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
 
             modelBuilder.Entity("WynajemMaszyn.Domain.Entities.ExcavatorBucket", b =>
                 {
-                    b.HasOne("WynajemMaszyn.Domain.Entities.Excavator", "Excavator")
-                        .WithMany("ExcavatorBucket")
-                        .HasForeignKey("ExcavatorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("WynajemMaszyn.Domain.Entities.User", "User")
                         .WithMany("ExcavatorBucket")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("WynajemMaszyn.Domain.Entities.ExcavatorBucketList", b =>
+                {
+                    b.HasOne("WynajemMaszyn.Domain.Entities.ExcavatorBucket", "ExcavatorBucket")
+                        .WithMany()
+                        .HasForeignKey("ExcavatorBucketId");
+
+                    b.HasOne("WynajemMaszyn.Domain.Entities.Excavator", "Excavator")
+                        .WithMany()
+                        .HasForeignKey("ExcavatorId");
+
                     b.Navigation("Excavator");
 
-                    b.Navigation("User");
+                    b.Navigation("ExcavatorBucket");
                 });
 
             modelBuilder.Entity("WynajemMaszyn.Domain.Entities.Harvester", b =>
@@ -651,6 +682,25 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("WynajemMaszyn.Domain.Entities.MachineryRentalList", b =>
+                {
+                    b.HasOne("WynajemMaszyn.Domain.Entities.Machinery", "Machinery")
+                        .WithMany()
+                        .HasForeignKey("MachineryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WynajemMaszyn.Domain.Entities.MachineryRental", "MachineryRental")
+                        .WithMany()
+                        .HasForeignKey("MachineryRentalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Machinery");
+
+                    b.Navigation("MachineryRental");
+                });
+
             modelBuilder.Entity("WynajemMaszyn.Domain.Entities.Roller", b =>
                 {
                     b.HasOne("WynajemMaszyn.Domain.Entities.User", "User")
@@ -682,11 +732,6 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("WynajemMaszyn.Domain.Entities.Excavator", b =>
-                {
-                    b.Navigation("ExcavatorBucket");
                 });
 
             modelBuilder.Entity("WynajemMaszyn.Domain.Entities.User", b =>

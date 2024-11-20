@@ -21,7 +21,7 @@ namespace WynajemMaszyn.Application.UnitTests.ExcavatorBuckets.TestUtils
                     Constants.ExcavatorBucket.Material,
                     Constants.ExcavatorBucket.MaxLoadCapacity,
                     Constants.ExcavatorBucket.RentalPricePerDay,
-                    Constants.ExcavatorBucket.CompatibleExcavators,
+                    //Constants.ExcavatorBucket.CompatibleExcavators,
                     Constants.ExcavatorBucket.ImagePath,
                     Constants.ExcavatorBucket.Description
                     );

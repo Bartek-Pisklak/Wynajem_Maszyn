@@ -18,7 +18,7 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.CreateExca
     string Material,
     int MaxLoadCapacity,
     float RentalPricePerDay,
-    string CompatibleExcavators,
+    //string CompatibleExcavators,
     string ImagePath,
     string Description
                 ) : IRequest<ErrorOr<ExcavatorBucketResponse>>;

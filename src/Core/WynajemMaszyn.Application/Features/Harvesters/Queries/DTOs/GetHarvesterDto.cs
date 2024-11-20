@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WynajemMaszyn.Domain.Enums;
 
 namespace WynajemMaszyn.Application.Features.Harvesters.Queries.DTOs
 {
@@ -16,7 +17,7 @@ namespace WynajemMaszyn.Application.Features.Harvesters.Queries.DTOs
         public int Weight { get; set; }
 
         public int EnginePower { get; set; }
-        public string FuelType { get; set; }
+        public FuelType FuelType { get; set; }
         public int FuelConsumption { get; set; }
         public int MaxSpeed { get; set; }
         public int CuttingDiameter { get; set; }

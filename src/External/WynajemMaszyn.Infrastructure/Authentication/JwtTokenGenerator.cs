@@ -5,8 +5,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using WynajemMaszyn.Application.Common.Interfaces.Authentication;
-using WynajemMaszyn.Infrastructure.Authentication;
-using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
 
 namespace WynajemMaszyn.Infrastructure.Authentication;
 
@@ -21,12 +19,13 @@ public class JwtTokenGenerator : IJwtTokenGenerator
         _httpContextAccessor = contextAccessor;
     }
 
-    public void GenerateToken(int userId, string firstName, string lastName)
+    public void GenerateToken(int userId, string firstName, string lastName, string permission)
     {
         var claims = new List<Claim>()
         {
             new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
-            new Claim(ClaimTypes.Name, $"{firstName} {lastName}")
+            new Claim(ClaimTypes.Name, $"{firstName} {lastName}"),
+            new Claim(ClaimTypes.Actor, permission)
         };
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Secret));

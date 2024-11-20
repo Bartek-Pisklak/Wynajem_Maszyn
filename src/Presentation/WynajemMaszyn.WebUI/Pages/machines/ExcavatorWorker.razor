@@ -1,8 +1,8 @@
-﻿@page "/Excavator"
-@using WynajemMaszyn.Application.Features.Excavators.Queries.DTOs
-@using WynajemMaszyn.WebUI.Data
-@inject ExcavatorService excavatorService
+﻿@page "/ExcavatorWorker"
+@using MediatR
 @inject NavigationManager navigationManager
+@inject IMediator Mediator
+
 
 <PageTitle>Excavator</PageTitle>
 
@@ -42,37 +42,11 @@ else
                     <td>@machine.EnginePower</td>
                     <td>@machine.DrivingSpeed</td>
                     <td>
-                        <button class="btn btn-sm btn-secondary">Edytuj</button>
-                        <button class="btn btn-sm btn-secondary">Usuń</button>
+                        <button class="btn btn-sm btn-secondary" @onclick="EditExcavator" >>Edytuj</button>
+                        <button class="btn btn-sm btn-secondary" @onclick="DeleteExcavator">Usuń</button>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
-}
-
-@code {
-    private List<GetAllExcavatorDto>? excavator;
-
-    protected override async Task OnInitializedAsync()
-    {
-        try
-        {
-            excavator = await excavatorService.GetAllExcavators();
-        }
-        catch (InvalidCastException ex)
-        {
-            Console.WriteLine($"Invalid cast exception: {ex.Message}");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Unhandled exception: {ex.Message}");
-        }
-    }
-
-    private void AddExcavator()
-    {
-        // Przekierowanie do strony z formularzem dodawania koparki
-        navigationManager.NavigateTo("/ExcavatorAdd");
-    }
 }

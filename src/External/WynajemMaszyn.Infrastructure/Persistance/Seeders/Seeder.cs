@@ -17,8 +17,8 @@ public class Seeder
         // Define the initial permissions to seed
         var permissions = new List<Permission>
             {
-                new Permission { Name = "Klient" },
-                new Permission { Name = "Pracownik" },
+                new Permission { Name = "Client" },
+                new Permission { Name = "Worker" },
                 new Permission { Name = "Admin" },
             };
 

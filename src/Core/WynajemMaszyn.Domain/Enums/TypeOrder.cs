@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace WynajemMaszyn.Domain.Enums
 {
+    // no use
     public enum TypeOrder
     {
         Waiting,

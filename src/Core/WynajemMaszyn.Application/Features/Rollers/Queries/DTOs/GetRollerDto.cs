@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WynajemMaszyn.Domain.Enums;
 
 namespace WynajemMaszyn.Application.Features.Rollers.Queries.DTOs;
 
@@ -21,16 +22,18 @@ public class GetRollerDto
     public int EnginePower { get; set; }
     public int DrivingSpeed { get; set; }
     public int FuelConsumption { get; set; }
-    public string FuelType { get; set; }
+    public FuelType FuelType { get; set; }
     public string Gearbox { get; set; }
 
     public int NumberOfDrums { get; set; }
-    public string RollerType { get; set; }
+    public RollerType RollerType { get; set; }
     public int DrumWidth { get; set; }
     public int MaxCompactionForce { get; set; }
     public bool IsVibratory { get; set; }
     public bool KnigeAsfalt { get; set; }
 
+    public string ImagePath { get; set; }
     public string Description { get; set; }
+    public bool IsRepair { get; set; }
 
 }
