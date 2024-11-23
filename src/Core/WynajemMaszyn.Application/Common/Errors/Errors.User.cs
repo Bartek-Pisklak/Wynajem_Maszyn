@@ -14,6 +14,6 @@ public static partial class Errors
         public static Error BadData =>
             Error.Conflict(
                 code:"User.BadData", 
-                description: "Wrong login data");
+                description: "Wrong login or password");
     }
 }

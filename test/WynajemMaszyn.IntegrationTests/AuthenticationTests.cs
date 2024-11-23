@@ -1,7 +1,4 @@
-﻿using System.Net;
-using FluentAssertions;
-using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.EntityFrameworkCore;
+﻿using FluentAssertions;
 using WynajemMaszyn.Application.Authentication.Commands.Login;
 using WynajemMaszyn.Application.Authentication.Commands.Register;
 using WynajemMaszyn.Application.Contracts.Authentication;

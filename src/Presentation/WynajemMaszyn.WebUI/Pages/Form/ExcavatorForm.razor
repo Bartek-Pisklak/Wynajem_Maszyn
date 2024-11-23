@@ -19,15 +19,25 @@
         <InputText id="name" class="form-control" @bind-Value="machinery.Name" />
     </div>
 
-@*     <div class="form-group">
-        <label for="type">Typ maszyny (małe, średnie, duże, koparko-ładowarki)</label>
-        <InputText id="type" class="form-control" @bind-Value="machinery.TypeExcavator" />
+    <div class="form-group">
+        <label for="type">Typ maszyny</label>
+        <InputSelect id="type" class="form-control" @bind-Value="machinery.TypeExcavator">
+            @foreach (var type in listTypeExcavator)
+            {
+                <option value="@type">@type</option>
+            }
+        </InputSelect>
     </div>
 
     <div class="form-group">
-        <label for="typeChassis">Typ podwozia (koła, koparki)</label>
-        <InputText id="typeChassis" class="form-control" @bind-Value="machinery.TypeChassis" />
-    </div> *@
+        <label for="typeChassis">Typ podwozia (koła, gąsienice, koło-gąsienice)</label>
+        <InputSelect id="typeChassis" class="form-control" @bind-Value="machinery.TypeChassis">
+            @foreach (var chassis in listTypeChassis)
+            {
+                <option value="@chassis">@chassis</option>
+            }
+        </InputSelect>
+    </div>
 
     <div class="form-group">
         <label for="rentalPricePerDay">Cena wynajmu za dzień</label>
@@ -69,10 +79,15 @@
         <InputNumber id="fuelConsumption" class="form-control" @bind-Value="machinery.FuelConsumption" />
     </div>
 
-@*     <div class="form-group">
-        <label for="fuelType">Rodzaj paliwa (ropa, benzyna)</label>
-        <InputText id="fuelType" class="form-control" @bind-Value="machinery.FuelType" />
-    </div> *@
+    <div class="form-group">
+        <label for="typeFuel">Typ paliwa</label>
+        <InputSelect id="typeFuel" class="form-control" @bind-Value="machinery.FuelType">
+            @foreach (var typeFuel in listFuelType)
+            {
+                <option value="@typeFuel">@typeFuel</option>
+            }
+        </InputSelect>
+    </div>
 
     <div class="form-group">
         <label for="gearbox">Skrzynia biegów</label>

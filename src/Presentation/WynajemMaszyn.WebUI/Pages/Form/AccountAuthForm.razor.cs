@@ -41,7 +41,12 @@ namespace WynajemMaszyn.WebUI.Pages.Form
                 formModel.Password
                 );
                 await Mediator.Send(command);
-                Console.WriteLine("Logging in user");
+                var response = await Mediator.Send(command);
+/*                if (response.IsSuccess)
+                {
+                    await JSRuntime.InvokeVoidAsync("localStorage.setItem", "authToken", response.Token);
+                }*/
+                Console.WriteLine(response.Value);
             }
         }
 

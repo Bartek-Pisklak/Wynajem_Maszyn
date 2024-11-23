@@ -4,7 +4,6 @@ using WynajemMaszyn.Infrastructure;
 
 using WynajemMaszyn.Api.Data;
 using WynajemMaszyn.Infrastructure.Persistance.Seeders;
-using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,7 +22,6 @@ builder.Services.AddInfrastructure(builder.Configuration);
 
 builder.Services.AddAuthorization(builder.Configuration);
 
-//builder.Services.AddIdentityCore<>();
 
 
 
@@ -47,7 +45,10 @@ using (var scope = app.Services.CreateScope())
 app.UseStaticFiles();
 app.UseRouting();
 app.MapBlazorHub();
+
 app.UseAuthentication();
+app.UseAuthorization();
+
 app.MapFallbackToPage("/_Host");
 app.MapControllers();
 app.Run();

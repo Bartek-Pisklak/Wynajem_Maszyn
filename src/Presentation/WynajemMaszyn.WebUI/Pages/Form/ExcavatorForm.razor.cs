@@ -1,11 +1,33 @@
 ﻿using WynajemMaszyn.Application.Features.Excavators.Command.CreateExcavators;
 using WynajemMaszyn.Application.Features.Excavators.Queries.DTOs;
+using WynajemMaszyn.Application.Features.Enums;
+using System.Collections.Generic;
 
 namespace WynajemMaszyn.WebUI.Pages.Form
 {
     public partial class ExcavatorForm
     {
         private GetExcavatorDto machinery = new GetExcavatorDto();
+
+        private readonly List<string> listTypeExcavator = new List<string>();
+        private readonly List<string> listTypeChassis = new List<string>();
+        private readonly List<string> listFuelType = new List<string>();
+
+
+        protected override async Task OnInitializedAsync()
+        {
+            EnumsCustomer enumsCustomer = new EnumsCustomer();
+            listTypeExcavator.Clear();
+            listTypeExcavator.AddRange(enumsCustomer.GetTypeExcavator());
+
+            listTypeChassis.Clear();
+            listTypeChassis.AddRange(enumsCustomer.GetTypeChassis());
+
+            listFuelType.Clear();
+            listFuelType.AddRange(enumsCustomer.GetFuelType());
+
+        }
+
 
         private async void HandleValidSubmit()
         {
