@@ -1,3 +1,7 @@
 namespace WynajemMaszyn.Application.Contracts.Authentication;
 
-public record LoginResponse(string message);
+public class LoginResponse
+{
+    public string? Message { get; set; }
+    public string? Token { get; set; }
+}

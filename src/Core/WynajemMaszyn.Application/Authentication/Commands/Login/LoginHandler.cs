@@ -21,13 +21,20 @@ public class LoginHandler : IRequestHandler<LoginCommand, ErrorOr<LoginResponse>
     public async Task<ErrorOr<LoginResponse>> Handle(LoginCommand request, CancellationToken cancellationToken)
     {
         var user = await _userRepository.GetUser(request.Email, request.Password);
-        var permision = await _userRepository.GetUserPermission(user.PermissionId);
-
-        //In the future we need to implement account verification confirmation here
-
 
         if (user is null) return Errors.User.BadData;
+        var permision = await _userRepository.GetUserPermission(user.PermissionId);
 
-        return new LoginResponse("Successfull!");
+        var token = _jwtTokenGenerator.GenerateToken(user.Id, user.FirstName, user.LastName, permision);
+
+        LoginResponse response = (new LoginResponse
+        {
+            Message ="Successfull!",
+            Token = token
+
+        });
+
+
+        return response;
     }
 }

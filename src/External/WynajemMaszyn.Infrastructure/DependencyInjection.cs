@@ -26,32 +26,35 @@ public static class DependencyInjection
             
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IUserContextGetIdService, UserContextGetIdService>();
+        services.AddScoped<ICurrentUserService, CurrentUserService>();
+
+
         services.AddScoped<IMachineryRentalRepository, MachineryRentalRepository>();
-        
-        services.AddScoped<Seeder>();
-
         services.AddScoped<IMachineryRepository, MachineryRepository>();
-
         services.AddScoped<IExcavatorRepository, ExcavatorRepository>();
         services.AddScoped<IExcavatorBucketRepository, ExcavatorBucketRepository>();
         services.AddScoped<IRollerRepository, RollerRepository>();
         services.AddScoped<IHarvesterRepository, HarvesterRepository>();
         services.AddScoped<IWoodChipperRepository, WoodChipperRepository>();
 
+        services.AddScoped<Seeder>();
         services.AddHttpContextAccessor();
 
-        
-        
         return services;
     }
 
     public static IServiceCollection AddAuthorization(this IServiceCollection services, IConfiguration configuration)
     {
+        // dodane
+        services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
+        services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
+        // koniec
+
         var authenticationSettings = new JwtSettings();
         configuration.GetSection(JwtSettings.SectionName).Bind(authenticationSettings);
         services.AddSingleton(authenticationSettings);
 
-        services.AddAuthentication( opt =>
+        services.AddAuthentication(opt =>
         {
             opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
             opt.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -67,6 +70,7 @@ public static class DependencyInjection
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authenticationSettings.Secret))
             };
         });
+
 
         return services;
     }

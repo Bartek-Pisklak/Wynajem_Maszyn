@@ -1,6 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿
+using System.ComponentModel.DataAnnotations;
 using WynajemMaszyn.Application.Authentication.Commands.Login;
 using WynajemMaszyn.Application.Authentication.Commands.Register;
+using WynajemMaszyn.Application.Contracts.Authentication;
+
+
 
 namespace WynajemMaszyn.WebUI.Pages.Form
 {
@@ -11,6 +15,12 @@ namespace WynajemMaszyn.WebUI.Pages.Form
         private string submitButtonText => isRegistering ? "Register" : "Login";
         private string toggleButtonText => isRegistering ? "Already have an account? Log in" : "Don't have an account? Register";
 
+        private string token;
+/*        private readonly IHttpContextAccessor _httpContextAccessor;
+        public AccountAuthForm(IHttpContextAccessor contextAccessor)
+        {
+            _httpContextAccessor = contextAccessor;
+        }*/
         private AuthFormModel formModel = new();
 
         private void ToggleForm()
@@ -40,16 +50,56 @@ namespace WynajemMaszyn.WebUI.Pages.Form
                 formModel.Email,
                 formModel.Password
                 );
-                await Mediator.Send(command);
+
                 var response = await Mediator.Send(command);
-/*                if (response.IsSuccess)
+
+                LoginResponse responseLogin = response.Match(
+               response =>
+               {
+                   // Zwraca listę koparek, jeśli żadne błędy nie wystąpiły
+                   return response;
+               },
+               errors =>
+               {
+                   throw new Exception("Failed");
+               }
+               );
+
+                token = responseLogin.Token;
+
+/*                var cookieOptions = new CookieOptions
                 {
-                    await JSRuntime.InvokeVoidAsync("localStorage.setItem", "authToken", response.Token);
-                }*/
-                Console.WriteLine(response.Value);
+                    HttpOnly = true,            // Cookie accessible only via HTTP requests
+                    Secure = true,              // Only send cookies over HTTPS
+                    SameSite = SameSiteMode.Strict, // Protect from CSRF attacks
+                    Expires = DateTime.Now.AddHours(1)  // Expiration time for the cookie
+                };
+
+                // Save token to cookies
+                HttpContextAccessor.HttpContext.Response.Cookies.Append("AuthToken", token, cookieOptions);
+*/
+
+
             }
         }
 
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (firstRender && !string.IsNullOrEmpty(token))
+            {
+                var cookieOptions = new CookieOptions
+                {
+                    HttpOnly = true,            // Cookie accessible only via HTTP requests
+                    Secure = true,              // Only send cookies over HTTPS
+                    SameSite = SameSiteMode.Strict, // Protect from CSRF attacks
+                    Expires = DateTime.Now.AddHours(1)  // Expiration time for the cookie
+                };
+
+                // Save token to cookies
+                HttpContextAccessor.HttpContext.Response.Cookies.Append("AuthToken", token, cookieOptions);
+            }
+
+        }
         public class AuthFormModel
         {
             // Fields for both login and registration

@@ -1,4 +1,5 @@
-﻿using System.IdentityModel.Tokens.Jwt;
+﻿using System.Data;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Http;
@@ -19,14 +20,17 @@ public class JwtTokenGenerator : IJwtTokenGenerator
         _httpContextAccessor = contextAccessor;
     }
 
-    public void GenerateToken(int userId, string firstName, string lastName, string permission)
+
+
+    public string GenerateToken(int userId, string firstName, string lastName, string permission)
     {
         var claims = new List<Claim>()
         {
             new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
             new Claim(ClaimTypes.Name, $"{firstName} {lastName}"),
-            new Claim(ClaimTypes.Actor, permission)
+            new Claim("Permission", permission)
         };
+
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Secret));
         var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -39,15 +43,9 @@ public class JwtTokenGenerator : IJwtTokenGenerator
             expires: expires,
             signingCredentials: cred
             );
-        
-        var tokenHandler = new JwtSecurityTokenHandler().WriteToken(token);
-        
-        var cookieOptions = new CookieOptions
-        {
-            HttpOnly = true,
-            Expires = DateTimeOffset.Now.AddMinutes(_jwtSettings.ExpiryMinutes)
-        };
-        
-        _httpContextAccessor.HttpContext.Response.Cookies.Append("Token", tokenHandler, cookieOptions);
+
+
+        return new JwtSecurityTokenHandler().WriteToken(token);
+
     }
 }

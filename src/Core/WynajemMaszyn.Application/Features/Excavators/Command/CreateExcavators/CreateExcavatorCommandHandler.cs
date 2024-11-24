@@ -5,6 +5,7 @@ using WynajemMaszyn.Domain.Entities;
 using WynajemMaszyn.Domain.Enums;
 using WynajemMaszyn.Application.Contracts.ExcavatorAnswer;
 using WynajemMaszyn.Application.Common.Errors;
+using WynajemMaszyn.Application.Common.Interfaces.Authentication;
 
 
 namespace WynajemMaszyn.Application.Features.Excavators.Command.CreateExcavators
@@ -12,13 +13,13 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.CreateExcavators
     public class CreateExcavatorCommandHandler : IRequestHandler<CreateExcavatorCommand, ErrorOr<ExcavatorResponse>>
     {
         private readonly IExcavatorRepository _excavatorRepository;
-        private readonly IUserContextGetIdService _userContextGetId;
+        private readonly ICurrentUserService _userContextGetId;
         private readonly IMachineryRepository _machineryRepository;
 
 
 
         public CreateExcavatorCommandHandler(IExcavatorRepository excavatorRepository,
-            IUserContextGetIdService userContextGetId,
+            ICurrentUserService userContextGetId,
             IMachineryRepository machineryRepository)
         {
             _excavatorRepository = excavatorRepository;

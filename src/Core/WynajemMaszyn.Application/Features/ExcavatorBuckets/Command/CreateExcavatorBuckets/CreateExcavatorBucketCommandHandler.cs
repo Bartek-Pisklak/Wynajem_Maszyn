@@ -4,17 +4,18 @@ using WynajemMaszyn.Application.Contracts.ExcavatorBucketAnswer;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Domain.Entities;
 using WynajemMaszyn.Application.Common.Errors;
+using WynajemMaszyn.Application.Common.Interfaces.Authentication;
 
 namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.CreateExcavatorBuckets
 {
     public class CreateExcavatorBucketCommandHandler : IRequestHandler<CreateExcavatorBucketCommand, ErrorOr<ExcavatorBucketResponse>>
     {
         private readonly IExcavatorBucketRepository _excavatorBucketRepository;
-        private readonly IUserContextGetIdService _userContextGetId;
+        private readonly ICurrentUserService _userContextGetId;
         private readonly IMachineryRepository _machineryRepository;
 
         public CreateExcavatorBucketCommandHandler(IExcavatorBucketRepository excavatorBucketRepository,
-            IUserContextGetIdService userContextGetId,
+            ICurrentUserService userContextGetId,
             IMachineryRepository machineryRepository)
         {
             _excavatorBucketRepository=excavatorBucketRepository;
@@ -26,7 +27,7 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.CreateExca
         {
             var userId = _userContextGetId.GetUserId;
             //var userPermisionId = _userContextGetId.;
-            if (userId is null )//&& )
+            if (userId is null)// && permission == "Worker")//&& )
             {
                 return Errors.ExcavatorBucket.UserDoesNotLogged;
             }
