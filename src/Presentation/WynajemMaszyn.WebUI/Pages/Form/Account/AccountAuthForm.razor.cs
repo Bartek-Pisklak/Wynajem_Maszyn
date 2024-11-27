@@ -1,8 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Components;
+using System.ComponentModel.DataAnnotations;
+using System.Security.Claims;
 using WynajemMaszyn.Application.Authentication.Commands.Login;
 using WynajemMaszyn.Application.Authentication.Commands.Register;
+using WynajemMaszyn.Domain.Entities;
 
-namespace WynajemMaszyn.WebUI.Pages.Form
+namespace WynajemMaszyn.WebUI.Pages.Form.Account
 {
     public partial class AccountAuthForm
     {
@@ -11,7 +16,12 @@ namespace WynajemMaszyn.WebUI.Pages.Form
         private string submitButtonText => isRegistering ? "Register" : "Login";
         private string toggleButtonText => isRegistering ? "Already have an account? Log in" : "Don't have an account? Register";
 
-        private AuthFormModel formModel = new();
+        [CascadingParameter]
+        public HttpContext? HttpContext { get; set; }
+
+        public string? errorMessage;
+
+        public AuthFormModel formModel = new();
 
         private void ToggleForm()
         {
@@ -42,11 +52,17 @@ namespace WynajemMaszyn.WebUI.Pages.Form
                 );
                 await Mediator.Send(command);
                 var response = await Mediator.Send(command);
-/*                if (response.IsSuccess)
+/*
+                var claims = new List<Claim>()
                 {
-                    await JSRuntime.InvokeVoidAsync("localStorage.setItem", "authToken", response.Token);
-                }*/
-                Console.WriteLine(response.Value);
+                    new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
+                    new Claim(ClaimTypes.Name, $"{fwirstName} {lastName}"),
+                    new Claim(ClaimTypes.Actor, permission)
+                };
+                var indentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var principal = new ClaimsPrincipal(indentity);
+                object value = await HttpContext!.SignInAsync(principal);*/
+
             }
         }
 

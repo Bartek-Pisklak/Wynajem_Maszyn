@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -47,26 +48,17 @@ public static class DependencyInjection
 
     public static IServiceCollection AddAuthorization(this IServiceCollection services, IConfiguration configuration)
     {
-        var authenticationSettings = new JwtSettings();
-        configuration.GetSection(JwtSettings.SectionName).Bind(authenticationSettings);
-        services.AddSingleton(authenticationSettings);
-
-        services.AddAuthentication( opt =>
-        {
-            opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            opt.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-            opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-        }).AddJwtBearer(cfg =>
-        {
-            cfg.RequireHttpsMetadata = false;
-            cfg.SaveToken = true;
-            cfg.TokenValidationParameters = new TokenValidationParameters
+        services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(options =>
             {
-                ValidIssuer = authenticationSettings.Issuer,
-                ValidAudience = authenticationSettings.Audience,
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authenticationSettings.Secret))
-            };
-        });
+                options.Cookie.Name = "auth";
+                options.LoginPath = "/AuthForm";
+                options.Cookie.MaxAge = TimeSpan.FromMinutes(60);
+                options.AccessDeniedPath = "/Access-denied";
+
+            });
+        services.AddCascadingAuthenticationState();
+
 
         return services;
     }

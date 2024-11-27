@@ -1,0 +1,113 @@
+﻿<h3>Dodawanie koparki</h3>
+@using MediatR
+@using WynajemMaszyn.Application.Features.Excavators.Queries.DTOs
+@using WynajemMaszyn.Application.Features.Excavators.Command.CreateExcavators
+@using WynajemMaszyn.Application.Features.Excavators.Command.EditExcavators
+@using WynajemMaszyn.Domain.Enums;
+
+@inject IMediator Mediator
+@page "/ExcavatorForm"
+
+<h3>Formularz dodawania maszyn </h3>
+
+<EditForm Model="@machinery" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="name">Nazwa maszyny</label>
+        <InputText id="name" class="form-control" @bind-Value="machinery.Name" />
+    </div>
+
+    <div class="form-group">
+        <label for="type">Typ maszyny</label>
+        <InputSelect id="type" class="form-control" @bind-Value="machinery.TypeExcavator">
+            @foreach (var type in listTypeExcavator)
+            {
+                <option value="@type">@type</option>
+            }
+        </InputSelect>
+    </div>
+
+    <div class="form-group">
+        <label for="typeChassis">Typ podwozia (koła, gąsienice, koło-gąsienice)</label>
+        <InputSelect id="typeChassis" class="form-control" @bind-Value="machinery.TypeChassis">
+            @foreach (var chassis in listTypeChassis)
+            {
+                <option value="@chassis">@chassis</option>
+            }
+        </InputSelect>
+    </div>
+
+    <div class="form-group">
+        <label for="rentalPricePerDay">Cena wynajmu za dzień</label>
+        <InputNumber id="rentalPricePerDay" class="form-control" @bind-Value="machinery.RentalPricePerDay" />
+    </div>
+
+    <div class="form-group">
+        <label for="productionYear">Rok produkcji</label>
+        <InputNumber id="productionYear" class="form-control" @bind-Value="machinery.ProductionYear" />
+    </div>
+
+    <div class="form-group">
+        <label for="operatingHours">Liczba godzin pracy</label>
+        <InputNumber id="operatingHours" class="form-control" @bind-Value="machinery.OperatingHours" />
+    </div>
+
+    <div class="form-group">
+        <label for="weight">Waga (kg)</label>
+        <InputNumber id="weight" class="form-control" @bind-Value="machinery.Weight" />
+    </div>
+
+    <div class="form-group">
+        <label for="engine">Silnik (model)</label>
+        <InputText id="engine" class="form-control" @bind-Value="machinery.Engine" />
+    </div>
+
+    <div class="form-group">
+        <label for="enginePower">Moc silnika (KM)</label>
+        <InputNumber id="enginePower" class="form-control" @bind-Value="machinery.EnginePower" />
+    </div>
+
+    <div class="form-group">
+        <label for="drivingSpeed">Prędkość jazdy (km/h)</label>
+        <InputNumber id="drivingSpeed" class="form-control" @bind-Value="machinery.DrivingSpeed" />
+    </div>
+
+    <div class="form-group">
+        <label for="fuelConsumption">Zużycie paliwa (l/h)</label>
+        <InputNumber id="fuelConsumption" class="form-control" @bind-Value="machinery.FuelConsumption" />
+    </div>
+
+    <div class="form-group">
+        <label for="typeFuel">Typ paliwa</label>
+        <InputSelect id="typeFuel" class="form-control" @bind-Value="machinery.FuelType">
+            @foreach (var typeFuel in listFuelType)
+            {
+                <option value="@typeFuel">@typeFuel</option>
+            }
+        </InputSelect>
+    </div>
+
+    <div class="form-group">
+        <label for="gearbox">Skrzynia biegów</label>
+        <InputText id="gearbox" class="form-control" @bind-Value="machinery.Gearbox" />
+    </div>
+
+    <div class="form-group">
+        <label for="maxDiggingDepth">Maksymalna głębokość kopania (m)</label>
+        <InputNumber id="maxDiggingDepth" class="form-control" @bind-Value="machinery.MaxDiggingDepth" />
+    </div>
+    <div class="mb-3">
+        <label for="imagePath" class="form-label">Ścieżka do obrazu</label>
+        <InputText id="imagePath" class="form-control" @bind-Value="machinery.ImagePath" />
+    </div>
+    <div class="form-group">
+        <label for="description">Opis</label>
+        <InputTextArea id="description" class="form-control" @bind-Value="machinery.Description" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Zapisz</button>
+</EditForm>
+
+
