@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,15 +40,16 @@ public static class DependencyInjection
         services.AddScoped<IHarvesterRepository, HarvesterRepository>();
         services.AddScoped<IWoodChipperRepository, WoodChipperRepository>();
 
+        services.AddScoped<ITokenGenerator, TokenGenerator>();
         services.AddHttpContextAccessor();
 
-        
-        
+
         return services;
     }
 
     public static IServiceCollection AddAuthorization(this IServiceCollection services, IConfiguration configuration)
     {
+
         services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options =>
             {
@@ -58,7 +60,6 @@ public static class DependencyInjection
 
             });
         services.AddCascadingAuthenticationState();
-
 
         return services;
     }

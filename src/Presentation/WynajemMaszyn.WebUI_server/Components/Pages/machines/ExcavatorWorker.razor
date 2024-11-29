@@ -1,14 +1,17 @@
-﻿@page "/ExcavatorWorker"
-@using MediatR
+﻿@using MediatR
+@using Microsoft.AspNetCore.Authorization
+@rendermode InteractiveServer
 @inject NavigationManager navigationManager
 @inject IMediator Mediator
-
-
+@attribute [StreamRendering]
+@attribute [Authorize(Roles = "Worker,Client")]
+@page "/ExcavatorWorker"
 <PageTitle>Excavator</PageTitle>
 
 <div class="d-flex justify-content-between">
     <h4>Lista koparek</h4>
-    <button class="btn btn-primary" @onclick="AddExcavator">Dodaj koparkę</button>
+    <button class="btn btn-primary" type="submit"  @onclick="testtest">Testuj</button>
+    <button class="btn btn-primary" type="submit" @onclick="AddExcavator">Dodaj koparkę</button>
 </div>
 
 @if (excavator == null)
@@ -42,11 +45,25 @@ else
                     <td>@machine.EnginePower</td>
                     <td>@machine.DrivingSpeed</td>
                     <td>
-                        <button class="btn btn-sm btn-secondary" @onclick="EditExcavator" >>Edytuj</button>
-                        <button class="btn btn-sm btn-secondary" @onclick="DeleteExcavator">Usuń</button>
+                        <button class="btn btn-sm btn-secondary" type="submit"  @onclick="EditExcavator">>Edytuj</button>
+                        <button class="btn btn-sm btn-secondary" type="submit"  @onclick="DeleteExcavator">Usuń</button>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 }
+
+@code{
+
+    private void testtest()
+    {
+        Console.WriteLine("2222222");
+    }
+    private async Task AddExcavator()
+    {
+        Console.WriteLine("Navigating to ExcavatorForm...");
+        // Przekierowanie do strony z formularzem dodawania koparki
+        navigationManager.NavigateTo("/ExcavatorForm");
+    }
+                    }

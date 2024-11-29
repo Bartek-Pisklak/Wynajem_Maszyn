@@ -1,8 +1,9 @@
 ﻿
 
 
-@page "/logout"
+@page "/Logout"
 @using Microsoft.AspNetCore.Authentication
+@inject NavigationManager navigationManager
 
 <h3>Loguot</h3>
 <div class="row">
@@ -27,6 +28,7 @@
         if(httpContext.User.Identity.IsAuthenticated)
         {
             await httpContext.SignOutAsync();
+            navigationManager.NavigateTo("/logout", true);
         }
     }
 }

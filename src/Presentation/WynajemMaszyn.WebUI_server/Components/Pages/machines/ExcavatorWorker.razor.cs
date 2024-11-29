@@ -45,11 +45,11 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.machines
             }
         }
 
-        private void AddExcavator()
+/*        private void AddExcavator()
         {
             // Przekierowanie do strony z formularzem dodawania koparki
-            navigationManager.NavigateTo("/Form/ExcavatorForm");
-        }
+            navigationManager.NavigateTo("/ExcavatorForm");
+        }*/
 
         private void EditExcavator()
         {

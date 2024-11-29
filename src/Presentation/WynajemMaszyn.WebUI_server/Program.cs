@@ -1,4 +1,4 @@
-using WynajemMaszyn.WebUI_server.Components;
+﻿using WynajemMaszyn.WebUI_server.Components;
 using WynajemMaszyn.Application;
 using WynajemMaszyn.Infrastructure;
 using WynajemMaszyn.Infrastructure.Persistance.Seeders;
@@ -10,7 +10,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-// Add services to the container.
 
 builder.Services.AddControllers();
 builder.Services.AddApplication();
@@ -18,7 +17,10 @@ builder.Services.AddInfrastructure(builder.Configuration);
 
 builder.Services.AddAuthorization(builder.Configuration);
 
-
+builder.Services.AddHttpClient("API", client =>
+{
+    client.BaseAddress = new Uri("https://localhost:7053/"); 
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -43,9 +45,9 @@ app.UseAuthorization();
 
 
 app.UseHttpsRedirection();
-
 app.UseStaticFiles();
 app.UseAntiforgery();
+
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();

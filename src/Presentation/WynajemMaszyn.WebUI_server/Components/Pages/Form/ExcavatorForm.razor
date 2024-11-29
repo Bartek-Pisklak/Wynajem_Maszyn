@@ -1,4 +1,4 @@
-﻿<h3>Dodawanie koparki</h3>
+﻿@rendermode InteractiveServer
 @using MediatR
 @using WynajemMaszyn.Application.Features.Excavators.Queries.DTOs
 @using WynajemMaszyn.Application.Features.Excavators.Command.CreateExcavators
@@ -6,11 +6,12 @@
 @using WynajemMaszyn.Domain.Enums;
 
 @inject IMediator Mediator
+@inject NavigationManager navigationManager
 @page "/ExcavatorForm"
 
 <h3>Formularz dodawania maszyn </h3>
 
-<EditForm Model="@machinery" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@machinery" OnValidSubmit="HandleValidSubmit " FormName="ExcavatorForm">
     <DataAnnotationsValidator />
     <ValidationSummary />
 

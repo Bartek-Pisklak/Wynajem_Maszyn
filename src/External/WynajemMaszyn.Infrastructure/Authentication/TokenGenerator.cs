@@ -17,17 +17,19 @@ namespace WynajemMaszyn.Infrastructure.Authentication
         }
 
 
-        public async void GenerateToken(int userId, string firstName, string lastName, string permission)
+        public ClaimsPrincipal? GenerateToken(int userId, string firstName, string lastName, string permission)
         {
-/*            var claims = new List<Claim>()
-        {
-            new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
-            new Claim(ClaimTypes.Name, $"{firstName} {lastName}"),
-            new Claim(ClaimTypes.Actor, permission)
-        };
-            var indentity = new ClaimsIdentity(claims,CookieAuthenticationDefaults.AuthenticationScheme);
+            var claims = new List<Claim>()
+                    {
+                        new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
+                        new Claim(ClaimTypes.Name, $"{firstName} {lastName}"),
+                        new Claim(ClaimTypes.Role, permission)
+                    };
+            var indentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var principal = new ClaimsPrincipal(indentity);
-            object value = await HttpContext!.SignInAsync(principal);*/
+
+
+            return principal;
         }
     }
 }

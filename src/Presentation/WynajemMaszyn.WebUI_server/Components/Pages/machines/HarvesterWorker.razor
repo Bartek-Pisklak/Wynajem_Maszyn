@@ -1,0 +1,22 @@
+﻿@rendermode InteractiveServer
+@using MediatR
+@inject NavigationManager navigationManager
+@inject IMediator Mediator
+
+@page "/HarvesterWorker"
+
+<div class="d-flex justify-content-between">
+    <h4>Lista harvesterów</h4>
+    <button class="btn btn-primary" type="submit" @onclick="testtest">Testuj</button>
+    <button class="btn btn-primary" @onclick="testtest">Testuj</button>
+</div>
+
+@code {
+
+
+
+    private void testtest()
+    {
+        Console.WriteLine("Navigating to ExcavatorForm...");
+    }
+}

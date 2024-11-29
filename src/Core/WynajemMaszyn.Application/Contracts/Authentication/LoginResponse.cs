@@ -1,3 +1,8 @@
-namespace WynajemMaszyn.Application.Contracts.Authentication;
+using System.Security.Claims;
 
-public record LoginResponse(string message);
+namespace WynajemMaszyn.Application.Contracts.Authentication;
+public class LoginResponse
+{
+   public int Id { get; set; }
+   public ClaimsPrincipal? claimForToken { get; set; }
+}

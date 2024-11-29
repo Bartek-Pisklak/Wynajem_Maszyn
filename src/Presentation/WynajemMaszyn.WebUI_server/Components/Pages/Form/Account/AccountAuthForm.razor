@@ -1,9 +1,11 @@
-﻿@using MediatR
+﻿@rendermode InteractiveServer
+@using MediatR
 @using WynajemMaszyn.Application.Authentication.Commands.Register
 @using WynajemMaszyn.Application.Authentication.Commands.Login
 @using System.ComponentModel.DataAnnotations
 @inject IMediator Mediator
-
+@inject NavigationManager navigationManager
+@inject IHttpContextAccessor HttpContextAccessor
 
 @page "/AccountAuth"
 <PageTitle>Authentication</PageTitle>
@@ -52,7 +54,7 @@
             }
 
             <div class="text-center mt-4">
-                <button type="submit" class="btn btn-primary w-100" @onclick="HandleUserSubmit" >@submitButtonText</button>
+                <button type="submit"  class="btn btn-primary w-100" @onclick="HandleUserSubmit">@submitButtonText</button>
             </div>
         </EditForm>
 
