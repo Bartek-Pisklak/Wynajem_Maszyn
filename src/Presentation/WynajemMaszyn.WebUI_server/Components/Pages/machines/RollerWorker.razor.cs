@@ -1,4 +1,5 @@
-﻿using WynajemMaszyn.Application.Features.Rollers.Queries.DTOs;
+﻿using System.Security.Claims;
+using WynajemMaszyn.Application.Features.Rollers.Queries.DTOs;
 using WynajemMaszyn.Application.Features.Rollers.Queries.GetAllRollers;
 
 namespace WynajemMaszyn.WebUI_server.Components.Pages.machines
@@ -9,6 +10,10 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.machines
 
         protected override async Task OnInitializedAsync()
         {
+            var userId = HttpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var fullName = HttpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.Name)?.Value;
+            var role = HttpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.Role)?.Value;
+
             try
             {
                 var query = new GetAllRollerQuery();

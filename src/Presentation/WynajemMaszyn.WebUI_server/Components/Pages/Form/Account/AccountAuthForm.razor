@@ -4,8 +4,9 @@
 @using WynajemMaszyn.Application.Authentication.Commands.Login
 @using System.ComponentModel.DataAnnotations
 @inject IMediator Mediator
-@inject NavigationManager navigationManager
+@inject NavigationManager NavigationManager
 @inject IHttpContextAccessor HttpContextAccessor
+@inject HttpClient Http
 
 @page "/AccountAuth"
 <PageTitle>Authentication</PageTitle>

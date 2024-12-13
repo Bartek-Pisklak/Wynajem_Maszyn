@@ -1,10 +1,8 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using WynajemMaszyn.Application.Authentication.Commands.Login;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using StudentsDashboard.Api.Controllers;
+
 
 namespace WynajemMaszyn.WebUI_server.Controllers;
 
@@ -19,6 +17,17 @@ public class LoginControler : ApiController
     {
         _mediator = mediator;
         _httpContextAccessor = contextAccessor;
+    }
+
+    [HttpGet]
+    public IActionResult SetAuthToken()
+    {
+        // Logika ustawiania ciasteczka
+
+
+
+
+        return Ok();
     }
 
 
@@ -45,9 +54,18 @@ public class LoginControler : ApiController
             throw new Exception("Failed to retrieve excavators.");
         }
         );
-        await _httpContextAccessor.HttpContext.SignInAsync(tokenClaim.claimForToken);
-        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, tokenClaim.claimForToken);
+        var token = tokenClaim.claimForToken;
 
-        return Ok(new { Message = "Login successful" });
+
+        // Ustaw token w ciasteczku
+        Response.Cookies.Append("AuthToken", token, new CookieOptions
+        {
+            HttpOnly = true, // Zabezpieczenie przed dostępem z JavaScript
+            Secure = true, // Wymaga HTTPS
+            SameSite = SameSiteMode.Strict, // Zapobiega wysyłaniu ciasteczka z zewnętrznych domen
+            Expires = DateTime.Now.AddHours(1) // Data wygaśnięcia ciasteczka
+        });
+
+        return Ok();
     }
 }

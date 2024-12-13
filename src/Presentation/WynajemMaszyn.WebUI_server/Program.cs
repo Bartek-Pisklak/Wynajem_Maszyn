@@ -10,6 +10,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+builder.Services.AddDistributedMemoryCache(); // Wymagane dla sesji
+builder.Services.AddSession(options =>
+{
+    options.Cookie.Name = ".WynajemMaszyn.Session";
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
 builder.Services.AddControllers();
 builder.Services.AddApplication();
@@ -17,11 +25,50 @@ builder.Services.AddInfrastructure(builder.Configuration);
 
 builder.Services.AddAuthorization(builder.Configuration);
 
+builder.Services.AddDistributedMemoryCache(); // Wymagane dla sesji
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
 builder.Services.AddHttpClient("API", client =>
 {
     client.BaseAddress = new Uri("https://localhost:7053/"); 
 });
+
+
+// <><><><><><><><><><><><><><><><><><>
+
 var app = builder.Build();
+
+
+app.Use(async (context, next) =>
+{
+    if (context.Request.Path.StartsWithSegments("/set-auth-token"))
+    {
+        if (context.Request.Headers.TryGetValue("Authorization", out var authorizationHeader))
+        {
+            if (authorizationHeader.ToString().StartsWith("Bearer ", StringComparison.OrdinalIgnoreCase))
+            {
+                var token = authorizationHeader.ToString()["Bearer ".Length..].Trim();
+                context.Response.Cookies.Append("AuthToken", token, new CookieOptions
+                {
+                    HttpOnly = true,
+                    Secure = true,
+                    SameSite = SameSiteMode.Strict,
+                    Expires = DateTime.Now.AddHours(1)
+                });
+                context.Response.Redirect("/");
+                System.Console.WriteLine(context);
+            }
+        }
+    }
+
+    await next();
+});
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -48,11 +95,11 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseAntiforgery();
 
+app.UseSession();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 
 app.Run();
-
 
 public partial class Program { }

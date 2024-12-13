@@ -4,5 +4,5 @@ namespace WynajemMaszyn.Application.Contracts.Authentication;
 public class LoginResponse
 {
    public int Id { get; set; }
-   public ClaimsPrincipal? claimForToken { get; set; }
+   public string? claimForToken { get; set; }
 }

@@ -28,7 +28,7 @@ public class LoginHandler : IRequestHandler<LoginCommand, ErrorOr<LoginResponse>
         if (user is null) return Errors.User.BadData;
         var permision = await _userRepository.GetUserPermission(user.PermissionId);
 
-        ClaimsPrincipal? claimForToken = TokenGenerator.GenerateToken(user.Id, user.FirstName, user.LastName, permision);
+        string claimForToken = TokenGenerator.GenerateToken(user.Id, user.FirstName, user.LastName, permision);
 
 
         LoginResponse claimToken = new LoginResponse
