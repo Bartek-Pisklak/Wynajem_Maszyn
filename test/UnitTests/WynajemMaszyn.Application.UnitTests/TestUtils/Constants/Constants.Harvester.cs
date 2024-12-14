@@ -17,9 +17,11 @@ namespace WynajemMaszyn.Application.UnitTests.TestUtils.Constants
             public const int ProductionYear = 2021;
             public const int OperatingHours = 950; // liczba przepracowanych godzin
             public const int Weight = 14000; // masa w kg
+            public const string Engine = "HHSS32";
             public const int EnginePower = 250; // moc silnika w KM
             public const FuelType _FuelType = FuelType.Ropa;
             public const int FuelConsumption = 20; // zużycie paliwa w l/h
+            public const int DrivingSpeed = 40;
             public const int MaxSpeed = 15; // maksymalna prędkość w km/h
             public const int CuttingDiameter = 800; // maksymalna średnica cięcia w mm
             public const int MaxReach = 10; // maksymalny zasięg w metrach

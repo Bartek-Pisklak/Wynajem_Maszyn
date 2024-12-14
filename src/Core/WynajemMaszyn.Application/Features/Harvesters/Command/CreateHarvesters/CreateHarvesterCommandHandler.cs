@@ -40,6 +40,8 @@ namespace WynajemMaszyn.Application.Features.Harvesters.Command.CreateHarvesters
                 ProductionYear = request.ProductionYear,
                 OperatingHours = request.OperatingHours,
                 Weight = request.Weight,
+                Engine = request.Engine,
+                DrivingSpeed = request.DrivingSpeed,
                 EnginePower = request.EnginePower,
                 FuelType = request.FuelType,
                 FuelConsumption = request.FuelConsumption,
@@ -52,15 +54,16 @@ namespace WynajemMaszyn.Application.Features.Harvesters.Command.CreateHarvesters
                 Description = request.Description
             };
 
+
+
+
+
+            var idHarvester = await _harvesterRepository.CreateHarvester(harvester);
             var machinery = new Machinery
             {
                 Name= harvester.Name,
-                HarvesterId=harvester.Id
+                HarvesterId=idHarvester
             };
-
-
-
-            await _harvesterRepository.CreateHarvester(harvester);
             await _machineryRepository.CreateMachinery(machinery);
 
             return new HarvesterResponse("Harvester added");

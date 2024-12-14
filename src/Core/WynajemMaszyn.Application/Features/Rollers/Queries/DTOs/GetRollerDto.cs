@@ -18,7 +18,7 @@ public class GetRollerDto
     public int Weight { get; set; }
     public float RentalPricePerDay { get; set; }
 
-    public int Engine { get; set; }
+    public string Engine { get; set; }
     public int EnginePower { get; set; }
     public int DrivingSpeed { get; set; }
     public int FuelConsumption { get; set; }

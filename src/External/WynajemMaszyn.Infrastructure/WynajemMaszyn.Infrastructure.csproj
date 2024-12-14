@@ -11,10 +11,6 @@
 		<ProjectReference Include="..\..\Core\WynajemMaszyn.Domain\WynajemMaszyn.Domain.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Persistance\Migrations\" />
-	</ItemGroup>
-
 
 
 	<ItemGroup>
@@ -33,6 +29,12 @@
 		<PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.1" />
 		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.2.0" />
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
+
+
+	<ItemGroup>
+	  <Folder Include="Persistance\Migrations\" />
 	</ItemGroup>
 	
 </Project>

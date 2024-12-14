@@ -12,7 +12,7 @@ using WynajemMaszyn.Infrastructure;
 namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241120203440_totalDatabaseProject")]
+    [Migration("20241214002840_totalDatabaseProject")]
     partial class totalDatabaseProject
     {
         /// <inheritdoc />
@@ -201,6 +201,13 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("DrivingSpeed")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Engine")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -409,8 +416,9 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                     b.Property<int>("DrumWidth")
                         .HasColumnType("integer");
 
-                    b.Property<int>("Engine")
-                        .HasColumnType("integer");
+                    b.Property<string>("Engine")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<int>("EnginePower")
                         .HasColumnType("integer");

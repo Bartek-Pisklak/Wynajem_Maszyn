@@ -55,13 +55,14 @@ namespace WynajemMaszyn.Application.Features.Rollers.Command.CreateRollers
                 Description = request.Description
             };
 
+
+
+            var idMachine = await _rollerRepository.CreateRoller(roller);
             var machinery = new Machinery
             {
-                RollerId = roller.Id,
+                RollerId = idMachine,
                 Name = roller.Name,
             };
-
-            await _rollerRepository.CreateRoller(roller);
             await _machineryRepository.CreateMachinery(machinery);
             return new RollerResponse("Roller added");
         }

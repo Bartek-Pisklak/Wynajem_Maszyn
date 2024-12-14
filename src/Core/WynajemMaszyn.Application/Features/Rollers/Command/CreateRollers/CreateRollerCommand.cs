@@ -11,7 +11,7 @@ namespace WynajemMaszyn.Application.Features.Rollers.Command.CreateRollers
         int ProductionYear,
         int OperatingHours,
         int Weight,
-        int Engine,
+        string Engine,
         int EnginePower,
         int DrivingSpeed,
         int FuelConsumption,

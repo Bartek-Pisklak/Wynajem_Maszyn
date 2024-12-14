@@ -25,25 +25,18 @@ namespace WynajemMaszyn.Application.Features.WoodChippers.Queries.GetAllWoodChip
 
             if (!woodChippers.Any()) return Errors.WoodChipper.NotDataToDisplay;
 
-            List<GetAllWoodChipperDto> workWoodChippers = woodChippers.Select(woodChipper => new GetAllWoodChipperDto
+            List<GetAllWoodChipperDto> workWoodChippers = woodChippers.Select(x => new GetAllWoodChipperDto
             {
-                Name = woodChipper.Name,
-                RentalPricePerDay = woodChipper.RentalPricePerDay,
-                ProductionYear = woodChipper.ProductionYear,
-                OperatingHours = woodChipper.OperatingHours,
-                Weight = woodChipper.Weight,
-                Engine = woodChipper.Engine,
-                EnginePower = woodChipper.EnginePower,
-                Gearbox = woodChipper.Gearbox,
-                DrivingSpeed = woodChipper.DrivingSpeed,
-                FuelConsumption = woodChipper.FuelConsumption,
-                FuelType = woodChipper.FuelType,
-                MachineLength = woodChipper.MachineLength,
-                TransportHeight = woodChipper.TransportHeight,
-                ChoppingHeight = woodChipper.ChoppingHeight,
-                MachineWidth = woodChipper.MachineWidth,
-                FlowMaterial = woodChipper.FlowMaterial,
-                Description = woodChipper.Description
+                Id=x.Id,
+                Name=x.Name,
+                ProductionYear=x.ProductionYear,
+                OperatingHours=x.OperatingHours,
+                Weight= x.Weight,
+                Engine = x.Engine,
+                EnginePower = x.EnginePower,
+                DrivingSpeed = x.DrivingSpeed,
+                RentalPricePerDay=x.RentalPricePerDay,
+                ImagePath=x.ImagePath
             }).ToList();
 
             return workWoodChippers;

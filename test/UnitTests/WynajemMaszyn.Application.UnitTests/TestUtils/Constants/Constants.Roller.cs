@@ -13,7 +13,7 @@ namespace WynajemMaszyn.Application.UnitTests.TestUtils.Constants
             public const int ProductionYear = 2018;
             public const int OperatingHours = 1200;
             public const int Weight = 8500;
-            public const int Engine = 4; 
+            public const string Engine = "444"; 
             public const int EnginePower = 150; 
             public const int DrivingSpeed = 10; 
             public const int FuelConsumption = 12; 

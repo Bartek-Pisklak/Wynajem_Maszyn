@@ -14,7 +14,9 @@ namespace WynajemMaszyn.Domain.Entities
         public int OperatingHours { get; set; }
         public int Weight { get; set; }
 
+        public string Engine {  get; set; }
         public int EnginePower { get; set; } // KM
+        public int DrivingSpeed { get; set; }
         public FuelType FuelType { get; set; } // Typ paliwa (ropa, benzyna)
         public int FuelConsumption { get; set; } // Zużycie paliwa (l/h)
         public int MaxSpeed { get; set; } // Maksymalna prędkość (km/h)

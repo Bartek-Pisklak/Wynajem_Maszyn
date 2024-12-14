@@ -1,5 +1,6 @@
 ﻿@page "/RollerWorker"
 @using MediatR
+@rendermode InteractiveServer
 @inject NavigationManager navigationManager
 @inject IMediator Mediator
 
@@ -20,20 +21,30 @@ else
     <table class="table">
         <thead>
             <tr>
+                <th>Zdjęcie</th>
                 <th>Name</th>
-                <th>ProductionYear</th>
-                <th>OperatingHours</th>
+                <th>Production Year</th>
+                <th>Operating Hours</th>
                 <th>Weight</th>
                 <th>Engine</th>
-                <th>EnginePower</th>
-                <th>DrivingSpeed</th>
-                <th></th>
+                <th>Engine Power</th>
+                <th>Driving Speed</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var machine in roller)
             {
                 <tr>
+                    <td>
+                        @if (!string.IsNullOrEmpty(machine.ImagePath))
+                        {
+                            <img src="@machine.ImagePath" alt="Machine Image" style="max-width: 100px; max-height: 100px; object-fit: cover;" />
+                        }
+                        else
+                        {
+                            <span>No Image</span>
+                        }
+                    </td>
                     <td>@machine.Name</td>
                     <td>@machine.ProductionYear</td>
                     <td>@machine.OperatingHours</td>
@@ -42,12 +53,12 @@ else
                     <td>@machine.EnginePower</td>
                     <td>@machine.DrivingSpeed</td>
                     <td>
-                        <button class="btn btn-sm btn-secondary" @onclick="EditRoller"> >Edytuj</button>
-                        <button class="btn btn-sm btn-secondary" @onclick="DeleteRoller"> >Usuń</button>
+                        <button class="btn btn-sm btn-secondary" @onclick="() => EditRoller(machine.Id)">Edytuj</button>
+                        <button class="btn btn-sm btn-danger" @onclick="() => DeleteRoller(machine.Id)">Usuń</button>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 }
-}
+

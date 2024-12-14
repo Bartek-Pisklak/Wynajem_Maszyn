@@ -1,4 +1,5 @@
-﻿using WynajemMaszyn.Application.Features.Rollers.Queries.DTOs;
+﻿using WynajemMaszyn.Application.Features.Rollers.Command.DeleteRollers;
+using WynajemMaszyn.Application.Features.Rollers.Queries.DTOs;
 using WynajemMaszyn.Application.Features.Rollers.Queries.GetAllRollers;
 
 namespace WynajemMaszyn.WebUI_server.Components.Pages.machines
@@ -47,12 +48,18 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.machines
         {
             navigationManager.NavigateTo("/RollerForm");
         }
-        private void EditRoller()
+        private void EditRoller(int idMachine)
         {
             navigationManager.NavigateTo("/RollerForm");
         }
-        private void DeleteRoller()
+        private void DeleteRoller(int idMachine)
         {
+            var command = new DeleteRollerCommand(idMachine);
+
+            var response = Mediator.Send(command);
+
+            System.Console.WriteLine(response.ToString()); 
+
 
         }
 

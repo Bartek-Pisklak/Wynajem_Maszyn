@@ -29,6 +29,12 @@ namespace WynajemMaszyn.Application.Features.Harvesters.Queries.GetAllHarvesters
                 Name=x.Name,
                 ProductionYear=x.ProductionYear,
                 OperatingHours=x.OperatingHours,
+                Weight= x.Weight,
+                Engine = x.Engine,
+                EnginePower = x.EnginePower,
+                DrivingSpeed = x.DrivingSpeed,
+                RentalPricePerDay=x.RentalPricePerDay,
+                ImagePath=x.ImagePath
 
             }).ToList();
 

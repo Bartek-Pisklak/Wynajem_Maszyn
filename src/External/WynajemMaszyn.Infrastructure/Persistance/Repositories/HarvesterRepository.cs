@@ -44,6 +44,7 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
             result.ProductionYear = editedHarvester.ProductionYear;
             result.OperatingHours = editedHarvester.OperatingHours;
             result.Weight = editedHarvester.Weight;
+            result.Engine = editedHarvester.Engine;
             result.EnginePower = editedHarvester.EnginePower;
             result.FuelType = editedHarvester.FuelType;
             result.FuelConsumption = editedHarvester.FuelConsumption;

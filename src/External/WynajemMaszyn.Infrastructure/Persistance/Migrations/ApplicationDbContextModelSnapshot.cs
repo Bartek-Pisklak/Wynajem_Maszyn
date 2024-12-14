@@ -201,6 +201,13 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("DrivingSpeed")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Engine")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<int>("EnginePower")
                         .HasColumnType("integer");
 
@@ -406,8 +413,9 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                     b.Property<int>("DrumWidth")
                         .HasColumnType("integer");
 
-                    b.Property<int>("Engine")
-                        .HasColumnType("integer");
+                    b.Property<string>("Engine")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<int>("EnginePower")
                         .HasColumnType("integer");

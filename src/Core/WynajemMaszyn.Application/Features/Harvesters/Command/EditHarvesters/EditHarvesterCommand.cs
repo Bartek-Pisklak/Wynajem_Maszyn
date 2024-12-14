@@ -12,6 +12,8 @@ namespace WynajemMaszyn.Application.Features.Harvesters.Command.EditHarvesters
         int ProductionYear,
         int OperatingHours,
         int Weight,
+        string Engine,
+        int DrivingSpeed,
         int EnginePower,
         FuelType FuelType,
         int FuelConsumption,
