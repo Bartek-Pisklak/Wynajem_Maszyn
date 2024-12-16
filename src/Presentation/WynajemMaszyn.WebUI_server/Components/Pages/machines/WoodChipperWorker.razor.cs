@@ -1,29 +1,25 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.WebUtilities;
-using WynajemMaszyn.Application.Features.Excavators.Command.DeleteExcavators;
-using WynajemMaszyn.Application.Features.Excavators.Queries.DTOs;
-using WynajemMaszyn.Application.Features.Excavators.Queries.GetAllExcavators;
+﻿using Microsoft.AspNetCore.WebUtilities;
+using WynajemMaszyn.Application.Features.WoodChippers.Command.DeleteWoodChippers;
+using WynajemMaszyn.Application.Features.WoodChippers.Queries.DTOs;
+using WynajemMaszyn.Application.Features.WoodChippers.Queries.GetAllWoodChippers;
 
 namespace WynajemMaszyn.WebUI_server.Components.Pages.machines
 {
-    public partial class ExcavatorWorker
+    partial class WoodChipperWorker
     {
-
-        private List<GetAllExcavatorDto>? excavator;
+        private List<GetAllWoodChipperDto>? woodChipper;
 
         protected override async Task OnInitializedAsync()
         {
             try
             {
-                var query = new GetAllExcavatorQuery();
+                var query = new GetAllWoodChipperQuery();
                 var response = await Mediator.Send(query);
 
-
-                excavator = response.Match(
-                excavatorResponse =>
+                woodChipper = response.Match(
+                woodChipperResponse =>
                 {
-                    // Zwraca listę koparek, jeśli żadne błędy nie wystąpiły
-                    return excavatorResponse;
+                    return woodChipperResponse;
                 },
                 errors =>
                 {
@@ -32,10 +28,9 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.machines
                         Console.WriteLine($"Error: {error.Description} (Code: {error.Code})");
                     }
 
-                    // Możesz zwrócić pustą listę lub obsłużyć błędy w inny sposób
-                    throw new Exception("Failed to retrieve excavators.");
+                    throw new Exception("Failed to retrieve woodchipper.");
                 }
-                );
+           );
             }
             catch (InvalidCastException ex)
             {
@@ -47,31 +42,29 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.machines
             }
         }
 
-        private void AddExcavator()
+        private void AddWoodChipper()
         {
-            // Przekierowanie do strony z formularzem dodawania koparki
-            navigationManager.NavigateTo("/ExcavatorForm");
+            navigationManager.NavigateTo("/WoodChipperForm");
         }
-
-        private void EditExcavator(int idMachine)
+        private void EditWoodChipper(int idMachine)
         {
             string action = "edit";
-            var url = QueryHelpers.AddQueryString("/ExcavatorForm", new Dictionary<string, string?>
+            var url = QueryHelpers.AddQueryString("/WoodChipperForm", new Dictionary<string, string?>
             {
                 { "IdMachine", idMachine.ToString() },
                 { "Action", action }
             });
             navigationManager.NavigateTo(url);
         }
-
-        private void DeleteExcavator(int idMachine)
+        private void DeleteWoodChipper(int idMachine)
         {
-            var command = new DeleteExcavatorCommand(idMachine);
+            var command = new DeleteWoodChipperCommand(idMachine);
 
             var response = Mediator.Send(command);
             navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
             System.Console.WriteLine(response.ToString());
         }
+
 
     }
 }

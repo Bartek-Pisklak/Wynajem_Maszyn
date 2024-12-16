@@ -36,9 +36,8 @@ namespace WynajemMaszyn.Application.Features.WoodChippers.Command.DeleteWoodChip
             {
                 WoodChipperId=id
             };
-
-            await _woodChipperRepository.DeleteWoodChipper(id);
             await _machineryRepository.DeleteMachinery(machinery);
+            await _woodChipperRepository.DeleteWoodChipper(id);
 
             return new WoodChipperResponse("WoodChipper delete");
         }

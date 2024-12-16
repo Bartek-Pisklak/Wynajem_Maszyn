@@ -36,8 +36,8 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.DeleteExcavators
             {
                 ExcavatorId= id
             };
-            await _excavatorRepository.DeleteExcavator(id);
             await _machineryRepository.DeleteMachinery(machinery);
+            await _excavatorRepository.DeleteExcavator(id);
             return new ExcavatorResponse("Task delete");
         }
     }

@@ -1,29 +1,28 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.WebUtilities;
-using WynajemMaszyn.Application.Features.Excavators.Command.DeleteExcavators;
-using WynajemMaszyn.Application.Features.Excavators.Queries.DTOs;
-using WynajemMaszyn.Application.Features.Excavators.Queries.GetAllExcavators;
+﻿using Microsoft.AspNetCore.WebUtilities;
+using WynajemMaszyn.Application.Features.Harvesters.Command.DeleteHarvesters;
+using WynajemMaszyn.Application.Features.Harvesters.Queries.DTOs;
+using WynajemMaszyn.Application.Features.Harvesters.Queries.GetAllHarvesters;
+
 
 namespace WynajemMaszyn.WebUI_server.Components.Pages.machines
 {
-    public partial class ExcavatorWorker
+    partial class HarvesterWorker
     {
 
-        private List<GetAllExcavatorDto>? excavator;
+        private List<GetAllHarvesterDto>? harvester;
 
         protected override async Task OnInitializedAsync()
         {
             try
             {
-                var query = new GetAllExcavatorQuery();
+                var query = new GetAllHarvesterQuery();
                 var response = await Mediator.Send(query);
 
 
-                excavator = response.Match(
-                excavatorResponse =>
+                harvester = response.Match(
+                harvesterResponse =>
                 {
-                    // Zwraca listę koparek, jeśli żadne błędy nie wystąpiły
-                    return excavatorResponse;
+                    return harvesterResponse;
                 },
                 errors =>
                 {
@@ -33,7 +32,7 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.machines
                     }
 
                     // Możesz zwrócić pustą listę lub obsłużyć błędy w inny sposób
-                    throw new Exception("Failed to retrieve excavators.");
+                    throw new Exception("Failed to retrieve harvesters.");
                 }
                 );
             }
@@ -47,16 +46,16 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.machines
             }
         }
 
-        private void AddExcavator()
+
+        private void AddHarvester()
         {
-            // Przekierowanie do strony z formularzem dodawania koparki
-            navigationManager.NavigateTo("/ExcavatorForm");
+            navigationManager.NavigateTo("/HarvesterForm");
         }
 
-        private void EditExcavator(int idMachine)
+        private void EditHarvester(int idMachine)
         {
             string action = "edit";
-            var url = QueryHelpers.AddQueryString("/ExcavatorForm", new Dictionary<string, string?>
+            var url = QueryHelpers.AddQueryString("/HarvesterForm", new Dictionary<string, string?>
             {
                 { "IdMachine", idMachine.ToString() },
                 { "Action", action }
@@ -64,14 +63,13 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.machines
             navigationManager.NavigateTo(url);
         }
 
-        private void DeleteExcavator(int idMachine)
+        private void DeleteHarvester(int idMachine)
         {
-            var command = new DeleteExcavatorCommand(idMachine);
+            var command = new DeleteHarvesterCommand(idMachine);
 
             var response = Mediator.Send(command);
             navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
             System.Console.WriteLine(response.ToString());
         }
-
     }
 }

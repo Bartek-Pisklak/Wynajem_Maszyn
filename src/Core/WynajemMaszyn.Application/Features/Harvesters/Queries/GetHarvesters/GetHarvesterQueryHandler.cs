@@ -30,6 +30,8 @@ namespace WynajemMaszyn.Application.Features.Harvesters.Queries.GetHarvesters
                 ProductionYear = harvester.ProductionYear,
                 OperatingHours = harvester.OperatingHours,
                 Weight = harvester.Weight,
+                Engine = harvester.Engine,
+                DrivingSpeed = harvester.DrivingSpeed,
                 EnginePower = harvester.EnginePower,
                 FuelType = harvester.FuelType,
                 FuelConsumption = harvester.FuelConsumption,

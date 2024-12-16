@@ -1,4 +1,5 @@
-﻿@page "/ExcavatorWorker"
+﻿@page "/HarvesterWorker"
+
 @using MediatR
 @rendermode InteractiveServer
 @inject NavigationManager navigationManager
@@ -7,13 +8,15 @@
 
 
 <div class="d-flex justify-content-between">
-    <h4>Lista koparek</h4>
-    <button class="btn btn-primary" @onclick="AddExcavator">Dodaj koparkę</button>
+    <h4>Lista Harvesterów</h4>
+    <button class="btn btn-primary" @onclick="AddHarvester">Dodaj Walec</button>
 </div>
 
-@if (excavator == null)
+
+
+@if (harvester == null)
 {
-    <p><em>No data available</em></p>
+    <p><em>Brak Maszyn</em></p>
 }
 else
 {
@@ -31,7 +34,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var machine in excavator)
+            @foreach (var machine in harvester)
             {
                 <tr>
                     <td>
@@ -52,8 +55,8 @@ else
                     <td>@machine.EnginePower</td>
                     <td>@machine.DrivingSpeed</td>
                     <td>
-                        <button class="btn btn-sm btn-secondary" @onclick="() => EditExcavator(machine.Id)">Edytuj</button>
-                        <button class="btn btn-sm btn-danger" @onclick="() => DeleteExcavator(machine.Id)">Usuń</button>
+                        <button class="btn btn-sm btn-secondary" @onclick="() => EditHarvester(machine.Id)">Edytuj</button>
+                        <button class="btn btn-sm btn-danger" @onclick="() => DeleteHarvester(machine.Id)">Usuń</button>
                     </td>
                 </tr>
             }

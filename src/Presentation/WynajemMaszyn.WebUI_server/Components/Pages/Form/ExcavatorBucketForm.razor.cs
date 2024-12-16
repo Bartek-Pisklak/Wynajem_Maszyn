@@ -1,18 +1,19 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.JSInterop;
+﻿using WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.CreateExcavatorBuckets;
+using WynajemMaszyn.Application.Features.ExcavatorBuckets.Queries.DTOs;
 using WynajemMaszyn.Application.Features.Enums;
-using WynajemMaszyn.Application.Features.Rollers.Command.CreateRollers;
-using WynajemMaszyn.Application.Features.Rollers.Command.EditRollers;
-using WynajemMaszyn.Application.Features.Rollers.Queries.DTOs;
-using WynajemMaszyn.Application.Features.Rollers.Queries.GetRollers;
+using WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.EditExcavatorBuckets;
+using Microsoft.AspNetCore.Components.Forms;
+using WynajemMaszyn.Application.Features.ExcavatorBuckets.Queries.GetExcavatorBuckets;
+using Microsoft.JSInterop;
+using Microsoft.AspNetCore.Components;
+using System.ComponentModel;
 
 
 namespace WynajemMaszyn.WebUI_server.Components.Pages.Form
 {
-    public partial class RollerForm
+    public partial class ExcavatorBucketForm
     {
-        private GetRollerDto machinery = new GetRollerDto();
+        private GetExcavatorBucketDto machinery = new GetExcavatorBucketDto();
         private IBrowserFile? uploadedFile;
         private FileUploud fileUploud = new FileUploud();
         private List<string> validationErrors = new();
@@ -27,30 +28,29 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.Form
 
         private string uploadedFileEdit;
 
-        private readonly List<string> listTypeRoller = new List<string>();
-        private readonly List<string> listFuelType = new List<string>();
 
 
         protected override async Task OnInitializedAsync()
         {
             EnumsCustomer enumsCustomer = new EnumsCustomer();
-            listTypeRoller.Clear();
-            listTypeRoller.AddRange(enumsCustomer.GetTypeRoller());
-            listFuelType.Clear();
-            listFuelType.AddRange(enumsCustomer.GetFuelType());
+
 
 
             if (Action == "edit")
             {
-                var command = new GetRollerQuery(
+                if (IdMachine is null)
+                {
+                    navigationManager.NavigateTo("/ExcavatorBucketWorker");
+                }
+                var command = new GetExcavatorBucketQuery(
                             (int)IdMachine
                             );
                 var response = await Mediator.Send(command);
 
-                var roller = response.Match(
-                rollerResponse =>
+                var ExcavatorBucket = response.Match(
+                ExcavatorBucketResponse =>
                 {
-                    return rollerResponse;
+                    return ExcavatorBucketResponse;
                 },
                 errors =>
                 {
@@ -59,21 +59,14 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.Form
                         Console.WriteLine($"Error: {error.Description} (Code: {error.Code})");
                     }
 
-                    throw new Exception("Failed to retrieve roller.");
+                    throw new Exception("Failed to retrieve ExcavatorBucket.");
                 });
 
-                machinery=roller;
+                machinery=ExcavatorBucket;
                 uploadedFileEdit = machinery.ImagePath;
             }
 
         }
-
-        private async Task HandleImageUpload(InputFileChangeEventArgs e)
-        {
-            uploadedFile = e.File;
-        }
-
-
 
         private async void HandleValidSubmit()
         {
@@ -85,20 +78,11 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.Form
             if (machinery.ProductionYear <= 0)
                 validationErrors.Add("Rok produkcji musi być większy niż 0.");
 
-            if (machinery.OperatingHours <= 0)
-                validationErrors.Add("Liczba godzin pracy musi być większa niż 0.");
-
             if (machinery.Weight <= 0)
                 validationErrors.Add("Waga musi być większa niż 0.");
 
-            if (string.IsNullOrWhiteSpace(machinery.Engine))
-                validationErrors.Add("Silnik jest wymagany.");
 
-            if (machinery.EnginePower <= 0)
-                validationErrors.Add("Moc silnika musi być większa niż 0.");
 
-            if (machinery.DrivingSpeed <= 0)
-                validationErrors.Add("Prędkość jazdy musi być większa niż 0.");
 
             if (uploadedFile is null)
                 validationErrors.Add("Brak obrazu");
@@ -131,48 +115,47 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.Form
             }
         }
 
+        private async Task HandleImageUpload(InputFileChangeEventArgs e)
+        {
+            uploadedFile = e.File;
+            return;
+        }
 
         private async void CreateRoller()
         {
-
-
-
-
-
             var path = await fileUploud.CreatePathToImage(uploadedFile);
-            if(path != null)
+            if (path != null)
             {
                 machinery.ImagePath = path;
             }
-
-            var command = new CreateRollerCommand(
-            machinery.Name,
-            machinery.ProductionYear,
-            machinery.OperatingHours,
-            machinery.Weight,
-            machinery.Engine,
-            machinery.EnginePower,
-            machinery.DrivingSpeed,
-            machinery.FuelConsumption,
-            machinery.FuelType,
-            machinery.Gearbox,
-            machinery.NumberOfDrums,
-            machinery.RollerType,
-            machinery.DrumWidth,
-            machinery.MaxCompactionForce,
-            machinery.IsVibratory,
-            machinery.KnigeAsfalt,
-            machinery.RentalPricePerDay,
-            machinery.ImagePath,
-            machinery.Description
+            else
+            {
+                validationErrors.Add("Obraz jest za dużo niż 5MB lub zepsuty plik");
+            }
+            var command = new CreateExcavatorBucketCommand(
+                    machinery.Name,
+                    machinery.BucketType,
+                    machinery.ProductionYear,
+                    machinery.BucketCapacity,
+                    machinery.Weight,
+                    machinery.Width,
+                    machinery.PinDiameter,
+                    machinery.ArmWidth,
+                    machinery.PinSpacing,
+                    machinery.Material,
+                    machinery.MaxLoadCapacity,
+                    machinery.RentalPricePerDay,
+                    machinery.ImagePath,
+                    machinery.Description
             );
+
             await Mediator.Send(command);
-            navigationManager.NavigateTo("/RollerWorker");
+            navigationManager.NavigateTo("/ExcavatorBucketWorker");
         }
 
         private async void EditRoller()
         {
-            if(uploadedFileEdit != machinery.ImagePath)
+            if (uploadedFileEdit != machinery.ImagePath)
             {
                 fileUploud.DeleteImage(uploadedFileEdit);
                 var path = await fileUploud.CreatePathToImage(uploadedFile);
@@ -182,31 +165,26 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.Form
                 }
             }
 
-            var command = new EditRollerCommand(
+            var command = new EditExcavatorBucketCommand(
                     machinery.Id,
                     machinery.Name,
+                    machinery.BucketType,
                     machinery.ProductionYear,
-                    machinery.OperatingHours,
+                    machinery.BucketCapacity,
                     machinery.Weight,
-                    machinery.Engine,
-                    machinery.EnginePower,
-                    machinery.DrivingSpeed,
-                    machinery.FuelConsumption,
-                    machinery.FuelType,
-                    machinery.Gearbox,
-                    machinery.NumberOfDrums,
-                    machinery.RollerType,
-                    machinery.DrumWidth,
-                    machinery.MaxCompactionForce,
-                    machinery.IsVibratory,
-                    machinery.KnigeAsfalt,
+                    machinery.Width,
+                    machinery.PinDiameter,
+                    machinery.ArmWidth,
+                    machinery.PinSpacing,
+                    machinery.Material,
+                    machinery.MaxLoadCapacity,
                     machinery.RentalPricePerDay,
                     machinery.ImagePath,
                     machinery.Description,
                     machinery.IsRepair
             );
             await Mediator.Send(command);
-            navigationManager.NavigateTo("/RollerWorker");
+            navigationManager.NavigateTo("/ExcavatorBucketWorker");
         }
     }
 }

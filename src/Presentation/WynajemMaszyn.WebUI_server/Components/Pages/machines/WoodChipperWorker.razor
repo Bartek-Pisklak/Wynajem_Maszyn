@@ -1,4 +1,4 @@
-﻿@page "/ExcavatorWorker"
+﻿@page "/WoodChipperWorker"
 @using MediatR
 @rendermode InteractiveServer
 @inject NavigationManager navigationManager
@@ -7,13 +7,13 @@
 
 
 <div class="d-flex justify-content-between">
-    <h4>Lista koparek</h4>
-    <button class="btn btn-primary" @onclick="AddExcavator">Dodaj koparkę</button>
+    <h4>Lista rozdrabniaczów do drzewa</h4>
+    <button class="btn btn-primary" @onclick="AddWoodChipper">Dodaj Walec</button>
 </div>
 
-@if (excavator == null)
+@if (woodChipper == null)
 {
-    <p><em>No data available</em></p>
+    <p><em>Brak Maszyn</em></p>
 }
 else
 {
@@ -31,7 +31,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var machine in excavator)
+            @foreach (var machine in woodChipper)
             {
                 <tr>
                     <td>
@@ -52,8 +52,8 @@ else
                     <td>@machine.EnginePower</td>
                     <td>@machine.DrivingSpeed</td>
                     <td>
-                        <button class="btn btn-sm btn-secondary" @onclick="() => EditExcavator(machine.Id)">Edytuj</button>
-                        <button class="btn btn-sm btn-danger" @onclick="() => DeleteExcavator(machine.Id)">Usuń</button>
+                        <button class="btn btn-sm btn-secondary" @onclick="() => EditWoodChipper(machine.Id)">Edytuj</button>
+                        <button class="btn btn-sm btn-danger" @onclick="() => DeleteWoodChipper(machine.Id)">Usuń</button>
                     </td>
                 </tr>
             }

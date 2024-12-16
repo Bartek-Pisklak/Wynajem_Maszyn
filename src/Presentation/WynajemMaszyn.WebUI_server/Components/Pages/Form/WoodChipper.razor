@@ -1,0 +1,41 @@
+﻿@using MediatR
+@rendermode InteractiveServer
+
+@inject IJSRuntime JSRuntime
+@inject IMediator Mediator
+@inject NavigationManager navigationManager
+@page "/WoodChipperForm"
+
+<h3>Formularz dodawania maszyn </h3>
+
+<div id="top"></div>
+
+@if (validationErrors != null && validationErrors.Any())
+{
+    <div class="alert alert-danger">
+        <ul>
+            @foreach (var error in validationErrors)
+            {
+                <li>@error</li>
+            }
+        </ul>
+    </div>
+}
+
+<EditForm Model="@machinery" OnValidSubmit="HandleValidSubmit" style="margin-bottom: 5cm;">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+
+
+    @if (Action == "edit")
+    {
+        <div class="form-group">
+            <label for="IsRepair">W Naprawie</label>
+            <InputCheckbox id="IsRepair" class="form-control" @bind-Value="machinery.IsRepair" />
+        </div>
+    }
+
+    <button type="submit" class="btn btn-primary">Zapisz</button>
+</EditForm>
+

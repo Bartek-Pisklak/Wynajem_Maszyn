@@ -44,7 +44,8 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Queries.GetExcavat
                 CompatibleExcavators = excavatorBucket.CompatibleExcavators,
 
                 ImagePath = excavatorBucket.ImagePath,
-                Description = excavatorBucket.Description
+                Description = excavatorBucket.Description,
+                IsRepair = excavatorBucket.IsRepair
             });
 
             return workExcavatorBucket;

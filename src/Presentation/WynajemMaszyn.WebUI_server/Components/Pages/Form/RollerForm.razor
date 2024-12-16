@@ -1,16 +1,28 @@
-﻿@using WynajemMaszyn.Application.Features.Rollers.Queries.DTOs
-@using WynajemMaszyn.Application.Features.Rollers.Command.CreateRollers
-@using WynajemMaszyn.Application.Features.Rollers.Command.EditRollers
-@using MediatR
+﻿@using MediatR
+@rendermode InteractiveServer
+
+@inject IJSRuntime JSRuntime
 @inject IMediator Mediator
 @inject NavigationManager navigationManager
-@rendermode InteractiveServer
 @page "/RollerForm"
 
+<h3>Formularz dodawania maszyn </h3>
 
-<h3>Walce</h3>
+<div id="top"></div>
 
-<EditForm Model="@machinery" OnValidSubmit="HandleValidSubmit">
+@if (validationErrors != null && validationErrors.Any())
+{
+    <div class="alert alert-danger">
+        <ul>
+            @foreach (var error in validationErrors)
+            {
+                <li>@error</li>
+            }
+        </ul>
+    </div>
+}
+
+<EditForm Model="@machinery" OnValidSubmit="HandleValidSubmit" style="margin-bottom: 5cm;">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -102,7 +114,7 @@
 
     <div class="form-group">
         <label for="knigeAsfalt">Czy posiada nóż asfaltowy?</label>
-        <InputCheckbox id="knigeAsfalt" @bind-Value="machinery.KnigeAsfalt" class="form-check-input" />
+        <InputCheckbox id="knigeAsfalt" @bind-Value="machinery.KnigeAsfalt"  />
     </div>
 
     <div class="form-group">
@@ -120,11 +132,11 @@
         <InputFile OnChange="HandleImageUpload" />
     </div>
 
-    if(action == "edit")
+    @if(Action == "edit")
     {
     <div class="form-group">
         <label for="IsRepair">W Naprawie</label>
-        <InputCheckbox id="IsRepair" class="form-control" @bind-Value="machinery.IsRepair" />
+        <InputCheckbox id="IsRepair" @bind-Value="machinery.IsRepair" class="form-check-input" />
     </div>
     }
 

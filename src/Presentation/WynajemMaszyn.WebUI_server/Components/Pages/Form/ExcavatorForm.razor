@@ -1,19 +1,28 @@
-﻿<h3>Dodawanie koparki</h3>
-@using MediatR
+﻿@using MediatR
 @rendermode InteractiveServer
-@using WynajemMaszyn.Application.Features.Excavators.Queries.DTOs
-@using WynajemMaszyn.Application.Features.Excavators.Command.CreateExcavators
-@using WynajemMaszyn.Application.Features.Excavators.Command.EditExcavators
-@using WynajemMaszyn.Domain.Enums;
 
+@inject IJSRuntime JSRuntime
 @inject IMediator Mediator
 @inject NavigationManager navigationManager
 @page "/ExcavatorForm"
 
 <h3>Formularz dodawania maszyn </h3>
 
+<div id="top"></div>
 
-<EditForm Model="@machinery" OnValidSubmit="HandleValidSubmit">
+@if (validationErrors != null && validationErrors.Any())
+{
+    <div class="alert alert-danger">
+        <ul>
+            @foreach (var error in validationErrors)
+            {
+                <li>@error</li>
+            }
+        </ul>
+    </div>
+}
+
+<EditForm Model="@machinery" OnValidSubmit="HandleValidSubmit" style="margin-bottom: 5cm;">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -101,10 +110,7 @@
         <label for="maxDiggingDepth">Maksymalna głębokość kopania (m)</label>
         <InputNumber id="maxDiggingDepth" class="form-control" @bind-Value="machinery.MaxDiggingDepth" />
     </div>
-    <div class="mb-3">
-        <label for="imagePath" class="form-label">Ścieżka do obrazu</label>
-        <InputText id="imagePath" class="form-control" @bind-Value="machinery.ImagePath" />
-    </div>
+
     <div class="form-group">
         <label for="description">Opis</label>
         <InputTextArea id="description" class="form-control" @bind-Value="machinery.Description" />
@@ -115,7 +121,7 @@
         <InputFile OnChange="HandleImageUpload" />
     </div>
 
-    if(action == "edit")
+    @if(Action == "edit")
     {
     <div class="form-group">
         <label for="IsRepair">W Naprawie</label>

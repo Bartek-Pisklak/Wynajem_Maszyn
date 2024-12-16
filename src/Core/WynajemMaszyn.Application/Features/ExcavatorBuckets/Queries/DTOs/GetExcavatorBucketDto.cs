@@ -18,6 +18,7 @@
         public string CompatibleExcavators { get; set; }
         public string ImagePath { get; set; }
         public string Description { get; set; }
+        public bool IsRepair { get; set; }
 
     }
 }

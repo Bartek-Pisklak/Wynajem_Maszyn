@@ -7,7 +7,7 @@ using WynajemMaszyn.Application.Features.ExcavatorBuckets.Queries.DTOs;
 
 namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Queries.GetAllExcavatorBuckets
 {
-    public class GetAllExcavatorBucketQueryHandler : IRequestHandler<GetAllExcavatorBucketQuery, ErrorOr<List<GetExcavatorBucketDto>>>
+    public class GetAllExcavatorBucketQueryHandler : IRequestHandler<GetAllExcavatorBucketQuery, ErrorOr<List<GetAllExcavatorBucketDto>>>
     {
 
         private readonly IExcavatorBucketRepository _excavatorBucketRepository;
@@ -17,7 +17,8 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Queries.GetAllExca
             _excavatorBucketRepository = excavatorBucketRepository;
         }
 
-        public async Task<ErrorOr<List<GetExcavatorBucketDto>>> Handle(GetAllExcavatorBucketQuery request, CancellationToken cancellationToken)
+
+        public async Task<ErrorOr<List<GetAllExcavatorBucketDto>>> Handle(GetAllExcavatorBucketQuery request, CancellationToken cancellationToken)
         {
             IEnumerable<ExcavatorBucket> excavatorBucket;
 
@@ -25,7 +26,7 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Queries.GetAllExca
 
             if (!excavatorBucket.Any()) return Errors.ExcavatorBucket.NotDataToDisplay;
 
-            List<GetExcavatorBucketDto> workExcavatorBucket = excavatorBucket.Select(x => new GetExcavatorBucketDto
+            List<GetAllExcavatorBucketDto> workExcavatorBucket = excavatorBucket.Select(x => new GetAllExcavatorBucketDto
             {
                 Id = x.Id,
                 Name = x.Name,

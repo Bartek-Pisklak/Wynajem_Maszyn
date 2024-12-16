@@ -1,19 +1,19 @@
-﻿@page "/ExcavatorWorker"
+﻿@page "/ExcavatorBucketWorker"
 @using MediatR
 @rendermode InteractiveServer
 @inject NavigationManager navigationManager
 @inject IMediator Mediator
 
 
-
 <div class="d-flex justify-content-between">
-    <h4>Lista koparek</h4>
-    <button class="btn btn-primary" @onclick="AddExcavator">Dodaj koparkę</button>
+    <h4>Lista łyżek do koparek</h4>
+    <button class="btn btn-primary" @onclick="AddExcavatorBucket">Dodaj koparkę</button>
 </div>
 
-@if (excavator == null)
+
+@if (bucketExcavator == null)
 {
-    <p><em>No data available</em></p>
+    <p><em>Brak łyzek do koparek</em></p>
 }
 else
 {
@@ -31,7 +31,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var machine in excavator)
+            @foreach (var machine in bucketExcavator)
             {
                 <tr>
                     <td>
@@ -46,14 +46,10 @@ else
                     </td>
                     <td>@machine.Name</td>
                     <td>@machine.ProductionYear</td>
-                    <td>@machine.OperatingHours</td>
                     <td>@machine.Weight</td>
-                    <td>@machine.Engine</td>
-                    <td>@machine.EnginePower</td>
-                    <td>@machine.DrivingSpeed</td>
                     <td>
-                        <button class="btn btn-sm btn-secondary" @onclick="() => EditExcavator(machine.Id)">Edytuj</button>
-                        <button class="btn btn-sm btn-danger" @onclick="() => DeleteExcavator(machine.Id)">Usuń</button>
+                        <button class="btn btn-sm btn-secondary" @onclick="() => EditExcavatorBucket(machine.Id)">Edytuj</button>
+                        <button class="btn btn-sm btn-danger" @onclick="() => DeleteExcavatorBucket(machine.Id)">Usuń</button>
                     </td>
                 </tr>
             }
