@@ -8,7 +8,7 @@
 @page "/HarvesterForm"
 
 
-<h3>Formularz dodawania maszyn </h3>
+<h3>Formularz dodawania harverstera </h3>
 
 <div id="top"></div>
 
@@ -30,14 +30,109 @@
     <ValidationSummary />
 
 
+    <div class="form-group">
+        <label for="name">Nazwa maszyny</label>
+        <InputText id="name" class="form-control" @bind-Value="machinery.Name" />
+    </div>
+
+    <div class="form-group">
+        <label for="productionYear">Rok produkcji</label>
+        <InputNumber id="productionYear" class="form-control" @bind-Value="machinery.ProductionYear" />
+    </div>
+
+    <div class="form-group">
+        <label for="operatingHours">Liczba godzin pracy</label>
+        <InputNumber id="operatingHours" class="form-control" @bind-Value="machinery.OperatingHours" />
+    </div>
+
+    <div class="form-group">
+        <label for="weight">Waga (kg)</label>
+        <InputNumber id="weight" class="form-control" @bind-Value="machinery.Weight" />
+    </div>
+
+    <div class="form-group">
+        <label for="engine">Silnik</label>
+        <InputText id="engine" class="form-control" @bind-Value="machinery.Engine" />
+    </div>
+
+    <div class="form-group">
+        <label for="enginePower">Moc silnika (KM)</label>
+        <InputNumber id="enginePower" class="form-control" @bind-Value="machinery.EnginePower" />
+    </div>
+
+    <div class="form-group">
+        <label for="drivingSpeed">Prędkość jazdy (km/h)</label>
+        <InputNumber id="drivingSpeed" class="form-control" @bind-Value="machinery.DrivingSpeed" />
+    </div>
+
+    <div class="form-group">
+        <label for="fuelType">Typ paliwa</label>
+        <InputSelect id="fuelType" class="form-control" @bind-Value="machinery.FuelType">
+            @foreach (var fuelType in listFuelType)
+            {
+                <option value="@fuelType">@fuelType</option>
+            }
+        </InputSelect>
+    </div>
+
+    <div class="form-group">
+        <label for="fuelConsumption">Zużycie paliwa (l/h)</label>
+        <InputNumber id="fuelConsumption" class="form-control" @bind-Value="machinery.FuelConsumption" />
+    </div>
+
+    <div class="form-group">
+        <label for="maxSpeed">Maksymalna prędkość (km/h)</label>
+        <InputNumber id="maxSpeed" class="form-control" @bind-Value="machinery.MaxSpeed" />
+    </div>
+
+    <div class="form-group">
+        <label for="cuttingDiameter">Średnica cięcia (mm)</label>
+        <InputNumber id="cuttingDiameter" class="form-control" @bind-Value="machinery.CuttingDiameter" />
+    </div>
+
+    <div class="form-group">
+        <label for="maxReach">Maksymalny zasięg (m)</label>
+        <InputNumber id="maxReach" class="form-control" @bind-Value="machinery.MaxReach" />
+    </div>
+
+    <div class="form-group">
+        <label for="typeChassis">Typ podwozia (koła, gąsienice, koło-gąsienice)</label>
+        <InputSelect id="typeChassis" class="form-control" @bind-Value="machinery.TypeChassis">
+            @foreach (var chassis in listTypeChassis)
+            {
+                <option value="@chassis">@chassis</option>
+            }
+        </InputSelect>
+    </div>
+    <div class="form-group">
+        <label for="rentalPricePerDay">Cena wynajmu za dzień</label>
+        <InputNumber id="rentalPricePerDay" class="form-control" @bind-Value="machinery.RentalPricePerDay" />
+    </div>
+
+    <div class="form-group">
+        <label for="description">Opis</label>
+        <InputTextArea id="description" class="form-control" @bind-Value="machinery.Description" />
+    </div>
 
 
+    <div class="form-group">
+        <label for="imagePath">Zdjęcie:</label>
+        @if (!string.IsNullOrEmpty(machinery.ImagePath))
+        {
+            <img src="@machinery.ImagePath" alt="Machine Image" style="max-width: 100px; max-height: 100px; object-fit: cover;" />
+        }
+        else
+        {
+            <span>No Image</span>
+        }
+        <InputFile OnChange="HandleImageUpload" />
+    </div>
 
     @if (Action == "edit")
     {
         <div class="form-group">
             <label for="IsRepair">W Naprawie</label>
-            <InputCheckbox id="IsRepair" class="form-control" @bind-Value="machinery.IsRepair" />
+            <InputCheckbox id="IsRepair" @bind-Value="machinery.IsRepair" class="form-check-input" />
         </div>
     }
 

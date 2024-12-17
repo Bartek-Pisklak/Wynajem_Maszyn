@@ -51,7 +51,7 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
             result.MaxSpeed = editedHarvester.MaxSpeed;
             result.CuttingDiameter = editedHarvester.CuttingDiameter;
             result.MaxReach = editedHarvester.MaxReach;
-            result.WheelType = editedHarvester.WheelType;
+            result.TypeChassis = editedHarvester.TypeChassis;
             result.RentalPricePerDay = editedHarvester.RentalPricePerDay;
             result.ImagePath = editedHarvester.ImagePath;
             result.Description = editedHarvester.Description;

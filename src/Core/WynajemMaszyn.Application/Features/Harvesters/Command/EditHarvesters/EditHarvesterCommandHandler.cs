@@ -47,7 +47,7 @@ namespace WynajemMaszyn.Application.Features.Harvesters.Command.EditHarvesters
                 MaxSpeed = request.MaxSpeed,
                 CuttingDiameter = request.CuttingDiameter,
                 MaxReach = request.MaxReach,
-                WheelType = request.WheelType,
+                TypeChassis = request.TypeChassis,
                 RentalPricePerDay = request.RentalPricePerDay,
                 ImagePath = request.ImagePath,
                 Description = request.Description,

@@ -38,10 +38,11 @@ namespace WynajemMaszyn.Application.Features.Harvesters.Queries.GetHarvesters
                 MaxSpeed = harvester.MaxSpeed,
                 CuttingDiameter = harvester.CuttingDiameter,
                 MaxReach = harvester.MaxReach,
-                WheelType = harvester.WheelType,
+                TypeChassis = harvester.TypeChassis,
                 RentalPricePerDay = harvester.RentalPricePerDay,
                 ImagePath = harvester.ImagePath,
-                Description = harvester.Description
+                Description = harvester.Description,
+                IsRepair = harvester.IsRepair,
             };
 
             return workHarvester;

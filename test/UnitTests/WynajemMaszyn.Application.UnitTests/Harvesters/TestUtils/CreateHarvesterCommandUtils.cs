@@ -20,7 +20,7 @@ namespace WynajemMaszyn.Application.UnitTests.Harvesters.TestUtils
                 Constants.Harvester.MaxSpeed,
                 Constants.Harvester.CuttingDiameter,
                 Constants.Harvester.MaxReach,
-                Constants.Harvester.WheelType,
+                Constants.Harvester._TypeChassis,
                 Constants.Harvester.RentalPricePerDay,
                 Constants.Harvester.ImagePath,
                 Constants.Harvester.Description

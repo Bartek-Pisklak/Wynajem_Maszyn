@@ -6,7 +6,7 @@
 @inject NavigationManager navigationManager
 @page "/RollerForm"
 
-<h3>Formularz dodawania maszyn </h3>
+<h3>Formularz dodawania Walca </h3>
 
 <div id="top"></div>
 
@@ -129,6 +129,14 @@
 
     <div class="form-group">
         <label for="imagePath">Zdjęcie:</label>
+        @if (!string.IsNullOrEmpty(machinery.ImagePath))
+        {
+            <img src="@machinery.ImagePath" alt="Machine Image" style="max-width: 100px; max-height: 100px; object-fit: cover;" />
+        }
+        else
+        {
+            <span>No Image</span>
+        }
         <InputFile OnChange="HandleImageUpload" />
     </div>
 

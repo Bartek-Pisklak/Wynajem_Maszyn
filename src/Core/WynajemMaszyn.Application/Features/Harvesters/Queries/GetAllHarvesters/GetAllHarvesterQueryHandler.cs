@@ -34,8 +34,8 @@ namespace WynajemMaszyn.Application.Features.Harvesters.Queries.GetAllHarvesters
                 EnginePower = x.EnginePower,
                 DrivingSpeed = x.DrivingSpeed,
                 RentalPricePerDay=x.RentalPricePerDay,
-                ImagePath=x.ImagePath
-
+                ImagePath=x.ImagePath,
+                IsRepair =x.IsRepair,
             }).ToList();
 
 

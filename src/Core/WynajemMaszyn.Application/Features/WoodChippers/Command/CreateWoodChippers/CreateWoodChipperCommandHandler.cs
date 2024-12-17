@@ -56,12 +56,12 @@ namespace WynajemMaszyn.Application.Features.WoodChippers.Command.CreateWoodChip
 
 
 
-            var woodChipperId = await _woodChipperRepository.CreateWoodChipper(woodChipper);
+            var idNewMahine = await _woodChipperRepository.CreateWoodChipper(woodChipper);
 
             var machinery = new Machinery
             {
                 Name= woodChipper.Name,
-                WoodChipperId=woodChipperId
+                WoodChipperId=idNewMahine
             };
             await _machineryRepository.CreateMachinery(machinery);
 

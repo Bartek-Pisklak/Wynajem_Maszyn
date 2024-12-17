@@ -6,8 +6,6 @@ using Microsoft.AspNetCore.Components.Forms;
 using WynajemMaszyn.Application.Features.ExcavatorBuckets.Queries.GetExcavatorBuckets;
 using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
-using System.ComponentModel;
-
 
 namespace WynajemMaszyn.WebUI_server.Components.Pages.Form
 {
@@ -26,9 +24,12 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.Form
         [SupplyParameterFromQuery]
         public string? Action { get; set; }
 
-        private string uploadedFileEdit;
+        private string uploadedFileEdit = null;
 
-
+        protected override void OnParametersSet()
+        {
+            Action ??= "add"; 
+        }
 
         protected override async Task OnInitializedAsync()
         {
@@ -62,7 +63,7 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.Form
                     throw new Exception("Failed to retrieve ExcavatorBucket.");
                 });
 
-                machinery=ExcavatorBucket;
+                machinery = ExcavatorBucket;
                 uploadedFileEdit = machinery.ImagePath;
             }
 
@@ -84,7 +85,7 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.Form
 
 
 
-            if (uploadedFile is null)
+            if (uploadedFile is null && uploadedFileEdit is null)
                 validationErrors.Add("Brak obrazu");
 
             if (validationErrors.Any())

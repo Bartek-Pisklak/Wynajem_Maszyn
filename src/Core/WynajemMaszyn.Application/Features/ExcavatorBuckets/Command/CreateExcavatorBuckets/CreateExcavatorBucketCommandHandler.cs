@@ -54,14 +54,17 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.CreateExca
                 Description = request.Description
             };
 
+
+            var idNewMahine = await _excavatorBucketRepository.CreateExcavatorBucket(excavatorBucket);
+
             var machine = new Machinery
             {
                 Name= excavatorBucket.Name,
-                ExcavatorBucketId = excavatorBucket.Id 
+                ExcavatorBucketId = idNewMahine
             };
 
-            await _excavatorBucketRepository.CreateExcavatorBucket(excavatorBucket);
             await _machineryRepository.CreateMachinery(machine);
+
             return new ExcavatorBucketResponse("ExcavatorBucket added");
 
         }

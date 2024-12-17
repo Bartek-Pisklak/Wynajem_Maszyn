@@ -57,10 +57,10 @@ namespace WynajemMaszyn.Application.Features.Rollers.Command.CreateRollers
 
 
 
-            var idMachine = await _rollerRepository.CreateRoller(roller);
+            var idNewMahine = await _rollerRepository.CreateRoller(roller);
             var machinery = new Machinery
             {
-                RollerId = idMachine,
+                RollerId = idNewMahine,
                 Name = roller.Name,
             };
             await _machineryRepository.CreateMachinery(machinery);

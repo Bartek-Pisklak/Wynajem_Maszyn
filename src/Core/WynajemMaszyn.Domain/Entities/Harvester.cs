@@ -23,7 +23,7 @@ namespace WynajemMaszyn.Domain.Entities
         public int CuttingDiameter { get; set; } // Średnica cięcia (w mm)
         public int MaxReach { get; set; } // Maksymalny zasięg ramienia (w metrach)
 
-        public string WheelType { get; set; } // Typ podwozia (kołowy, gąsienicowy)
+        public TypeChassis TypeChassis { get; set; } // Typ podwozia (kołowy, gąsienicowy)
         public float RentalPricePerDay { get; set; }
 
 

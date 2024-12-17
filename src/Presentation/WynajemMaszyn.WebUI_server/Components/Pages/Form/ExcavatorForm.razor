@@ -6,7 +6,7 @@
 @inject NavigationManager navigationManager
 @page "/ExcavatorForm"
 
-<h3>Formularz dodawania maszyn </h3>
+<h3>Formularz dodawania koparki </h3>
 
 <div id="top"></div>
 
@@ -118,15 +118,23 @@
 
     <div class="form-group">
         <label for="imagePath">Zdjęcie:</label>
+        @if (!string.IsNullOrEmpty(machinery.ImagePath))
+        {
+            <img src="@machinery.ImagePath" alt="Machine Image" style="max-width: 100px; max-height: 100px; object-fit: cover;" />
+        }
+        else
+        {
+            <span>No Image</span>
+        }
         <InputFile OnChange="HandleImageUpload" />
     </div>
 
     @if(Action == "edit")
     {
-    <div class="form-group">
-        <label for="IsRepair">W Naprawie</label>
-        <InputCheckbox id="IsRepair" class="form-control" @bind-Value="machinery.IsRepair" />
-    </div>
+        <div class="form-group">
+            <label for="IsRepair">W Naprawie</label>
+            <InputCheckbox id="IsRepair" @bind-Value="machinery.IsRepair" class="form-check-input" />
+        </div>
     }
 
     <button type="submit" class="btn btn-primary">Zapisz</button>

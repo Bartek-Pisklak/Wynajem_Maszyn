@@ -23,7 +23,7 @@ namespace WynajemMaszyn.Application.Features.Harvesters.Queries.DTOs
         public int CuttingDiameter { get; set; }
         public int MaxReach { get; set; }
 
-        public string WheelType { get; set; }
+        public TypeChassis TypeChassis { get; set; }
         public float RentalPricePerDay { get; set; }
 
 

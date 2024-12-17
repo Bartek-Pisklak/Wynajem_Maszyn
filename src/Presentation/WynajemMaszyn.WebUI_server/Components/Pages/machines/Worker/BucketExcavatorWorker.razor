@@ -1,22 +1,19 @@
-﻿@page "/HarvesterWorker"
-
+﻿@page "/ExcavatorBucketWorker"
 @using MediatR
 @rendermode InteractiveServer
 @inject NavigationManager navigationManager
 @inject IMediator Mediator
 
 
-
 <div class="d-flex justify-content-between">
-    <h4>Lista Harvesterów</h4>
-    <button class="btn btn-primary" @onclick="AddHarvester">Dodaj Walec</button>
+    <h4>Lista łyżek do koparek</h4>
+    <button class="btn btn-primary" @onclick="AddExcavatorBucket">Dodaj łyżkę</button>
 </div>
 
 
-
-@if (harvester == null)
+@if (bucketExcavator == null)
 {
-    <p><em>Brak Maszyn</em></p>
+    <p><em>Brak łyzek do koparek</em></p>
 }
 else
 {
@@ -26,15 +23,11 @@ else
                 <th>Zdjęcie</th>
                 <th>Name</th>
                 <th>Production Year</th>
-                <th>Operating Hours</th>
                 <th>Weight</th>
-                <th>Engine</th>
-                <th>Engine Power</th>
-                <th>Driving Speed</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var machine in harvester)
+            @foreach (var machine in bucketExcavator)
             {
                 <tr>
                     <td>
@@ -48,15 +41,12 @@ else
                         }
                     </td>
                     <td>@machine.Name</td>
-                    <td>@machine.ProductionYear</td>
-                    <td>@machine.OperatingHours</td>
+                    <td>@machine.BucketType</td>
                     <td>@machine.Weight</td>
-                    <td>@machine.Engine</td>
-                    <td>@machine.EnginePower</td>
-                    <td>@machine.DrivingSpeed</td>
+                    <td>@machine.RentalPricePerDay</td>
                     <td>
-                        <button class="btn btn-sm btn-secondary" @onclick="() => EditHarvester(machine.Id)">Edytuj</button>
-                        <button class="btn btn-sm btn-danger" @onclick="() => DeleteHarvester(machine.Id)">Usuń</button>
+                        <button class="btn btn-sm btn-secondary" @onclick="() => EditExcavatorBucket(machine.Id)">Edytuj</button>
+                        <button class="btn btn-sm btn-danger" @onclick="() => DeleteExcavatorBucket(machine.Id)">Usuń</button>
                     </td>
                 </tr>
             }

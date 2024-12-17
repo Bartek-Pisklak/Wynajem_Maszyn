@@ -19,7 +19,7 @@ namespace WynajemMaszyn.Application.Features.Harvesters.Command.CreateHarvesters
         int MaxSpeed,
         int CuttingDiameter,
         int MaxReach,
-        string WheelType,
+        TypeChassis TypeChassis,
         float RentalPricePerDay,
         string ImagePath,
         string Description

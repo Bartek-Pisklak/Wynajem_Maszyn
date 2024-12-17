@@ -51,7 +51,8 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.EditExcava
                 //CompatibleExcavators = request.CompatibleExcavators,
 
                 ImagePath = request.ImagePath,
-                Description = request.Description
+                Description = request.Description,
+                IsRepair = request.IsRepair,
             };
 
            

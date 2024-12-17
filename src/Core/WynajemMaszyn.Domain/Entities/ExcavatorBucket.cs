@@ -20,7 +20,7 @@
         public string Material { get; set; } // Materiał wykonania (np. stal wysokowytrzymała)
         public int MaxLoadCapacity { get; set; } // Maksymalne obciążenie (w kilogramach)
         public float RentalPricePerDay { get; set; } // Cena wynajmu na dzień
-        public string CompatibleExcavators { get; set; } // Zgodne modele koparek
+        public string? CompatibleExcavators { get; set; } // Zgodne modele koparek
 
         public string ImagePath { get; set; }
         public string Description { get; set; }

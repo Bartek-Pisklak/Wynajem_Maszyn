@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using WynajemMaszyn.Domain.Enums;
 
 namespace WynajemMaszyn.Application.UnitTests.TestUtils.Constants
@@ -25,7 +21,7 @@ namespace WynajemMaszyn.Application.UnitTests.TestUtils.Constants
             public const int MaxSpeed = 15; // maksymalna prędkość w km/h
             public const int CuttingDiameter = 800; // maksymalna średnica cięcia w mm
             public const int MaxReach = 10; // maksymalny zasięg w metrach
-            public const string WheelType = "All-Terrain";
+            public const TypeChassis _TypeChassis = TypeChassis.koła;
             public const float RentalPricePerDay = 450.0f; // cena wynajmu za dzień w PLN
             public const string ImagePath = "/images/harvester_pro.png";
             public const string Description = "Efficient forestry harvester with a powerful engine and high cutting capacity.";

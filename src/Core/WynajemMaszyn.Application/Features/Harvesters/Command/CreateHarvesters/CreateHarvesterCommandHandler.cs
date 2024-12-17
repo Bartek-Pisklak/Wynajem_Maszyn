@@ -48,7 +48,7 @@ namespace WynajemMaszyn.Application.Features.Harvesters.Command.CreateHarvesters
                 MaxSpeed = request.MaxSpeed,
                 CuttingDiameter = request.CuttingDiameter,
                 MaxReach = request.MaxReach,
-                WheelType = request.WheelType,
+                TypeChassis = request.TypeChassis,
                 RentalPricePerDay = request.RentalPricePerDay,
                 ImagePath = request.ImagePath,
                 Description = request.Description
@@ -58,11 +58,11 @@ namespace WynajemMaszyn.Application.Features.Harvesters.Command.CreateHarvesters
 
 
 
-            var idHarvester = await _harvesterRepository.CreateHarvester(harvester);
+            var idNewMahine = await _harvesterRepository.CreateHarvester(harvester);
             var machinery = new Machinery
             {
                 Name= harvester.Name,
-                HarvesterId=idHarvester
+                HarvesterId=idNewMahine
             };
             await _machineryRepository.CreateMachinery(machinery);
 

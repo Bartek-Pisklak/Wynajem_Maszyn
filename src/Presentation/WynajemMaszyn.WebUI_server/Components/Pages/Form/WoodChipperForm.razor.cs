@@ -4,10 +4,13 @@ using WynajemMaszyn.Application.Features.WoodChippers.Queries.DTOs;
 using WynajemMaszyn.Application.Features.WoodChippers.Command.CreateWoodChippers;
 using WynajemMaszyn.Application.Features.WoodChippers.Command.EditWoodChippers;
 using Microsoft.JSInterop;
+using WynajemMaszyn.Application.Features.WoodChippers.Queries.GetWoodChippers;
+
+
 
 namespace WynajemMaszyn.WebUI_server.Components.Pages.Form
 {
-    partial class WoodChipper
+    partial class WoodChipperForm
     {
         private GetWoodChipperDto machinery = new GetWoodChipperDto();
         private IBrowserFile? uploadedFile;
@@ -24,17 +27,48 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.Form
 
         private string uploadedFileEdit;
 
-        private readonly List<string> listTypeWoodChipper = new List<string>();
         private readonly List<string> listFuelType = new List<string>();
 
-
+        protected override void OnParametersSet()
+        {
+            Action ??= "add";
+        }
 
         private async Task HandleImageUpload(InputFileChangeEventArgs e)
         {
             uploadedFile = e.File;
         }
 
+        protected override async Task OnInitializedAsync()
+        {
 
+            if (Action == "edit")
+            {
+                var command = new GetWoodChipperQuery(
+                            (int)IdMachine
+                            );
+                var response = await Mediator.Send(command);
+
+                var woodChipper = response.Match(
+                woodChipperResponse =>
+                {
+                    return woodChipperResponse;
+                },
+                errors =>
+                {
+                    foreach (var error in errors)
+                    {
+                        Console.WriteLine($"Error: {error.Description} (Code: {error.Code})");
+                    }
+
+                    throw new Exception("Failed to retrieve roller.");
+                });
+
+                machinery=woodChipper;
+                uploadedFileEdit = machinery.ImagePath;
+            }
+
+        }
 
         private async void HandleValidSubmit()
         {
@@ -61,7 +95,7 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.Form
             if (machinery.DrivingSpeed <= 0)
                 validationErrors.Add("Prędkość jazdy musi być większa niż 0.");
 
-            if (uploadedFile is null)
+            if (uploadedFile is null && uploadedFileEdit is null)
                 validationErrors.Add("Brak obrazu");
 
             if (validationErrors.Any())

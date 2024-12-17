@@ -118,7 +118,6 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("CompatibleExcavators")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Description")
@@ -244,15 +243,14 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                     b.Property<float>("RentalPricePerDay")
                         .HasColumnType("real");
 
+                    b.Property<int>("TypeChassis")
+                        .HasColumnType("integer");
+
                     b.Property<int>("UserId")
                         .HasColumnType("integer");
 
                     b.Property<int>("Weight")
                         .HasColumnType("integer");
-
-                    b.Property<string>("WheelType")
-                        .IsRequired()
-                        .HasColumnType("text");
 
                     b.HasKey("Id");
 

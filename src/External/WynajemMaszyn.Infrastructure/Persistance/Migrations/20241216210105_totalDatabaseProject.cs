@@ -103,7 +103,7 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                     Material = table.Column<string>(type: "text", nullable: false),
                     MaxLoadCapacity = table.Column<int>(type: "integer", nullable: false),
                     RentalPricePerDay = table.Column<float>(type: "real", nullable: false),
-                    CompatibleExcavators = table.Column<string>(type: "text", nullable: false),
+                    CompatibleExcavators = table.Column<string>(type: "text", nullable: true),
                     ImagePath = table.Column<string>(type: "text", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: false),
                     IsRepair = table.Column<bool>(type: "boolean", nullable: false)
@@ -138,7 +138,7 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                     MaxSpeed = table.Column<int>(type: "integer", nullable: false),
                     CuttingDiameter = table.Column<int>(type: "integer", nullable: false),
                     MaxReach = table.Column<int>(type: "integer", nullable: false),
-                    WheelType = table.Column<string>(type: "text", nullable: false),
+                    TypeChassis = table.Column<int>(type: "integer", nullable: false),
                     RentalPricePerDay = table.Column<float>(type: "real", nullable: false),
                     ImagePath = table.Column<string>(type: "text", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: false),

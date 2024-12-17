@@ -43,7 +43,9 @@ namespace WynajemMaszyn.Application.Features.Rollers.Queries.GetRollers
                 IsVibratory = roller.IsVibratory,
                 KnigeAsfalt = roller.KnigeAsfalt,
                 RentalPricePerDay = roller.RentalPricePerDay,
-                Description = roller.Description
+                Description = roller.Description,
+                ImagePath = roller.ImagePath,
+                IsRepair = roller.IsRepair,
             };
 
             return workRoller;

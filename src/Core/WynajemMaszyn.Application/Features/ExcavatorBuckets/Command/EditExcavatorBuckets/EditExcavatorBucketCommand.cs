@@ -22,7 +22,7 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.EditExcava
     //string CompatibleExcavators,
     string ImagePath,
     string Description,
-     bool IsRepair
+    bool IsRepair
 
 
         ) : IRequest<ErrorOr<ExcavatorBucketResponse>>;

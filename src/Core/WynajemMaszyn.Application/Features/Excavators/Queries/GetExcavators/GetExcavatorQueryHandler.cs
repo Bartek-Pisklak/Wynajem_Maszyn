@@ -22,7 +22,7 @@ namespace WynajemMaszyn.Application.Features.Excavators.Queries.GetExcavators
 
             
 
-            var excavator = await _excavatorRepository.GetExcavator(1);
+            var excavator = await _excavatorRepository.GetExcavator(request.Id);
 
             if (excavator == null) return Errors.Excavator.NotDataToDisplay;
 
@@ -43,7 +43,9 @@ namespace WynajemMaszyn.Application.Features.Excavators.Queries.GetExcavators
                 FuelType = excavator.FuelType,
                 Gearbox = excavator.Gearbox,
                 MaxDiggingDepth = excavator.MaxDiggingDepth,
-                Description = excavator.Description
+                Description = excavator.Description,
+                ImagePath = excavator.ImagePath,
+                IsRepair = excavator.IsRepair,
             };
 
             return workExcavators;

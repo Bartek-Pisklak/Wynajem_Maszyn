@@ -23,6 +23,7 @@ namespace WynajemMaszyn.Application.Features.WoodChippers.Queries.GetWoodChipper
 
             var workwoodChipper = new GetWoodChipperDto
             {
+                Id = woodChipper.Id,
                 Name = woodChipper.Name,
                 RentalPricePerDay = woodChipper.RentalPricePerDay,
                 ProductionYear = woodChipper.ProductionYear,

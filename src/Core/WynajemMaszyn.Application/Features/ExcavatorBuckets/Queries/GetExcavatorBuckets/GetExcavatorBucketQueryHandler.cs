@@ -27,6 +27,7 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Queries.GetExcavat
 
             GetExcavatorBucketDto workExcavatorBucket = (new GetExcavatorBucketDto
             {
+                Id = excavatorBucket.Id,
                 Name = excavatorBucket.Name,
                 BucketType = excavatorBucket.BucketType,
                 ProductionYear = excavatorBucket.ProductionYear,

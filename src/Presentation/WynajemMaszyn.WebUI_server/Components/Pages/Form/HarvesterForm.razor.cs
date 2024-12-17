@@ -6,6 +6,7 @@ using WynajemMaszyn.Application.Features.Harvesters.Command.EditHarvesters;
 using WynajemMaszyn.Application.Features.Harvesters.Queries.GetHarvesters;
 using WynajemMaszyn.Application.Features.Harvesters.Queries.DTOs;
 using Npgsql.Internal.TypeHandlers.NetworkHandlers;
+using Microsoft.AspNetCore.Components;
 
 namespace WynajemMaszyn.WebUI_server.Components.Pages.Form
 {
@@ -16,16 +17,30 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.Form
         private FileUploud fileUploud = new FileUploud();
         private List<string> validationErrors = new();
 
-        private string Action = "add";
+        [Parameter]
+        [SupplyParameterFromQuery]
+        public int? IdMachine { get; set; }
+
+        [Parameter]
+        [SupplyParameterFromQuery]
+        public string? Action { get; set; }
+
         private string uploadedFileEdit;
-        private int IdMachine = 1;
 
-
+        private readonly List<string> listTypeChassis = new List<string>();
         private readonly List<string> listFuelType = new List<string>();
+
+        protected override void OnParametersSet()
+        {
+            Action ??= "add";
+        }
 
         protected override async Task OnInitializedAsync()
         {
             EnumsCustomer enumsCustomer = new EnumsCustomer();
+
+            listTypeChassis.Clear();
+            listTypeChassis.AddRange(enumsCustomer.GetTypeChassis());
 
             listFuelType.Clear();
             listFuelType.AddRange(enumsCustomer.GetFuelType());
@@ -34,7 +49,7 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.Form
             if (Action == "edit")
             {
                 var command = new GetHarvesterQuery(
-                            IdMachine
+                            (int)IdMachine
                             );
                 var response = await Mediator.Send(command);
 
@@ -84,7 +99,7 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.Form
             if (machinery.DrivingSpeed <= 0)
                 validationErrors.Add("Prędkość jazdy musi być większa niż 0.");
 
-            if (uploadedFile is null)
+            if (uploadedFile is null && uploadedFileEdit is null)
                 validationErrors.Add("Brak obrazu");
 
             if (validationErrors.Any())
@@ -145,7 +160,7 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.Form
                     machinery.MaxSpeed,
                     machinery.CuttingDiameter,
                     machinery.MaxReach,
-                    machinery.WheelType,
+                    machinery.TypeChassis,
                     machinery.RentalPricePerDay,
                     machinery.ImagePath,
                     machinery.Description
@@ -181,7 +196,7 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.Form
                     machinery.MaxSpeed,
                     machinery.CuttingDiameter,
                     machinery.MaxReach,
-                    machinery.WheelType,
+                    machinery.TypeChassis,
                     machinery.RentalPricePerDay,
                     machinery.ImagePath,
                     machinery.Description,

@@ -19,6 +19,6 @@ namespace WynajemMaszyn.Application.Features.Harvesters.Queries.DTOs
         public int Weight { get; set; }
         public float RentalPricePerDay { get; set; }
         public string ImagePath { get; set; }
-
+        public bool IsRepair { get; set; }
     }
 }

@@ -32,6 +32,11 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.Form
         private readonly List<string> listFuelType = new List<string>();
 
 
+        protected override void OnParametersSet()
+        {
+            Action ??= "add";
+        }
+
         protected override async Task OnInitializedAsync()
         {
             EnumsCustomer enumsCustomer = new EnumsCustomer();
@@ -102,7 +107,7 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.Form
             if (machinery.DrivingSpeed <= 0)
                 validationErrors.Add("Prędkość jazdy musi być większa niż 0.");
 
-            if (uploadedFile is null)
+            if (uploadedFile is null && uploadedFileEdit is null)
                 validationErrors.Add("Brak obrazu");
 
             if (validationErrors.Any())
