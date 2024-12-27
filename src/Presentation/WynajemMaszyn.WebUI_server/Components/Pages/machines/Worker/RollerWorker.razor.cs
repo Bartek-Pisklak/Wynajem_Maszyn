@@ -3,7 +3,7 @@ using WynajemMaszyn.Application.Features.Rollers.Command.DeleteRollers;
 using WynajemMaszyn.Application.Features.Rollers.Queries.DTOs;
 using WynajemMaszyn.Application.Features.Rollers.Queries.GetAllRollers;
 
-namespace WynajemMaszyn.WebUI_server.Components.Pages.machines
+namespace WynajemMaszyn.WebUI_server.Components.Pages.machines.Worker
 {
     public partial class RollerWorker
     {
@@ -50,7 +50,7 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.machines
         {
             string action = "edit";
             var url = QueryHelpers.AddQueryString("/RollerForm", new Dictionary<string, string?>
-            {   
+            {
                 { "IdMachine", idMachine.ToString() },
                 { "Action", action }
             });
@@ -62,7 +62,7 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.machines
 
             var response = Mediator.Send(command);
             navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
-            System.Console.WriteLine(response.ToString()); 
+            Console.WriteLine(response.ToString());
         }
     }
 }

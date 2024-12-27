@@ -4,7 +4,7 @@ using WynajemMaszyn.Application.Features.Harvesters.Queries.DTOs;
 using WynajemMaszyn.Application.Features.Harvesters.Queries.GetAllHarvesters;
 
 
-namespace WynajemMaszyn.WebUI_server.Components.Pages.machines
+namespace WynajemMaszyn.WebUI_server.Components.Pages.machines.Worker
 {
     partial class HarvesterWorker
     {
@@ -69,7 +69,7 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.machines
 
             var response = Mediator.Send(command);
             navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
-            System.Console.WriteLine(response.ToString());
+            Console.WriteLine(response.ToString());
         }
     }
 }

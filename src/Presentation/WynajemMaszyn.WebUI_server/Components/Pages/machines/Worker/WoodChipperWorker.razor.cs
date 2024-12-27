@@ -3,7 +3,7 @@ using WynajemMaszyn.Application.Features.WoodChippers.Command.DeleteWoodChippers
 using WynajemMaszyn.Application.Features.WoodChippers.Queries.DTOs;
 using WynajemMaszyn.Application.Features.WoodChippers.Queries.GetAllWoodChippers;
 
-namespace WynajemMaszyn.WebUI_server.Components.Pages.machines
+namespace WynajemMaszyn.WebUI_server.Components.Pages.machines.Worker
 {
     partial class WoodChipperWorker
     {
@@ -62,7 +62,7 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.machines
 
             var response = Mediator.Send(command);
             navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
-            System.Console.WriteLine(response.ToString());
+            Console.WriteLine(response.ToString());
         }
 
 

@@ -4,7 +4,7 @@ using WynajemMaszyn.Application.Features.Excavators.Command.DeleteExcavators;
 using WynajemMaszyn.Application.Features.Excavators.Queries.DTOs;
 using WynajemMaszyn.Application.Features.Excavators.Queries.GetAllExcavators;
 
-namespace WynajemMaszyn.WebUI_server.Components.Pages.machines
+namespace WynajemMaszyn.WebUI_server.Components.Pages.machines.Worker
 {
     public partial class ExcavatorWorker
     {
@@ -70,7 +70,7 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.machines
 
             var response = Mediator.Send(command);
             navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
-            System.Console.WriteLine(response.ToString());
+            Console.WriteLine(response.ToString());
         }
 
     }
