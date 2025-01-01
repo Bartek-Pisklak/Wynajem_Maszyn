@@ -30,7 +30,7 @@ else
                 <th>Weight</th>
                 <th>Engine</th>
                 <th>Engine Power</th>
-                <th>Driving Speed</th>
+                <th>IsRepair</th>
             </tr>
         </thead>
         <tbody>
@@ -53,7 +53,7 @@ else
                     <td>@machine.Weight</td>
                     <td>@machine.Engine</td>
                     <td>@machine.EnginePower</td>
-                    <td>@machine.DrivingSpeed</td>
+                    <td>@machine.IsRepair</td>
                     <td>
                         <button class="btn btn-sm btn-secondary" @onclick="() => EditHarvester(machine.Id)">Edytuj</button>
                         <button class="btn btn-sm btn-danger" @onclick="() => DeleteHarvester(machine.Id)">Usuń</button>

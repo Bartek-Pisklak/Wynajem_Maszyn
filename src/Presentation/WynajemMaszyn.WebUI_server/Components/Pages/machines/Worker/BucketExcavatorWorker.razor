@@ -22,10 +22,14 @@ else
             <tr>
                 <th>Zdjęcie</th>
                 <th>Name</th>
-                <th>Production Year</th>
+                <th>BucketType</th>
+                <th>ProductionYear</th>
                 <th>Weight</th>
+                <th>RentalPricePerDay</th>
+                <th>IsRepair</th>
             </tr>
         </thead>
+
         <tbody>
             @foreach (var machine in bucketExcavator)
             {
@@ -42,8 +46,10 @@ else
                     </td>
                     <td>@machine.Name</td>
                     <td>@machine.BucketType</td>
+                    <td>@machine.ProductionYear</td>
                     <td>@machine.Weight</td>
                     <td>@machine.RentalPricePerDay</td>
+                    <td>@machine.IsRepair</td>
                     <td>
                         <button class="btn btn-sm btn-secondary" @onclick="() => EditExcavatorBucket(machine.Id)">Edytuj</button>
                         <button class="btn btn-sm btn-danger" @onclick="() => DeleteExcavatorBucket(machine.Id)">Usuń</button>

@@ -8,6 +8,11 @@ main {
     flex: 1;
 }
 
+.btn-primary {
+    font-size: 1.1rem;
+    padding: 0.5rem 1.5rem;
+}
+
 .sidebar {
     background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
 }
@@ -94,3 +99,5 @@ main {
         right: 0.75rem;
         top: 0.5rem;
     }
+
+

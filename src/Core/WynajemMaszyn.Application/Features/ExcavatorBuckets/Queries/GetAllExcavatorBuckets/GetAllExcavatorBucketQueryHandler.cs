@@ -32,6 +32,7 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Queries.GetAllExca
                 Name = x.Name,
                 BucketType = x.BucketType,
                 Weight = x.Weight,
+                ProductionYear = x.ProductionYear,
                 RentalPricePerDay = x.RentalPricePerDay,
                 ImagePath = x.ImagePath,
                 IsRepair = x.IsRepair,
