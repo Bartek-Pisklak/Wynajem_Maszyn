@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.WebUtilities;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
+using Microsoft.AspNetCore.WebUtilities;
 using WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.DeleteExcavatorBuckets;
 using WynajemMaszyn.Application.Features.ExcavatorBuckets.Queries.DTOs;
 using WynajemMaszyn.Application.Features.ExcavatorBuckets.Queries.GetAllExcavatorBuckets;
@@ -21,7 +22,6 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.machines.Worker
                 bucketExcavator = response.Match(
                 bucketExcavatorResponse =>
                 {
-                    // Zwraca listę koparek, jeśli żadne błędy nie wystąpiły
                     return bucketExcavatorResponse;
                 },
                 errors =>
@@ -31,7 +31,6 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.machines.Worker
                         Console.WriteLine($"Error: {error.Description} (Code: {error.Code})");
                     }
 
-                    // Możesz zwrócić pustą listę lub obsłużyć błędy w inny sposób
                     throw new Exception("Failed to retrieve ExcavatorBucket.");
                 }
                 );
@@ -48,7 +47,6 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.machines.Worker
 
         private void AddExcavatorBucket()
         {
-            // Przekierowanie do strony z formularzem dodawania koparki
             navigationManager.NavigateTo("/ExcavatorBucketForm");
         }
 
@@ -68,7 +66,7 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.machines.Worker
             var command = new DeleteExcavatorBucketCommand(idMachine);
 
             var response = Mediator.Send(command);
-            navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
+            navigationManager.NavigateTo(navigationManager.Uri);
             Console.WriteLine(response.ToString());
         }
     }
