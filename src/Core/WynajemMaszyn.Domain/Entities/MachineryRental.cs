@@ -12,12 +12,15 @@ namespace WynajemMaszyn.Domain.Entities
         public int Id { get; set; }
         public int UserId { get; set; }
         public float Cost { get; set; }
+
         public DateTime BeginRent { get; set; }
         public DateTime EndRent { get; set; }
+        public RentalStatus RentalStatus { get; set; } = RentalStatus.koszyk;
+
 
         public float? Deposit { get; set; }       
         public float? LateFee { get; set; }
-        public RentalStatus RentalStatus {get; set; }
+
         public PaymentStatus PaymentStatus { get; set; }
         public string Facture { get; set; }
         public string Contract { get; set; }

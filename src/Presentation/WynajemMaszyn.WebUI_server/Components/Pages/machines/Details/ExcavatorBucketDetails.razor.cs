@@ -1,17 +1,19 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.WebUtilities;
 using WynajemMaszyn.Application.Features.Enums;
 using WynajemMaszyn.Application.Features.ExcavatorBuckets.Queries.DTOs;
 using WynajemMaszyn.Application.Features.ExcavatorBuckets.Queries.GetExcavatorBuckets;
 
 namespace WynajemMaszyn.WebUI_server.Components.Pages.machines.Details
 {
-    partial class BucketExcavatorDetails
+    partial class ExcavatorBucketDetails
     {
-        private GetExcavatorBucketDto machinery = new GetExcavatorBucketDto();
+        private GetExcavatorBucketDto bucket = new GetExcavatorBucketDto();
 
         [Parameter]
         [SupplyParameterFromQuery]
         public int? IdMachine { get; set; }
+
 
         protected override async Task OnInitializedAsync()
         {
@@ -42,8 +44,14 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.machines.Details
                 throw new Exception("Failed to retrieve ExcavatorBucket.");
             });
 
-            machinery = ExcavatorBucket;
-         
+            bucket = ExcavatorBucket;
+        }
+
+
+        private void AddMachineToCard()
+        {
+
+
         }
 
     }

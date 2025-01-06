@@ -19,10 +19,6 @@
 		<ProjectReference Include="..\..\Core\WynajemMaszyn.Application\WynajemMaszyn.Application.csproj" />
 		<ProjectReference Include="..\..\External\WynajemMaszyn.Infrastructure\WynajemMaszyn.Infrastructure.csproj" />
 	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="wwwroot\uploads\" />
-	</ItemGroup>
 	
 	
 </Project>

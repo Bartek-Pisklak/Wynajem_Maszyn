@@ -24,7 +24,7 @@
                             <p class="card-text">Typ Łyżki: @machine.BucketType</p>
                             <p class="card-text">Rok Produkcji: @machine.ProductionYear</p>
                             <p class="card-text">Cena Wynajmu na dobe: @machine.RentalPricePerDay złotych</p>
-                            @if(!machine.IsRepair)
+                            @if(machine.IsRepair)
                             {
                                 <p class="card-text">W naprawie</p>
                             }

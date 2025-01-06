@@ -46,7 +46,7 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.machines.Client
 
         private void NavigateToDetails(int machineId)
         {
-            var url = QueryHelpers.AddQueryString("/BucketExcavatorDetails", new Dictionary<string,string?>
+            var url = QueryHelpers.AddQueryString("/ExcavatorBucketDetails", new Dictionary<string,string?>
             {
                 { "IdMachine", machineId.ToString() }
             });

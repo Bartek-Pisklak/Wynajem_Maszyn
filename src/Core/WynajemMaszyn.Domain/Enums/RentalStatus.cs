@@ -8,6 +8,7 @@ namespace WynajemMaszyn.Domain.Enums
 {
     public enum RentalStatus
     {
+        koszyk,
         oczekuje,
         trakcie,         
         zakończony,      

@@ -45,5 +45,10 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.machines.Details
         }
 
 
+        private void AddMachineToCard()
+        {
+
+
+        }
     }
 }

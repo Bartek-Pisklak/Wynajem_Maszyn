@@ -47,5 +47,12 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.machines.Details
             machinery=roller;
 
         }
+
+
+        private void AddMachineToCard()
+        {
+
+
+        }
     }
 }

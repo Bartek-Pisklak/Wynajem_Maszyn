@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography.X509Certificates;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Domain.Entities;
+using WynajemMaszyn.Domain.Enums;
 
 namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
 {
@@ -63,12 +65,50 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
                 return;
             }
 
+            result.Cost = editedMachineryRental.Cost;
             result.BeginRent = editedMachineryRental.BeginRent;
             result.EndRent = editedMachineryRental.EndRent;
-            //result.IdMachines = editedMachineryRental.IdMachines;
-            result.Cost = editedMachineryRental.Cost;
+            result.RentalStatus = editedMachineryRental.RentalStatus;
+            result.Deposit = editedMachineryRental.Deposit;
+            result.LateFee = editedMachineryRental.LateFee;
+            result.PaymentMethod = editedMachineryRental.PaymentMethod;
+            result.Facture = editedMachineryRental.Facture;
+            result.Contract = editedMachineryRental.Contract;
+            result.PaymentMethod = editedMachineryRental.PaymentMethod;
+            result.AdditionalNotes = editedMachineryRental.AdditionalNotes;
+            result.IsReturned = editedMachineryRental.IsReturned;
 
-            _dbContext.SaveChanges();
+
+            await _dbContext.SaveChangesAsync();
+        }
+
+
+
+
+        public async Task AddMachineryIdToCart(MachineryRentalList machine)
+        {
+
+            await _dbContext.MachineryRentalLists.AddAsync(machine);
+            await _dbContext.SaveChangesAsync();
+
+        }
+
+        public async Task AddMachineryIdToCart(int idMachine, int idUser)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task DeleteMachineryIdToCart(int idMachine, int idUser)
+        {
+
+            var result = await _dbContext.MachineryRentalLists.FirstOrDefaultAsync(c => c.MachineryId == idMachine);
+            if (result == null)
+            {
+                return;
+            }
+
+            _dbContext.MachineryRentalLists.Remove(result);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

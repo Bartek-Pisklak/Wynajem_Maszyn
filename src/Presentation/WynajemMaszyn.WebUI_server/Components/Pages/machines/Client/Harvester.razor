@@ -1,4 +1,4 @@
-﻿@page "/Harvester"
+﻿@page "/harvester"
 @using MediatR
 @rendermode InteractiveServer
 @inject NavigationManager navigationManager
@@ -27,7 +27,7 @@
                             <p class="card-text">Moc: @machine.EnginePower KM </p>
                             <p class="card-text">Prędkość Jazdy: @machine.DrivingSpeed km/h</p>
                             <p class="card-text">Cena Wynajmu na dobe: @machine.RentalPricePerDay złotych</p>
-                            @if (!machine.IsRepair)
+                            @if (machine.IsRepair)
                             {
                                 <p class="card-text">W naprawie</p>
                             }

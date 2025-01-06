@@ -3,7 +3,7 @@
 @rendermode InteractiveServer
 @inject NavigationManager NavigationManager
 
-<div class="container mt-5">
+<div class="container mt-5" style="margin-bottom: 3cm;">
     <div class="text-center">
         <h1>Witamy w naszej firmie wynajmu maszyn ciężkich!</h1>
         <p class="lead mt-3">
@@ -27,22 +27,24 @@
 
     <div class="row mt-5">
         <div class="col-md-4 text-center">
-            <img src="images/excavator.png" alt="Koparki" class="img-fluid" />
+            <img src="staticImage/IMG_20240727_184537_koparka.jpg" alt="Koparki" class="img-fluid" />
             <h3>Koparki</h3>
             <p>Nasze koparki to gwarancja precyzyjnej pracy w każdych warunkach. Idealne dla dużych projektów budowlanych.</p>
             <button class="btn btn-secondary mt-2" @onclick='() => NavigateToCategory("Excavator")'>Zobacz ofertę</button>
         </div>
+
         <div class="col-md-4 text-center">
-            <img src="images/roller.png" alt="Walce drogowe" class="img-fluid" />
+            <img src="staticImage/IMG_20240727_184438_harvester.jpg" alt="Harvester" class="img-fluid" />
+            <h3>Harvester</h3>
+            <p>Wydajne maszyny przeznaczone do prac leśnych i w gospodarstwach rolnych. Zapewniają oszczędność czasu i wydajność.</p>
+            <button class="btn btn-secondary mt-2" @onclick='() => NavigateToCategory("harvester")'>Zobacz ofertę</button>
+        </div>
+
+        <div class="col-md-4 text-center">
+            <img src="staticImage/657303_walec.jpg" alt="Walce drogowe" class="img-fluid" />
             <h3>Walce drogowe</h3>
             <p>Profesjonalne walce do zagęszczania nawierzchni, które sprawdzą się zarówno na budowie, jak i w projektach drogowych.</p>
             <button class="btn btn-secondary mt-2" @onclick='() => NavigateToCategory("Roller")'>Zobacz ofertę</button>
-        </div>
-        <div class="col-md-4 text-center">
-            <img src="images/harvester.png" alt="Kombajny leśne" class="img-fluid" />
-            <h3>Kombajny leśne</h3>
-            <p>Wydajne maszyny przeznaczone do prac leśnych i w gospodarstwach rolnych. Zapewniają oszczędność czasu i wydajność.</p>
-            <button class="btn btn-secondary mt-2" @onclick='() => NavigateToCategory("Harverster")'>Zobacz ofertę</button>
         </div>
     </div>
 

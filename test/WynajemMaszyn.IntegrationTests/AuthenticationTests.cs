@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using WynajemMaszyn.
 using WynajemMaszyn.Application.Authentication.Commands.Login;
 using WynajemMaszyn.Application.Authentication.Commands.Register;
 using WynajemMaszyn.Application.Contracts.Authentication;
