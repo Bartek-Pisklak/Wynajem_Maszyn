@@ -37,7 +37,7 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.CreateExcavators
 
             var excavator = new Excavator
             {
-                UserId = (int)userId,
+                UserId = userId,
                 Name = request.Name,
                 TypeExcavator = request.TypeExcavator,
                 TypeChassis = request.TypeChassis,

@@ -5,7 +5,6 @@ using WynajemMaszyn.Application.Features.Harvesters.Command.CreateHarvesters;
 using WynajemMaszyn.Application.Features.Harvesters.Command.EditHarvesters;
 using WynajemMaszyn.Application.Features.Harvesters.Queries.GetHarvesters;
 using WynajemMaszyn.Application.Features.Harvesters.Queries.DTOs;
-using Npgsql.Internal.TypeHandlers.NetworkHandlers;
 using Microsoft.AspNetCore.Components;
 
 namespace WynajemMaszyn.WebUI_server.Components.Pages.Form

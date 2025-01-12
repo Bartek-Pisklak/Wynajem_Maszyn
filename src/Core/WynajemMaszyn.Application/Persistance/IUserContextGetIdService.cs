@@ -5,7 +5,7 @@ namespace WynajemMaszyn.Application.Persistance
 {
     public interface IUserContextGetIdService
     {
-        int? GetUserId { get; }
+        string? GetUserId { get; }
         ClaimsPrincipal User { get; }
     }
 }

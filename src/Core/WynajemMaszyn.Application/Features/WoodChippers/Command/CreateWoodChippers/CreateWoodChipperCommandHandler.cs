@@ -34,7 +34,7 @@ namespace WynajemMaszyn.Application.Features.WoodChippers.Command.CreateWoodChip
 
             var woodChipper = new WoodChipper
             {
-                UserId= (int)userId,
+                UserId= userId,
                 Name = request.Name,
                 RentalPricePerDay = request.RentalPricePerDay,
                 ProductionYear = request.ProductionYear,

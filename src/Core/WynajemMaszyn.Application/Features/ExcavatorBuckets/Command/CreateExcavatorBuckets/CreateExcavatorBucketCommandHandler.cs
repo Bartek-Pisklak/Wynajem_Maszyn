@@ -33,7 +33,7 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.CreateExca
 
             var excavatorBucket = new ExcavatorBucket
             {
-                UserId = (int)userId,
+                UserId = userId,
                 Name = request.Name,
                 BucketType = request.BucketType,
                 ProductionYear = request.ProductionYear,

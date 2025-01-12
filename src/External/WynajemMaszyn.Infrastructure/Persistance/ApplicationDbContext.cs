@@ -1,11 +1,12 @@
 ﻿using WynajemMaszyn.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using WynajemMaszyn.Domain.Enums;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 
 namespace WynajemMaszyn.Infrastructure
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<User>
     {
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
@@ -79,6 +80,14 @@ namespace WynajemMaszyn.Infrastructure
             modelBuilder.Entity<Excavator>()
                    .Property(m => m.TypeExcavator)
                    .HasConversion<string>();
+
+
+
+            // identity
+            modelBuilder.Entity<IdentityUserLogin<string>>().HasKey(l => new { l.LoginProvider, l.ProviderKey });
+            modelBuilder.Entity<IdentityUserRole<string>>().HasKey(r => new { r.UserId, r.RoleId });
+            modelBuilder.Entity<IdentityUserToken<string>>().HasKey(t => new { t.UserId, t.LoginProvider, t.Name });
+
         }
     }
 }

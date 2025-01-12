@@ -49,7 +49,7 @@ namespace WynajemMaszyn.Application.UnitTests.Excavators.Commands.DeleteExcavato
             var deleteExcavatorCommand = DeleteExcavatorCommandUtils.DeleteExcavatorCommand();
 
             _mockIUserContextGetIdService.Setup(x => x.GetUserId)
-                .Returns(1);
+                .Returns("1");
 
             //act
             var result = await _handler.Handle(deleteExcavatorCommand, default);

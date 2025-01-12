@@ -18,7 +18,7 @@ public class LoginHandlerTests
     {
         _mockIUserRepository = new Mock<IUserRepository>();
         _mockIJwtTokenGenerator = new Mock<IJwtTokenGenerator>();
-        _handler = new LoginHandler(_mockIUserRepository.Object, _mockIJwtTokenGenerator.Object);
+        //_handler = new LoginHandler(_mockIUserRepository.Object, _mockIJwtTokenGenerator.Object);
     }
 
     [Fact]

@@ -33,14 +33,14 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, ErrorOr<R
             Email = request.Email,
             FirstName = request.FirstName,
             LastName = request.LastName,
-            Password = request.Password
+            PasswordHash = request.Password
         };
 
         var id = _userRepository.Add(user);
         MachineryRental blank = new MachineryRental();
         blank.UserId = id;
 
-        _machineryRentalRepository.CreateMachineryRental(blank);
+        await _machineryRentalRepository.CreateMachineryRental(blank);
 
         return new RegisterResponse(id);
     }

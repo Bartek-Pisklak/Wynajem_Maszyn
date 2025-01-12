@@ -48,7 +48,7 @@ namespace WynajemMaszyn.Application.UnitTests.Harvesters.Commands.EditHarvester
             var editHarvesterCommand = EditHarvesterCommandUtils.EditHarvesterCommand();
 
             _mockIUserContextGetIdService.Setup(x => x.GetUserId)
-                .Returns(1);
+                .Returns("1");
 
             //act
             var result = await _handler.Handle(editHarvesterCommand, default);

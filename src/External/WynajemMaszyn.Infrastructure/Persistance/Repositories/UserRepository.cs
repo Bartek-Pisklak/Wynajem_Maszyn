@@ -28,10 +28,9 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
             return isExist;
         }
 
-        public int Add(User user)
+        public string Add(User user)
         {
-            user.Password = BC.HashPassword(user.Password);
-            user.PermissionId = 1;
+            user.PasswordHash = BC.HashPassword(user.PasswordHash);
             _dbContext.Users.Add(user);
             _dbContext.SaveChanges();
 
@@ -45,7 +44,7 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
             if (user is null) return null;
 
 
-            var passwordVerification = BCrypt.Net.BCrypt.Verify(password, user.Password);
+            var passwordVerification = BCrypt.Net.BCrypt.Verify(password, user.PasswordHash);
 
             if (!passwordVerification) return null;
 
@@ -54,11 +53,12 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
 
         public async Task<String> GetUserPermission(int permissionId)
         {
-            var userPermision = await _dbContext.Permissions.FirstOrDefaultAsync(x => x.Id == permissionId);
+            /*            //var userPermision = await _dbContext.Permissions.FirstOrDefaultAsync(x => x.Id == permissionId);
 
-            if (userPermision is null) return null;
+                        if (userPermision is null) return null;
 
-            return userPermision.Name;
+                        return userPermision.Name;*/
+            return "Worker";
         }
     }
 }

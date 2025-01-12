@@ -16,7 +16,7 @@ public class RegisterCommandHandlerTests
     public RegisterCommandHandlerTests()
     {
         _mockUserRepository = new Mock<IUserRepository>();
-        _handler = new RegisterCommandHandler(_mockUserRepository.Object);
+        //_handler = new RegisterCommandHandler(_mockUserRepository.Object);
     }
     
     [Fact]

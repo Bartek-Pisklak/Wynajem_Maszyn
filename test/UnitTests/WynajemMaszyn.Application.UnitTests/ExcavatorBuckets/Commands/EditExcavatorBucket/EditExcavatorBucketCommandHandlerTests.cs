@@ -47,7 +47,7 @@ namespace WynajemMaszyn.Application.UnitTests.ExcavatorBuckets.Commands.EditExca
             var EditExcavatorBucketCommand = EditExcavatorBucketCommandUtils.EditExcavatorBucketCommand();
 
             _mockIUserContextGetIdService.Setup(x => x.GetUserId)
-                .Returns(1);
+                .Returns("1");
 
             //act
             var result = await _handler.Handle(EditExcavatorBucketCommand, default);

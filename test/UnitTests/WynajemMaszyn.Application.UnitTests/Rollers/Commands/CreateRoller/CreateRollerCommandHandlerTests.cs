@@ -47,7 +47,7 @@ namespace WynajemMaszyn.Application.UnitTests.Rollers.Commands.CreateRoller
             var createRollerCommand = CreateRollerCommandUtils.CreateRollerCommand();
 
             _mockIUserContextGetIdService.Setup(x => x.GetUserId)
-                .Returns(1);
+                .Returns("1");
 
             //act
             var result = await _handler.Handle(createRollerCommand, default);

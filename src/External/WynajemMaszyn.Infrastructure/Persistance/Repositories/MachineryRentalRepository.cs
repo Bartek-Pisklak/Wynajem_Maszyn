@@ -32,7 +32,7 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<MachineryRental?>> GetAllMachineryRentalUser(int idUser)
+        public async Task<IEnumerable<MachineryRental?>> GetAllMachineryRentalUser(string idUser)
         {
 
             var machineryRentalList = await _dbContext.MachineryRentals.Where(c => c.UserId == idUser)
@@ -93,12 +93,12 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
 
         }
 
-        public async Task AddMachineryIdToCart(int idMachine, int idUser)
+        public async Task AddMachineryIdToCart(int idMachine, string idUser)
         {
             throw new NotImplementedException();
         }
 
-        public async Task DeleteMachineryIdToCart(int idMachine, int idUser)
+        public async Task DeleteMachineryIdToCart(int idMachine, string idUser)
         {
 
             var result = await _dbContext.MachineryRentalLists.FirstOrDefaultAsync(c => c.MachineryId == idMachine);
@@ -110,5 +110,6 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
             _dbContext.MachineryRentalLists.Remove(result);
             await _dbContext.SaveChangesAsync();
         }
+
     }
 }

@@ -35,7 +35,7 @@ namespace WynajemMaszyn.Application.Features.Harvesters.Command.CreateHarvesters
 
             var harvester = new Harvester
             {
-                UserId = (int)userId,
+                UserId = userId,
                 Name = request.Name,
                 ProductionYear = request.ProductionYear,
                 OperatingHours = request.OperatingHours,

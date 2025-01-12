@@ -1,7 +1,6 @@
 ﻿version: '3.4'
 
 services: 
-
   db:
     image: postgres:latest
     container_name: db_Machine
@@ -15,6 +14,8 @@ services:
       - 5432:5432
     restart: always
     
+
+
   pgadmin:
     container_name: pgadmin4_Machine
     image: dpage/pgadmin4

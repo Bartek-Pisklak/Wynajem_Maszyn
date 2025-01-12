@@ -47,7 +47,7 @@ namespace WynajemMaszyn.Application.UnitTests.Rollers.Commands.DeleteRoller
             var deleteRollerCommand = DeleteRollerCommandUtils.DeleteRollerCommand();
 
             _mockIUserContextGetIdService.Setup(x => x.GetUserId)
-                .Returns(1);
+                .Returns("1");
 
             //act
             var result = await _handler.Handle(deleteRollerCommand, default);

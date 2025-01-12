@@ -1,3 +1,3 @@
 ﻿namespace WynajemMaszyn.Application.Contracts.Authentication;
 
-public record RegisterResponse(int Id);
+public record RegisterResponse(string Id);

@@ -10,11 +10,11 @@ namespace WynajemMaszyn.Domain.Entities
     public class MachineryRental
     {
         public int Id { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public float Cost { get; set; }
 
-        public DateTime BeginRent { get; set; }
-        public DateTime EndRent { get; set; }
+        public DateTime BeginRent { get; set; } = DateTime.Today.ToUniversalTime();
+        public DateTime EndRent { get; set; } = DateTime.Today.ToUniversalTime();
         public RentalStatus RentalStatus { get; set; } = RentalStatus.koszyk;
 
 

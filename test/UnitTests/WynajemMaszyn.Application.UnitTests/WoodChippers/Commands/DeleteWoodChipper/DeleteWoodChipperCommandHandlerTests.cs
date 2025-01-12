@@ -48,7 +48,7 @@ namespace WynajemMaszyn.Application.UnitTests.WoodChippers.Commands.DeleteWoodCh
             var deleteWoodChipperCommand = DeleteWoodChipperCommandUtils.DeleteWoodChipperCommand();
 
             _mockIUserContextGetIdService.Setup(x => x.GetUserId)
-                .Returns(1);
+                .Returns("1");
 
             //act
             var result = await _handler.Handle(deleteWoodChipperCommand, default);

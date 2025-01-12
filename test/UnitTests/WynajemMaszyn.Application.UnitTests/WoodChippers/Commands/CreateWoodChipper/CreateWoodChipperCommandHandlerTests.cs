@@ -47,7 +47,7 @@ namespace WynajemMaszyn.Application.UnitTests.WoodChippers.Commands.CreateWoodCh
             var createWoodChipperCommand = CreateWoodChipperCommandUtils.CreateWoodChipperCommand();
 
             _mockIUserContextGetIdService.Setup(x => x.GetUserId)
-                .Returns(1);
+                .Returns("1");
 
             //act
             var result = await _handler.Handle(createWoodChipperCommand, default);

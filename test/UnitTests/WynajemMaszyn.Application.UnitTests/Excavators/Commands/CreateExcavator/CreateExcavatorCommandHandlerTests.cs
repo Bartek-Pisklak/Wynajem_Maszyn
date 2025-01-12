@@ -52,7 +52,7 @@ namespace WynajemMaszyn.Application.UnitTests.Excavators.Commands.CreateExcavato
             var createExcavatorCommand = CreateExcavatorCommandUtils.CreateExcavatorCommand();
 
             _mockIUserContextGetIdService.Setup(x => x.GetUserId)
-                .Returns(1);
+                .Returns("1");
 
             //act
             var result = await _handler.Handle(createExcavatorCommand, default);

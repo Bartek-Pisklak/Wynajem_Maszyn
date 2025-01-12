@@ -50,7 +50,7 @@ namespace WynajemMaszyn.Application.UnitTests.ExcavatorBuckets.Commands.CreateEx
             var createExcavatorBucketCommand = CreateExcavatorBucketCommandUtils.CreateExcavatorBucketCommand();
 
             _mockIUserContextGetIdService.Setup(x => x.GetUserId)
-                .Returns(1);
+                .Returns("1");
 
             //act
             var result = await _handler.Handle(createExcavatorBucketCommand, default);

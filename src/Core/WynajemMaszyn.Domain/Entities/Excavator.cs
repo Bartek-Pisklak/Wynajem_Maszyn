@@ -5,7 +5,7 @@ namespace WynajemMaszyn.Domain.Entities
     public class Excavator
     {
         public int Id { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public string Name { get; set; }
         public TypeExcavator TypeExcavator { get; set; }
         public TypeChassis TypeChassis { get; set; }
