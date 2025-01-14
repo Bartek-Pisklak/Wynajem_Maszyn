@@ -33,22 +33,11 @@ public static class DependencyInjection
             .AddDefaultTokenProviders();
 
 
-        //services.AddScoped<IUserManagerService, UserService>();
-
-        //services.AddScoped<IdentityUserAccessor>();
+        services.AddScoped<IUserManagerService, UserManagerService>();
+        services.AddScoped<ISignInManagerService, SignInManagerService>();
 
 
         services.AddSingleton<IEmailSender<User>, IdentityNoOpEmailSender>();
-
-        /*        services.AddDbContext<ApplicationDbContext>(options =>
-                    options.UseNpgsql(configuration.GetConnectionString("Default"),
-                        r =>
-                            r.MigrationsAssembly(typeof(AssemblyReference).Assembly.ToString())));*/
-        // Konfiguracja Identity
-        /*        services.AddIdentity<User, IdentityRole>()
-                    .AddEntityFrameworkStores<ApplicationDbContext>()
-                    .AddDefaultTokenProviders();
-        */
 
 
         services.AddScoped<IUserRepository, UserRepository>();

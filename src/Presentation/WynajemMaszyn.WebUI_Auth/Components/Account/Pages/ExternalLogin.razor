@@ -6,10 +6,13 @@
 @using System.Text.Encodings.Web
 @using Microsoft.AspNetCore.Identity
 @using Microsoft.AspNetCore.WebUtilities
+@using WynajemMaszyn.Application.Persistance.Auth
 @using WynajemMaszyn.Domain.Entities
 
-@inject SignInManager<User> SignInManager
-@inject UserManager<User> UserManager
+@inject ISignInManagerService SignInManager
+@inject IUserManagerService UserManager
+
+
 @inject IUserStore<User> UserStore
 @inject IEmailSender<User> EmailSender
 @inject NavigationManager NavigationManager
@@ -151,7 +154,7 @@
                 await EmailSender.SendConfirmationLinkAsync(user, Input.Email, HtmlEncoder.Default.Encode(callbackUrl));
 
                 // If account confirmation is required, we need to show the link if we don't have a real email sender
-                if (UserManager.Options.SignIn.RequireConfirmedAccount)
+                if (UserManager.UserManagerOptionsSignInRequireConfirmedAccount())
                 {
                     RedirectManager.RedirectTo("Account/RegisterConfirmation", new() { ["email"] = Input.Email });
                 }
@@ -179,7 +182,7 @@
 
     private IUserEmailStore<User> GetEmailStore()
     {
-        if (!UserManager.SupportsUserEmail)
+        if (!UserManager.SupportsUserEmail())
         {
             throw new NotSupportedException("The default UI requires a user store with email support.");
         }

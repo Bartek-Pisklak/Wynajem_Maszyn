@@ -11,8 +11,8 @@
 
 
 
-@inject UserManager<User> UserManager
-@inject SignInManager<User> SignInManager
+@inject IUserManagerService UserManager
+@inject ISignInManagerService SignInManager
 
 
 @inject IUserStore<User> UserStore
@@ -98,7 +98,7 @@
 
         await EmailSender.SendConfirmationLinkAsync(user, Input.Email, HtmlEncoder.Default.Encode(callbackUrl));
 
-        if (UserManager.Options.SignIn.RequireConfirmedAccount)
+        if (UserManager.UserManagerOptionsSignInRequireConfirmedAccount())
         {
             RedirectManager.RedirectTo(
                 "Account/RegisterConfirmation",
@@ -124,7 +124,7 @@
 
     private IUserEmailStore<User> GetEmailStore()
     {
-        if (!UserManager.SupportsUserEmail)
+        if (UserManager.SupportsUserEmail())
         {
             throw new NotSupportedException("The default UI requires a user store with email support.");
         }

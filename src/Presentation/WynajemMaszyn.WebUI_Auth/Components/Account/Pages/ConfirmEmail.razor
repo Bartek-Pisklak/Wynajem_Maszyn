@@ -3,10 +3,11 @@
 @using System.Text
 @using Microsoft.AspNetCore.Identity
 @using Microsoft.AspNetCore.WebUtilities
-@using WynajemMaszyn.Domain.Entities
+@using WynajemMaszyn.Application.Persistance.Auth
 
 
-@inject UserManager<User> UserManager
+
+@inject IUserManagerService UserManager
 @inject IdentityRedirectManager RedirectManager
 
 <PageTitle>Confirm email</PageTitle>

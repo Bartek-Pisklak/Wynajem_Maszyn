@@ -1,8 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Domain.Entities;
-using WynajemMaszyn.Infrastructure;
 
 namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
 {

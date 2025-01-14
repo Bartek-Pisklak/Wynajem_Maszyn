@@ -1,11 +1,12 @@
 ﻿@page "/Account/Manage/ResetAuthenticator"
 
 @using Microsoft.AspNetCore.Identity
-@using WynajemMaszyn.Domain.Entities
+@using WynajemMaszyn.Application.Persistance.Auth
 
 
-@inject UserManager<User> UserManager
-@inject SignInManager<User> SignInManager
+@inject IUserManagerService UserManager
+@inject ISignInManagerService SignInManager
+
 @inject IdentityUserAccessor UserAccessor
 @inject IdentityRedirectManager RedirectManager
 @inject ILogger<ResetAuthenticator> Logger

@@ -8,9 +8,9 @@ namespace WynajemMaszyn.Domain.Enums
 {
     public enum TypeExcavator
     {
-        mała = 0,
-        średnia =1,
-        duża = 2,
-        koparko_ładowarka = 3
+        mała,
+        średnia,
+        duża,
+        koparko_ładowarka
     }
 }
