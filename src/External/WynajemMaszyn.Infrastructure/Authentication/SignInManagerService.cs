@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
+using System.Diagnostics.CodeAnalysis;
 using WynajemMaszyn.Application.Persistance.Auth;
 using WynajemMaszyn.Domain.Entities;
 
@@ -8,14 +9,21 @@ namespace WynajemMaszyn.Infrastructure.Authentication
     public class SignInManagerService : ISignInManagerService
     {
         private readonly SignInManager<User> _signInManager;
+        public IUserManagerService UserManager { get;  set; }
 
-
-        public SignInManagerService(SignInManager<User> signInManager) 
+        public SignInManagerService(SignInManager<User> signInManager, IUserManagerService userManagerService) 
         {
             _signInManager = signInManager;
+            UserManager = userManagerService;
         }
 
         public IdentityOptions Options { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        public AuthenticationProperties ConfigureExternalAuthenticationProperties(string? provider, [StringSyntax("Uri")] string? redirectUrl, string? userId = null)
+        {
+            var result = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl, userId);
+            return result;
+        }
 
         public async Task<SignInResult> ExternalLoginSignInAsync(string loginProvider, string providerKey, bool isPersistent)
         {
@@ -79,6 +87,10 @@ namespace WynajemMaszyn.Infrastructure.Authentication
             await _signInManager.SignInAsync(user, isPersistent, authenticationMethod);
         }
 
+        public async Task SignOutAsync()
+        {
+            await _signInManager.SignOutAsync();
+        }
 
         public async Task<SignInResult> TwoFactorAuthenticatorSignInAsync(string code, bool isPersistent, bool rememberClient)
         {

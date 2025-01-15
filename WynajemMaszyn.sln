@@ -32,7 +32,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WynajemMaszyn.Application.U
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WynajemMaszyn.WebUI_server", "src\Presentation\WynajemMaszyn.WebUI_server\WynajemMaszyn.WebUI_server.csproj", "{803E6C59-73C1-4095-9990-8774EB2C8563}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WynajemMaszyn.WebUI_Auth", "src\Presentation\WynajemMaszyn.WebUI_Auth\WynajemMaszyn.WebUI_Auth.csproj", "{98C32964-3D7F-477E-B5A1-BC88730F8DE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WynajemMaszyn.WebUI", "src\Presentation\WynajemMaszyn.WebUI_Auth\WynajemMaszyn.WebUI.csproj", "{98C32964-3D7F-477E-B5A1-BC88730F8DE7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

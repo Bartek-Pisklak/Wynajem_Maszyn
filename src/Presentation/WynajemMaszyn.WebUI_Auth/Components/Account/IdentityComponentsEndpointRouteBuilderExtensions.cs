@@ -1,14 +1,10 @@
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Primitives;
 using System.Security.Claims;
-using System.Text.Json;
-using WynajemMaszyn.Domain.Entities;
-using WynajemMaszyn.WebUI_Auth.Components.Account.Pages;
-using WynajemMaszyn.WebUI_Auth.Components.Account.Pages.Manage;
+using WynajemMaszyn.Application.Persistance.Auth;
+using WynajemMaszyn.WebUI.Components.Account.Pages.Manage;
 
 
 namespace Microsoft.AspNetCore.Routing
@@ -22,31 +18,14 @@ namespace Microsoft.AspNetCore.Routing
 
             var accountGroup = endpoints.MapGroup("/Account");
 
-            accountGroup.MapPost("/PerformExternalLogin", (
-                HttpContext context,
-                [FromServices] SignInManager<User> signInManager,
-                [FromForm] string provider,
-                [FromForm] string returnUrl) =>
-            {
-                IEnumerable<KeyValuePair<string, StringValues>> query = [
-                    new("ReturnUrl", returnUrl),
-                    new("Action", ExternalLogin.LoginCallbackAction)];
-
-                var redirectUrl = UriHelper.BuildRelative(
-                    context.Request.PathBase,
-                    "/Account/ExternalLogin",
-                    QueryString.Create(query));
-
-                var properties = signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
-                return TypedResults.Challenge(properties, [provider]);
-            });
 
             accountGroup.MapPost("/Logout", async (
                 ClaimsPrincipal user,
-                SignInManager<User> signInManager,
+                ISignInManagerService signInManager,
                 [FromForm] string returnUrl) =>
             {
                 await signInManager.SignOutAsync();
+                Console.WriteLine("ICHUJ");
                 return TypedResults.LocalRedirect($"~/{returnUrl}");
             });
 
@@ -54,7 +33,7 @@ namespace Microsoft.AspNetCore.Routing
 
             manageGroup.MapPost("/LinkExternalLogin", async (
                 HttpContext context,
-                [FromServices] SignInManager<User> signInManager,
+                [FromServices] ISignInManagerService signInManager,
                 [FromForm] string provider) =>
             {
                 // Clear the existing external cookie to ensure a clean login process
@@ -70,43 +49,6 @@ namespace Microsoft.AspNetCore.Routing
             });
 
             var loggerFactory = endpoints.ServiceProvider.GetRequiredService<ILoggerFactory>();
-            var downloadLogger = loggerFactory.CreateLogger("DownloadPersonalData");
-
-            manageGroup.MapPost("/DownloadPersonalData", async (
-                HttpContext context,
-                [FromServices] UserManager<User> userManager,
-                [FromServices] AuthenticationStateProvider authenticationStateProvider) =>
-            {
-                var user = await userManager.GetUserAsync(context.User);
-                if (user is null)
-                {
-                    return Results.NotFound($"Unable to load user with ID '{userManager.GetUserId(context.User)}'.");
-                }
-
-                var userId = await userManager.GetUserIdAsync(user);
-                downloadLogger.LogInformation("User with ID '{UserId}' asked for their personal data.", userId);
-
-                // Only include personal data for download
-                var personalData = new Dictionary<string, string>();
-                var personalDataProps = typeof(User).GetProperties().Where(
-                    prop => Attribute.IsDefined(prop, typeof(PersonalDataAttribute)));
-                foreach (var p in personalDataProps)
-                {
-                    personalData.Add(p.Name, p.GetValue(user)?.ToString() ?? "null");
-                }
-
-                var logins = await userManager.GetLoginsAsync(user);
-                foreach (var l in logins)
-                {
-                    personalData.Add($"{l.LoginProvider} external login provider key", l.ProviderKey);
-                }
-
-                personalData.Add("Authenticator Key", (await userManager.GetAuthenticatorKeyAsync(user))!);
-                var fileBytes = JsonSerializer.SerializeToUtf8Bytes(personalData);
-
-                context.Response.Headers.TryAdd("Content-Disposition", "attachment; filename=PersonalData.json");
-                return TypedResults.File(fileBytes, contentType: "application/json", fileDownloadName: "PersonalData.json");
-            });
 
             return accountGroup;
         }

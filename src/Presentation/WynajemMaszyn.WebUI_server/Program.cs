@@ -35,7 +35,6 @@ using (var scope = app.Services.CreateScope())
     var seeder = services.GetRequiredService<Seeder>();
 
     // Seed permissions
-    await seeder.SeedPermissionsAsync();
 }
 
 app.UseAuthentication();

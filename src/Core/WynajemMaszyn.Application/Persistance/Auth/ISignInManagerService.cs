@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using WynajemMaszyn.Domain.Entities;
 
@@ -23,8 +24,10 @@ namespace WynajemMaszyn.Application.Persistance.Auth
         Task<IEnumerable<AuthenticationScheme>> GetExternalAuthenticationSchemesAsync();
         Task<User?> GetTwoFactorAuthenticationUserAsync();
         Task ForgetTwoFactorClientAsync();
+        Task SignOutAsync();
+        IUserManagerService UserManager { get; set; }
         Task<SignInResult> TwoFactorAuthenticatorSignInAsync(string code, bool isPersistent, bool rememberClient);
         Task<bool> IsTwoFactorClientRememberedAsync(User user);
-
+        AuthenticationProperties ConfigureExternalAuthenticationProperties(string? provider, [StringSyntax("Uri")] string? redirectUrl, string? userId = null);
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using WynajemMaszyn.Domain.Entities;
 
 namespace WynajemMaszyn.Infrastructure.Persistance.Seeders;
@@ -7,33 +8,29 @@ public class Seeder
 {
     private readonly ApplicationDbContext _dbContext;
 
+
     public Seeder(ApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
     }
 
-    public async Task SeedPermissionsAsync()
+    public async Task SeedRolesAsync()
     {
-        // Define the initial permissions to seed
-        var permissions = new List<Permission>
+        if (!_dbContext.Roles.Any())
+        {
+            var roles = new List<IdentityRole>
             {
-                new Permission { Name = "Client" },
-                new Permission { Name = "Worker" },
-                new Permission { Name = "Admin" },
+                new IdentityRole { Name = "Admin", NormalizedName = "ADMIN" },
+                new IdentityRole { Name = "User", NormalizedName = "USER" }
             };
 
-        var existingPermissions = await _dbContext.Permissions.ToListAsync();
-
-        if (!existingPermissions.Any())
-        {
-            // If no permissions exist, add them
-            await _dbContext.Permissions.AddRangeAsync(permissions);
+            _dbContext.Roles.AddRange(roles);
             await _dbContext.SaveChangesAsync();
         }
     }
 
 
-        public void ApplyPendingMigrations()
+    public void ApplyPendingMigrations()
         {
         if (_dbContext.Database.CanConnect() && _dbContext.Database.IsRelational())
         {

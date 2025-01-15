@@ -3,10 +3,11 @@ using Microsoft.AspNetCore.Components.Server;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using System.Security.Claims;
-using WynajemMaszyn.Domain.Entities;
+using WynajemMaszyn.Application.Persistance.Auth;
 
 
-namespace WynajemMaszyn.WebUI_Auth.Components.Account
+
+namespace WynajemMaszyn.WebUI.Components.Account
 {
     // This is a server-side AuthenticationStateProvider that revalidates the security stamp for the connected user
     // every 30 minutes an interactive circuit is connected.
@@ -23,18 +24,18 @@ namespace WynajemMaszyn.WebUI_Auth.Components.Account
         {
             // Get the user manager from a new scope to ensure it fetches fresh data
             await using var scope = scopeFactory.CreateAsyncScope();
-            var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
+            var userManager = scope.ServiceProvider.GetRequiredService<IUserManagerService>();
             return await ValidateSecurityStampAsync(userManager, authenticationState.User);
         }
 
-        private async Task<bool> ValidateSecurityStampAsync(UserManager<User> userManager, ClaimsPrincipal principal)
+        private async Task<bool> ValidateSecurityStampAsync(IUserManagerService userManager, ClaimsPrincipal principal)
         {
             var user = await userManager.GetUserAsync(principal);
             if (user is null)
             {
                 return false;
             }
-            else if (!userManager.SupportsUserSecurityStamp)
+            else if (!userManager.SupportsUserSecurityStamp())
             {
                 return true;
             }

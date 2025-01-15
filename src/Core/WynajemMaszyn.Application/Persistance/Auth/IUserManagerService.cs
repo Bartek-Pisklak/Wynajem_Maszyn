@@ -44,6 +44,8 @@ namespace WynajemMaszyn.Application.Persistance.Auth
         string? GetUserId(ClaimsPrincipal principal);
 
 
+        Task<string> GetSecurityStampAsync(User user);
+        bool SupportsUserSecurityStamp();
         bool UserManagerOptionsSignInRequireConfirmedAccount();
         string UserManagerOptionsTokensAuthenticatorTokenProvider();
 

@@ -1,7 +1,72 @@
 ﻿@page "/"
+@using Microsoft.AspNetCore.Components
+@rendermode InteractiveServer
+@inject NavigationManager NavigationManager
 
-<PageTitle>Home</PageTitle>
+<div class="container mt-5" style="margin-bottom: 3cm;">
+    <div class="text-center">
+        <h1>Witamy w naszej firmie wynajmu maszyn ciężkich!</h1>
+        <p class="lead mt-3">
+            Jesteśmy liderem w wynajmie sprzętu budowlanego i rolniczego. Naszym celem jest dostarczanie najwyższej jakości maszyn, które pomogą Ci zrealizować nawet najbardziej wymagające projekty.
+        </p>
+        <p>
+            Dzięki wieloletniemu doświadczeniu w branży, doskonale rozumiemy potrzeby naszych klientów. Współpracujemy z najlepszymi producentami, oferując sprzęt, który spełnia wszystkie wymagania bezpieczeństwa i wydajności.
+        </p>
+        <p>
+            Oferujemy:
+        </p>
+        <ul class="list-unstyled">
+            <li><strong>Elastyczne warunki wynajmu:</strong> Dostosowujemy czas i warunki wynajmu do Twoich potrzeb.</li>
+            <li><strong>Profesjonalną obsługę:</strong> Nasz zespół pomoże Ci wybrać odpowiednią maszynę i zapewni wsparcie techniczne.</li>
+            <li><strong>Konkurencyjne ceny:</strong> Oferujemy atrakcyjne stawki zarówno dla długoterminowych, jak i krótkoterminowych wynajmów.</li>
+        </ul>
+        <p>
+            Nie czekaj! Skorzystaj z naszej szerokiej oferty i przekonaj się, jak łatwo możesz zrealizować swoje projekty z naszym wsparciem.
+        </p>
+    </div>
 
-<h1>Hello, world!</h1>
+    <div class="row mt-5">
+        <div class="col-md-4 text-center">
+            <img src="staticImage/IMG_20240727_184537_koparka.jpg" alt="Koparki" class="img-fluid" />
+            <h3>Koparki</h3>
+            <p>Nasze koparki to gwarancja precyzyjnej pracy w każdych warunkach. Idealne dla dużych projektów budowlanych.</p>
+            <button class="btn btn-secondary mt-2" @onclick='() => NavigateToCategory("Excavator")'>Zobacz ofertę</button>
+        </div>
 
-Welcome to your new app.
+        <div class="col-md-4 text-center">
+            <img src="staticImage/IMG_20240727_184438_harvester.jpg" alt="Harvester" class="img-fluid" />
+            <h3>Harvester</h3>
+            <p>Wydajne maszyny przeznaczone do prac leśnych i w gospodarstwach rolnych. Zapewniają oszczędność czasu i wydajność.</p>
+            <button class="btn btn-secondary mt-2" @onclick='() => NavigateToCategory("harvester")'>Zobacz ofertę</button>
+        </div>
+
+        <div class="col-md-4 text-center">
+            <img src="staticImage/657303_walec.jpg" alt="Walce drogowe" class="img-fluid" />
+            <h3>Walce drogowe</h3>
+            <p>Profesjonalne walce do zagęszczania nawierzchni, które sprawdzą się zarówno na budowie, jak i w projektach drogowych.</p>
+            <button class="btn btn-secondary mt-2" @onclick='() => NavigateToCategory("Roller")'>Zobacz ofertę</button>
+        </div>
+    </div>
+
+    <div class="mt-5 text-center">
+        <h2>Dlaczego warto wybrać nas?</h2>
+        <p>
+            Nasza firma to synonim niezawodności i profesjonalizmu. Zaufaj nam, a my zadbamy o to, aby Twój projekt przebiegł sprawnie i bez problemów.
+        </p>
+        <ul class="list-unstyled">
+            <li><strong>Najlepsze maszyny:</strong> Oferujemy tylko nowoczesny i regularnie serwisowany sprzęt.</li>
+            <li><strong>Bez ukrytych kosztów:</strong> Wszystkie warunki wynajmu są jasne i przejrzyste.</li>
+            <li><strong>Szybka dostawa:</strong> Dostarczamy sprzęt bezpośrednio na miejsce pracy.</li>
+        </ul>
+        <p>Dołącz do grona zadowolonych klientów i zacznij współpracę z nami już dziś!</p>
+    </div>
+</div>
+
+@code {
+
+
+    private void NavigateToCategory(string category)
+    {
+        NavigationManager.NavigateTo($"/{category}");
+    }
+}

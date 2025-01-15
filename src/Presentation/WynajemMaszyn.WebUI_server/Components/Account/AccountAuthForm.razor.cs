@@ -54,7 +54,6 @@ namespace WynajemMaszyn.WebUI_server.Components.Account
                 formModel.Email,
                 formModel.Password
                 );
-                await Mediator.Send(command);
                 var response = await Mediator.Send(command);
                 /*
                                 var claims = new List<Claim>()

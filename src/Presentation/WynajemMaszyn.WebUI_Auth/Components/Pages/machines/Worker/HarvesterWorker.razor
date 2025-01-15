@@ -1,0 +1,65 @@
+﻿@page "/HarvesterWorker"
+
+@using MediatR
+@rendermode InteractiveServer
+@inject NavigationManager navigationManager
+@inject IMediator Mediator
+
+
+
+<div class="d-flex justify-content-between">
+    <h4>Lista Harvesterów</h4>
+    <button class="btn btn-primary" @onclick="AddHarvester">Dodaj harvester</button>
+</div>
+
+
+
+@if (harvester == null)
+{
+    <p><em>Brak Maszyn</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Zdjęcie</th>
+                <th>Name</th>
+                <th>Production Year</th>
+                <th>Operating Hours</th>
+                <th>Weight</th>
+                <th>Engine</th>
+                <th>Engine Power</th>
+                <th>IsRepair</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var machine in harvester)
+            {
+                <tr>
+                    <td>
+                        @if (!string.IsNullOrEmpty(machine.ImagePath))
+                        {
+                            <img src="@machine.ImagePath" alt="Machine Image" style="max-width: 100px; max-height: 100px; object-fit: cover;" />
+                        }
+                        else
+                        {
+                            <span>No Image</span>
+                        }
+                    </td>
+                    <td>@machine.Name</td>
+                    <td>@machine.ProductionYear</td>
+                    <td>@machine.OperatingHours</td>
+                    <td>@machine.Weight</td>
+                    <td>@machine.Engine</td>
+                    <td>@machine.EnginePower</td>
+                    <td>@machine.IsRepair</td>
+                    <td>
+                        <button class="btn btn-sm btn-secondary" @onclick="() => EditHarvester(machine.Id)">Edytuj</button>
+                        <button class="btn btn-sm btn-danger" @onclick="() => DeleteHarvester(machine.Id)">Usuń</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

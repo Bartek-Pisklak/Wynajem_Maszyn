@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using System.Diagnostics.CodeAnalysis;
 
-namespace WynajemMaszyn.WebUI_Auth.Components.Account
+namespace WynajemMaszyn.WebUI.Components.Account
 {
     internal sealed class IdentityRedirectManager(NavigationManager navigationManager)
     {

@@ -5,7 +5,7 @@ using WynajemMaszyn.Domain.Entities;
 namespace WynajemMaszyn.Infrastructure.Authentication
 {
     // Remove the "else if (EmailSender is IdentityNoOpEmailSender)" block from RegisterConfirmation.razor after updating with a real implementation.
-    internal sealed class IdentityNoOpEmailSender : IEmailSender<User>
+/*    public class IdentityNoOpEmailSender : IEmailSender<User>
     {
         private readonly IEmailSender emailSender = new NoOpEmailSender();
 
@@ -17,5 +17,5 @@ namespace WynajemMaszyn.Infrastructure.Authentication
 
         public Task SendPasswordResetCodeAsync(User user, string email, string resetCode) =>
             emailSender.SendEmailAsync(email, "Reset your password", $"Please reset your password using the following code: {resetCode}");
-    }
+    }*/
 }

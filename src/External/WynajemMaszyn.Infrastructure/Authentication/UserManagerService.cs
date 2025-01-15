@@ -1,7 +1,4 @@
-﻿
-using ErrorOr;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Security.Claims;
 using WynajemMaszyn.Application.Persistance.Auth;
@@ -11,12 +8,16 @@ using WynajemMaszyn.Domain.Entities;
 public class UserManagerService : IUserManagerService
 {
     private readonly UserManager<User> _userManager;
+    private readonly IUserStore<User> _userStore;
 
-
-    public UserManagerService(UserManager<User> userManager)
+    public UserManagerService(UserManager<User> userManager, IUserStore<User> userStore)
     {
         _userManager = userManager;
+        _userStore = userStore;
     }
+
+
+
 
     public async Task<IdentityResult> AddLoginAsync(User user, UserLoginInfo login)
     {
@@ -128,6 +129,12 @@ public class UserManagerService : IUserManagerService
         return result;
     }
 
+    public async Task<string> GetSecurityStampAsync(User user)
+    {
+        var result = await _userManager.GetSecurityStampAsync(user);
+        return result;
+    }
+
     public async Task<bool> GetTwoFactorEnabledAsync(User user)
     {
         var result = await _userManager.GetTwoFactorEnabledAsync(user);
@@ -210,6 +217,11 @@ public class UserManagerService : IUserManagerService
     {
         var result = _userManager.SupportsUserEmail;
         return result;
+    }
+
+    public bool SupportsUserSecurityStamp()
+    {
+        return _userManager.SupportsUserSecurityStamp;
     }
 
     public bool UserManagerOptionsSignInRequireConfirmedAccount()

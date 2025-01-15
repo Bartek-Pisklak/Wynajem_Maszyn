@@ -1,0 +1,118 @@
+﻿@using MediatR
+@rendermode InteractiveServer
+
+@inject IJSRuntime JSRuntime
+@inject IMediator Mediator
+@inject NavigationManager navigationManager
+@page "/ExcavatorBucketForm"
+
+
+<h3>Formularz dodawania łyzki do koparki </h3>
+
+<div id="top"></div>
+
+@if (validationErrors != null && validationErrors.Any())
+{
+    <div class="alert alert-danger">
+        <ul>
+            @foreach (var error in validationErrors)
+            {
+                <li>@error</li>
+            }
+        </ul>
+    </div>
+}
+
+<EditForm Model="@machinery" OnValidSubmit="HandleValidSubmit" style="margin-bottom: 5cm;">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="name">Nazwa maszyny</label>
+        <InputText id="name" class="form-control" @bind-Value="machinery.Name" />
+    </div>
+
+    <div class="form-group">
+        <label for="bucketType">Typ łyżki</label>
+        <InputText id="bucketType" class="form-control" @bind-Value="machinery.BucketType" />
+    </div>
+
+    <div class="form-group">
+        <label for="productionYear">Rok produkcji</label>
+        <InputNumber id="productionYear" class="form-control" @bind-Value="machinery.ProductionYear" />
+    </div>
+
+    <div class="form-group">
+        <label for="bucketCapacity">Pojemność łyżki (m³)</label>
+        <InputNumber id="bucketCapacity" class="form-control" @bind-Value="machinery.BucketCapacity" />
+    </div>
+
+    <div class="form-group">
+        <label for="weight">Waga (kg)</label>
+        <InputNumber id="weight" class="form-control" @bind-Value="machinery.Weight" />
+    </div>
+
+    <div class="form-group">
+        <label for="width">Szerokość (cm)</label>
+        <InputNumber id="width" class="form-control" @bind-Value="machinery.Width" />
+    </div>
+
+    <div class="form-group">
+        <label for="pinDiameter">Średnica sworznia (mm)</label>
+        <InputNumber id="pinDiameter" class="form-control" @bind-Value="machinery.PinDiameter" />
+    </div>
+
+    <div class="form-group">
+        <label for="armWidth">Szerokość ramienia (cm)</label>
+        <InputNumber id="armWidth" class="form-control" @bind-Value="machinery.ArmWidth" />
+    </div>
+
+    <div class="form-group">
+        <label for="pinSpacing">Rozstaw sworzni (mm)</label>
+        <InputNumber id="pinSpacing" class="form-control" @bind-Value="machinery.PinSpacing" />
+    </div>
+
+    <div class="form-group">
+        <label for="material">Materiał</label>
+        <InputText id="material" class="form-control" @bind-Value="machinery.Material" />
+    </div>
+
+    <div class="form-group">
+        <label for="maxLoadCapacity">Maksymalna ładowność (kg)</label>
+        <InputNumber id="maxLoadCapacity" class="form-control" @bind-Value="machinery.MaxLoadCapacity" />
+    </div>
+
+    <div class="form-group">
+        <label for="rentalPricePerDay">Cena wynajmu za dzień (PLN)</label>
+        <InputNumber id="rentalPricePerDay" class="form-control" @bind-Value="machinery.RentalPricePerDay" />
+    </div>
+
+    <div class="form-group">
+        <label for="description">Opis</label>
+        <InputTextArea id="description" class="form-control" @bind-Value="machinery.Description" />
+    </div>
+
+
+    <div class="form-group">
+        <label for="imagePath"> Zdjęcie:</label>
+        @if (!string.IsNullOrEmpty(machinery.ImagePath))
+        {
+            <img src="@machinery.ImagePath" alt="Machine Image" style="max-width: 100px; max-height: 100px; object-fit: cover;" />
+        }
+        else
+        {
+            <span>No Image</span>
+        }
+        <InputFile OnChange="HandleImageUpload" />
+    </div>
+
+    @if (Action == "edit")
+    {
+        <div class="form-group">
+            <label for="IsRepair">W Naprawie</label>
+            <InputCheckbox id="IsRepair" @bind-Value="machinery.IsRepair" class="form-check-input" />
+        </div>
+    }
+
+    <button type="submit" class="btn btn-primary">Zapisz</button>
+</EditForm>

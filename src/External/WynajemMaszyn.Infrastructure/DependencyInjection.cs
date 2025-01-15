@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,12 +20,9 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructure(this IServiceCollection services,
         ConfigurationManager configuration)
     {
-
-
         services.AddDbContext<ApplicationDbContext>(options =>
-                    options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"),
-                        r =>
-                            r.MigrationsAssembly(typeof(AssemblyReference).Assembly.ToString())));
+            options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"),
+                r => r.MigrationsAssembly(typeof(AssemblyReference).Assembly.ToString())));
         services.AddDatabaseDeveloperPageExceptionFilter();
 
         services.AddIdentityCore<User>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -33,21 +31,25 @@ public static class DependencyInjection
             .AddDefaultTokenProviders();
 
 
+             services.AddScoped<Seeder>();
+        
+
         services.AddScoped<IUserManagerService, UserManagerService>();
         services.AddScoped<ISignInManagerService, SignInManagerService>();
+        //services.AddSingleton<IEmailSender<User>, IdentityNoOpEmailSender>();
 
 
-        services.AddSingleton<IEmailSender<User>, IdentityNoOpEmailSender>();
 
 
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IUserContextGetIdService, UserContextGetIdService>();
         services.AddScoped<IMachineryRentalRepository, MachineryRentalRepository>();
         
-        services.AddScoped<Seeder>();
+
+
+
 
         services.AddScoped<IMachineryRepository, MachineryRepository>();
-
         services.AddScoped<IExcavatorRepository, ExcavatorRepository>();
         services.AddScoped<IExcavatorBucketRepository, ExcavatorBucketRepository>();
         services.AddScoped<IRollerRepository, RollerRepository>();
@@ -63,16 +65,7 @@ public static class DependencyInjection
 
     public static IServiceCollection AddAuthorization(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-            .AddCookie(options =>
-            {
-                options.Cookie.Name = "auth";
-                options.LoginPath = "/AuthForm";
-                options.Cookie.MaxAge = TimeSpan.FromMinutes(60);
-                options.AccessDeniedPath = "/Access-denied";
 
-            });
-        services.AddCascadingAuthenticationState();
 
 
         return services;

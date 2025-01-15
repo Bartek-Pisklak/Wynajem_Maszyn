@@ -6,13 +6,18 @@
 @using System.Text.Encodings.Web
 @using Microsoft.AspNetCore.Identity
 @using Microsoft.AspNetCore.WebUtilities
-@using WynajemMaszyn.Domain.Entities
+@using WynajemMaszyn.Application.Authentication.Commands.Register
 @using WynajemMaszyn.Application.Persistance.Auth
+@using WynajemMaszyn.Domain.Entities
+@using WynajemMaszyn.Infrastructure.Authentication;
 
+@inject IMediator Mediator
 
-
-@inject IUserManagerService UserManager
-@inject ISignInManagerService SignInManager
+@* @inject IUserManagerService UserManager 
+    @inject ISignInManagerService SignInManager
+*@
+@inject UserManager<User> UserManager
+@inject SignInManager<User> SignInManager
 
 
 @inject IUserStore<User> UserStore
@@ -31,9 +36,20 @@
         <StatusMessage Message="@Message" />
         <EditForm Model="Input" asp-route-returnUrl="@ReturnUrl" method="post" OnValidSubmit="RegisterUser" FormName="register">
             <DataAnnotationsValidator />
-            <h2>Create a new account.</h2>
+            <h2>Stwórz nowe konto.</h2>
             <hr />
             <ValidationSummary class="text-danger" role="alert" />
+            <div class="form-floating mb-3">
+                <InputText @bind-Value="Input.FirstName" class="form-control" autocomplete="imie" aria-required="true" placeholder="John" />
+                <label for="FirstName">Imię</label>
+                <ValidationMessage For="() => Input.FirstName" class="text-danger" />
+            </div>
+            <div class="form-floating mb-3">
+                <InputText @bind-Value="Input.LastName" class="form-control" autocomplete="nazwisko" aria-required="true" placeholder="Wick" />
+                <label for="LastName">Nazwisko</label>
+                <ValidationMessage For="() => Input.LastName" class="text-danger" />
+            </div>
+
             <div class="form-floating mb-3">
                 <InputText @bind-Value="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
                 <label for="email">Email</label>
@@ -52,13 +68,6 @@
             <button type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
         </EditForm>
     </div>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h3>Use another service to register.</h3>
-            <hr />
-            <ExternalLoginPicker />
-        </section>
-    </div>
 </div>
 
 @code {
@@ -74,11 +83,66 @@
 
     public async Task RegisterUser(EditContext editContext)
     {
+            /*var command = new RegisterCommand(
+              Input.FirstName,
+        Input.LastName,
+        Input.Email,
+            Input.Password,
+        Input.ConfirmPassword
+        );
+            var response = await Mediator.Send(command);
+
+            var userRes = response.Match(
+            UserResponse =>
+        {
+        return UserResponse;
+        },
+        errors =>
+        {
+        foreach (var error in errors)
+        {
+        Console.WriteLine($"Error: {error.Description} (Code: {error.Code})");
+            }
+
+            throw new Exception("Failed to retrieve User.");
+        });
+        if (!userRes.Succeeded)
+        {
+        identityErrors = userRes.identityErrors;
+        return;
+        }
+
+        Logger.LogInformation("User created a new account with password.");
+
+
+        var callbackUrl = NavigationManager.GetUriWithQueryParameters(
+        NavigationManager.ToAbsoluteUri("Account/ConfirmEmail").AbsoluteUri,
+        new Dictionary<string, object?> { ["userId"] = userRes.userId, ["code"] = userRes.code, ["returnUrl"] = ReturnUrl });
+
+
+        //await EmailSender.SendConfirmationLinkAsync(userRes.user, Input.Email, HtmlEncoder.Default.Encode(callbackUrl));
+
+
+        if (!userRes.RequireConfirmedAccount)
+            {
+            RedirectManager.RedirectTo(
+                "Account/RegisterConfirmation",
+                new() { ["email"] = Input.Email, ["returnUrl"] = ReturnUrl });
+         }
+
+         */
+
         var user = CreateUser();
 
+
+
         await UserStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
-        var emailStore = GetEmailStore();
-        await emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+        //var emailStore = GetEmailStore();
+        // await emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+
+        user.FirstName = Input.FirstName;
+        user.LastName = Input.LastName;
+        user.Email = Input.Email;
         var result = await UserManager.CreateAsync(user, Input.Password);
 
         if (!result.Succeeded)
@@ -98,7 +162,7 @@
 
         await EmailSender.SendConfirmationLinkAsync(user, Input.Email, HtmlEncoder.Default.Encode(callbackUrl));
 
-        if (UserManager.UserManagerOptionsSignInRequireConfirmedAccount())
+        if (UserManager.Options.SignIn.RequireConfirmedAccount)
         {
             RedirectManager.RedirectTo(
                 "Account/RegisterConfirmation",
@@ -108,6 +172,10 @@
         await SignInManager.SignInAsync(user, isPersistent: false);
         RedirectManager.RedirectTo(ReturnUrl);
     }
+
+
+
+
 
     private User CreateUser()
     {
@@ -124,15 +192,24 @@
 
     private IUserEmailStore<User> GetEmailStore()
     {
-        if (UserManager.SupportsUserEmail())
+        if (UserManager.SupportsUserEmail)
         {
             throw new NotSupportedException("The default UI requires a user store with email support.");
         }
         return (IUserEmailStore<User>)UserStore;
     }
 
+
     private sealed class InputModel
     {
+        [Required]
+        [Display(Name = "FirstName")]
+        public string FirstName { get; set; } = "";
+
+        [Required]
+        [Display(Name = "LastName")]
+        public string LastName { get; set; } = "";
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

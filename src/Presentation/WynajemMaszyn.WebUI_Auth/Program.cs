@@ -1,10 +1,12 @@
-using Microsoft.AspNetCore.Components.Authorization;
+﻿using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
-using WynajemMaszyn.WebUI_Auth.Components;
-using WynajemMaszyn.WebUI_Auth.Components.Account;
+using WynajemMaszyn.WebUI.Components;
+using WynajemMaszyn.WebUI.Components.Account;
 using WynajemMaszyn.Infrastructure;
-using WynajemMaszyn.Domain.Entities;
 using WynajemMaszyn.Application;
+using WynajemMaszyn.Domain.Entities;
+using WynajemMaszyn.Infrastructure.Persistance.Seeders;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,21 +17,19 @@ builder.Services.AddRazorComponents()
 builder.Services.AddCascadingAuthenticationState();
 builder.Services.AddScoped<AuthenticationStateProvider, IdentityRevalidatingAuthenticationStateProvider>();
 builder.Services.AddScoped<IdentityRedirectManager>();
-
 builder.Services.AddScoped<IdentityUserAccessor>();
-/*builder.Services.AddScoped<AuthenticationStateProvider, IdentityRevalidatingAuthenticationStateProvider>();
 builder.Services.AddSingleton<IEmailSender<User>, IdentityNoOpEmailSender>();
-*/
+
 
 builder.Services.AddAuthentication(options =>
-    {
-        options.DefaultScheme = IdentityConstants.ApplicationScheme;
-        options.DefaultSignInScheme = IdentityConstants.ExternalScheme;
-    })
+{
+    options.DefaultScheme = IdentityConstants.ApplicationScheme;
+    options.DefaultSignInScheme = IdentityConstants.ExternalScheme;
+})
     .AddIdentityCookies();
 
-builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddApplication();
 
 
 
@@ -45,6 +45,14 @@ else
     app.UseExceptionHandler("/Error", createScopeForErrors: true);
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
+}
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var seeder = services.GetRequiredService<Seeder>();
+
+    await seeder.SeedRolesAsync();
 }
 
 app.UseHttpsRedirection();

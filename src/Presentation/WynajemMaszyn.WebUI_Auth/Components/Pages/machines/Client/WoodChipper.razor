@@ -1,0 +1,41 @@
+﻿@page "/WoodChipper"
+@using MediatR
+@rendermode InteractiveServer
+@inject NavigationManager navigationManager
+@inject IMediator Mediator
+
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Lista Rozdrabniaczy do Drzewa</h2>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        @if (woodChipper == null)
+        {
+            <p><em>Brak łyzek do koparek</em></p>
+        }
+        else
+        {
+            @foreach (var machine in woodChipper)
+            {
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <img src="@machine.ImagePath" class="card-img-top" alt="@machine.Name" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">@machine.Name</h5>
+                            <p class="card-text">Rok Produkcji: @machine.ProductionYear</p>
+                            <p class="card-text">Silnik: @machine.Engine</p>
+                            <p class="card-text">Moc: @machine.EnginePower KM </p>
+                            <p class="card-text">Prędkość Jazdy: @machine.DrivingSpeed km/h</p>
+                            <p class="card-text">Cena Wynajmu na dobe: @machine.RentalPricePerDay złotych</p>
+                            @if (machine.IsRepair)
+                            {
+                                <p class="card-text">W naprawie</p>
+                            }
+
+                            <button class="btn btn-primary" @onclick="() => NavigateToDetails(machine.Id)">Zobacz szczegóły</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

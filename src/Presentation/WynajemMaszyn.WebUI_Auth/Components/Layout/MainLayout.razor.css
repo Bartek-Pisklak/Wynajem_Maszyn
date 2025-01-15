@@ -1,9 +1,31 @@
-.page {
+﻿.page {
     position: relative;
     display: flex;
     flex-direction: column;
 }
 
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    will-change: transform;
+}
+
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.main-container {
+    background-color: #d3d3d3;
+}
+
+.header {
+    background-color: #0b2262;
+}
+
+.dropdown-item.text-danger {
+    color: #dc3545 !important;
+}
 main {
     flex: 1;
 }
