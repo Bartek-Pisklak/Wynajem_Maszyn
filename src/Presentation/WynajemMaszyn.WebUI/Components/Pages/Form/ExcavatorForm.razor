@@ -6,6 +6,10 @@
 @inject NavigationManager navigationManager
 @page "/ExcavatorForm"
 
+
+<AuthorizeView Roles="Admin, Worker">
+    <Authorized Context="authWorker">
+
 <h3>Formularz dodawania koparki </h3>
 
 <div id="top"></div>
@@ -141,3 +145,9 @@
 </EditForm>
 
 
+    </Authorized>
+    <NotAuthorized>
+        <p>Nie masz uprawnień do przeglądania tego formularza.</p>
+        <p>You have no power here.</p>
+    </NotAuthorized>
+</AuthorizeView>

@@ -59,6 +59,10 @@ public class UserManagerService : IUserManagerService
     {
         var result = await _userManager.CreateAsync(user, password);
 
+        if(result.Succeeded)
+        {
+            await _userManager.AddToRoleAsync(user,"Client");
+        }
         return result;
     }
 

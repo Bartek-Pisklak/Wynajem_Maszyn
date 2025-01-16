@@ -1,18 +1,20 @@
-﻿@page "/RollerWorker"
+﻿@page "/ExcavatorWorker"
 @using MediatR
 @rendermode InteractiveServer
 @inject NavigationManager navigationManager
 @inject IMediator Mediator
 
+<AuthorizeView Roles="Admin, Worker">
+        <Authorized Context="authWorker">
 
 <div class="d-flex justify-content-between">
-    <h4>Lista Walców</h4>
-    <button class="btn btn-primary" @onclick="AddRoller">Dodaj Walec</button>
+    <h4>Lista koparek</h4>
+    <button class="btn btn-primary" @onclick="AddExcavator">Dodaj koparkę</button>
 </div>
 
-@if (roller == null)
+@if (excavator == null)
 {
-    <p><em>Brak Maszyn</em></p>
+    <p><em>No data available</em></p>
 }
 else
 {
@@ -30,7 +32,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var machine in roller)
+            @foreach (var machine in excavator)
             {
                 <tr>
                     <td>
@@ -51,8 +53,8 @@ else
                     <td>@machine.EnginePower</td>
                     <td>@machine.IsRepair</td>
                     <td>
-                        <button class="btn btn-sm btn-secondary" @onclick="() => EditRoller(machine.Id)">Edytuj</button>
-                        <button class="btn btn-sm btn-danger" @onclick="() => DeleteRoller(machine.Id)">Usuń</button>
+                        <button class="btn btn-sm btn-secondary" @onclick="() => EditExcavator(machine.Id)">Edytuj</button>
+                        <button class="btn btn-sm btn-danger" @onclick="() => DeleteExcavator(machine.Id)">Usuń</button>
                     </td>
                 </tr>
             }
@@ -60,3 +62,10 @@ else
     </table>
 }
 
+
+    </Authorized>
+    <NotAuthorized>
+        <p>Nie masz uprawnień do przeglądania tego formularza.</p>
+        <p>You have no power here.</p>
+    </NotAuthorized>
+</AuthorizeView>

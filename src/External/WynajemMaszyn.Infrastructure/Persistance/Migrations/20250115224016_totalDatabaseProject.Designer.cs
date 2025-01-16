@@ -12,8 +12,8 @@ using WynajemMaszyn.Infrastructure;
 namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250109233523_totalDatabaseProjectTest")]
-    partial class totalDatabaseProjectTest
+    [Migration("20250115224016_totalDatabaseProject")]
+    partial class totalDatabaseProject
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -618,11 +618,9 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<bool>("LockoutEnabled")
@@ -639,9 +637,6 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("text");
-
-                    b.Property<int>("PermissionId")
-                        .HasColumnType("integer");
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("text");
@@ -662,8 +657,6 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
 
                     b.HasIndex("Email")
                         .IsUnique();
-
-                    b.HasIndex("PermissionId");
 
                     b.ToTable("User");
                 });
@@ -870,17 +863,6 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("WynajemMaszyn.Domain.Entities.User", b =>
-                {
-                    b.HasOne("WynajemMaszyn.Domain.Entities.Permission", "Permission")
-                        .WithMany()
-                        .HasForeignKey("PermissionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Permission");
                 });
 
             modelBuilder.Entity("WynajemMaszyn.Domain.Entities.WoodChipper", b =>

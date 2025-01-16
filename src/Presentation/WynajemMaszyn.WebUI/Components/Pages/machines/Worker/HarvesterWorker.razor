@@ -6,6 +6,9 @@
 @inject IMediator Mediator
 
 
+<AuthorizeView Roles="Admin, Worker">
+        <Authorized Context="authWorker">
+
 
 <div class="d-flex justify-content-between">
     <h4>Lista Harvesterów</h4>
@@ -63,3 +66,11 @@ else
         </tbody>
     </table>
 }
+
+
+    </Authorized>
+    <NotAuthorized>
+        <p>Nie masz uprawnień do przeglądania tego formularza.</p>
+        <p>You have no power here.</p>
+    </NotAuthorized>
+</AuthorizeView>

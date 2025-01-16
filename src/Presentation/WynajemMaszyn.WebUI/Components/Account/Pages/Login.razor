@@ -1,20 +1,17 @@
 ﻿@page "/Account/Login"
 
 
-
 @using System.ComponentModel.DataAnnotations
 @using Microsoft.AspNetCore.Authentication
 @using Microsoft.AspNetCore.Identity
 @using WynajemMaszyn.Application.Persistance.Auth
 
+
 @inject ISignInManagerService SignInManager
-
-
 @inject ILogger<Login> Logger
 @inject NavigationManager NavigationManager
 @inject IdentityRedirectManager RedirectManager
 
-<PageTitle>Log in</PageTitle>
 
 <h1>Log in</h1>
 <div class="row">
@@ -23,7 +20,7 @@
             <StatusMessage Message="@errorMessage" />
             <EditForm Model="Input" method="post" OnValidSubmit="LoginUser" FormName="login">
                 <DataAnnotationsValidator />
-                <h2>Use a local account to log in.</h2>
+                <h2>Zaloguj się!</h2>
                 <hr />
                 <ValidationSummary class="text-danger" role="alert" />
                 <div class="form-floating mb-3">
@@ -33,32 +30,32 @@
                 </div>
                 <div class="form-floating mb-3">
                     <InputText type="password" @bind-Value="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
-                    <label for="password" class="form-label">Password</label>
+                    <label for="password" class="form-label">Hasło</label>
                     <ValidationMessage For="() => Input.Password" class="text-danger" />
                 </div>
                 <div class="checkbox mb-3">
                     <label class="form-label">
                         <InputCheckbox @bind-Value="Input.RememberMe" class="darker-border-checkbox form-check-input" />
-                        Remember me
+                        Zapamiętaj mnie
                     </label>
                 </div>
                 <div>
-                    <button type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                    <button type="submit" class="w-100 btn btn-lg btn-primary">Zaloguj</button>
                 </div>
+
                 <div>
                     <p>
-                        <a href="Account/ForgotPassword">Przypomij Hasło?</a>
+                        <a href="@(NavigationManager.GetUriWithQueryParameters("Account/Register", new Dictionary<string, object?> { ["ReturnUrl"] = ReturnUrl }))">Register as a new user</a>
                     </p>
                     <p>
-                        <button class="btn btn-primary" @onclick="NavigateToRegister">
-                            Register as a new user
-                        </button>
+                        <a href="Account/ForgotPassword">Przypomij Hasło?</a>
                     </p>
                     <p>
                         <a href="Account/ResendEmailConfirmation">Wyślij mail potwierdzający</a>
                     </p>
                 </div>
             </EditForm>
+
         </section>
     </div>
 </div>
@@ -129,9 +126,9 @@
         public bool RememberMe { get; set; }
     }
 
-
     private void NavigateToRegister(MouseEventArgs e)
     {
+        Console.WriteLine("NavigateToRegister called");
         var registerUrl = NavigationManager.GetUriWithQueryParameters("Account/Register",
             new Dictionary<string, object?> { ["ReturnUrl"] = ReturnUrl });
         NavigationManager.NavigateTo(registerUrl);

@@ -635,9 +635,6 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                     b.Property<string>("PasswordHash")
                         .HasColumnType("text");
 
-                    b.Property<int?>("PermissionId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("text");
 
@@ -657,8 +654,6 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
 
                     b.HasIndex("Email")
                         .IsUnique();
-
-                    b.HasIndex("PermissionId");
 
                     b.ToTable("User");
                 });
@@ -865,15 +860,6 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("WynajemMaszyn.Domain.Entities.User", b =>
-                {
-                    b.HasOne("WynajemMaszyn.Domain.Entities.Permission", "Permission")
-                        .WithMany()
-                        .HasForeignKey("PermissionId");
-
-                    b.Navigation("Permission");
                 });
 
             modelBuilder.Entity("WynajemMaszyn.Domain.Entities.WoodChipper", b =>

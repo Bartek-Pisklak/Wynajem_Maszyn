@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,29 +23,26 @@ public static class DependencyInjection
         services.AddDatabaseDeveloperPageExceptionFilter();
 
         services.AddIdentityCore<User>(options => options.SignIn.RequireConfirmedAccount = true)
-            .AddEntityFrameworkStores<ApplicationDbContext>()
-            .AddSignInManager()
-            .AddDefaultTokenProviders();
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddSignInManager()
+                .AddDefaultTokenProviders();
 
+/*        services.AddIdentityCore<User>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddSignInManager()
+                .AddDefaultTokenProviders();*/
 
-             services.AddScoped<Seeder>();
+        services.AddScoped<Seeder>();
         
 
         services.AddScoped<IUserManagerService, UserManagerService>();
         services.AddScoped<ISignInManagerService, SignInManagerService>();
-        //services.AddSingleton<IEmailSender<User>, IdentityNoOpEmailSender>();
-
-
-
 
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IUserContextGetIdService, UserContextGetIdService>();
         services.AddScoped<IMachineryRentalRepository, MachineryRentalRepository>();
         
-
-
-
-
         services.AddScoped<IMachineryRepository, MachineryRepository>();
         services.AddScoped<IExcavatorRepository, ExcavatorRepository>();
         services.AddScoped<IExcavatorBucketRepository, ExcavatorBucketRepository>();
@@ -58,8 +52,6 @@ public static class DependencyInjection
 
         services.AddHttpContextAccessor();
 
-        
-        
         return services;
     }
 

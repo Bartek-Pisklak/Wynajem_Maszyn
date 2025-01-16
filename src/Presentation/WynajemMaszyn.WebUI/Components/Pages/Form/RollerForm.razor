@@ -6,6 +6,8 @@
 @inject NavigationManager navigationManager
 @page "/RollerForm"
 
+<AuthorizeView Roles="Admin, Worker">
+    <Authorized Context="authWorker">
 <h3>Formularz dodawania Walca </h3>
 
 <div id="top"></div>
@@ -151,3 +153,9 @@
     <button type="submit" class="btn btn-primary">Zapisz</button>
 </EditForm>
 
+    </Authorized>
+    <NotAuthorized>
+        <p>Nie masz uprawnień do przeglądania tego formularza.</p>
+        <p>You have no power here.</p>
+    </NotAuthorized>
+</AuthorizeView>

@@ -12,43 +12,43 @@
 
 <div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
     <nav class="flex-column">
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="MachineRentalWorker">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Zamówienia
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="ExcavatorWorker">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Koparki
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="ExcavatorBucketWorker">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Łyżki do koparek
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="RollerWorker">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Walce
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="HarvesterWorker">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Harvestery
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="WoodChipperWorker">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Rozdrabniacze
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> spot
-            </NavLink>
-        </div>
-
+        <AuthorizeView Roles="Admin, Worker">
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="MachineRentalWorker">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> Zamówienia
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="ExcavatorWorker">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> Koparki
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="ExcavatorBucketWorker">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> Łyżki do koparek
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="RollerWorker">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> Walce
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="HarvesterWorker">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> Harvestery
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="WoodChipperWorker">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> Rozdrabniacze
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> Ogólne
+                </NavLink>
+            </div>
+        </AuthorizeView>
 
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="Excavator">

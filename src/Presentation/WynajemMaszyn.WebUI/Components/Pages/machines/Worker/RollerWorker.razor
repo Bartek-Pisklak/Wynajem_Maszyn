@@ -1,19 +1,21 @@
-﻿@page "/ExcavatorBucketWorker"
+﻿@page "/RollerWorker"
 @using MediatR
 @rendermode InteractiveServer
 @inject NavigationManager navigationManager
 @inject IMediator Mediator
 
 
+<AuthorizeView Roles="Admin, Worker">
+        <Authorized Context="authWorker">
+
 <div class="d-flex justify-content-between">
-    <h4>Lista łyżek do koparek</h4>
-    <button class="btn btn-primary" @onclick="AddExcavatorBucket">Dodaj łyżkę</button>
+    <h4>Lista Walców</h4>
+    <button class="btn btn-primary" @onclick="AddRoller">Dodaj Walec</button>
 </div>
 
-
-@if (bucketExcavator == null)
+@if (roller == null)
 {
-    <p><em>Brak łyzek do koparek</em></p>
+    <p><em>Brak Maszyn</em></p>
 }
 else
 {
@@ -22,16 +24,16 @@ else
             <tr>
                 <th>Zdjęcie</th>
                 <th>Name</th>
-                <th>BucketType</th>
-                <th>ProductionYear</th>
+                <th>Production Year</th>
+                <th>Operating Hours</th>
                 <th>Weight</th>
-                <th>RentalPricePerDay</th>
+                <th>Engine</th>
+                <th>Engine Power</th>
                 <th>IsRepair</th>
             </tr>
         </thead>
-
         <tbody>
-            @foreach (var machine in bucketExcavator)
+            @foreach (var machine in roller)
             {
                 <tr>
                     <td>
@@ -45,17 +47,27 @@ else
                         }
                     </td>
                     <td>@machine.Name</td>
-                    <td>@machine.BucketType</td>
                     <td>@machine.ProductionYear</td>
+                    <td>@machine.OperatingHours</td>
                     <td>@machine.Weight</td>
-                    <td>@machine.RentalPricePerDay</td>
+                    <td>@machine.Engine</td>
+                    <td>@machine.EnginePower</td>
                     <td>@machine.IsRepair</td>
                     <td>
-                        <button class="btn btn-sm btn-secondary" @onclick="() => EditExcavatorBucket(machine.Id)">Edytuj</button>
-                        <button class="btn btn-sm btn-danger" @onclick="() => DeleteExcavatorBucket(machine.Id)">Usuń</button>
+                        <button class="btn btn-sm btn-secondary" @onclick="() => EditRoller(machine.Id)">Edytuj</button>
+                        <button class="btn btn-sm btn-danger" @onclick="() => DeleteRoller(machine.Id)">Usuń</button>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 }
+
+
+
+    </Authorized>
+    <NotAuthorized>
+        <p>Nie masz uprawnień do przeglądania tego formularza.</p>
+        <p>You have no power here.</p>
+    </NotAuthorized>
+</AuthorizeView>

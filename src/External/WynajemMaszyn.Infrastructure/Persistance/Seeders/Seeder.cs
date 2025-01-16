@@ -1,43 +1,33 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using WynajemMaszyn.Domain.Entities;
 
 namespace WynajemMaszyn.Infrastructure.Persistance.Seeders;
 
 public class Seeder
 {
     private readonly ApplicationDbContext _dbContext;
+    private readonly RoleManager<IdentityRole> _roleManager;
 
-
-    public Seeder(ApplicationDbContext dbContext)
+    public Seeder(ApplicationDbContext dbContext, RoleManager<IdentityRole> roleManager)
     {
         _dbContext = dbContext;
+        _roleManager=roleManager;
     }
 
     public async Task SeedRolesAsync()
     {
-        if (!_dbContext.Roles.Any())
+        var roles = new List<string> { "Admin", "Worker","Client" };
+
+        foreach (var roleName in roles)
         {
-            var roles = new List<IdentityRole>
+            if (!await _roleManager.RoleExistsAsync(roleName))
             {
-                new IdentityRole { Name = "Admin", NormalizedName = "ADMIN" },
-                new IdentityRole { Name = "User", NormalizedName = "USER" }
-            };
+                var role = new IdentityRole
+                {
+                    Name = roleName,
+                    NormalizedName = roleName.ToUpper()
+                };
 
-            _dbContext.Roles.AddRange(roles);
-            await _dbContext.SaveChangesAsync();
-        }
-    }
-
-
-    public void ApplyPendingMigrations()
-        {
-        if (_dbContext.Database.CanConnect() && _dbContext.Database.IsRelational())
-        {
-            var pendingMigrations = _dbContext.Database.GetPendingMigrations();
-            if (pendingMigrations != null && pendingMigrations.Any())
-            {
-                _dbContext.Database.Migrate();
+                await _roleManager.CreateAsync(role);
             }
         }
     }

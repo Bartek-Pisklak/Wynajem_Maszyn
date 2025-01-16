@@ -1,14 +1,15 @@
 ﻿@using MediatR
 @rendermode InteractiveServer
 
-
 @inject IJSRuntime JSRuntime
 @inject IMediator Mediator
 @inject NavigationManager navigationManager
-@page "/HarvesterForm"
+@page "/WoodChipperForm"
 
 
-<h3>Formularz dodawania harverstera </h3>
+<AuthorizeView Roles="Admin, Worker">
+    <Authorized Context="authWorker">
+<h3>Formularz dodawania rębaka do drzewa </h3>
 
 <div id="top"></div>
 
@@ -24,15 +25,18 @@
     </div>
 }
 
-
 <EditForm Model="@machinery" OnValidSubmit="HandleValidSubmit" style="margin-bottom: 5cm;">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
-
     <div class="form-group">
         <label for="name">Nazwa maszyny</label>
         <InputText id="name" class="form-control" @bind-Value="machinery.Name" />
+    </div>
+
+    <div class="form-group">
+        <label for="rentalPricePerDay">Cena wynajmu za dzień</label>
+        <InputNumber id="rentalPricePerDay" class="form-control" @bind-Value="machinery.RentalPricePerDay" />
     </div>
 
     <div class="form-group">
@@ -61,8 +65,18 @@
     </div>
 
     <div class="form-group">
+        <label for="gearbox">Skrzynia biegów</label>
+        <InputText id="gearbox" class="form-control" @bind-Value="machinery.Gearbox" />
+    </div>
+
+    <div class="form-group">
         <label for="drivingSpeed">Prędkość jazdy (km/h)</label>
         <InputNumber id="drivingSpeed" class="form-control" @bind-Value="machinery.DrivingSpeed" />
+    </div>
+
+    <div class="form-group">
+        <label for="fuelConsumption">Zużycie paliwa (l/h)</label>
+        <InputNumber id="fuelConsumption" class="form-control" @bind-Value="machinery.FuelConsumption" />
     </div>
 
     <div class="form-group">
@@ -76,37 +90,28 @@
     </div>
 
     <div class="form-group">
-        <label for="fuelConsumption">Zużycie paliwa (l/h)</label>
-        <InputNumber id="fuelConsumption" class="form-control" @bind-Value="machinery.FuelConsumption" />
+        <label for="machineLength">Długość maszyny (mm)</label>
+        <InputNumber id="machineLength" class="form-control" @bind-Value="machinery.MachineLength" />
     </div>
 
     <div class="form-group">
-        <label for="maxSpeed">Maksymalna prędkość (km/h)</label>
-        <InputNumber id="maxSpeed" class="form-control" @bind-Value="machinery.MaxSpeed" />
+        <label for="transportHeight">Wysokość transportowa (mm)</label>
+        <InputNumber id="transportHeight" class="form-control" @bind-Value="machinery.TransportHeight" />
     </div>
 
     <div class="form-group">
-        <label for="cuttingDiameter">Średnica cięcia (mm)</label>
-        <InputNumber id="cuttingDiameter" class="form-control" @bind-Value="machinery.CuttingDiameter" />
+        <label for="choppingHeight">Wysokość rozdrabniania (mm)</label>
+        <InputNumber id="choppingHeight" class="form-control" @bind-Value="machinery.ChoppingHeight" />
     </div>
 
     <div class="form-group">
-        <label for="maxReach">Maksymalny zasięg (m)</label>
-        <InputNumber id="maxReach" class="form-control" @bind-Value="machinery.MaxReach" />
+        <label for="machineWidth">Szerokość maszyny (mm)</label>
+        <InputNumber id="machineWidth" class="form-control" @bind-Value="machinery.MachineWidth" />
     </div>
 
     <div class="form-group">
-        <label for="typeChassis">Typ podwozia (koła, gąsienice, koło-gąsienice)</label>
-        <InputSelect id="typeChassis" class="form-control" @bind-Value="machinery.TypeChassis">
-            @foreach (var chassis in listTypeChassis)
-            {
-                <option value="@chassis">@chassis</option>
-            }
-        </InputSelect>
-    </div>
-    <div class="form-group">
-        <label for="rentalPricePerDay">Cena wynajmu za dzień</label>
-        <InputNumber id="rentalPricePerDay" class="form-control" @bind-Value="machinery.RentalPricePerDay" />
+        <label for="flowMaterial">Przepływ materiału (m3/h)</label>
+        <InputNumber id="flowMaterial" class="form-control" @bind-Value="machinery.FlowMaterial" />
     </div>
 
     <div class="form-group">
@@ -114,9 +119,8 @@
         <InputTextArea id="description" class="form-control" @bind-Value="machinery.Description" />
     </div>
 
-
     <div class="form-group">
-        <label for="imagePath">Zdjęcie:</label>
+    <label for="imagePath">Zdjęcie:</label>
         @if (!string.IsNullOrEmpty(machinery.ImagePath))
         {
             <img src="@machinery.ImagePath" alt="Machine Image" style="max-width: 100px; max-height: 100px; object-fit: cover;" />
@@ -125,7 +129,7 @@
         {
             <span>No Image</span>
         }
-        <InputFile OnChange="HandleImageUpload" />
+    <InputFile OnChange="HandleImageUpload" />
     </div>
 
     @if (Action == "edit")
@@ -138,3 +142,10 @@
 
     <button type="submit" class="btn btn-primary">Zapisz</button>
 </EditForm>
+
+    </Authorized>
+    <NotAuthorized>
+        <p>Nie masz uprawnień do przeglądania tego formularza.</p>
+        <p>You have no power here.</p>
+    </NotAuthorized>
+</AuthorizeView>
