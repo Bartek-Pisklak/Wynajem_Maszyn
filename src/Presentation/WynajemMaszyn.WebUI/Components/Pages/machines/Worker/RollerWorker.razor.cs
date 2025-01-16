@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.WebUtilities;
+﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.WebUtilities;
 using WynajemMaszyn.Application.Features.Rollers.Command.DeleteRollers;
 using WynajemMaszyn.Application.Features.Rollers.Queries.DTOs;
 using WynajemMaszyn.Application.Features.Rollers.Queries.GetAllRollers;
@@ -7,6 +8,9 @@ namespace WynajemMaszyn.WebUI.Components.Pages.machines.Worker
 {
     public partial class RollerWorker
     {
+        [CascadingParameter]
+        private HttpContext HttpContext { get; set; } = default!;
+
         private List<GetAllRollerDto>? roller;
 
         protected override async Task OnInitializedAsync()
@@ -58,7 +62,7 @@ namespace WynajemMaszyn.WebUI.Components.Pages.machines.Worker
         }
         private void DeleteRoller(int idMachine)
         {
-            var command = new DeleteRollerCommand(idMachine);
+            var command = new DeleteRollerCommand(HttpContext, idMachine);
 
             var response = Mediator.Send(command);
             navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);

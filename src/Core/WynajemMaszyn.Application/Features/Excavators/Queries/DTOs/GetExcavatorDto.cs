@@ -22,7 +22,7 @@ namespace WynajemMaszyn.Application.Features.Excavators.Queries.DTOs
         public string Gearbox { get; set; }
         public int MaxDiggingDepth { get; set; }
 
-        public string ImagePath { get; set; }
+        public List<string> ImagePath { get; set; }
         public string Description { get; set; }
         public bool IsRepair {  get; set; }
 

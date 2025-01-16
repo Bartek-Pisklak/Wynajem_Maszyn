@@ -5,29 +5,46 @@
 @inject IMediator Mediator
 
 
+<head>
+    <link href="Details.css" rel="stylesheet" />
+</head>
+
+
 <div class="container" style="margin-bottom: 2cm;">
 
 
     <div class="row align-items-center mt-4" style="margin-bottom: 3cm;">
         <h4>@bucket.Name</h4>
 
-
         <div class="row" style="margin-top: 2cm;">
+            <!-- Sekcja zdjęć -->
             <div class="col-md-6">
-                <div class="image-container">
-                    <img src="@bucket.ImagePath" alt="Zdjęcie maszyny" class="img-fluid" style="width: 100%; height: auto;" />
+                <div class="text-center">
+                    <!-- Główne zdjęcie -->
+                    <img src="@CurrentImage" alt="Zdjęcie maszyny" class="img-fluid main-image" @onclick="ShowImageInLightbox" />
+                </div>
+                <div class="image-scroll-container mt-3" style="display: flex; overflow-x: auto; gap: 10px;">
+                    <!-- Miniatury zdjęć -->
+                    @foreach (var imagePath in ImagePathList)
+                    {
+                        <div class="image-thumbnail" style="cursor: pointer;">
+                            <img src="@imagePath" alt="Miniatura" class="img-thumbnail thumbnail-image" @onclick="(() => ChangeImage(imagePath))" />
+                        </div>
+                    }
                 </div>
             </div>
-            <div class="col-md-6" style="margin-top: 1cm;">
-                <div class="mb-3" style="margin-left: 2cm;">
+
+            <!-- Sekcja opisu -->
+            <div class="col-md-6">
+                <div class="mb-3">
                     <p><strong>Typ łyżki:</strong> @bucket.BucketType</p>
                     <p><strong>Rok produkcji:</strong> @bucket.ProductionYear</p>
                     <p><strong>Waga:</strong> @bucket.Weight kg</p>
                     <p><strong>Pojemność łyżki:</strong> @bucket.BucketCapacity L</p>
-                    <p><strong>Cena wynajmu za dzień: </strong> @string.Format("{0:C}", bucket.RentalPricePerDay)</p>
-                    @if(bucket.IsRepair)
+                    <p><strong>Cena wynajmu za dzień:</strong> @string.Format("{0:C}", bucket.RentalPricePerDay)</p>
+                    @if (bucket.IsRepair)
                     {
-                        <td style="color: red; font-size: 30px;"> W naprawie</td>
+                        <p style="color: red; font-size: 20px;"><strong>W naprawie</strong></p>
                     }
                 </div>
                 @if (!bucket.IsRepair)
@@ -38,22 +55,21 @@
                 }
             </div>
         </div>
+
+        <!-- Lightbox -->
+        @if (IsLightboxVisible)
+        {
+            <div class="lightbox-overlay" @onclick="HideLightbox">
+                <div class="lightbox-container d-flex justify-content-center align-items-center">
+                    <img src="@CurrentImage" alt="Zdjęcie w powiększeniu" class="lightbox-image" />
+                </div>
+            </div>
+        }
+
+
     </div>
 
 
-    <style>
-        .table td {
-            width: auto;
-        }
-
-            .table td:first-child {
-                width: 35%;
-            }
-
-            .table td:last-child {
-                width: 65%;
-            }
-    </style>
 
 
     <h2>Szczegóły łyżki</h2>

@@ -36,7 +36,7 @@ namespace WynajemMaszyn.Application.Features.Rollers.Queries.GetAllRollers
                 EnginePower = x.EnginePower,
                 DrivingSpeed = x.DrivingSpeed,
                 RentalPricePerDay=x.RentalPricePerDay,
-                ImagePath=x.ImagePath,
+                ImagePath = x.ImagePath.Split(",").FirstOrDefault(),
                 IsRepair =x.IsRepair,
 
             }).ToList();

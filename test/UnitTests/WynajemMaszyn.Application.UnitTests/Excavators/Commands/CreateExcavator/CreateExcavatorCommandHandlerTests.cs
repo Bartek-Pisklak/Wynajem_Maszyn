@@ -3,6 +3,9 @@ using FluentAssertions;
 using WynajemMaszyn.Application.UnitTests.Excavators.TestUtils;
 using WynajemMaszyn.Application.Features.Excavators.Command.CreateExcavators;
 using WynajemMaszyn.Application.Persistance;
+using Microsoft.AspNetCore.Identity;
+using WynajemMaszyn.Domain.Entities;
+using System.Security.Claims;
 
 
 namespace WynajemMaszyn.Application.UnitTests.Excavators.Commands.CreateExcavator
@@ -12,15 +15,15 @@ namespace WynajemMaszyn.Application.UnitTests.Excavators.Commands.CreateExcavato
         private readonly CreateExcavatorCommandHandler _handler;
         private readonly Mock<IExcavatorRepository> _mockCreateExcavatorCommandHandler;
         private readonly Mock<IMachineryRepository> _mockMachineryRepositoryHandler;
-        private readonly Mock<IUserContextGetIdService> _mockIUserContextGetIdService;
+        private readonly Mock<UserManager<User>> _mockUserManager;
 
 
         public CreateExcavatorCommandHandlerTests() 
         {
             _mockCreateExcavatorCommandHandler = new Mock<IExcavatorRepository>();
             _mockMachineryRepositoryHandler = new Mock<IMachineryRepository>();
-            _mockIUserContextGetIdService = new Mock<IUserContextGetIdService>();
-            _handler = new CreateExcavatorCommandHandler(_mockCreateExcavatorCommandHandler.Object, _mockIUserContextGetIdService.Object,_mockMachineryRepositoryHandler.Object);
+            _mockUserManager = new Mock<UserManager<User>>();
+            _handler = new CreateExcavatorCommandHandler(_mockCreateExcavatorCommandHandler.Object, _mockUserManager.Object,_mockMachineryRepositoryHandler.Object);
 
 
         }
@@ -33,7 +36,7 @@ namespace WynajemMaszyn.Application.UnitTests.Excavators.Commands.CreateExcavato
             //arange
             var createExcavatorCommand = CreateExcavatorCommandUtils.CreateExcavatorCommand();
 
-            _mockIUserContextGetIdService.Setup(x => x.GetUserId)
+_mockUserManager.Setup(x => x.GetUserId(It.IsAny<ClaimsPrincipal>()))
                 .Returns(value: null);
 
             //act
@@ -51,7 +54,7 @@ namespace WynajemMaszyn.Application.UnitTests.Excavators.Commands.CreateExcavato
             //arange
             var createExcavatorCommand = CreateExcavatorCommandUtils.CreateExcavatorCommand();
 
-            _mockIUserContextGetIdService.Setup(x => x.GetUserId)
+_mockUserManager.Setup(x => x.GetUserId(It.IsAny<ClaimsPrincipal>()))
                 .Returns("1");
 
             //act

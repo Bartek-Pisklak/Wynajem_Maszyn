@@ -3,6 +3,9 @@ using FluentAssertions;
 using WynajemMaszyn.Application.Features.Harvesters.Command.EditHarvesters;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Application.UnitTests.Harvesters.TestUtils;
+using Microsoft.AspNetCore.Identity;
+using WynajemMaszyn.Domain.Entities;
+using System.Security.Claims;
 
 namespace WynajemMaszyn.Application.UnitTests.Harvesters.Commands.EditHarvester
 {
@@ -11,15 +14,15 @@ namespace WynajemMaszyn.Application.UnitTests.Harvesters.Commands.EditHarvester
         private readonly EditHarvesterCommandHandler _handler;
         private readonly Mock<IHarvesterRepository> _mockEditHarvesterCommandHandler;
         private readonly Mock<IMachineryRepository> _mockMachineryRepositoryHandler;
-        private readonly Mock<IUserContextGetIdService> _mockIUserContextGetIdService;
+        private readonly Mock<UserManager<User>> _mockUserManager;
 
 
         public EditHarvesterCommandHandlerTests()
         {
             _mockEditHarvesterCommandHandler = new Mock<IHarvesterRepository>();
             _mockMachineryRepositoryHandler = new Mock<IMachineryRepository>();
-            _mockIUserContextGetIdService = new Mock<IUserContextGetIdService>();
-            _handler = new EditHarvesterCommandHandler(_mockEditHarvesterCommandHandler.Object, _mockIUserContextGetIdService.Object, _mockMachineryRepositoryHandler.Object);
+            _mockUserManager = new Mock<UserManager<User>>();
+            _handler = new EditHarvesterCommandHandler(_mockEditHarvesterCommandHandler.Object, _mockUserManager.Object, _mockMachineryRepositoryHandler.Object);
 
         }
 
@@ -29,7 +32,7 @@ namespace WynajemMaszyn.Application.UnitTests.Harvesters.Commands.EditHarvester
             //arange
             var editHarvesterCommand = EditHarvesterCommandUtils.EditHarvesterCommand();
 
-            _mockIUserContextGetIdService.Setup(x => x.GetUserId)
+_mockUserManager.Setup(x => x.GetUserId(It.IsAny<ClaimsPrincipal>()))
                 .Returns(value: null);
 
             //act
@@ -47,7 +50,7 @@ namespace WynajemMaszyn.Application.UnitTests.Harvesters.Commands.EditHarvester
             //arange
             var editHarvesterCommand = EditHarvesterCommandUtils.EditHarvesterCommand();
 
-            _mockIUserContextGetIdService.Setup(x => x.GetUserId)
+_mockUserManager.Setup(x => x.GetUserId(It.IsAny<ClaimsPrincipal>()))
                 .Returns("1");
 
             //act

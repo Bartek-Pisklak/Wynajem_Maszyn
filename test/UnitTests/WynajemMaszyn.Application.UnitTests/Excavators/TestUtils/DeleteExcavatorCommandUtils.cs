@@ -10,6 +10,7 @@ namespace WynajemMaszyn.Application.UnitTests.Excavators.TestUtils
     {
         public static DeleteExcavatorCommand DeleteExcavatorCommand() =>
         new DeleteExcavatorCommand(
+            Constants.Excavator.mockHttpContext.Object,
             Constants.Excavator.Id
         );
 

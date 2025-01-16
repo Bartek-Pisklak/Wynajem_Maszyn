@@ -1,4 +1,6 @@
 ﻿
+using Microsoft.AspNetCore.Http;
+using Moq;
 using WynajemMaszyn.Domain.Enums;
 
 namespace WynajemMaszyn.Application.UnitTests.TestUtils.Constants
@@ -8,6 +10,7 @@ namespace WynajemMaszyn.Application.UnitTests.TestUtils.Constants
     {
         public static class Harvester
         {
+            public static Mock<HttpContext> mockHttpContext = new Mock<HttpContext>();
             public const int Id = 1;
             public const string Name = "Forestry Harvester Pro";
             public const int ProductionYear = 2021;

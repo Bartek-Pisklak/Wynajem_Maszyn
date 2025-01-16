@@ -8,6 +8,10 @@ namespace WynajemMaszyn.WebUI.Components.Pages.machines.Details
     partial class ExcavatorDetails
     {
         private GetExcavatorDto machinery = new GetExcavatorDto();
+        private List<string> ImagePathList = new();
+        private string CurrentImage { get; set; } = string.Empty;
+        private bool IsLightboxVisible { get; set; } = false;
+
 
         [Parameter]
         [SupplyParameterFromQuery]
@@ -43,6 +47,8 @@ namespace WynajemMaszyn.WebUI.Components.Pages.machines.Details
                 });
 
                 machinery=excavator;
+            ImagePathList = excavator.ImagePath;
+            CurrentImage = ImagePathList[0];
         }
 
 
@@ -50,6 +56,21 @@ namespace WynajemMaszyn.WebUI.Components.Pages.machines.Details
         {
 
 
+        }
+
+        private void ChangeImage(string newImagePath)
+        {
+            CurrentImage = newImagePath;
+        }
+
+        private void ShowImageInLightbox()
+        {
+            IsLightboxVisible = true;
+        }
+
+        private void HideLightbox()
+        {
+            IsLightboxVisible = false;
         }
     }
 }

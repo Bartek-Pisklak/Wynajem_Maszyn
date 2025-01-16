@@ -1,11 +1,15 @@
 ﻿
 
+using Microsoft.AspNetCore.Http;
+using Moq;
+
 namespace WynajemMaszyn.Application.UnitTests.TestUtils.Constants
 {
     public static partial class Constants
     {
         public static class ExcavatorBucket
         {
+            public static Mock<HttpContext> mockHttpContext = new Mock<HttpContext>();
             public const int Id = 1;
             public const string Name = "Heavy-Duty Excavator Bucket";
             public const string BucketType = "Rock Bucket";

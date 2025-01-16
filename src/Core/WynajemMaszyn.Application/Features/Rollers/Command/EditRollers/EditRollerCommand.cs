@@ -1,12 +1,15 @@
 ﻿using ErrorOr;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using WynajemMaszyn.Application.Contracts.RollerAnswer;
+using WynajemMaszyn.Domain.Entities;
 using WynajemMaszyn.Domain.Enums;
 
 namespace WynajemMaszyn.Application.Features.Rollers.Command.EditRollers
 {
     public record EditRollerCommand
     (
+        HttpContext context,
         int Id,
         string Name,
         int ProductionYear,

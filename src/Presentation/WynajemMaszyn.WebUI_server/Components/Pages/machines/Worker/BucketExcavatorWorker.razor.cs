@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
+﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using Microsoft.AspNetCore.WebUtilities;
 using WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.DeleteExcavatorBuckets;
 using WynajemMaszyn.Application.Features.ExcavatorBuckets.Queries.DTOs;
@@ -10,6 +11,9 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.machines.Worker
     partial class BucketExcavatorWorker
     {
         private List<GetAllExcavatorBucketDto>? bucketExcavator;
+
+        [CascadingParameter]
+        private HttpContext HttpContext { get; set; } = default!;
 
         protected override async Task OnInitializedAsync()
         {
@@ -63,7 +67,7 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.machines.Worker
 
         private void DeleteExcavatorBucket(int idMachine)
         {
-            var command = new DeleteExcavatorBucketCommand(idMachine);
+            var command = new DeleteExcavatorBucketCommand(HttpContext, idMachine);
 
             var response = Mediator.Send(command);
             navigationManager.NavigateTo(navigationManager.Uri);

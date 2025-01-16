@@ -1,17 +1,15 @@
 ﻿using ErrorOr;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using WynajemMaszyn.Application.Contracts.WoodChipperAnswer;
+using WynajemMaszyn.Domain.Entities;
 using WynajemMaszyn.Domain.Enums;
 
 namespace WynajemMaszyn.Application.Features.WoodChippers.Command.EditWoodChippers
 {
     public record EditWoodChipperCommand
     (
+         HttpContext context,
          int Id,
          string Name,
 

@@ -26,7 +26,7 @@ namespace WynajemMaszyn.Application.Features.WoodChippers.Queries.DTOs
         public int MachineWidth { get; set; }
 
         public int FlowMaterial { get; set; }
-        public string ImagePath { get; set; }
+        public List<string> ImagePath { get; set; }
         public string Description { get; set; }
         public bool IsRepair {  get; set; }
     }

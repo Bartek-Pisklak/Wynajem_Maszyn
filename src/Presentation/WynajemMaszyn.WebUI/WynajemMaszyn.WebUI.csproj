@@ -42,4 +42,9 @@
 	</ItemGroup>
 
 
+	<ItemGroup>
+	  <None Include="wwwroot\Details.css" />
+	</ItemGroup>
+
+
 </Project>

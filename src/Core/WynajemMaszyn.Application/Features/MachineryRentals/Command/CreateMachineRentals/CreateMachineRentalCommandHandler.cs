@@ -4,6 +4,7 @@ using WynajemMaszyn.Application.Contracts.MachineryRentalAnswer;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Domain.Entities;
 using WynajemMaszyn.Application.Common.Errors;
+using Microsoft.AspNetCore.Identity;
 
 
 namespace WynajemMaszyn.Application.Features.MachineryRentals.Command.CreateMachineRentals
@@ -11,26 +12,31 @@ namespace WynajemMaszyn.Application.Features.MachineryRentals.Command.CreateMach
     public class CreateMachineRentalCommandHandler : IRequestHandler<CreateMachineRentalCommand, ErrorOr<MachineryRentalResponse>>
     {
         private readonly IMachineryRentalRepository _machineryRentalRepository;
-        private readonly IUserContextGetIdService _userContextGetId;
+        private readonly UserManager<User> _userManager;
 
 
         public CreateMachineRentalCommandHandler(
             IMachineryRentalRepository machineryRentalRepository,
-            IUserContextGetIdService userContextGetIdService
+            UserManager<User> userManager
             )
         {
             _machineryRentalRepository = machineryRentalRepository;
-            _userContextGetId = userContextGetIdService;
+            _userManager = userManager;
         }
 
         public async Task<ErrorOr<MachineryRentalResponse>> Handle(CreateMachineRentalCommand request, CancellationToken cancellationToken)
         {
-            var userId = _userContextGetId.GetUserId;
+            var user = await _userManager.GetUserAsync(request.context.User);
+            var roleUser = await _userManager.GetRolesAsync(user);
 
-            if (userId is null)
+
+            if (user.Id is null && roleUser.Contains("Worker"))
             {
-                return Errors.MachineRental.UserDoesNotLogged;
+                return Errors.ExcavatorBucket.UserDoesNotLogged;
             }
+
+
+
             var machineryRent = new MachineryRental
             {
 

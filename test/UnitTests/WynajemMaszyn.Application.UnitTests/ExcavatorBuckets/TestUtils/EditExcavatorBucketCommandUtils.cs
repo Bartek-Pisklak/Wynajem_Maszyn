@@ -7,6 +7,7 @@ namespace WynajemMaszyn.Application.UnitTests.ExcavatorBuckets.TestUtils
     {
         public static EditExcavatorBucketCommand EditExcavatorBucketCommand() =>
                 new EditExcavatorBucketCommand(
+                    Constants.Excavator.mockHttpContext.Object,
                     Constants.ExcavatorBucket.Id,
                     Constants.ExcavatorBucket.Name,
                     Constants.ExcavatorBucket.BucketType,

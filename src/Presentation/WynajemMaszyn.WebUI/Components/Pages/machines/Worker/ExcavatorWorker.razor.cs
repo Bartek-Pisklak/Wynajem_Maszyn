@@ -8,6 +8,8 @@ namespace WynajemMaszyn.WebUI.Components.Pages.machines.Worker
 {
     public partial class ExcavatorWorker
     {
+        [CascadingParameter]
+        private HttpContext HttpContext { get; set; } = default!;
 
         private List<GetAllExcavatorDto>? excavator;
 
@@ -66,7 +68,7 @@ namespace WynajemMaszyn.WebUI.Components.Pages.machines.Worker
 
         private void DeleteExcavator(int idMachine)
         {
-            var command = new DeleteExcavatorCommand(idMachine);
+            var command = new DeleteExcavatorCommand(HttpContext, idMachine);
 
             var response = Mediator.Send(command);
             navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);

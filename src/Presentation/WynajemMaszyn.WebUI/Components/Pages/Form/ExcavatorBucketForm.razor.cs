@@ -7,15 +7,11 @@ using WynajemMaszyn.Application.Features.ExcavatorBuckets.Queries.GetExcavatorBu
 using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 
+
 namespace WynajemMaszyn.WebUI.Components.Pages.Form
 {
     public partial class ExcavatorBucketForm
     {
-        private GetExcavatorBucketDto machinery = new GetExcavatorBucketDto();
-        private IBrowserFile? uploadedFile;
-        private FileUploud fileUploud = new FileUploud();
-        private List<string> validationErrors = new();
-
         [Parameter]
         [SupplyParameterFromQuery]
         public int? IdMachine { get; set; }
@@ -24,7 +20,18 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
         [SupplyParameterFromQuery]
         public string? Action { get; set; }
 
-        private string uploadedFileEdit = null;
+        [CascadingParameter]
+        private HttpContext HttpContext { get; set; } = default!;
+
+        private GetExcavatorBucketDto machinery = new GetExcavatorBucketDto();
+        private FileUploud fileUploud = new FileUploud();
+        private List<string> validationErrors = new();
+        private List<string> ImagePaths = new();
+
+
+
+
+
 
         protected override void OnParametersSet()
         {
@@ -35,7 +42,7 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
         {
             EnumsCustomer enumsCustomer = new EnumsCustomer();
 
-
+            HttpContext = HttpContextAccessor.HttpContext;
 
             if (Action == "edit")
             {
@@ -64,7 +71,8 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
                 });
 
                 machinery = ExcavatorBucket;
-                uploadedFileEdit = machinery.ImagePath;
+                ImagePaths = machinery.ImagePath;
+
             }
 
         }
@@ -85,7 +93,7 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
 
 
 
-            if (uploadedFile is null && uploadedFileEdit is null)
+            if (!ImagePaths.Any())
                 validationErrors.Add("Brak obrazu");
 
             if (validationErrors.Any())
@@ -119,22 +127,41 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
 
         private async Task HandleImageUpload(InputFileChangeEventArgs e)
         {
-            uploadedFile = e.File;
-            return;
+            var files = e.GetMultipleFiles();
+
+            foreach (var file in files)
+            {
+                if (file.Size > 5 * 1024 * 1024)
+                {
+                    validationErrors.Add($"Plik {file.Name} przekracza maksymalny rozmiar 5 MB.");
+                    continue;
+                }
+
+                var path = await fileUploud.CreatePathToImage(file);
+                if (!string.IsNullOrEmpty(path))
+                {
+                    ImagePaths.Add(path);
+                }
+                else
+                {
+                    validationErrors.Add($"Nie udało się przesłać pliku {file.Name}.");
+                }
+            
+            }
         }
 
         private async void CreateRoller()
         {
-            var path = await fileUploud.CreatePathToImage(uploadedFile);
-            if (path != null)
+            string imagePaths = "";
+            foreach (var i in ImagePaths)
             {
-                machinery.ImagePath = path;
+                imagePaths+= i;
+                imagePaths+= ",";
             }
-            else
-            {
-                validationErrors.Add("Obraz jest za dużo niż 5MB lub zepsuty plik");
-            }
+            imagePaths = imagePaths.Substring(0, imagePaths.Length - 1);
+
             var command = new CreateExcavatorBucketCommand(
+                    HttpContext,
                     machinery.Name,
                     machinery.BucketType,
                     machinery.ProductionYear,
@@ -147,7 +174,7 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
                     machinery.Material,
                     machinery.MaxLoadCapacity,
                     machinery.RentalPricePerDay,
-                    machinery.ImagePath,
+                    imagePaths,
                     machinery.Description
             );
 
@@ -157,17 +184,16 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
 
         private async void EditRoller()
         {
-            if (uploadedFileEdit != machinery.ImagePath)
+            string imagePaths = "";
+            foreach (var i in ImagePaths)
             {
-                fileUploud.DeleteImage(uploadedFileEdit);
-                var path = await fileUploud.CreatePathToImage(uploadedFile);
-                if (path != null)
-                {
-                    machinery.ImagePath = path;
-                }
+                imagePaths+= i;
+                imagePaths+= ",";
             }
+            imagePaths = imagePaths.Substring(0, imagePaths.Length - 1);
 
             var command = new EditExcavatorBucketCommand(
+                    HttpContext,
                     machinery.Id,
                     machinery.Name,
                     machinery.BucketType,
@@ -181,12 +207,22 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
                     machinery.Material,
                     machinery.MaxLoadCapacity,
                     machinery.RentalPricePerDay,
-                    machinery.ImagePath,
+                    imagePaths,
                     machinery.Description,
                     machinery.IsRepair
             );
             await Mediator.Send(command);
             navigationManager.NavigateTo("/ExcavatorBucketWorker");
+        }
+
+        private void RemoveImage(string imagePath)
+        {
+            if (ImagePaths.Contains(imagePath))
+            {
+                ImagePaths.Remove(imagePath);
+
+                fileUploud.DeleteImage(imagePath);
+            }
         }
     }
 }

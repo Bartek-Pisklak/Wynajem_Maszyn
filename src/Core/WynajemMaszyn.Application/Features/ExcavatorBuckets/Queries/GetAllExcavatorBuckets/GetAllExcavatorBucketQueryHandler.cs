@@ -26,6 +26,7 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Queries.GetAllExca
 
             if (!excavatorBucket.Any()) return Errors.ExcavatorBucket.NotDataToDisplay;
 
+
             List<GetAllExcavatorBucketDto> workExcavatorBucket = excavatorBucket.Select(x => new GetAllExcavatorBucketDto
             {
                 Id = x.Id,
@@ -34,7 +35,7 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Queries.GetAllExca
                 Weight = x.Weight,
                 ProductionYear = x.ProductionYear,
                 RentalPricePerDay = x.RentalPricePerDay,
-                ImagePath = x.ImagePath,
+                ImagePath = x.ImagePath.Split(",").FirstOrDefault(),
                 IsRepair = x.IsRepair,
             }).ToList();
 

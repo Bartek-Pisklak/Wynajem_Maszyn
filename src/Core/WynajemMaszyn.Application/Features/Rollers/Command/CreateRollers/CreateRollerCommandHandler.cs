@@ -4,36 +4,39 @@ using WynajemMaszyn.Application.Contracts.RollerAnswer;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Domain.Entities;
 using WynajemMaszyn.Application.Common.Errors;
+using Microsoft.AspNetCore.Identity;
 
 namespace WynajemMaszyn.Application.Features.Rollers.Command.CreateRollers
 {
     public class CreateRollerCommandHandler : IRequestHandler<CreateRollerCommand, ErrorOr<RollerResponse>>
     {
         private readonly IRollerRepository _rollerRepository;
-        private readonly IUserContextGetIdService _userContextGetId;
+        private readonly UserManager<User> _userManager;
         private readonly IMachineryRepository _machineryRepository;
 
         public CreateRollerCommandHandler(IRollerRepository rollerRepository,
-                                            IUserContextGetIdService userContextGetId,
+                                            UserManager<User> userManager,
                                             IMachineryRepository machineryRepository)
         {
             _rollerRepository = rollerRepository;
-            _userContextGetId = userContextGetId;
+            _userManager = userManager;
             _machineryRepository = machineryRepository;
         }
 
         public async Task<ErrorOr<RollerResponse>> Handle(CreateRollerCommand request, CancellationToken cancellationToken)
         {
-            var userId = _userContextGetId.GetUserId;
+            var user = await _userManager.GetUserAsync(request.context.User);
+            var roleUser = await _userManager.GetRolesAsync(user);
 
-            if (userId is null)
+
+            if (user.Id is null && roleUser.Contains("Worker"))
             {
-                return Errors.Roller.UserDoesNotLogged;
+                return Errors.ExcavatorBucket.UserDoesNotLogged;
             }
 
             var roller = new Roller
             {
-                UserId = userId,
+                UserId = user.Id,
                 Name = request.Name,
                 ProductionYear = request.ProductionYear,
                 OperatingHours = request.OperatingHours,

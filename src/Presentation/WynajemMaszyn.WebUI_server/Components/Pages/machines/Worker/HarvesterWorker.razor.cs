@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.WebUtilities;
+﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.WebUtilities;
 using WynajemMaszyn.Application.Features.Harvesters.Command.DeleteHarvesters;
 using WynajemMaszyn.Application.Features.Harvesters.Queries.DTOs;
 using WynajemMaszyn.Application.Features.Harvesters.Queries.GetAllHarvesters;
@@ -8,7 +9,8 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.machines.Worker
 {
     partial class HarvesterWorker
     {
-
+        [CascadingParameter]
+        private HttpContext HttpContext { get; set; } = default!;
         private List<GetAllHarvesterDto>? harvester;
 
         protected override async Task OnInitializedAsync()
@@ -65,7 +67,7 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.machines.Worker
 
         private void DeleteHarvester(int idMachine)
         {
-            var command = new DeleteHarvesterCommand(idMachine);
+            var command = new DeleteHarvesterCommand(HttpContext, idMachine);
 
             var response = Mediator.Send(command);
             navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);

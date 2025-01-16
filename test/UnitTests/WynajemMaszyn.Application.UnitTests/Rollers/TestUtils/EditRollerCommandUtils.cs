@@ -9,6 +9,7 @@ namespace WynajemMaszyn.Application.UnitTests.Rollers.TestUtils
 
         public static EditRollerCommand EditRollerCommand() =>
             new EditRollerCommand(
+                Constants.Excavator.mockHttpContext.Object,
                 Constants.Roller.Id,
                 Constants.Roller.Name,
                 Constants.Roller.ProductionYear,

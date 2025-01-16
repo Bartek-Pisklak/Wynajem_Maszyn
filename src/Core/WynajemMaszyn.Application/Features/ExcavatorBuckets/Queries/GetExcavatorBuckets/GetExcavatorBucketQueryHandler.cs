@@ -44,7 +44,7 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Queries.GetExcavat
                 RentalPricePerDay = excavatorBucket.RentalPricePerDay,
                 CompatibleExcavators = excavatorBucket.CompatibleExcavators,
 
-                ImagePath = excavatorBucket.ImagePath,
+                ImagePath = excavatorBucket.ImagePath.Split(",").ToList(),
                 Description = excavatorBucket.Description,
                 IsRepair = excavatorBucket.IsRepair
             });

@@ -4,36 +4,38 @@ using WynajemMaszyn.Application.Contracts.ExcavatorBucketAnswer;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Domain.Entities;
 using WynajemMaszyn.Application.Common.Errors;
+using Microsoft.AspNetCore.Identity;
 
 namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.CreateExcavatorBuckets
 {
     public class CreateExcavatorBucketCommandHandler : IRequestHandler<CreateExcavatorBucketCommand, ErrorOr<ExcavatorBucketResponse>>
     {
         private readonly IExcavatorBucketRepository _excavatorBucketRepository;
-        private readonly IUserContextGetIdService _userContextGetId;
         private readonly IMachineryRepository _machineryRepository;
+        private readonly UserManager<User> _userManager;
 
         public CreateExcavatorBucketCommandHandler(IExcavatorBucketRepository excavatorBucketRepository,
-            IUserContextGetIdService userContextGetId,
-            IMachineryRepository machineryRepository)
+            IMachineryRepository machineryRepository,
+            UserManager<User> userManager)
         {
             _excavatorBucketRepository=excavatorBucketRepository;
-            _userContextGetId=userContextGetId;
             _machineryRepository=machineryRepository;
+            _userManager=userManager;
         }
 
         public async Task<ErrorOr<ExcavatorBucketResponse>> Handle(CreateExcavatorBucketCommand request, CancellationToken cancellationToken)
         {
-            var userId = _userContextGetId.GetUserId;
-            //var userPermisionId = _userContextGetId.;
-            if (userId is null )//&& )
+            var user = await _userManager.GetUserAsync(request.context.User);
+            var roleUser = await _userManager.GetRolesAsync(user);
+            
+            if (user.Id is null && roleUser.Contains("Worker"))
             {
                 return Errors.ExcavatorBucket.UserDoesNotLogged;
             }
 
             var excavatorBucket = new ExcavatorBucket
             {
-                UserId = userId,
+                UserId = user.Id,
                 Name = request.Name,
                 BucketType = request.BucketType,
                 ProductionYear = request.ProductionYear,

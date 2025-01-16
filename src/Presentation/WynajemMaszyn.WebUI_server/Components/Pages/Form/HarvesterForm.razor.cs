@@ -16,6 +16,8 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.Form
         private FileUploud fileUploud = new FileUploud();
         private List<string> validationErrors = new();
 
+        [CascadingParameter]
+        private HttpContext HttpContext { get; set; } = default!;
         [Parameter]
         [SupplyParameterFromQuery]
         public int? IdMachine { get; set; }
@@ -147,6 +149,7 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.Form
                 validationErrors.Add("Obraz jest za dużo niż 5MB lub zepsuty plik");
             }
             var command = new CreateHarvesterCommand(
+                HttpContext,
                     machinery.Name,
                     machinery.ProductionYear,
                     machinery.OperatingHours,
@@ -182,6 +185,7 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.Form
             }
 
             var command = new EditHarvesterCommand(
+                HttpContext,
                     machinery.Id,
                     machinery.Name,
                     machinery.ProductionYear,

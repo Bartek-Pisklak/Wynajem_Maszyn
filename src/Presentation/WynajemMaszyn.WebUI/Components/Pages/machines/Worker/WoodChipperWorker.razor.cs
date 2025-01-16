@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.WebUtilities;
+﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.WebUtilities;
 using WynajemMaszyn.Application.Features.WoodChippers.Command.DeleteWoodChippers;
 using WynajemMaszyn.Application.Features.WoodChippers.Queries.DTOs;
 using WynajemMaszyn.Application.Features.WoodChippers.Queries.GetAllWoodChippers;
@@ -7,6 +8,9 @@ namespace WynajemMaszyn.WebUI.Components.Pages.machines.Worker
 {
     partial class WoodChipperWorker
     {
+        [CascadingParameter]
+        private HttpContext HttpContext { get; set; } = default!;
+
         private List<GetAllWoodChipperDto>? woodChipper;
 
         protected override async Task OnInitializedAsync()
@@ -58,7 +62,7 @@ namespace WynajemMaszyn.WebUI.Components.Pages.machines.Worker
         }
         private void DeleteWoodChipper(int idMachine)
         {
-            var command = new DeleteWoodChipperCommand(idMachine);
+            var command = new DeleteWoodChipperCommand(HttpContext, idMachine);
 
             var response = Mediator.Send(command);
             navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);

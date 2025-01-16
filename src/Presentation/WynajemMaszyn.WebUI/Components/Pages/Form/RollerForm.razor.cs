@@ -6,6 +6,7 @@ using WynajemMaszyn.Application.Features.Rollers.Command.CreateRollers;
 using WynajemMaszyn.Application.Features.Rollers.Command.EditRollers;
 using WynajemMaszyn.Application.Features.Rollers.Queries.DTOs;
 using WynajemMaszyn.Application.Features.Rollers.Queries.GetRollers;
+using static System.Net.Mime.MediaTypeNames;
 
 
 namespace WynajemMaszyn.WebUI.Components.Pages.Form
@@ -13,9 +14,12 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
     public partial class RollerForm
     {
         private GetRollerDto machinery = new GetRollerDto();
-        private IBrowserFile? uploadedFile;
         private FileUploud fileUploud = new FileUploud();
         private List<string> validationErrors = new();
+        private List<string> ImagePaths = new();
+
+        [CascadingParameter]
+        private HttpContext HttpContext { get; set; } = default!;
 
         [Parameter]
         [SupplyParameterFromQuery]
@@ -37,6 +41,7 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
 
         protected override async Task OnInitializedAsync()
         {
+            HttpContext = HttpContextAccessor.HttpContext;
             EnumsCustomer enumsCustomer = new EnumsCustomer();
             listTypeRoller.Clear();
             listTypeRoller.AddRange(enumsCustomer.GetTypeRoller());
@@ -67,15 +72,36 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
                 });
 
                 machinery = roller;
-                uploadedFileEdit = machinery.ImagePath;
+                ImagePaths = machinery.ImagePath;
             }
 
         }
 
         private async Task HandleImageUpload(InputFileChangeEventArgs e)
         {
-            uploadedFile = e.File;
+            var files = e.GetMultipleFiles();
+
+            foreach (var file in files)
+            {
+                if (file.Size > 5 * 1024 * 1024)
+                {
+                    validationErrors.Add($"Plik {file.Name} przekracza maksymalny rozmiar 5 MB.");
+                    continue;
+                }
+
+                var path = await fileUploud.CreatePathToImage(file);
+                if (!string.IsNullOrEmpty(path))
+                {
+                    ImagePaths.Add(path);
+                }
+                else
+                {
+                    validationErrors.Add($"Nie udało się przesłać pliku {file.Name}.");
+                }
+
+            }
         }
+
 
 
 
@@ -104,7 +130,7 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
             if (machinery.DrivingSpeed <= 0)
                 validationErrors.Add("Prędkość jazdy musi być większa niż 0.");
 
-            if (uploadedFile is null && uploadedFileEdit is null)
+            if (!ImagePaths.Any())
                 validationErrors.Add("Brak obrazu");
 
             if (validationErrors.Any())
@@ -140,17 +166,16 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
         private async void CreateRoller()
         {
 
-
-
-
-
-            var path = await fileUploud.CreatePathToImage(uploadedFile);
-            if (path != null)
+            string imagePaths = "";
+            foreach (var i in ImagePaths)
             {
-                machinery.ImagePath = path;
+                imagePaths+= i;
+                imagePaths+= ",";
             }
+            imagePaths = imagePaths.Substring(0, imagePaths.Length - 1);
 
             var command = new CreateRollerCommand(
+                HttpContext,
             machinery.Name,
             machinery.ProductionYear,
             machinery.OperatingHours,
@@ -168,7 +193,7 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
             machinery.IsVibratory,
             machinery.KnigeAsfalt,
             machinery.RentalPricePerDay,
-            machinery.ImagePath,
+            imagePaths,
             machinery.Description
             );
             await Mediator.Send(command);
@@ -177,17 +202,16 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
 
         private async void EditRoller()
         {
-            if (uploadedFileEdit != machinery.ImagePath)
+            string imagePaths = "";
+            foreach (var i in ImagePaths)
             {
-                fileUploud.DeleteImage(uploadedFileEdit);
-                var path = await fileUploud.CreatePathToImage(uploadedFile);
-                if (path != null)
-                {
-                    machinery.ImagePath = path;
-                }
+                imagePaths+= i;
+                imagePaths+= ",";
             }
+            imagePaths = imagePaths.Substring(0, imagePaths.Length - 1);
 
             var command = new EditRollerCommand(
+                HttpContext,
                     machinery.Id,
                     machinery.Name,
                     machinery.ProductionYear,
@@ -206,12 +230,22 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
                     machinery.IsVibratory,
                     machinery.KnigeAsfalt,
                     machinery.RentalPricePerDay,
-                    machinery.ImagePath,
+                    imagePaths,
                     machinery.Description,
                     machinery.IsRepair
             );
             await Mediator.Send(command);
             navigationManager.NavigateTo("/RollerWorker");
+        }
+
+        private void RemoveImage(string imagePath)
+        {
+            if (ImagePaths.Contains(imagePath))
+            {
+                ImagePaths.Remove(imagePath);
+
+                fileUploud.DeleteImage(imagePath);
+            }
         }
     }
 }

@@ -1,12 +1,15 @@
 ﻿using ErrorOr;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using WynajemMaszyn.Application.Contracts.HarversterAnswer;
+using WynajemMaszyn.Domain.Entities;
 using WynajemMaszyn.Domain.Enums;
 
 namespace WynajemMaszyn.Application.Features.Harvesters.Command.CreateHarvesters
 {
     public record CreateHarvesterCommand
     (
+        HttpContext context,
         string Name,
         int ProductionYear,
         int OperatingHours,

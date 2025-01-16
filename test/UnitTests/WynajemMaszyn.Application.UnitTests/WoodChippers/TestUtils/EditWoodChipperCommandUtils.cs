@@ -7,6 +7,7 @@ namespace WynajemMaszyn.Application.UnitTests.WoodChippers.TestUtils
     {
         public static EditWoodChipperCommand EditWoodChipperCommand() =>
             new EditWoodChipperCommand(
+                Constants.Excavator.mockHttpContext.Object,
                 Constants.WoodChipper.Id,
                 Constants.WoodChipper.Name,
                 Constants.WoodChipper.RentalPricePerDay,
@@ -27,7 +28,6 @@ namespace WynajemMaszyn.Application.UnitTests.WoodChippers.TestUtils
                 Constants.WoodChipper.ImagePath,
                 Constants.WoodChipper.Description,
                 Constants.WoodChipper.IsRepair
-
                 );
     }
 }

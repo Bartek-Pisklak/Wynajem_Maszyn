@@ -1,11 +1,13 @@
 ﻿using ErrorOr;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using WynajemMaszyn.Application.Contracts.ExcavatorBucketAnswer;
 
 namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.CreateExcavatorBuckets
 {
     public record CreateExcavatorBucketCommand
     (
+    HttpContext context,
     string Name,
     string BucketType,
     int ProductionYear,

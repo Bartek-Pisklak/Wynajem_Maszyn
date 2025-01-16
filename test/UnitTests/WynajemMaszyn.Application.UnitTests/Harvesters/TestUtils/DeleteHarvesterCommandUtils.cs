@@ -9,6 +9,7 @@ namespace WynajemMaszyn.Application.UnitTests.Harvesters.TestUtils
     {
         public static DeleteHarvesterCommand DeleteHarvesterCommand() =>
                 new DeleteHarvesterCommand(
+                    Constants.Excavator.mockHttpContext.Object,
                     Constants.Harvester.Id
                     );
 

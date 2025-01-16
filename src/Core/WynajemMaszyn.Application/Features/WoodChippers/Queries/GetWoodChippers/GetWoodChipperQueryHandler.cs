@@ -39,7 +39,7 @@ namespace WynajemMaszyn.Application.Features.WoodChippers.Queries.GetWoodChipper
                 ChoppingHeight = woodChipper.ChoppingHeight,
                 MachineWidth = woodChipper.MachineWidth,
                 FlowMaterial = woodChipper.FlowMaterial,
-                ImagePath = woodChipper.ImagePath,
+                ImagePath = woodChipper.ImagePath.Split(",").ToList(),
                 Description = woodChipper.Description,
                 IsRepair = woodChipper.IsRepair
             };

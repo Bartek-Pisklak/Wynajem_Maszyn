@@ -1,5 +1,6 @@
 ﻿using ErrorOr;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using WynajemMaszyn.Application.Contracts.ExcavatorAnswer;
 using WynajemMaszyn.Domain.Enums;
 
@@ -7,6 +8,7 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.CreateExcavators
 {
     public record CreateExcavatorCommand
     (
+        HttpContext context,
         string Name,
         TypeExcavator TypeExcavator,
         TypeChassis TypeChassis,

@@ -1,4 +1,6 @@
 ﻿
+using Microsoft.AspNetCore.Http;
+using Moq;
 using WynajemMaszyn.Domain.Enums;
 
 namespace WynajemMaszyn.Application.UnitTests.TestUtils.Constants
@@ -7,6 +9,7 @@ namespace WynajemMaszyn.Application.UnitTests.TestUtils.Constants
     {
         public static class WoodChipper
         {
+            public static Mock<HttpContext> mockHttpContext = new Mock<HttpContext>();
             public const int Id = 1;
             public const string Name = "Heavy-Duty Wood Chipper";
             public const float RentalPricePerDay = 320.0f; // cena wynajmu za dzień w PLN

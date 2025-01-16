@@ -7,6 +7,9 @@ namespace WynajemMaszyn.WebUI.Components.Pages.machines.Details
     partial class WoodChipperDetails
     {
         private GetWoodChipperDto machinery = new GetWoodChipperDto();
+        private List<string> ImagePathList = new();
+        private string CurrentImage { get; set; } = string.Empty;
+        private bool IsLightboxVisible { get; set; } = false;
 
         [Parameter]
         [SupplyParameterFromQuery]
@@ -49,6 +52,21 @@ namespace WynajemMaszyn.WebUI.Components.Pages.machines.Details
         {
 
 
+        }
+
+        private void ChangeImage(string newImagePath)
+        {
+            CurrentImage = newImagePath;
+        }
+
+        private void ShowImageInLightbox()
+        {
+            IsLightboxVisible = true;
+        }
+
+        private void HideLightbox()
+        {
+            IsLightboxVisible = false;
         }
     }
 }

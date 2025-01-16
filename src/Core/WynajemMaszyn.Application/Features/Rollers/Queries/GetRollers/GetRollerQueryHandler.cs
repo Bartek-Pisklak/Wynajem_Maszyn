@@ -44,7 +44,7 @@ namespace WynajemMaszyn.Application.Features.Rollers.Queries.GetRollers
                 KnigeAsfalt = roller.KnigeAsfalt,
                 RentalPricePerDay = roller.RentalPricePerDay,
                 Description = roller.Description,
-                ImagePath = roller.ImagePath,
+                ImagePath = roller.ImagePath.Split(",").ToList(),
                 IsRepair = roller.IsRepair,
             };
 

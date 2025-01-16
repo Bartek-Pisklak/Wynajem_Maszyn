@@ -32,7 +32,7 @@ public class GetRollerDto
     public bool IsVibratory { get; set; }
     public bool KnigeAsfalt { get; set; }
 
-    public string ImagePath { get; set; }
+    public List<string> ImagePath { get; set; }
     public string Description { get; set; }
     public bool IsRepair { get; set; }
 

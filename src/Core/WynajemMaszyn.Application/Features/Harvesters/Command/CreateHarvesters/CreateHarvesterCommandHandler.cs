@@ -4,6 +4,7 @@ using WynajemMaszyn.Application.Contracts.HarversterAnswer;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Domain.Entities;
 using WynajemMaszyn.Application.Common.Errors;
+using Microsoft.AspNetCore.Identity;
 
 namespace WynajemMaszyn.Application.Features.Harvesters.Command.CreateHarvesters
 {
@@ -11,31 +12,33 @@ namespace WynajemMaszyn.Application.Features.Harvesters.Command.CreateHarvesters
     {
 
         private readonly IHarvesterRepository _harvesterRepository;
-        private readonly IUserContextGetIdService _userContextGetId;
+        private readonly UserManager<User> _userManager;
         private readonly IMachineryRepository _machineryRepository;
 
 
         public CreateHarvesterCommandHandler(IHarvesterRepository harvesterRepository,
-                                            IUserContextGetIdService userContextGetId,
+                                            UserManager<User> userManager,
                                             IMachineryRepository machineryRepository)
         {
             _harvesterRepository = harvesterRepository;
-            _userContextGetId = userContextGetId;
+            _userManager = userManager;
             _machineryRepository = machineryRepository;
         }
 
         public async Task<ErrorOr<HarvesterResponse>> Handle(CreateHarvesterCommand request, CancellationToken cancellationToken)
         {
-            var userId = _userContextGetId.GetUserId;
+            var user = await _userManager.GetUserAsync(request.context.User);
+            var roleUser = await _userManager.GetRolesAsync(user);
 
-            if (userId is null)
+
+            if (user.Id is null && roleUser.Contains("Worker"))
             {
-                return Errors.Harvester.UserDoesNotLogged;
+                return Errors.ExcavatorBucket.UserDoesNotLogged;
             }
 
             var harvester = new Harvester
             {
-                UserId = userId,
+                UserId = user.Id,
                 Name = request.Name,
                 ProductionYear = request.ProductionYear,
                 OperatingHours = request.OperatingHours,

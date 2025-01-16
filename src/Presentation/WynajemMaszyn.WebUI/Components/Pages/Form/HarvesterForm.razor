@@ -1,7 +1,8 @@
 ﻿@using MediatR
 @rendermode InteractiveServer
 
-
+@using Microsoft.AspNetCore.Authorization
+@inject IHttpContextAccessor HttpContextAccessor
 @inject IJSRuntime JSRuntime
 @inject IMediator Mediator
 @inject NavigationManager navigationManager
@@ -116,18 +117,26 @@
     </div>
 
 
-    <div class="form-group">
-        <label for="imagePath">Zdjęcie:</label>
-        @if (!string.IsNullOrEmpty(machinery.ImagePath))
-        {
-            <img src="@machinery.ImagePath" alt="Machine Image" style="max-width: 100px; max-height: 100px; object-fit: cover;" />
-        }
-        else
-        {
-            <span>No Image</span>
-        }
-        <InputFile OnChange="HandleImageUpload" />
-    </div>
+            <div class="form-group">
+                <label for="imagePath"> Zdjęcia:</label>
+                @if (ImagePaths != null && ImagePaths.Any())
+                {
+                    <ul>
+                        @foreach (var imagePath in ImagePaths)
+                        {
+                            <li style="margin-bottom: 10px;">
+                                <img src="@imagePath" alt="Machine Image" style="max-width: 100px; max-height: 100px; object-fit: cover; margin-right: 10px;" />
+                                <button type="button" class="btn btn-danger btn-sm" @onclick="() => RemoveImage(imagePath)">Usuń</button>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <span>Brak zdjęć</span>
+                }
+                <InputFile OnChange="HandleImageUpload" multiple />
+            </div>
 
     @if (Action == "edit")
     {

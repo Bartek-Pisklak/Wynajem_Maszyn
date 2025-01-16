@@ -1,5 +1,7 @@
 ﻿
 
+using Microsoft.AspNetCore.Http;
+using Moq;
 using WynajemMaszyn.Domain.Enums;
 
 namespace WynajemMaszyn.Application.UnitTests.TestUtils.Constants
@@ -8,6 +10,7 @@ namespace WynajemMaszyn.Application.UnitTests.TestUtils.Constants
     {
         public static class Excavator
         {
+            public static Mock<HttpContext> mockHttpContext = new Mock<HttpContext>();
             public const int Id = 1;
             public const string Name = "Excavator 3000";
             public const TypeExcavator _TypeExcavator = TypeExcavator.mała;
@@ -26,6 +29,7 @@ namespace WynajemMaszyn.Application.UnitTests.TestUtils.Constants
             public const string ImagePath = "/images/excavator_3000.jpg";
             public const string Description = "A powerful excavator suitable for heavy-duty digging operations.";
             public const bool IsRepair = false;
+
         }
 
     }

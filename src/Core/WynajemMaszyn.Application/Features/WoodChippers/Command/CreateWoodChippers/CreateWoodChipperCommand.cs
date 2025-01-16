@@ -1,13 +1,15 @@
 ﻿using ErrorOr;
 using MediatR;
-
+using Microsoft.AspNetCore.Http;
 using WynajemMaszyn.Application.Contracts.WoodChipperAnswer;
+using WynajemMaszyn.Domain.Entities;
 using WynajemMaszyn.Domain.Enums;
 
 namespace WynajemMaszyn.Application.Features.WoodChippers.Command.CreateWoodChippers
 {
     public record CreateWoodChipperCommand
     (
+         HttpContext context,
          string Name,
 
          float RentalPricePerDay,

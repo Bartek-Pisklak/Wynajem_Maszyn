@@ -7,9 +7,7 @@ namespace WynajemMaszyn.Application.Features.MachineryRentals.Command.EditMachin
     {
 
 
-        public EditMachineRentalCommandHandler(
-            
-            ) 
+        public EditMachineRentalCommandHandler() 
         {
         
         

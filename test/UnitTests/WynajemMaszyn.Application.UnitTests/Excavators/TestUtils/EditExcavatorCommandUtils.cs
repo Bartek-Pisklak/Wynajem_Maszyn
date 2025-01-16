@@ -9,6 +9,7 @@ namespace WynajemMaszyn.Application.UnitTests.Excavators.TestUtils
 
         public static EditExcavatorCommand EditExcavatorCommand() =>
             new EditExcavatorCommand(
+                Constants.Excavator.mockHttpContext.Object,
                 Constants.Excavator.Id,
                 Constants.Excavator.Name,
                 Constants.Excavator._TypeExcavator,

@@ -4,6 +4,7 @@ using WynajemMaszyn.Application.Contracts.WoodChipperAnswer;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Domain.Entities;
 using WynajemMaszyn.Application.Common.Errors;
+using Microsoft.AspNetCore.Identity;
 
 
 namespace WynajemMaszyn.Application.Features.WoodChippers.Command.EditWoodChippers
@@ -11,29 +12,32 @@ namespace WynajemMaszyn.Application.Features.WoodChippers.Command.EditWoodChippe
     public class EditWoodChipperCommandHandler : IRequestHandler<EditWoodChipperCommand, ErrorOr<WoodChipperResponse>>
     {
         private readonly IWoodChipperRepository _woodChipperRepository;
-        private readonly IUserContextGetIdService _userContextGetId;
+        private readonly UserManager<User> _userManager;
         private readonly IMachineryRepository _machineryRepository;
 
         public EditWoodChipperCommandHandler(IWoodChipperRepository woodChipperRepository,
-                                                IUserContextGetIdService userContextGetIdService,
+                                                UserManager<User> userManager,
                                                 IMachineryRepository machineryRepository)
         {
             _woodChipperRepository= woodChipperRepository;
-            _userContextGetId= userContextGetIdService;
+            _userManager= userManager;
             _machineryRepository= machineryRepository;
         }
 
         public async Task<ErrorOr<WoodChipperResponse>> Handle(EditWoodChipperCommand request, CancellationToken cancellationToken)
         {
-            var userId = _userContextGetId.GetUserId;
+            var user = await _userManager.GetUserAsync(request.context.User);
+            var roleUser = await _userManager.GetRolesAsync(user);
 
-            if (userId is null)
+
+            if (user.Id is null && roleUser.Contains("Worker"))
             {
-                return Errors.WoodChipper.UserDoesNotLogged;
+                return Errors.ExcavatorBucket.UserDoesNotLogged;
             }
 
             var woodChipper = new WoodChipper
             {
+                UserId= user.Id,
                 Name = request.Name,
                 RentalPricePerDay = request.RentalPricePerDay,
                 ProductionYear = request.ProductionYear,

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.WebUtilities;
 using WynajemMaszyn.Application.Features.Enums;
 using WynajemMaszyn.Application.Features.ExcavatorBuckets.Queries.DTOs;
 using WynajemMaszyn.Application.Features.ExcavatorBuckets.Queries.GetExcavatorBuckets;
@@ -9,11 +8,14 @@ namespace WynajemMaszyn.WebUI.Components.Pages.machines.Details
     partial class ExcavatorBucketDetails
     {
         private GetExcavatorBucketDto bucket = new GetExcavatorBucketDto();
+        private List<string> ImagePathList= new();
+        private string CurrentImage { get; set; } = string.Empty;
+        private bool IsLightboxVisible { get; set; } = false;
 
         [Parameter]
         [SupplyParameterFromQuery]
         public int? IdMachine { get; set; }
-
+        
 
         protected override async Task OnInitializedAsync()
         {
@@ -45,6 +47,8 @@ namespace WynajemMaszyn.WebUI.Components.Pages.machines.Details
             });
 
             bucket = ExcavatorBucket;
+            ImagePathList= ExcavatorBucket.ImagePath;
+            CurrentImage = ImagePathList[0];
         }
 
 
@@ -54,5 +58,20 @@ namespace WynajemMaszyn.WebUI.Components.Pages.machines.Details
 
         }
 
+
+        private void ChangeImage(string newImagePath)
+        {
+            CurrentImage = newImagePath;
+        }
+
+        private void ShowImageInLightbox()
+        {
+            IsLightboxVisible = true;
+        }
+
+        private void HideLightbox()
+        {
+            IsLightboxVisible = false;
+        }
     }
 }

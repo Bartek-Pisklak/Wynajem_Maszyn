@@ -44,7 +44,7 @@ namespace WynajemMaszyn.Application.Features.Excavators.Queries.GetExcavators
                 Gearbox = excavator.Gearbox,
                 MaxDiggingDepth = excavator.MaxDiggingDepth,
                 Description = excavator.Description,
-                ImagePath = excavator.ImagePath,
+                ImagePath = excavator.ImagePath.Split(",").ToList(),
                 IsRepair = excavator.IsRepair,
             };
 

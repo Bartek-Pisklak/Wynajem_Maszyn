@@ -40,7 +40,7 @@ namespace WynajemMaszyn.Application.Features.Harvesters.Queries.GetHarvesters
                 MaxReach = harvester.MaxReach,
                 TypeChassis = harvester.TypeChassis,
                 RentalPricePerDay = harvester.RentalPricePerDay,
-                ImagePath = harvester.ImagePath,
+                ImagePath = harvester.ImagePath.Split(",").ToList(),
                 Description = harvester.Description,
                 IsRepair = harvester.IsRepair,
             };

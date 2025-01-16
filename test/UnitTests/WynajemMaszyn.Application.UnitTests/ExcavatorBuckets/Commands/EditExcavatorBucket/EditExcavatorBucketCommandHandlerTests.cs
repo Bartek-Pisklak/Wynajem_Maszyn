@@ -1,8 +1,11 @@
 ﻿using FluentAssertions;
+using Microsoft.AspNetCore.Identity;
 using Moq;
+using System.Security.Claims;
 using WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.EditExcavatorBuckets;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Application.UnitTests.ExcavatorBuckets.TestUtils;
+using WynajemMaszyn.Domain.Entities;
 
 namespace WynajemMaszyn.Application.UnitTests.ExcavatorBuckets.Commands.EditExcavatorBucket
 {
@@ -11,14 +14,14 @@ namespace WynajemMaszyn.Application.UnitTests.ExcavatorBuckets.Commands.EditExca
         private readonly EditExcavatorBucketCommandHandler _handler;
         private readonly Mock<IExcavatorBucketRepository> _mockEditExcavatorBucketCommandHandler;
         private readonly Mock<IMachineryRepository> _mockMachineryRepositoryHandler;
-        private readonly Mock<IUserContextGetIdService> _mockIUserContextGetIdService;
+        private readonly Mock<UserManager<User>> _mockUserManager;
 
         public EditExcavatorBucketCommandHandlerTests()
         {
             _mockEditExcavatorBucketCommandHandler = new Mock<IExcavatorBucketRepository>();
             _mockMachineryRepositoryHandler = new Mock<IMachineryRepository>();
-            _mockIUserContextGetIdService = new Mock<IUserContextGetIdService>();
-            _handler = new EditExcavatorBucketCommandHandler(_mockEditExcavatorBucketCommandHandler.Object, _mockIUserContextGetIdService.Object, _mockMachineryRepositoryHandler.Object);
+            _mockUserManager = new Mock<UserManager<User>>();
+            _handler = new EditExcavatorBucketCommandHandler(_mockEditExcavatorBucketCommandHandler.Object, _mockUserManager.Object, _mockMachineryRepositoryHandler.Object);
         }
 
 
@@ -28,8 +31,8 @@ namespace WynajemMaszyn.Application.UnitTests.ExcavatorBuckets.Commands.EditExca
             //arange
             var EditExcavatorBucketCommand = EditExcavatorBucketCommandUtils.EditExcavatorBucketCommand();
 
-            _mockIUserContextGetIdService.Setup(x => x.GetUserId)
-                .Returns(value: null);
+            _mockUserManager.Setup(x => x.GetUserId(It.IsAny<ClaimsPrincipal>()))
+                .Returns<string>(null);
 
             //act
             var result = await _handler.Handle(EditExcavatorBucketCommand, default);
@@ -46,7 +49,7 @@ namespace WynajemMaszyn.Application.UnitTests.ExcavatorBuckets.Commands.EditExca
             //arange
             var EditExcavatorBucketCommand = EditExcavatorBucketCommandUtils.EditExcavatorBucketCommand();
 
-            _mockIUserContextGetIdService.Setup(x => x.GetUserId)
+_mockUserManager.Setup(x => x.GetUserId(It.IsAny<ClaimsPrincipal>()))
                 .Returns("1");
 
             //act

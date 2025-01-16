@@ -1,12 +1,15 @@
 ﻿using ErrorOr;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using WynajemMaszyn.Application.Contracts.ExcavatorAnswer;
+using WynajemMaszyn.Domain.Entities;
 using WynajemMaszyn.Domain.Enums;
 
 namespace WynajemMaszyn.Application.Features.Excavators.Command.EditExcavators
 {
     public record EditExcavatorCommand
     (
+        HttpContext context,
         int Id,
         string Name,
         TypeExcavator TypeExcavator,

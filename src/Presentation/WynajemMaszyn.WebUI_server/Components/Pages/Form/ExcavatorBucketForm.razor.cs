@@ -16,6 +16,9 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.Form
         private FileUploud fileUploud = new FileUploud();
         private List<string> validationErrors = new();
 
+        [CascadingParameter]
+        private HttpContext HttpContext { get; set; } = default!;
+
         [Parameter]
         [SupplyParameterFromQuery]
         public int? IdMachine { get; set; }
@@ -64,7 +67,7 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.Form
                 });
 
                 machinery = ExcavatorBucket;
-                uploadedFileEdit = machinery.ImagePath;
+                Image = machinery.ImagePath;
             }
 
         }
@@ -134,6 +137,7 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.Form
                 validationErrors.Add("Obraz jest za dużo niż 5MB lub zepsuty plik");
             }
             var command = new CreateExcavatorBucketCommand(
+                HttpContext,
                     machinery.Name,
                     machinery.BucketType,
                     machinery.ProductionYear,
@@ -167,6 +171,7 @@ namespace WynajemMaszyn.WebUI_server.Components.Pages.Form
             }
 
             var command = new EditExcavatorBucketCommand(
+                HttpContext,
                     machinery.Id,
                     machinery.Name,
                     machinery.BucketType,

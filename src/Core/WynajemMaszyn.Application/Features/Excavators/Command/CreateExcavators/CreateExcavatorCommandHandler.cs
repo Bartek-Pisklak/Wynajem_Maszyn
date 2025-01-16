@@ -5,6 +5,7 @@ using WynajemMaszyn.Domain.Entities;
 using WynajemMaszyn.Domain.Enums;
 using WynajemMaszyn.Application.Contracts.ExcavatorAnswer;
 using WynajemMaszyn.Application.Common.Errors;
+using Microsoft.AspNetCore.Identity;
 
 
 namespace WynajemMaszyn.Application.Features.Excavators.Command.CreateExcavators
@@ -12,32 +13,34 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.CreateExcavators
     public class CreateExcavatorCommandHandler : IRequestHandler<CreateExcavatorCommand, ErrorOr<ExcavatorResponse>>
     {
         private readonly IExcavatorRepository _excavatorRepository;
-        private readonly IUserContextGetIdService _userContextGetId;
+        private readonly UserManager<User> _userManager;
         private readonly IMachineryRepository _machineryRepository;
 
 
 
         public CreateExcavatorCommandHandler(IExcavatorRepository excavatorRepository,
-            IUserContextGetIdService userContextGetId,
+            UserManager<User> userManager,
             IMachineryRepository machineryRepository)
         {
             _excavatorRepository = excavatorRepository;
-            _userContextGetId = userContextGetId;
+            _userManager = userManager;
             _machineryRepository = machineryRepository;
         }
 
         public async Task<ErrorOr<ExcavatorResponse>> Handle(CreateExcavatorCommand request, CancellationToken cancellationToken)
         {
-            var userId = _userContextGetId.GetUserId;
+            var user = await _userManager.GetUserAsync(request.context.User);
+            var roleUser = await _userManager.GetRolesAsync(user);
 
-            if (userId is null)
+
+            if (user.Id is null && roleUser.Contains("Worker"))
             {
-                return Errors.Excavator.UserDoesNotLogged;
+                return Errors.ExcavatorBucket.UserDoesNotLogged;
             }
 
             var excavator = new Excavator
             {
-                UserId = userId,
+                UserId = user.Id,
                 Name = request.Name,
                 TypeExcavator = request.TypeExcavator,
                 TypeChassis = request.TypeChassis,
