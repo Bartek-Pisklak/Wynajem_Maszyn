@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Domain.Entities;
-using BC = BCrypt.Net.BCrypt;
 
 
 namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
@@ -30,11 +29,12 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
 
         public string Add(User user)
         {
-            user.PasswordHash = BC.HashPassword(user.PasswordHash);
-            _dbContext.Users.Add(user);
-            _dbContext.SaveChanges();
+            /*            user.PasswordHash = BC.HashPassword(user.PasswordHash);
+                        _dbContext.Users.Add(user);
+                        _dbContext.SaveChanges();
 
-            return user.Id;
+                        return user.Id;*/
+            return null;
         }
 
         public async Task<User?> GetUser(string email, string password)
@@ -43,22 +43,14 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
 
             if (user is null) return null;
 
+            /*
+                        var passwordVerification = BCrypt.Net.BCrypt.Verify(password, user.PasswordHash);
 
-            var passwordVerification = BCrypt.Net.BCrypt.Verify(password, user.PasswordHash);
+                        if (!passwordVerification) return null;
 
-            if (!passwordVerification) return null;
-
-            return user;
+                        return user;*/
+            return null;
         }
 
-        public async Task<String> GetUserPermission(int permissionId)
-        {
-            /*            //var userPermision = await _dbContext.Permissions.FirstOrDefaultAsync(x => x.Id == permissionId);
-
-                        if (userPermision is null) return null;
-
-                        return userPermision.Name;*/
-            return "Worker";
-        }
     }
 }

@@ -9,10 +9,13 @@ namespace WynajemMaszyn.Application.Features.Harvesters.Queries.GetHarvesters
     public class GetHarvesterQueryHandler : IRequestHandler<GetHarvesterQuery, ErrorOr<GetHarvesterDto>>
     {
         private readonly IHarvesterRepository _harvesterRepository;
+        private readonly IMachineryRepository _machineryRepository;
 
-        public GetHarvesterQueryHandler(IHarvesterRepository harvesterRepository)
+        public GetHarvesterQueryHandler(IHarvesterRepository harvesterRepository,
+            IMachineryRepository machineryRepository)
         {
             _harvesterRepository = harvesterRepository;
+            _machineryRepository=machineryRepository;
         }
 
         public async Task<ErrorOr<GetHarvesterDto>> Handle(GetHarvesterQuery request, CancellationToken cancellationToken)
@@ -21,7 +24,7 @@ namespace WynajemMaszyn.Application.Features.Harvesters.Queries.GetHarvesters
 
 
             if (harvester == null) return Errors.Harvester.NotDataToDisplay;
-
+            var dateBusyMachine = await _machineryRepository.GetDateOneMachineryBusy(request.Id);
 
             var workHarvester = new GetHarvesterDto
             {
@@ -42,6 +45,7 @@ namespace WynajemMaszyn.Application.Features.Harvesters.Queries.GetHarvesters
                 RentalPricePerDay = harvester.RentalPricePerDay,
                 ImagePath = harvester.ImagePath.Split(",").ToList(),
                 Description = harvester.Description,
+                DateBusy = dateBusyMachine,
                 IsRepair = harvester.IsRepair,
             };
 

@@ -10,10 +10,13 @@ namespace WynajemMaszyn.Application.Features.Harvesters.Queries.GetAllHarvesters
     public class GetAllHarvesterQueryHandler : IRequestHandler<GetAllHarvesterQuery, ErrorOr<List<GetAllHarvesterDto>>>
     {
         private readonly IHarvesterRepository _harvesterRepository;
+        private readonly IMachineryRepository _machineryRepository;
 
-        public GetAllHarvesterQueryHandler(IHarvesterRepository harvesterRepository)
+        public GetAllHarvesterQueryHandler(IHarvesterRepository harvesterRepository,
+            IMachineryRepository machineryRepository)
         {
             _harvesterRepository= harvesterRepository;
+            _machineryRepository=machineryRepository;
         }
 
         public async  Task<ErrorOr<List<GetAllHarvesterDto>>> Handle(GetAllHarvesterQuery request, CancellationToken cancellationToken)
@@ -21,7 +24,9 @@ namespace WynajemMaszyn.Application.Features.Harvesters.Queries.GetAllHarvesters
             IEnumerable<Harvester> harvester;
             harvester = await _harvesterRepository.GetAllHarvester();
             if(!harvester.Any()) return Errors.Harvester.NotDataToDisplay;
-
+            Machinery whatMachinery = new Machinery();
+            whatMachinery.HarvesterId = 1;
+            var dateBusyMachine = await _machineryRepository.GetDateMachineryBusy(whatMachinery);
 
             List<GetAllHarvesterDto> workHarvesters = harvester.Select(x => new GetAllHarvesterDto
             {
@@ -35,6 +40,7 @@ namespace WynajemMaszyn.Application.Features.Harvesters.Queries.GetAllHarvesters
                 DrivingSpeed = x.DrivingSpeed,
                 RentalPricePerDay=x.RentalPricePerDay,
                 ImagePath = x.ImagePath.Split(",").FirstOrDefault(),
+                DateBusyAll = dateBusyMachine,
                 IsRepair =x.IsRepair,
             }).ToList();
 

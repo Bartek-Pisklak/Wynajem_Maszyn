@@ -24,6 +24,7 @@ namespace WynajemMaszyn.Application.Features.Excavators.Queries.DTOs
 
         public List<string> ImagePath { get; set; }
         public string Description { get; set; }
+        public IEnumerable<(DateTime Start, DateTime End)?> DateBusy { get; set; }
         public bool IsRepair {  get; set; }
 
     }

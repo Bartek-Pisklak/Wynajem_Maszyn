@@ -10,21 +10,22 @@ namespace WynajemMaszyn.Application.Features.Excavators.Queries.GetExcavators
     public class GetExcavatorQueryHandler : IRequestHandler<GetExcavatorQuery, ErrorOr<GetExcavatorDto>>
     {
         private readonly IExcavatorRepository _excavatorRepository;
+        private readonly IMachineryRepository _machineryRepository;
 
-        public GetExcavatorQueryHandler(IExcavatorRepository excavatorRepository)
+        public GetExcavatorQueryHandler(IExcavatorRepository excavatorRepository,
+            IMachineryRepository machineryRepository)
         {
             _excavatorRepository=excavatorRepository;
+            _machineryRepository=machineryRepository;
         }
 
 
         public async Task<ErrorOr<GetExcavatorDto>> Handle(GetExcavatorQuery request, CancellationToken cancellationToken)
-        {
-
-            
-
+        {     
             var excavator = await _excavatorRepository.GetExcavator(request.Id);
 
             if (excavator == null) return Errors.Excavator.NotDataToDisplay;
+            var dateBusyMachine = await _machineryRepository.GetDateOneMachineryBusy(request.Id);
 
             var workExcavators = new GetExcavatorDto
             {
@@ -45,6 +46,7 @@ namespace WynajemMaszyn.Application.Features.Excavators.Queries.GetExcavators
                 MaxDiggingDepth = excavator.MaxDiggingDepth,
                 Description = excavator.Description,
                 ImagePath = excavator.ImagePath.Split(",").ToList(),
+                DateBusy = dateBusyMachine,
                 IsRepair = excavator.IsRepair,
             };
 

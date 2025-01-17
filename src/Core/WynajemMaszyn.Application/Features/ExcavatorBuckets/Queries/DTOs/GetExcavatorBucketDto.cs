@@ -15,10 +15,10 @@
         public string Material { get; set; }
         public int MaxLoadCapacity { get; set; }
         public float RentalPricePerDay { get; set; }
-        public string CompatibleExcavators { get; set; }
+        //public string CompatibleExcavators { get; set; }
         public List<string> ImagePath { get; set; }
         public string Description { get; set; }
+        public IEnumerable<(DateTime Start, DateTime End)?> DateBusy { get; set; }
         public bool IsRepair { get; set; }
-
     }
 }

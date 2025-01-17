@@ -9,11 +9,13 @@ namespace WynajemMaszyn.Application.UnitTests.Rollers.Queries.GetAllRoller
     {
         private readonly GetAllRollerQueryHandler _handler;
         private readonly Mock<IRollerRepository> _mockGetAllRollerQueryHandler;
+        private readonly Mock<IMachineryRepository> _mockIMachineryRepository;
 
         public GetAllRollerQueryHandlerTests()
         {
             _mockGetAllRollerQueryHandler = new Mock<IRollerRepository>();
-            _handler = new GetAllRollerQueryHandler(_mockGetAllRollerQueryHandler.Object);
+            _mockIMachineryRepository = new Mock<IMachineryRepository>();
+            _handler = new GetAllRollerQueryHandler(_mockGetAllRollerQueryHandler.Object, _mockIMachineryRepository.Object);
         }
 
         [Fact]

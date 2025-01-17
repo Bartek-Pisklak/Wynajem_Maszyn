@@ -10,10 +10,13 @@ namespace WynajemMaszyn.Application.Features.Excavators.Queries.GetAllExcavators
     public class GetAllExcavatorQueryHandler : IRequestHandler<GetAllExcavatorQuery, ErrorOr<List<GetAllExcavatorDto>>>
     {
         private readonly IExcavatorRepository _excavatorRepository;
+        private readonly IMachineryRepository _machineryRepository;
 
-        public GetAllExcavatorQueryHandler(IExcavatorRepository excavatorRepository)
+        public GetAllExcavatorQueryHandler(IExcavatorRepository excavatorRepository,
+            IMachineryRepository machineryRepository)
         {
             _excavatorRepository=excavatorRepository;
+            _machineryRepository=machineryRepository;
         }
 
 
@@ -23,6 +26,10 @@ namespace WynajemMaszyn.Application.Features.Excavators.Queries.GetAllExcavators
             IEnumerable<Excavator> excavators;
 
             excavators = await _excavatorRepository.GetAllExcavator();
+
+            Machinery whatMachinery = new Machinery();
+            whatMachinery.ExcavatorId = 1;
+            var dateBusyMachine = await _machineryRepository.GetDateMachineryBusy(whatMachinery);
 
             if (!excavators.Any()) return Errors.Excavator.NotDataToDisplay;
 
@@ -38,6 +45,7 @@ namespace WynajemMaszyn.Application.Features.Excavators.Queries.GetAllExcavators
                 DrivingSpeed = x.DrivingSpeed,
                 RentalPricePerDay=x.RentalPricePerDay,
                 ImagePath = x.ImagePath.Split(",").FirstOrDefault(),
+                DateBusyAll = dateBusyMachine,
                 IsRepair = x.IsRepair,
 
                 }).ToList();

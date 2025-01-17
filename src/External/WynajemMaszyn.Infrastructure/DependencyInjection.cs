@@ -28,11 +28,6 @@ public static class DependencyInjection
                 .AddSignInManager()
                 .AddDefaultTokenProviders();
 
-/*        services.AddIdentityCore<User>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddSignInManager()
-                .AddDefaultTokenProviders();*/
-
         services.AddScoped<Seeder>();
         
 
@@ -40,9 +35,8 @@ public static class DependencyInjection
         services.AddScoped<ISignInManagerService, SignInManagerService>();
 
         services.AddScoped<IUserRepository, UserRepository>();
-        services.AddScoped<IUserContextGetIdService, UserContextGetIdService>();
+
         services.AddScoped<IMachineryRentalRepository, MachineryRentalRepository>();
-        
         services.AddScoped<IMachineryRepository, MachineryRepository>();
         services.AddScoped<IExcavatorRepository, ExcavatorRepository>();
         services.AddScoped<IExcavatorBucketRepository, ExcavatorBucketRepository>();

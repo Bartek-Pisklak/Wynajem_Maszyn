@@ -9,10 +9,13 @@ namespace WynajemMaszyn.Application.Features.Rollers.Queries.GetRollers
     public class GetRollerQueryHandler : IRequestHandler<GetRollerQuery, ErrorOr<GetRollerDto>>
     {
         private readonly IRollerRepository _rollerRepository;
+        private readonly IMachineryRepository _machineryRepository;
 
-        public GetRollerQueryHandler(IRollerRepository rollerRepository)
+        public GetRollerQueryHandler(IRollerRepository rollerRepository,
+            IMachineryRepository machineryRepository)
         {
             _rollerRepository = rollerRepository;
+            _machineryRepository=machineryRepository;
         }
 
         public async Task<ErrorOr<GetRollerDto>> Handle(GetRollerQuery request, CancellationToken cancellationToken)
@@ -22,6 +25,7 @@ namespace WynajemMaszyn.Application.Features.Rollers.Queries.GetRollers
             var roller = await _rollerRepository.GetRoller(request.Id);
 
             if (roller == null) return Errors.Roller.NotDataToDisplay;
+            var dateBusyMachine = await _machineryRepository.GetDateOneMachineryBusy(request.Id);
 
             var workRoller = new GetRollerDto
             {
@@ -45,6 +49,7 @@ namespace WynajemMaszyn.Application.Features.Rollers.Queries.GetRollers
                 RentalPricePerDay = roller.RentalPricePerDay,
                 Description = roller.Description,
                 ImagePath = roller.ImagePath.Split(",").ToList(),
+                DateBusy = dateBusyMachine,
                 IsRepair = roller.IsRepair,
             };
 

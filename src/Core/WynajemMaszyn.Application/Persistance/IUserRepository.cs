@@ -8,6 +8,5 @@ namespace WynajemMaszyn.Application.Persistance
         bool Any(string email);
         string Add(User user);
         Task<User?> GetUser(string email, string password);
-        Task<String> GetUserPermission(int permissionId);
     }
 }

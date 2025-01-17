@@ -9,10 +9,12 @@ namespace WynajemMaszyn.Application.Features.WoodChippers.Queries.GetWoodChipper
     public class GetWoodChipperQueryHandler : IRequestHandler<GetWoodChipperQuery, ErrorOr<GetWoodChipperDto>>
     {
         private readonly IWoodChipperRepository _woodChipperRepository;
+        private readonly IMachineryRepository _machineryRepository;
 
-        public GetWoodChipperQueryHandler(IWoodChipperRepository woodChipperRepository)
+        public GetWoodChipperQueryHandler(IWoodChipperRepository woodChipperRepository, IMachineryRepository machineryRepository)
         {
             _woodChipperRepository = woodChipperRepository;
+            _machineryRepository=machineryRepository;
         }
 
         public async Task<ErrorOr<GetWoodChipperDto>> Handle(GetWoodChipperQuery request, CancellationToken cancellationToken)
@@ -20,6 +22,7 @@ namespace WynajemMaszyn.Application.Features.WoodChippers.Queries.GetWoodChipper
             var woodChipper = await _woodChipperRepository.GetWoodChipper(request.Id);
 
             if (woodChipper == null) return Errors.WoodChipper.NotDataToDisplay;
+            var dateBusyMachine = await _machineryRepository.GetDateOneMachineryBusy(request.Id);
 
             var workwoodChipper = new GetWoodChipperDto
             {
@@ -41,6 +44,7 @@ namespace WynajemMaszyn.Application.Features.WoodChippers.Queries.GetWoodChipper
                 FlowMaterial = woodChipper.FlowMaterial,
                 ImagePath = woodChipper.ImagePath.Split(",").ToList(),
                 Description = woodChipper.Description,
+                DateBusy = dateBusyMachine,
                 IsRepair = woodChipper.IsRepair
             };
 

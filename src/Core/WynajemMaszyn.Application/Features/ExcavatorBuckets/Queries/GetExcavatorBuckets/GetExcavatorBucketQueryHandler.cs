@@ -11,10 +11,13 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Queries.GetExcavat
     public class GetExcavatorBucketQueryHandler : IRequestHandler<GetExcavatorBucketQuery, ErrorOr<GetExcavatorBucketDto>>
     {
         private readonly IExcavatorBucketRepository _excavatorBucketRepository;
+        private readonly IMachineryRepository _machineryRepository;
 
-        public GetExcavatorBucketQueryHandler(IExcavatorBucketRepository excavatorRepository)
+        public GetExcavatorBucketQueryHandler(IExcavatorBucketRepository excavatorRepository
+            , IMachineryRepository machineryRepository)
         {
             _excavatorBucketRepository = excavatorRepository;
+            _machineryRepository=machineryRepository;
         }
 
         public async Task<ErrorOr<GetExcavatorBucketDto>> Handle(GetExcavatorBucketQuery request, CancellationToken cancellationToken)
@@ -22,6 +25,8 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Queries.GetExcavat
             ExcavatorBucket excavatorBucket;
 
             excavatorBucket = await _excavatorBucketRepository.GetExcavatorBucket(request.Id);
+
+            var dateBusyMachine = await _machineryRepository.GetDateOneMachineryBusy(request.Id);
 
             if (excavatorBucket == null) return Errors.ExcavatorBucket.NotDataToDisplay;
 
@@ -42,10 +47,10 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Queries.GetExcavat
                 Material = excavatorBucket.Material,
                 MaxLoadCapacity = excavatorBucket.MaxLoadCapacity,
                 RentalPricePerDay = excavatorBucket.RentalPricePerDay,
-                CompatibleExcavators = excavatorBucket.CompatibleExcavators,
-
+                //CompatibleExcavators = excavatorBucket.CompatibleExcavators,
                 ImagePath = excavatorBucket.ImagePath.Split(",").ToList(),
                 Description = excavatorBucket.Description,
+                DateBusy = dateBusyMachine,
                 IsRepair = excavatorBucket.IsRepair
             });
 

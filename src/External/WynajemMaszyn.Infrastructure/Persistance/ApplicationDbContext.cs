@@ -26,7 +26,6 @@ namespace WynajemMaszyn.Infrastructure
         public DbSet<MachineryRental> MachineryRentals => Set<MachineryRental>();
 
         public DbSet<User> Users => Set<User>();
-        public DbSet<Permission> Permissions => Set<Permission>();
 
         public DbSet<MachineryRentalList> MachineryRentalLists => Set<MachineryRentalList>();
         public DbSet<ExcavatorBucketList> ExcavatorBucketLists => Set<ExcavatorBucketList>();
