@@ -22,15 +22,18 @@
                     <!-- Główne zdjęcie -->
                     <img src="@CurrentImage" alt="Zdjęcie maszyny" class="img-fluid main-image" @onclick="ShowImageInLightbox" />
                 </div>
-                <div class="image-scroll-container mt-3" style="display: flex; overflow-x: auto; gap: 10px;">
-                    <!-- Miniatury zdjęć -->
-                    @foreach (var imagePath in ImagePathList)
-                    {
-                        <div class="image-thumbnail" style="cursor: pointer;">
-                            <img src="@imagePath" alt="Miniatura" class="img-thumbnail thumbnail-image" @onclick="(() => ChangeImage(imagePath))" />
-                        </div>
-                    }
-                </div>
+                @if (ImagePathList?.Count > 1)
+                {
+                    <div class="image-scroll-container mt-3" style="display: flex; overflow-x: auto; gap: 10px;">
+                        <!-- Miniatury zdjęć -->
+                        @foreach (var imagePath in ImagePathList)
+                        {
+                            <div class="image-thumbnail" style="cursor: pointer;">
+                                <img src="@imagePath" alt="Miniatura" class="img-thumbnail thumbnail-image" @onclick="(() => ChangeImage(imagePath))" />
+                            </div>
+                        }
+                    </div>
+                }
             </div>
 
             <!-- Sekcja opisu -->

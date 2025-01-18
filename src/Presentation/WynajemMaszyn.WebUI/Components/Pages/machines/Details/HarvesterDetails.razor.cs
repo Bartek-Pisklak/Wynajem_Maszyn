@@ -49,8 +49,8 @@ namespace WynajemMaszyn.WebUI.Components.Pages.machines.Details
             });
 
             machinery=Harvester;
-
-
+            ImagePathList= machinery.ImagePath;
+            CurrentImage = ImagePathList[0];
         }
 
         private void AddMachineToCard()

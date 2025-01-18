@@ -49,7 +49,8 @@ namespace WynajemMaszyn.WebUI.Components.Pages.machines.Details
             });
 
             machinery=roller;
-
+            ImagePathList= machinery.ImagePath;
+            CurrentImage = ImagePathList[0];
         }
 
 
