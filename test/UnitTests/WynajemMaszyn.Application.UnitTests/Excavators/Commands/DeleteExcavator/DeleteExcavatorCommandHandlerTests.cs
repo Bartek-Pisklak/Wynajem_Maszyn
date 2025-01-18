@@ -22,7 +22,7 @@ namespace WynajemMaszyn.Application.UnitTests.Excavators.Commands.DeleteExcavato
             _mockDeleteExcavatorCommandHandler = new Mock<IExcavatorRepository>();
             _mockMachineryRepositoryHandler = new Mock<IMachineryRepository>();
             _mockUserManager = new Mock<UserManager<User>>();
-            _handler = new DeleteExcavatorCommandHandler(_mockDeleteExcavatorCommandHandler.Object, _mockUserManager.Object, _mockMachineryRepositoryHandler.Object);
+            //_handler = new DeleteExcavatorCommandHandler(_mockDeleteExcavatorCommandHandler.Object, _mockUserManager.Object, _mockMachineryRepositoryHandler.Object);
 
         }
 

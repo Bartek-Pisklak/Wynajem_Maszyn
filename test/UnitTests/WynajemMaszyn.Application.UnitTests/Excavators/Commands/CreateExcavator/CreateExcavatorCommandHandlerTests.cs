@@ -23,7 +23,7 @@ namespace WynajemMaszyn.Application.UnitTests.Excavators.Commands.CreateExcavato
             _mockCreateExcavatorCommandHandler = new Mock<IExcavatorRepository>();
             _mockMachineryRepositoryHandler = new Mock<IMachineryRepository>();
             _mockUserManager = new Mock<UserManager<User>>();
-            _handler = new CreateExcavatorCommandHandler(_mockCreateExcavatorCommandHandler.Object, _mockUserManager.Object,_mockMachineryRepositoryHandler.Object);
+            //_handler = new CreateExcavatorCommandHandler(_mockCreateExcavatorCommandHandler.Object, _mockUserManager.Object,_mockMachineryRepositoryHandler.Object);
 
 
         }

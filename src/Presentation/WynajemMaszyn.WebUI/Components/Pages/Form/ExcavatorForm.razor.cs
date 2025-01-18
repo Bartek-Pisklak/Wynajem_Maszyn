@@ -16,8 +16,6 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
         private List<string> validationErrors = new();
         private List<string> ImagePaths = new();
 
-        [CascadingParameter]
-        private HttpContext HttpContext { get; set; } = default!;
         [Parameter]
         [SupplyParameterFromQuery]
         public int? IdMachine { get; set; }
@@ -39,7 +37,6 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
 
         protected override async Task OnInitializedAsync()
         {
-            HttpContext = HttpContextAccessor.HttpContext;
 
             EnumsCustomer enumsCustomer = new EnumsCustomer();
             listTypeExcavator.Clear();
@@ -178,7 +175,6 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
             imagePaths = imagePaths.Substring(0, imagePaths.Length - 1);
 
             var command = new CreateExcavatorCommand(
-                HttpContext,
                     machinery.Name,
                     machinery.TypeExcavator,
                     machinery.TypeChassis,
@@ -212,7 +208,6 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
             imagePaths = imagePaths.Substring(0, imagePaths.Length - 1);
 
             var command = new EditExcavatorCommand(
-                HttpContext,
                     machinery.Id,
                     machinery.Name,
                     machinery.TypeExcavator,

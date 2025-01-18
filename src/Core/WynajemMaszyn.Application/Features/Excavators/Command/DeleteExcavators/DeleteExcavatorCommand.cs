@@ -8,7 +8,6 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.DeleteExcavators
 {
     public record DeleteExcavatorCommand
    (
-       HttpContext context,
        int Id
        ) : IRequest<ErrorOr<ExcavatorResponse>>;
 }

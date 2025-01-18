@@ -9,7 +9,6 @@ namespace WynajemMaszyn.Application.Features.Harvesters.Command.DeleteHarvesters
 {
     public record DeleteHarvesterCommand
     (
-            HttpContext context,
             int Id
 
         ): IRequest<ErrorOr<HarvesterResponse>>;

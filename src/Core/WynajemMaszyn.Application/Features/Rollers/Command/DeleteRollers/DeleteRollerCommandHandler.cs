@@ -5,45 +5,42 @@ using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Domain.Entities;
 using WynajemMaszyn.Application.Common.Errors;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace WynajemMaszyn.Application.Features.Rollers.Command.DeleteRollers
 {
     public class DeleteRollerCommandHandler : IRequestHandler<DeleteRollerCommand, ErrorOr<RollerResponse>>
     {
         private readonly IRollerRepository _rollerRepository;
-        private readonly UserManager<User> _userManager;
         private readonly IMachineryRepository _machineryRepository;
+        private readonly ICurrentUserService _currentUserService;
 
         public DeleteRollerCommandHandler(IRollerRepository rollerRepository,
-                                            UserManager<User> userManager,
-                                            IMachineryRepository machineryRepository)
+                                            IMachineryRepository machineryRepository,
+                                            ICurrentUserService currentUserService)
         {
             _rollerRepository = rollerRepository;
-            _userManager = userManager;
             _machineryRepository = machineryRepository;
+            _currentUserService=currentUserService;
         }
 
         public async Task<ErrorOr<RollerResponse>> Handle(DeleteRollerCommand request, CancellationToken cancellationToken)
         {
+            var userId = _currentUserService.UserId;
+            var roles = _currentUserService.Roles;
 
-            var user = await _userManager.GetUserAsync(request.context.User);
-            var roleUser = await _userManager.GetRolesAsync(user);
-
-
-            if (user.Id is null && roleUser.Contains("Worker"))
+            if (string.IsNullOrEmpty(userId) || !roles.Contains("Worker"))
             {
                 return Errors.ExcavatorBucket.UserDoesNotLogged;
             }
 
 
-
-            int id = request.Id;
             var machinery = new Machinery
             {
-                ExcavatorId = id
+                ExcavatorId = request.Id
             };
             await _machineryRepository.DeleteMachinery(machinery);
-            await _rollerRepository.DeleteRoller(id);
+            await _rollerRepository.DeleteRoller(request.Id);
             return new RollerResponse("Roller delete");
         }
     }

@@ -9,7 +9,6 @@ namespace WynajemMaszyn.Application.Features.Rollers.Command.CreateRollers
 {
     public record CreateRollerCommand
     (
-        HttpContext context,
         string Name,
         int ProductionYear,
         int OperatingHours,

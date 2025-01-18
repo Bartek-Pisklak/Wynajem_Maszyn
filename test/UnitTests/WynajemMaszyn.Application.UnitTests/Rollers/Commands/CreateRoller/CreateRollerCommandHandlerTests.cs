@@ -22,7 +22,7 @@ namespace WynajemMaszyn.Application.UnitTests.Rollers.Commands.CreateRoller
             _mockCreateRollerCommandHandler = new Mock<IRollerRepository>();
             _mockMachineryRepositoryHandler = new Mock<IMachineryRepository>();
             _mockUserManager = new Mock<UserManager<User>>();
-            _handler = new CreateRollerCommandHandler(_mockCreateRollerCommandHandler.Object, _mockUserManager.Object, _mockMachineryRepositoryHandler.Object);
+          //  _handler = new CreateRollerCommandHandler(_mockCreateRollerCommandHandler.Object, _mockUserManager.Object, _mockMachineryRepositoryHandler.Object);
         }
 
 

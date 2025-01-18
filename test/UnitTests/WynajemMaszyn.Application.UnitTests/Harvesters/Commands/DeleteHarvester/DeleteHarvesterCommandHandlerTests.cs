@@ -21,7 +21,7 @@ namespace WynajemMaszyn.Application.UnitTests.Harvesters.Commands.DeleteHarveste
             _mockDeleteHarvesterCommandHandler = new Mock<IHarvesterRepository>();
             _mockMachineryRepositoryHandler = new Mock<IMachineryRepository>();
             _mockUserManager = new Mock<UserManager<User>>();
-            _handler = new DeleteHarvesterCommandHandler(_mockDeleteHarvesterCommandHandler.Object, _mockUserManager.Object, _mockMachineryRepositoryHandler.Object);
+           // _handler = new DeleteHarvesterCommandHandler(_mockDeleteHarvesterCommandHandler.Object, _mockUserManager.Object, _mockMachineryRepositoryHandler.Object);
 
         }
 

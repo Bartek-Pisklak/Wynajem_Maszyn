@@ -22,47 +22,17 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
 
         public async Task<IEnumerable<(int Id, DateTime Start, DateTime End)?>?> GetDateMachineryBusy(Machinery wHatMachinery)
         {
-            List<int?> machineList = new List<int?>();
-
-            if (wHatMachinery.ExcavatorBucketId == 1)
-            {
-                machineList = await _dbContext.Machiners
-                .Select(m => m.ExcavatorBucketId)
-                .ToListAsync();
-
-
-            }
-            else if (wHatMachinery.ExcavatorId == 1)
-            {
-                machineList = await _dbContext.Machiners
-                .Select(m => m.ExcavatorId)
-                .ToListAsync();
-            }
-            else if (wHatMachinery.HarvesterId == 1)
-            {
-                machineList = await _dbContext.Machiners
-                .Select(m => m.HarvesterId)
-                .ToListAsync();
-            }
-            else if (wHatMachinery.RollerId == 1)
-            {
-                machineList = await _dbContext.Machiners
-                .Select(m => m.RollerId)
-                .ToListAsync();
-            }
-            else if (wHatMachinery.WoodChipperId == 1)
-            {
-                machineList = await _dbContext.Machiners
-                .Select(m => m.WoodChipperId)
-                .ToListAsync();
-            }
+            var machineList = wHatMachinery.ExcavatorBucketId == 1 ? await _dbContext.Machiners.Select(m => m.ExcavatorBucketId).ToListAsync() :
+                          wHatMachinery.ExcavatorId == 1 ? await _dbContext.Machiners.Select(m => m.ExcavatorId).ToListAsync() :
+                          wHatMachinery.HarvesterId == 1 ? await _dbContext.Machiners.Select(m => m.HarvesterId).ToListAsync() :
+                          wHatMachinery.RollerId == 1 ? await _dbContext.Machiners.Select(m => m.RollerId).ToListAsync() :
+                          wHatMachinery.WoodChipperId == 1 ? await _dbContext.Machiners.Select(m => m.WoodChipperId).ToListAsync() :
+                          new List<int?>();
 
             if (machineList is null)
             {
                 return null;
             }
-
-
 
             var rentalDates = await _dbContext.MachineryRentalLists
                         .Where(rl => machineList.Contains(rl.MachineryId)) // Dopasuj maszyny na podstawie Id

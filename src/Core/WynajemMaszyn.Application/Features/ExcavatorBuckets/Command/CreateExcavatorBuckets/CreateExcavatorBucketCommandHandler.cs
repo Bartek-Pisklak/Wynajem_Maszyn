@@ -12,41 +12,39 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.CreateExca
     {
         private readonly IExcavatorBucketRepository _excavatorBucketRepository;
         private readonly IMachineryRepository _machineryRepository;
-        private readonly UserManager<User> _userManager;
+        private readonly ICurrentUserService _currentUserService;
 
         public CreateExcavatorBucketCommandHandler(IExcavatorBucketRepository excavatorBucketRepository,
             IMachineryRepository machineryRepository,
-            UserManager<User> userManager)
+            ICurrentUserService currentUserService)
         {
             _excavatorBucketRepository=excavatorBucketRepository;
             _machineryRepository=machineryRepository;
-            _userManager=userManager;
+            _currentUserService=currentUserService;
         }
 
         public async Task<ErrorOr<ExcavatorBucketResponse>> Handle(CreateExcavatorBucketCommand request, CancellationToken cancellationToken)
         {
-            var user = await _userManager.GetUserAsync(request.context.User);
-            var roleUser = await _userManager.GetRolesAsync(user);
-            
-            if (user.Id is null && roleUser.Contains("Worker"))
+            var userId = _currentUserService.UserId;
+            var roles = _currentUserService.Roles;
+
+            if (string.IsNullOrEmpty(userId) || !roles.Contains("Worker"))
             {
                 return Errors.ExcavatorBucket.UserDoesNotLogged;
             }
 
             var excavatorBucket = new ExcavatorBucket
             {
-                UserId = user.Id,
+                UserId = userId,
                 Name = request.Name,
                 BucketType = request.BucketType,
                 ProductionYear = request.ProductionYear,
                 BucketCapacity = request.BucketCapacity,
                 Weight = request.Weight,
-
                 Width = request.Width,
                 PinDiameter = request.PinDiameter,
                 ArmWidth = request.ArmWidth,
                 PinSpacing = request.PinSpacing,
-
                 Material = request.Material,
                 MaxLoadCapacity = request.MaxLoadCapacity,
                 RentalPricePerDay = request.RentalPricePerDay,

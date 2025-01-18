@@ -12,32 +12,32 @@ namespace WynajemMaszyn.Application.Features.WoodChippers.Command.EditWoodChippe
     public class EditWoodChipperCommandHandler : IRequestHandler<EditWoodChipperCommand, ErrorOr<WoodChipperResponse>>
     {
         private readonly IWoodChipperRepository _woodChipperRepository;
-        private readonly UserManager<User> _userManager;
         private readonly IMachineryRepository _machineryRepository;
+        private readonly ICurrentUserService _currentUserService;
 
         public EditWoodChipperCommandHandler(IWoodChipperRepository woodChipperRepository,
-                                                UserManager<User> userManager,
-                                                IMachineryRepository machineryRepository)
+                                                IMachineryRepository machineryRepository,
+                                                ICurrentUserService currentUserService)
         {
             _woodChipperRepository= woodChipperRepository;
-            _userManager= userManager;
             _machineryRepository= machineryRepository;
+            _currentUserService=currentUserService;
         }
 
         public async Task<ErrorOr<WoodChipperResponse>> Handle(EditWoodChipperCommand request, CancellationToken cancellationToken)
         {
-            var user = await _userManager.GetUserAsync(request.context.User);
-            var roleUser = await _userManager.GetRolesAsync(user);
+            var userId = _currentUserService.UserId;
+            var roles = _currentUserService.Roles;
 
-
-            if (user.Id is null && roleUser.Contains("Worker"))
+            if (string.IsNullOrEmpty(userId) || !roles.Contains("Worker"))
             {
                 return Errors.ExcavatorBucket.UserDoesNotLogged;
             }
 
+
             var woodChipper = new WoodChipper
             {
-                UserId= user.Id,
+                UserId = userId,
                 Name = request.Name,
                 RentalPricePerDay = request.RentalPricePerDay,
                 ProductionYear = request.ProductionYear,

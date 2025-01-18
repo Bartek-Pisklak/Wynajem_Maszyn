@@ -12,38 +12,34 @@ namespace WynajemMaszyn.Application.Features.Harvesters.Command.DeleteHarvesters
     public class DeleteHarvesterCommandHandler : IRequestHandler<DeleteHarvesterCommand, ErrorOr<HarvesterResponse>>
     {
         private readonly IHarvesterRepository _harvesterRepository;
-        private readonly UserManager<User> _userManager;
         private readonly IMachineryRepository _machineryRepository;
+        private readonly ICurrentUserService _currentUserService;
 
         public DeleteHarvesterCommandHandler(IHarvesterRepository harvesterRepository,
-                                            UserManager<User> userManager,
-                                            IMachineryRepository machineryRepository)
+                                            IMachineryRepository machineryRepository,
+                                            ICurrentUserService currentUserService)
         {
             _harvesterRepository = harvesterRepository;
-            _userManager = userManager;
             _machineryRepository = machineryRepository;
+            _currentUserService=currentUserService;
         }
 
         public async Task<ErrorOr<HarvesterResponse>> Handle(DeleteHarvesterCommand request, CancellationToken cancellationToken)
         {
-            var user = await _userManager.GetUserAsync(request.context.User);
-            var roleUser = await _userManager.GetRolesAsync(user);
+            var userId = _currentUserService.UserId;
+            var roles = _currentUserService.Roles;
 
-
-            if (user.Id is null && roleUser.Contains("Worker"))
+            if (string.IsNullOrEmpty(userId) || !roles.Contains("Worker"))
             {
                 return Errors.ExcavatorBucket.UserDoesNotLogged;
             }
 
-
-
-            int id = request.Id;
             var machinery = new Machinery
             {
-                HarvesterId= id
+                HarvesterId= request.Id
             };
             await _machineryRepository.DeleteMachinery(machinery);
-            await _harvesterRepository.DeleteHarvester(id);
+            await _harvesterRepository.DeleteHarvester(request.Id);
 
             return new HarvesterResponse("Harvester delete");
         }

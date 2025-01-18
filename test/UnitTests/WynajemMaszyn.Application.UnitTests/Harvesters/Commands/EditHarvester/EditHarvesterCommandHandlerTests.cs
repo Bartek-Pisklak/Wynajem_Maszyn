@@ -22,7 +22,7 @@ namespace WynajemMaszyn.Application.UnitTests.Harvesters.Commands.EditHarvester
             _mockEditHarvesterCommandHandler = new Mock<IHarvesterRepository>();
             _mockMachineryRepositoryHandler = new Mock<IMachineryRepository>();
             _mockUserManager = new Mock<UserManager<User>>();
-            _handler = new EditHarvesterCommandHandler(_mockEditHarvesterCommandHandler.Object, _mockUserManager.Object, _mockMachineryRepositoryHandler.Object);
+        //    _handler = new EditHarvesterCommandHandler(_mockEditHarvesterCommandHandler.Object, _mockUserManager.Object, _mockMachineryRepositoryHandler.Object);
 
         }
 

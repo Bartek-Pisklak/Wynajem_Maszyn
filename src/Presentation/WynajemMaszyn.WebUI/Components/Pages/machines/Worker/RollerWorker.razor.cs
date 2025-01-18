@@ -62,7 +62,7 @@ namespace WynajemMaszyn.WebUI.Components.Pages.machines.Worker
         }
         private void DeleteRoller(int idMachine)
         {
-            var command = new DeleteRollerCommand(HttpContext, idMachine);
+            var command = new DeleteRollerCommand(idMachine);
 
             var response = Mediator.Send(command);
             navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);

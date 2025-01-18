@@ -12,32 +12,31 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.EditExcavators
     public class EditExcavatorCommandHandler : IRequestHandler<EditExcavatorCommand, ErrorOr<ExcavatorResponse>>
     {
         private readonly IExcavatorRepository _excavatorRepository;
-        private readonly UserManager<User> _userManager;
         private readonly IMachineryRepository _machineryRepository;
+        private readonly ICurrentUserService _currentUserService;
 
         public EditExcavatorCommandHandler(IExcavatorRepository excavatorRepository,
-            UserManager<User> userManager,
-            IMachineryRepository machineryRepository)
+            IMachineryRepository machineryRepository,
+            ICurrentUserService currentUserService)
         {
             _excavatorRepository = excavatorRepository;
-            _userManager = userManager;
             _machineryRepository = machineryRepository;
+            _currentUserService=currentUserService;
         }
 
         public async  Task<ErrorOr<ExcavatorResponse>> Handle(EditExcavatorCommand request, CancellationToken cancellationToken)
         {
-            var user = await _userManager.GetUserAsync(request.context.User);
-            var roleUser = await _userManager.GetRolesAsync(user);
+            var userId = _currentUserService.UserId;
+            var roles = _currentUserService.Roles;
 
-
-            if (user.Id is null && roleUser.Contains("Worker"))
+            if (string.IsNullOrEmpty(userId) || !roles.Contains("Worker"))
             {
                 return Errors.ExcavatorBucket.UserDoesNotLogged;
             }
 
             var excavator = new Excavator
             {
-                UserId = user.Id,
+                UserId = userId,
                 Name = request.Name,
                 TypeExcavator = request.TypeExcavator,
                 TypeChassis = request.TypeChassis,

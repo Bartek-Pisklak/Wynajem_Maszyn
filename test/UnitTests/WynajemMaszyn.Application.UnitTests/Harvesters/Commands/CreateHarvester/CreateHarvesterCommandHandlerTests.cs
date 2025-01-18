@@ -21,7 +21,7 @@ namespace WynajemMaszyn.Application.UnitTests.Harvesters.Commands.CreateHarveste
             _mockCreateHarvesterCommandHandler = new Mock<IHarvesterRepository>();
             _mockMachineryRepositoryHandler = new Mock<IMachineryRepository>();
             _mockUserManager = new Mock<UserManager<User>>();
-            _handler = new CreateHarvesterCommandHandler(_mockCreateHarvesterCommandHandler.Object, _mockUserManager.Object, _mockMachineryRepositoryHandler.Object);
+          //  _handler = new CreateHarvesterCommandHandler(_mockCreateHarvesterCommandHandler.Object, _mockUserManager.Object, _mockMachineryRepositoryHandler.Object);
 
         }
 

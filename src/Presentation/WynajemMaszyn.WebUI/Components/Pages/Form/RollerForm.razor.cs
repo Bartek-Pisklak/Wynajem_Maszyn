@@ -18,8 +18,6 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
         private List<string> validationErrors = new();
         private List<string> ImagePaths = new();
 
-        [CascadingParameter]
-        private HttpContext HttpContext { get; set; } = default!;
 
         [Parameter]
         [SupplyParameterFromQuery]
@@ -41,7 +39,6 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
 
         protected override async Task OnInitializedAsync()
         {
-            HttpContext = HttpContextAccessor.HttpContext;
             EnumsCustomer enumsCustomer = new EnumsCustomer();
             listTypeRoller.Clear();
             listTypeRoller.AddRange(enumsCustomer.GetTypeRoller());
@@ -175,7 +172,6 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
             imagePaths = imagePaths.Substring(0, imagePaths.Length - 1);
 
             var command = new CreateRollerCommand(
-                HttpContext,
             machinery.Name,
             machinery.ProductionYear,
             machinery.OperatingHours,
@@ -211,7 +207,6 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
             imagePaths = imagePaths.Substring(0, imagePaths.Length - 1);
 
             var command = new EditRollerCommand(
-                HttpContext,
                     machinery.Id,
                     machinery.Name,
                     machinery.ProductionYear,

@@ -9,7 +9,6 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.EditExcavators
 {
     public record EditExcavatorCommand
     (
-        HttpContext context,
         int Id,
         string Name,
         TypeExcavator TypeExcavator,

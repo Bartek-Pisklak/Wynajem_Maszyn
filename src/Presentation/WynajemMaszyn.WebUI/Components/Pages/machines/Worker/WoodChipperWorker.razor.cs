@@ -62,7 +62,7 @@ namespace WynajemMaszyn.WebUI.Components.Pages.machines.Worker
         }
         private void DeleteWoodChipper(int idMachine)
         {
-            var command = new DeleteWoodChipperCommand(HttpContext, idMachine);
+            var command = new DeleteWoodChipperCommand(idMachine);
 
             var response = Mediator.Send(command);
             navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);

@@ -4,12 +4,10 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Seeders;
 
 public class Seeder
 {
-    private readonly ApplicationDbContext _dbContext;
     private readonly RoleManager<IdentityRole> _roleManager;
 
-    public Seeder(ApplicationDbContext dbContext, RoleManager<IdentityRole> roleManager)
+    public Seeder(RoleManager<IdentityRole> roleManager)
     {
-        _dbContext = dbContext;
         _roleManager=roleManager;
     }
 

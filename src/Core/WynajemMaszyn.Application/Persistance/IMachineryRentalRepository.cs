@@ -12,7 +12,7 @@ namespace WynajemMaszyn.Application.Persistance
         Task EditMachineryRental(int id,MachineryRental editedMachineryRental);
 
 
-        Task AddMachineryIdToCart(int idMachine, string idUser);
+        Task AddMachineryIdToCart(Machinery idMachine, string idUser);
         Task DeleteMachineryIdToCart(int idMachine, string idUser);
 
     }

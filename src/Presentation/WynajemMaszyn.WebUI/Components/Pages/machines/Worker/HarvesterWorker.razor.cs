@@ -67,7 +67,7 @@ namespace WynajemMaszyn.WebUI.Components.Pages.machines.Worker
 
         private void DeleteHarvester(int idMachine)
         {
-            var command = new DeleteHarvesterCommand(HttpContext, idMachine);
+            var command = new DeleteHarvesterCommand( idMachine);
 
             var response = Mediator.Send(command);
             navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);

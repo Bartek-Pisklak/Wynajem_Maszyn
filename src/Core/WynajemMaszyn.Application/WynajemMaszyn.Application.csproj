@@ -15,5 +15,8 @@
 <ItemGroup>
 	<ProjectReference Include="..\WynajemMaszyn.Domain\WynajemMaszyn.Domain.csproj" />
 </ItemGroup>
+<ItemGroup>
+  <Folder Include="Features\MachineryRentals\Command\DeleteMachineryCard\" />
+</ItemGroup>
 
 </Project>

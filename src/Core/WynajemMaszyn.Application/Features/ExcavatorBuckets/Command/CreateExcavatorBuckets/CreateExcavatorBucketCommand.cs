@@ -7,7 +7,6 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.CreateExca
 {
     public record CreateExcavatorBucketCommand
     (
-    HttpContext context,
     string Name,
     string BucketType,
     int ProductionYear,

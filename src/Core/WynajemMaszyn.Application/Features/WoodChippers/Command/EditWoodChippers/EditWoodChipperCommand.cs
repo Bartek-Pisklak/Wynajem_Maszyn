@@ -9,7 +9,6 @@ namespace WynajemMaszyn.Application.Features.WoodChippers.Command.EditWoodChippe
 {
     public record EditWoodChipperCommand
     (
-         HttpContext context,
          int Id,
          string Name,
 

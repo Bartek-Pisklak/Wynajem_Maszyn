@@ -67,7 +67,7 @@ namespace WynajemMaszyn.WebUI.Components.Pages.machines.Worker
 
         private void DeleteExcavatorBucket(int idMachine)
         {
-            var command = new DeleteExcavatorBucketCommand(HttpContext, idMachine);
+            var command = new DeleteExcavatorBucketCommand(idMachine);
 
             var response = Mediator.Send(command);
             navigationManager.NavigateTo(navigationManager.Uri);

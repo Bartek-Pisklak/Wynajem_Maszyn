@@ -3,6 +3,7 @@
 namespace WynajemMaszyn.Application.Contracts.ExcavatorAnswer
 {
     public record ExcavatorRequest(
+        
         int Id,
         string Name,
         TypeExcavator TypeExcavator,

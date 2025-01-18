@@ -16,8 +16,6 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
         private List<string> validationErrors = new();
         private List<string> ImagePaths = new();
 
-        [CascadingParameter]
-        private HttpContext HttpContext { get; set; } = default!;
 
         [Parameter]
         [SupplyParameterFromQuery]
@@ -39,7 +37,6 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
 
         protected override async Task OnInitializedAsync()
         {
-            HttpContext = HttpContextAccessor.HttpContext;
             EnumsCustomer enumsCustomer = new EnumsCustomer();
 
             listTypeChassis.Clear();
@@ -171,7 +168,6 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
             imagePaths = imagePaths.Substring(0, imagePaths.Length - 1);
 
             var command = new CreateHarvesterCommand(
-                HttpContext,
                     machinery.Name,
                     machinery.ProductionYear,
                     machinery.OperatingHours,
@@ -205,7 +201,6 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
             imagePaths = imagePaths.Substring(0, imagePaths.Length - 1);
 
             var command = new EditHarvesterCommand(
-                HttpContext,
                     machinery.Id,
                     machinery.Name,
                     machinery.ProductionYear,

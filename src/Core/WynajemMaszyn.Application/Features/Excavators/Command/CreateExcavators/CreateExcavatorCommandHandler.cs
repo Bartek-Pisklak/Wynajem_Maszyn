@@ -2,7 +2,6 @@
 using ErrorOr;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Domain.Entities;
-using WynajemMaszyn.Domain.Enums;
 using WynajemMaszyn.Application.Contracts.ExcavatorAnswer;
 using WynajemMaszyn.Application.Common.Errors;
 using Microsoft.AspNetCore.Identity;
@@ -13,34 +12,33 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.CreateExcavators
     public class CreateExcavatorCommandHandler : IRequestHandler<CreateExcavatorCommand, ErrorOr<ExcavatorResponse>>
     {
         private readonly IExcavatorRepository _excavatorRepository;
-        private readonly UserManager<User> _userManager;
         private readonly IMachineryRepository _machineryRepository;
-
+        private readonly ICurrentUserService _currentUserService;
 
 
         public CreateExcavatorCommandHandler(IExcavatorRepository excavatorRepository,
-            UserManager<User> userManager,
-            IMachineryRepository machineryRepository)
+            IMachineryRepository machineryRepository,
+            ICurrentUserService currentUserService)
         {
             _excavatorRepository = excavatorRepository;
-            _userManager = userManager;
             _machineryRepository = machineryRepository;
+            _currentUserService=currentUserService;
         }
 
         public async Task<ErrorOr<ExcavatorResponse>> Handle(CreateExcavatorCommand request, CancellationToken cancellationToken)
         {
-            var user = await _userManager.GetUserAsync(request.context.User);
-            var roleUser = await _userManager.GetRolesAsync(user);
+            var userId = _currentUserService.UserId;
+            var roles = _currentUserService.Roles;
 
-
-            if (user.Id is null && roleUser.Contains("Worker"))
+            if (string.IsNullOrEmpty(userId) || !roles.Contains("Worker"))
             {
                 return Errors.ExcavatorBucket.UserDoesNotLogged;
             }
 
+
             var excavator = new Excavator
             {
-                UserId = user.Id,
+                UserId = userId,
                 Name = request.Name,
                 TypeExcavator = request.TypeExcavator,
                 TypeChassis = request.TypeChassis,

@@ -1,0 +1,27 @@
+﻿@page "/Account/Logout"
+@using Microsoft.AspNetCore.Identity
+@using WynajemMaszyn.Application.Persistance.Auth
+
+
+@inject ISignInManagerService SignInManager
+@inject NavigationManager NavigationManager
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await SignInManager.SignOutAsync();
+        NavigationManager.NavigateTo("/");
+    }
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout</title>
+</head>
+<body>
+    <p>Logging out...</p>
+</body>
+</html>

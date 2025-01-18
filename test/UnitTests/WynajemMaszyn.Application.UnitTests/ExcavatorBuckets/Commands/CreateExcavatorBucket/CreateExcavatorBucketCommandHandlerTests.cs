@@ -34,7 +34,7 @@ namespace WynajemMaszyn.Application.UnitTests.ExcavatorBuckets.Commands.CreateEx
                 Mock.Of<IServiceProvider>(),
                 Mock.Of<ILogger<UserManager<User>>>()
             );
-            _handler = new CreateExcavatorBucketCommandHandler(_mockCreateExcavatorBucketCommandHandler.Object, _mockMachineryRepositoryHandler.Object, _mockUserManager.Object);
+            //_handler = new CreateExcavatorBucketCommandHandler(_mockCreateExcavatorBucketCommandHandler.Object, _mockMachineryRepositoryHandler.Object, _mockUserManager.Object);
 
 
         }

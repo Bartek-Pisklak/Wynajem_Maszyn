@@ -9,8 +9,6 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.CreateExcavators
             RuleFor(x => x.Name)
                      .NotEmpty().WithMessage("Name is required");
         }
-
-        // co musi miec by dodac inaczej blad
     }
 
 }

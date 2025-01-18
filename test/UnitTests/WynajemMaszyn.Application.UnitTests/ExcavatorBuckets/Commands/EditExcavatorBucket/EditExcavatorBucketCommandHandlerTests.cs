@@ -21,7 +21,7 @@ namespace WynajemMaszyn.Application.UnitTests.ExcavatorBuckets.Commands.EditExca
             _mockEditExcavatorBucketCommandHandler = new Mock<IExcavatorBucketRepository>();
             _mockMachineryRepositoryHandler = new Mock<IMachineryRepository>();
             _mockUserManager = new Mock<UserManager<User>>();
-            _handler = new EditExcavatorBucketCommandHandler(_mockEditExcavatorBucketCommandHandler.Object, _mockUserManager.Object, _mockMachineryRepositoryHandler.Object);
+            //_handler = new EditExcavatorBucketCommandHandler(_mockEditExcavatorBucketCommandHandler.Object, _mockUserManager.Object, _mockMachineryRepositoryHandler.Object);
         }
 
 

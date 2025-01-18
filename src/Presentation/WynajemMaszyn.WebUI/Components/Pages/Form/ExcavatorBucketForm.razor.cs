@@ -20,9 +20,6 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
         [SupplyParameterFromQuery]
         public string? Action { get; set; }
 
-        [CascadingParameter]
-        private HttpContext HttpContext { get; set; } = default!;
-
         private GetExcavatorBucketDto machinery = new GetExcavatorBucketDto();
         private FileUploud fileUploud = new FileUploud();
         private List<string> validationErrors = new();
@@ -42,7 +39,6 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
         {
             EnumsCustomer enumsCustomer = new EnumsCustomer();
 
-            HttpContext = HttpContextAccessor.HttpContext;
 
             if (Action == "edit")
             {
@@ -160,8 +156,8 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
             }
             imagePaths = imagePaths.Substring(0, imagePaths.Length - 1);
 
+
             var command = new CreateExcavatorBucketCommand(
-                    HttpContext,
                     machinery.Name,
                     machinery.BucketType,
                     machinery.ProductionYear,
@@ -193,7 +189,6 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
             imagePaths = imagePaths.Substring(0, imagePaths.Length - 1);
 
             var command = new EditExcavatorBucketCommand(
-                    HttpContext,
                     machinery.Id,
                     machinery.Name,
                     machinery.BucketType,

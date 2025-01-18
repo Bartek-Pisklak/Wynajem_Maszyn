@@ -8,7 +8,6 @@ namespace WynajemMaszyn.Application.Features.Rollers.Command.DeleteRollers
 {
     public record DeleteRollerCommand
     (
-       HttpContext context,
        int Id
     ) : IRequest<ErrorOr<RollerResponse>>;
 }

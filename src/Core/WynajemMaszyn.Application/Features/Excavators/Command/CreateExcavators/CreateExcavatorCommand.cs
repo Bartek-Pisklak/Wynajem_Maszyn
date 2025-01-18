@@ -8,7 +8,6 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.CreateExcavators
 {
     public record CreateExcavatorCommand
     (
-        HttpContext context,
         string Name,
         TypeExcavator TypeExcavator,
         TypeChassis TypeChassis,

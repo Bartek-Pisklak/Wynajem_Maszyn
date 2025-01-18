@@ -9,7 +9,9 @@ namespace WynajemMaszyn.Application.Contracts.MachineryRentalAnswer
 {
     public record MachineryRentalRequest
     (
-        int Id
+        
+        int IdMachine,
+        string TypeMachine
 
     );
 }

@@ -11,36 +11,35 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.DeleteExcavators
     public class DeleteExcavatorCommandHandler : IRequestHandler<DeleteExcavatorCommand, ErrorOr<ExcavatorResponse>>
     {
         private readonly IExcavatorRepository _excavatorRepository;
-        private readonly UserManager<User> _userManager;
         private readonly IMachineryRepository _machineryRepository;
+        private readonly ICurrentUserService _currentUserService;
 
         public DeleteExcavatorCommandHandler(IExcavatorRepository excavatorRepository, 
-            UserManager<User> userManager,
-            IMachineryRepository machineryRepository)
+            IMachineryRepository machineryRepository,
+            ICurrentUserService currentUserService)
         {
             _excavatorRepository = excavatorRepository;
-            _userManager = userManager;
-            _machineryRepository=machineryRepository;   
+            _machineryRepository = machineryRepository;  
+            _currentUserService = currentUserService;
         }
 
         public async Task<ErrorOr<ExcavatorResponse>> Handle(DeleteExcavatorCommand request, CancellationToken cancellationToken)
         {
-            var user = await _userManager.GetUserAsync(request.context.User);
-            var roleUser = await _userManager.GetRolesAsync(user);
+            var userId = _currentUserService.UserId;
+            var roles = _currentUserService.Roles;
 
-
-            if (user.Id is null && roleUser.Contains("Worker"))
+            if (string.IsNullOrEmpty(userId) || !roles.Contains("Worker"))
             {
                 return Errors.ExcavatorBucket.UserDoesNotLogged;
             }
 
-            int id = request.Id;
             var machinery = new Machinery
             {
-                ExcavatorId= id
+                ExcavatorId= request.Id
             };
             await _machineryRepository.DeleteMachinery(machinery);
-            await _excavatorRepository.DeleteExcavator(id);
+            await _excavatorRepository.DeleteExcavator(request.Id);
+
             return new ExcavatorResponse("Task delete");
         }
     }

@@ -8,7 +8,6 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.EditExcava
 {
     public record EditExcavatorBucketCommand
     (
-    HttpContext context,
     int Id,
     string Name,
     string BucketType,

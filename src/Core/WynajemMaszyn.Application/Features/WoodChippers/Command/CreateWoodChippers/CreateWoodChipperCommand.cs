@@ -9,7 +9,6 @@ namespace WynajemMaszyn.Application.Features.WoodChippers.Command.CreateWoodChip
 {
     public record CreateWoodChipperCommand
     (
-         HttpContext context,
          string Name,
 
          float RentalPricePerDay,

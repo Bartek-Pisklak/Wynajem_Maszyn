@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,6 +9,7 @@ using WynajemMaszyn.Domain.Entities;
 using WynajemMaszyn.Infrastructure.Authentication;
 using WynajemMaszyn.Infrastructure.Persistance.Repositories;
 using WynajemMaszyn.Infrastructure.Persistance.Seeders;
+using WynajemMaszyn.Infrastructure.Services;
 
 
 namespace WynajemMaszyn.Infrastructure;
@@ -28,6 +30,15 @@ public static class DependencyInjection
                 .AddSignInManager()
                 .AddDefaultTokenProviders();
 
+        services.AddAuthentication(options =>
+        {
+            options.DefaultScheme = IdentityConstants.ApplicationScheme;
+            options.DefaultSignInScheme = IdentityConstants.ExternalScheme;
+        }).AddIdentityCookies();
+
+
+
+
         services.AddScoped<Seeder>();
         
 
@@ -35,6 +46,8 @@ public static class DependencyInjection
         services.AddScoped<ISignInManagerService, SignInManagerService>();
 
         services.AddScoped<IUserRepository, UserRepository>();
+
+        services.AddScoped<ICurrentUserService, CurrentUserService>();
 
         services.AddScoped<IMachineryRentalRepository, MachineryRentalRepository>();
         services.AddScoped<IMachineryRepository, MachineryRepository>();
@@ -51,7 +64,6 @@ public static class DependencyInjection
 
     public static IServiceCollection AddAuthorization(this IServiceCollection services, IConfiguration configuration)
     {
-
 
 
         return services;

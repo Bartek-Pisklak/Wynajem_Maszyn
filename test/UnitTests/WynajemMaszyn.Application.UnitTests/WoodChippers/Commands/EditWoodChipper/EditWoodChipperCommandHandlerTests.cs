@@ -22,7 +22,7 @@ namespace WynajemMaszyn.Application.UnitTests.WoodChippers.Commands.EditWoodChip
             _mockEditWoodChipperCommandHandler = new Mock<IWoodChipperRepository>();
             _mockMachineryRepositoryHandler = new Mock<IMachineryRepository>();
             _mockUserManager = new Mock<UserManager<User>>();
-            _handler = new EditWoodChipperCommandHandler(_mockEditWoodChipperCommandHandler.Object, _mockUserManager.Object, _mockMachineryRepositoryHandler.Object);
+            //_handler = new EditWoodChipperCommandHandler(_mockEditWoodChipperCommandHandler.Object, _mockUserManager.Object, _mockMachineryRepositoryHandler.Object);
 
         }
 

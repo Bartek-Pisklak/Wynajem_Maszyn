@@ -8,7 +8,6 @@ namespace WynajemMaszyn.Application.Features.WoodChippers.Command.DeleteWoodChip
 {
     public record DeleteWoodChipperCommand
     (
-        HttpContext context,
         int Id
         ) : IRequest<ErrorOr<WoodChipperResponse>>;
 }
