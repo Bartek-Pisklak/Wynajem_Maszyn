@@ -7,7 +7,6 @@ namespace WynajemMaszyn.Application.UnitTests.WoodChippers.TestUtils
     {
         public static CreateWoodChipperCommand CreateWoodChipperCommand() =>
             new CreateWoodChipperCommand(
-                Constants.Excavator.mockHttpContext.Object,
                 Constants.WoodChipper.Name,
                 Constants.WoodChipper.RentalPricePerDay,
                 Constants.WoodChipper.ProductionYear,

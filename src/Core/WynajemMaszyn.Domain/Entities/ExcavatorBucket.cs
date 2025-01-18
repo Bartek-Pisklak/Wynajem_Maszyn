@@ -23,7 +23,7 @@
         public string? CompatibleExcavators { get; set; } // Zgodne modele koparek
 
         public string ImagePath { get; set; }
-        public string Description { get; set; }
+        public string? Description { get; set; }
         public bool IsRepair { get; set; } = false;
 
         public virtual User User { get; set; }

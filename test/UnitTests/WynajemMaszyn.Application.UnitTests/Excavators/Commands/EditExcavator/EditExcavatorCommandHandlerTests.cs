@@ -14,14 +14,14 @@ namespace WynajemMaszyn.Application.UnitTests.Excavators.Commands.EditExcavator
         private readonly EditExcavatorCommandHandler _handler;
         private readonly Mock<IExcavatorRepository> _mockEditExcavatorCommandHandler;
         private readonly Mock<IMachineryRepository> _mockMachineryRepositoryHandler;
-        private readonly Mock<UserManager<User>> _mockUserManager;
+        private readonly Mock<ICurrentUserService> _mockUserService;
 
 
         public EditExcavatorCommandHandlerTests()
         {
             _mockEditExcavatorCommandHandler = new Mock<IExcavatorRepository>();
             _mockMachineryRepositoryHandler = new Mock<IMachineryRepository>();
-            _mockUserManager = new Mock<UserManager<User>>();
+            _mockUserService = new Mock<ICurrentUserService>();
            // _handler = new EditExcavatorCommandHandler(_mockEditExcavatorCommandHandler.Object, _mockUserManager.Object, _mockMachineryRepositoryHandler.Object);
 
         }
@@ -32,8 +32,6 @@ namespace WynajemMaszyn.Application.UnitTests.Excavators.Commands.EditExcavator
             //arange
             var editExcavatorCommand = EditExcavatorCommandUtils.EditExcavatorCommand();
 
-_mockUserManager.Setup(x => x.GetUserId(It.IsAny<ClaimsPrincipal>()))
-                .Returns(value: null);
 
             //act
             var result = await _handler.Handle(editExcavatorCommand, default);
@@ -50,8 +48,6 @@ _mockUserManager.Setup(x => x.GetUserId(It.IsAny<ClaimsPrincipal>()))
             //arange
             var editExcavatorCommand = EditExcavatorCommandUtils.EditExcavatorCommand();
 
-_mockUserManager.Setup(x => x.GetUserId(It.IsAny<ClaimsPrincipal>()))
-                .Returns("1");
 
             //act
             var result = await _handler.Handle(editExcavatorCommand, default);

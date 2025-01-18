@@ -30,7 +30,7 @@ namespace WynajemMaszyn.Domain.Entities
         public bool KnigeAsfalt {  get; set; }
 
         public string ImagePath { get; set; }
-        public string Description { get; set; }
+        public string? Description { get; set; }
         public bool IsRepair { get; set; } = false;
 
         public virtual User User { get; set; }

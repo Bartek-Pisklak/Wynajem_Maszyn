@@ -8,6 +8,7 @@ namespace WynajemMaszyn.Domain.Entities
 {
     public class MachineryRentalList
     {
+        public int Id { get; set; }
         public int MachineryRentalId { get; set; }
         public int MachineryId { get; set; }
 

@@ -45,8 +45,6 @@ public static class DependencyInjection
         services.AddScoped<IUserManagerService, UserManagerService>();
         services.AddScoped<ISignInManagerService, SignInManagerService>();
 
-        services.AddScoped<IUserRepository, UserRepository>();
-
         services.AddScoped<ICurrentUserService, CurrentUserService>();
 
         services.AddScoped<IMachineryRentalRepository, MachineryRentalRepository>();

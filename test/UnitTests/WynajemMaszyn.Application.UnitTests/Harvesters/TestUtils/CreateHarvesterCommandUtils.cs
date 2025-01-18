@@ -8,7 +8,6 @@ namespace WynajemMaszyn.Application.UnitTests.Harvesters.TestUtils
     {
         public static CreateHarvesterCommand CreateHarvesterCommand() =>
             new CreateHarvesterCommand(
-                Constants.Excavator.mockHttpContext.Object,
                 Constants.Harvester.Name,
                 Constants.Harvester.ProductionYear,
                 Constants.Harvester.OperatingHours,

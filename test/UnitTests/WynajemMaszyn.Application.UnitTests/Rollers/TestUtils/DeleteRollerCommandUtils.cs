@@ -8,7 +8,6 @@ namespace WynajemMaszyn.Application.UnitTests.Rollers.TestUtils
     {
         public static DeleteRollerCommand DeleteRollerCommand() =>
             new DeleteRollerCommand(
-                Constants.Excavator.mockHttpContext.Object,
                 Constants.Roller.Id
             );
     }

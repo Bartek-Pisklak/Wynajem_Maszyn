@@ -2,6 +2,8 @@
 using WynajemMaszyn.Application.Features.Enums;
 using WynajemMaszyn.Application.Features.ExcavatorBuckets.Queries.DTOs;
 using WynajemMaszyn.Application.Features.ExcavatorBuckets.Queries.GetExcavatorBuckets;
+using WynajemMaszyn.Application.Features.MachineryRentals.Command.AddMachineryCard;
+using WynajemMaszyn.Application.Features.MachineryRentals.Command.DeleteMachineryCard;
 
 namespace WynajemMaszyn.WebUI.Components.Pages.machines.Details
 {
@@ -52,11 +54,27 @@ namespace WynajemMaszyn.WebUI.Components.Pages.machines.Details
         }
 
 
-        private void AddMachineToCard()
+        private async void AddMachineToCard()
         {
-
+            var command = new AddMachineryCardCommand(
+                        (int)IdMachine,
+                        "ExcavatorBucket"
+                       );
+            var response = await Mediator.Send(command);
 
         }
+
+        private async void DeleteMachineToCard()
+        {
+            var command = new DeleteMachineryCardCommand(
+                        (int)IdMachine,
+                        "ExcavatorBucket"
+                       );
+            var response = await Mediator.Send(command);
+
+        }
+
+
 
 
         private void ChangeImage(string newImagePath)

@@ -11,7 +11,6 @@ namespace WynajemMaszyn.Application.Authentication.Commands.Register;
 
 public class RegisterCommandHandler : IRequestHandler<RegisterCommand, ErrorOr<RegisterResponse>>
 {
-    private readonly IUserRepository _userRepository;
     private readonly IMachineryRentalRepository _machineryRentalRepository;
 
     private readonly UserManager<User> UserManager;
@@ -21,7 +20,7 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, ErrorOr<R
 
 
 
-    public RegisterCommandHandler(IUserRepository userRepository, 
+    public RegisterCommandHandler(
         IMachineryRentalRepository machineryRentalRepository,
         UserManager<User> _UserManager,
         SignInManager<User> _SignInManager,
@@ -29,7 +28,6 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, ErrorOr<R
         IEmailSender<User> _EmailSender
         )
     {
-        _userRepository = userRepository;
         _machineryRentalRepository = machineryRentalRepository;
         UserManager = _UserManager;
         SignInManager = _SignInManager;

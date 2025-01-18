@@ -14,14 +14,14 @@ namespace WynajemMaszyn.Application.UnitTests.Rollers.Commands.DeleteRoller
         private readonly DeleteRollerCommandHandler _handler;
         private readonly Mock<IRollerRepository> _mockDeleteRollerCommandHandler;
         private readonly Mock<IMachineryRepository> _mockMachineryRepositoryHandler;
-        private readonly Mock<UserManager<User>> _mockUserManager;
+        private readonly Mock<ICurrentUserService> _mockUserService;
 
         public DeleteRollerCommandHandlerTests()
         {
             _mockDeleteRollerCommandHandler = new Mock<IRollerRepository>();
             _mockMachineryRepositoryHandler = new Mock<IMachineryRepository>();
-            _mockUserManager = new Mock<UserManager<User>>();
-            _handler = new DeleteRollerCommandHandler(_mockDeleteRollerCommandHandler.Object, _mockUserManager.Object, _mockMachineryRepositoryHandler.Object);
+            _mockUserService = new Mock<ICurrentUserService>();
+            _handler = new DeleteRollerCommandHandler(_mockDeleteRollerCommandHandler.Object, _mockMachineryRepositoryHandler.Object, _mockUserService.Object);
 
 
         }
@@ -31,8 +31,8 @@ namespace WynajemMaszyn.Application.UnitTests.Rollers.Commands.DeleteRoller
             //arange
             var deleteRollerCommand = DeleteRollerCommandUtils.DeleteRollerCommand();
 
-_mockUserManager.Setup(x => x.GetUserId(It.IsAny<ClaimsPrincipal>()))
-                .Returns(value: null);
+            //_mockUserService.userId
+
 
             //act
             var result = await _handler.Handle(deleteRollerCommand, default);
@@ -48,8 +48,6 @@ _mockUserManager.Setup(x => x.GetUserId(It.IsAny<ClaimsPrincipal>()))
             //arange
             var deleteRollerCommand = DeleteRollerCommandUtils.DeleteRollerCommand();
 
-_mockUserManager.Setup(x => x.GetUserId(It.IsAny<ClaimsPrincipal>()))
-                .Returns("1");
 
             //act
             var result = await _handler.Handle(deleteRollerCommand, default);

@@ -15,13 +15,13 @@ namespace WynajemMaszyn.Application.UnitTests.Excavators.Commands.DeleteExcavato
         private readonly DeleteExcavatorCommandHandler _handler;
         private readonly Mock<IExcavatorRepository> _mockDeleteExcavatorCommandHandler;
         private readonly Mock<IMachineryRepository> _mockMachineryRepositoryHandler;
-        private readonly Mock<UserManager<User>> _mockUserManager;
+        private readonly Mock<ICurrentUserService> _mockUserService;
 
         public DeleteExcavatorCommandHandlerTests()
         {
             _mockDeleteExcavatorCommandHandler = new Mock<IExcavatorRepository>();
             _mockMachineryRepositoryHandler = new Mock<IMachineryRepository>();
-            _mockUserManager = new Mock<UserManager<User>>();
+            _mockUserService = new Mock<ICurrentUserService>();
             //_handler = new DeleteExcavatorCommandHandler(_mockDeleteExcavatorCommandHandler.Object, _mockUserManager.Object, _mockMachineryRepositoryHandler.Object);
 
         }
@@ -33,8 +33,7 @@ namespace WynajemMaszyn.Application.UnitTests.Excavators.Commands.DeleteExcavato
             //arange
             var deleteExcavatorCommand = DeleteExcavatorCommandUtils.DeleteExcavatorCommand();
 
-_mockUserManager.Setup(x => x.GetUserId(It.IsAny<ClaimsPrincipal>()))
-                .Returns(value: null);
+
 
             //act
             var result = await _handler.Handle(deleteExcavatorCommand, default);
@@ -51,8 +50,6 @@ _mockUserManager.Setup(x => x.GetUserId(It.IsAny<ClaimsPrincipal>()))
             //arange
             var deleteExcavatorCommand = DeleteExcavatorCommandUtils.DeleteExcavatorCommand();
 
-_mockUserManager.Setup(x => x.GetUserId(It.IsAny<ClaimsPrincipal>()))
-                .Returns("1");
 
             //act
             var result = await _handler.Handle(deleteExcavatorCommand, default);

@@ -14,13 +14,13 @@ namespace WynajemMaszyn.Application.UnitTests.Harvesters.Commands.CreateHarveste
         private readonly CreateHarvesterCommandHandler _handler;
         private readonly Mock<IHarvesterRepository> _mockCreateHarvesterCommandHandler;
         private readonly Mock<IMachineryRepository> _mockMachineryRepositoryHandler;
-        private readonly Mock<UserManager<User>> _mockUserManager;
+        private readonly Mock<ICurrentUserService> _mockUserService;
 
         public CreateHarvesterCommandHandlerTests()
         {
             _mockCreateHarvesterCommandHandler = new Mock<IHarvesterRepository>();
             _mockMachineryRepositoryHandler = new Mock<IMachineryRepository>();
-            _mockUserManager = new Mock<UserManager<User>>();
+            _mockUserService = new Mock<ICurrentUserService>();
           //  _handler = new CreateHarvesterCommandHandler(_mockCreateHarvesterCommandHandler.Object, _mockUserManager.Object, _mockMachineryRepositoryHandler.Object);
 
         }
@@ -31,8 +31,6 @@ namespace WynajemMaszyn.Application.UnitTests.Harvesters.Commands.CreateHarveste
             //arange
             var createHarvesterCommand = CreateHarvesterCommandUtils.CreateHarvesterCommand();
 
-_mockUserManager.Setup(x => x.GetUserId(It.IsAny<ClaimsPrincipal>()))
-                .Returns(value: null);
 
             //act
             var result = await _handler.Handle(createHarvesterCommand, default);
@@ -49,8 +47,6 @@ _mockUserManager.Setup(x => x.GetUserId(It.IsAny<ClaimsPrincipal>()))
             //arange
             var createHarvesterCommand = CreateHarvesterCommandUtils.CreateHarvesterCommand();
 
-_mockUserManager.Setup(x => x.GetUserId(It.IsAny<ClaimsPrincipal>()))
-                .Returns("1");
 
             //act
             var result = await _handler.Handle(createHarvesterCommand, default);

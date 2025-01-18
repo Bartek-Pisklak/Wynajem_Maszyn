@@ -14,14 +14,14 @@ namespace WynajemMaszyn.Application.UnitTests.WoodChippers.Commands.DeleteWoodCh
         private readonly DeleteWoodChipperCommandHandler _handler;
         private readonly Mock<IWoodChipperRepository> _mockDeleteWoodChipperCommandHandler;
         private readonly Mock<IMachineryRepository> _mockMachineryRepositoryHandler;
-        private readonly Mock<UserManager<User>> _mockUserManager;
+        private readonly Mock<ICurrentUserService> _mockUserService;
 
         public DeleteWoodChipperCommandHandlerTests()
         {
             _mockDeleteWoodChipperCommandHandler = new Mock<IWoodChipperRepository>();
             _mockMachineryRepositoryHandler = new Mock<IMachineryRepository>();
-            _mockUserManager = new Mock<UserManager<User>>();
-            _handler = new DeleteWoodChipperCommandHandler(_mockDeleteWoodChipperCommandHandler.Object, _mockUserManager.Object, _mockMachineryRepositoryHandler.Object);
+            _mockUserService = new Mock<ICurrentUserService>();
+            _handler = new DeleteWoodChipperCommandHandler(_mockDeleteWoodChipperCommandHandler.Object, _mockMachineryRepositoryHandler.Object, _mockUserService.Object);
 
         }
 
@@ -32,8 +32,7 @@ namespace WynajemMaszyn.Application.UnitTests.WoodChippers.Commands.DeleteWoodCh
             //arange
             var deleteWoodChipperCommand = DeleteWoodChipperCommandUtils.DeleteWoodChipperCommand();
 
-_mockUserManager.Setup(x => x.GetUserId(It.IsAny<ClaimsPrincipal>()))
-                .Returns(value: null);
+
 
             //act
             var result = await _handler.Handle(deleteWoodChipperCommand, default);
@@ -50,8 +49,7 @@ _mockUserManager.Setup(x => x.GetUserId(It.IsAny<ClaimsPrincipal>()))
             //arange
             var deleteWoodChipperCommand = DeleteWoodChipperCommandUtils.DeleteWoodChipperCommand();
 
-_mockUserManager.Setup(x => x.GetUserId(It.IsAny<ClaimsPrincipal>()))
-                .Returns("1");
+
 
             //act
             var result = await _handler.Handle(deleteWoodChipperCommand, default);

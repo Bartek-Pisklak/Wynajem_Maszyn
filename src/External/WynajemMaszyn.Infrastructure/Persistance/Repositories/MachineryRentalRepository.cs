@@ -14,10 +14,11 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task CreateMachineryRental(MachineryRental machineryRental)
+        public async Task<MachineryRental> CreateMachineryRental(MachineryRental machineryRental)
         {
             await _dbContext.MachineryRentals.AddAsync(machineryRental);
             await _dbContext.SaveChangesAsync();
+            return machineryRental;
         }
 
         public async Task DeleteMachineryRental(int id)
@@ -92,10 +93,13 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
             var cart = await _dbContext.MachineryRentals.FirstOrDefaultAsync(
                         c => c.RentalStatus == RentalStatus.koszyk &&c.UserId == idUser);
 
-            if(cart.Id == null)
+            if(cart is null)
             {
-                //stworzyć koszyk?
+                MachineryRental machineryRental = new MachineryRental();
+                machineryRental.UserId = idUser;
+                cart = await CreateMachineryRental(machineryRental);
             }
+
             newMachineRental.MachineryId = machine.Id;
             newMachineRental.MachineryRentalId = cart.Id;
             await _dbContext.MachineryRentalLists.AddAsync(newMachineRental);
@@ -123,21 +127,60 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task AddMachineryIdToCart(int idMachine, string idUser)
-        {
-            throw new NotImplementedException();
-        }
 
-        public async Task DeleteMachineryIdToCart(int idMachine, string idUser)
+        public async Task DeleteMachineryIdToCart(Machinery machine, string idUser)
         {
+            var cart = await _dbContext.MachineryRentals.FirstOrDefaultAsync(
+            c => c.RentalStatus == RentalStatus.koszyk &&c.UserId == idUser);
 
-            var result = await _dbContext.MachineryRentalLists.FirstOrDefaultAsync(c => c.MachineryId == idMachine);
-            if (result == null)
+            if (cart == null)
             {
                 return;
             }
 
-            _dbContext.MachineryRentalLists.Remove(result);
+            int? idMachine = null;
+            if (machine.ExcavatorId is not null)
+            {
+                var machinery = await _dbContext.Machiners
+                    .FirstOrDefaultAsync(c => c.ExcavatorId == machine.ExcavatorId);
+                idMachine = machinery?.Id;
+            }
+            else if (machine.ExcavatorBucketId is not null)
+            {
+                var machinery = await _dbContext.Machiners
+                    .FirstOrDefaultAsync(c => c.ExcavatorBucketId == machine.ExcavatorBucketId);
+                idMachine = machinery?.Id;
+            }
+            else if (machine.RollerId is not null)
+            {
+                var machinery = await _dbContext.Machiners
+                    .FirstOrDefaultAsync(c => c.RollerId == machine.RollerId);
+                idMachine = machinery?.Id;
+            }
+            else if (machine.HarvesterId is not null)
+            {
+                var machinery = await _dbContext.Machiners
+                    .FirstOrDefaultAsync(c => c.HarvesterId == machine.HarvesterId);
+                idMachine = machinery?.Id;
+            }
+            else if (machine.WoodChipperId is not null)
+            {
+                var machinery = await _dbContext.Machiners
+                    .FirstOrDefaultAsync(c => c.WoodChipperId == machine.WoodChipperId);
+                idMachine = machinery?.Id;
+            }
+
+
+            if (idMachine == null)
+            {
+                return;
+            }
+
+            MachineryRentalList machineryDeleteCard = new MachineryRentalList();
+            machineryDeleteCard.MachineryId = (int)idMachine;
+            machineryDeleteCard.MachineryRentalId = cart.Id;
+
+            _dbContext.MachineryRentalLists.Remove(machineryDeleteCard);
             await _dbContext.SaveChangesAsync();
         }
 

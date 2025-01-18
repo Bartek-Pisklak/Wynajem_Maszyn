@@ -14,15 +14,15 @@ namespace WynajemMaszyn.Application.UnitTests.Rollers.Commands.CreateRoller
         private readonly CreateRollerCommandHandler _handler;
         private readonly Mock<IRollerRepository> _mockCreateRollerCommandHandler;
         private readonly Mock<IMachineryRepository> _mockMachineryRepositoryHandler;
-        private readonly Mock<UserManager<User>> _mockUserManager;
+        private readonly Mock<ICurrentUserService> _mockUserService;
 
 
         public CreateRollerCommandHandlerTests() 
         {
             _mockCreateRollerCommandHandler = new Mock<IRollerRepository>();
             _mockMachineryRepositoryHandler = new Mock<IMachineryRepository>();
-            _mockUserManager = new Mock<UserManager<User>>();
-          //  _handler = new CreateRollerCommandHandler(_mockCreateRollerCommandHandler.Object, _mockUserManager.Object, _mockMachineryRepositoryHandler.Object);
+            _mockUserService = new Mock<ICurrentUserService>();
+            _handler = new CreateRollerCommandHandler(_mockCreateRollerCommandHandler.Object,_mockMachineryRepositoryHandler.Object, _mockUserService.Object);
         }
 
 
@@ -32,8 +32,7 @@ namespace WynajemMaszyn.Application.UnitTests.Rollers.Commands.CreateRoller
             //arange
             var createRollerCommand = CreateRollerCommandUtils.CreateRollerCommand();
 
-_mockUserManager.Setup(x => x.GetUserId(It.IsAny<ClaimsPrincipal>()))
-                .Returns(value: null);
+
 
             //act
             var result = await _handler.Handle(createRollerCommand, default);
@@ -49,8 +48,7 @@ _mockUserManager.Setup(x => x.GetUserId(It.IsAny<ClaimsPrincipal>()))
             //arange
             var createRollerCommand = CreateRollerCommandUtils.CreateRollerCommand();
 
-_mockUserManager.Setup(x => x.GetUserId(It.IsAny<ClaimsPrincipal>()))
-                .Returns("1");
+
 
             //act
             var result = await _handler.Handle(createRollerCommand, default);

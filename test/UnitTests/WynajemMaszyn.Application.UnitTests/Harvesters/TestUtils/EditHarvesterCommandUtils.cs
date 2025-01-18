@@ -8,7 +8,6 @@ namespace WynajemMaszyn.Application.UnitTests.Harvesters.TestUtils
     {
         public static EditHarvesterCommand EditHarvesterCommand() =>
                 new EditHarvesterCommand(
-                    Constants.Excavator.mockHttpContext.Object,
                 Constants.Harvester.Id,
                 Constants.Harvester.Name,
                 Constants.Harvester.ProductionYear,

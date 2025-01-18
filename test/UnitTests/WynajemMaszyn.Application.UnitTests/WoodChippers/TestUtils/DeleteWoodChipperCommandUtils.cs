@@ -8,7 +8,6 @@ namespace WynajemMaszyn.Application.UnitTests.WoodChippers.TestUtils
     {
         public static DeleteWoodChipperCommand DeleteWoodChipperCommand() =>
             new DeleteWoodChipperCommand(
-                Constants.Excavator.mockHttpContext.Object,
                 Constants.WoodChipper.Id
                 );
     }

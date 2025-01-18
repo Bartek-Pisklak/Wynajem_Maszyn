@@ -9,7 +9,6 @@ namespace WynajemMaszyn.Application.UnitTests.Rollers.TestUtils
     {
         public static CreateRollerCommand CreateRollerCommand() =>
             new CreateRollerCommand(
-                Constants.Excavator.mockHttpContext.Object,
                 Constants.Roller.Name,
                 Constants.Roller.ProductionYear,
                 Constants.Roller.OperatingHours,
