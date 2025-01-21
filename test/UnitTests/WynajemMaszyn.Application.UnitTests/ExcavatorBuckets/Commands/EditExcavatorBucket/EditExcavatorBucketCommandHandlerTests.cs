@@ -14,14 +14,14 @@ namespace WynajemMaszyn.Application.UnitTests.ExcavatorBuckets.Commands.EditExca
         private readonly EditExcavatorBucketCommandHandler _handler;
         private readonly Mock<IExcavatorBucketRepository> _mockEditExcavatorBucketCommandHandler;
         private readonly Mock<IMachineryRepository> _mockMachineryRepositoryHandler;
-        private readonly Mock<ICurrentUserService> _mockUserService;
+        private readonly Mock<ICurrentUserService> _mockCurrentUserService;
 
         public EditExcavatorBucketCommandHandlerTests()
         {
             _mockEditExcavatorBucketCommandHandler = new Mock<IExcavatorBucketRepository>();
             _mockMachineryRepositoryHandler = new Mock<IMachineryRepository>();
-            _mockUserService = new Mock<ICurrentUserService>();
-            //_handler = new EditExcavatorBucketCommandHandler(_mockEditExcavatorBucketCommandHandler.Object, _mockUserManager.Object, _mockMachineryRepositoryHandler.Object);
+            _mockCurrentUserService = new Mock<ICurrentUserService>();
+            _handler = new EditExcavatorBucketCommandHandler(_mockEditExcavatorBucketCommandHandler.Object, _mockMachineryRepositoryHandler.Object, _mockCurrentUserService.Object);
         }
 
 
@@ -31,7 +31,8 @@ namespace WynajemMaszyn.Application.UnitTests.ExcavatorBuckets.Commands.EditExca
             //arange
             var EditExcavatorBucketCommand = EditExcavatorBucketCommandUtils.EditExcavatorBucketCommand();
 
-
+            _mockCurrentUserService.Setup(x => x.UserId)
+            .Returns(value: null);
             //act
             var result = await _handler.Handle(EditExcavatorBucketCommand, default);
 
@@ -47,6 +48,11 @@ namespace WynajemMaszyn.Application.UnitTests.ExcavatorBuckets.Commands.EditExca
             //arange
             var EditExcavatorBucketCommand = EditExcavatorBucketCommandUtils.EditExcavatorBucketCommand();
 
+            _mockCurrentUserService.Setup(x => x.UserId)
+            .Returns("1");
+
+            _mockCurrentUserService.Setup(x => x.Roles)
+            .Returns(new List<string> { "Worker" });
 
             //act
             var result = await _handler.Handle(EditExcavatorBucketCommand, default);

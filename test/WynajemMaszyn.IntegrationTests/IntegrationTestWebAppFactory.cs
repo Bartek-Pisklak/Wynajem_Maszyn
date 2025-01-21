@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
-using WynajemMaszyn.Infrastructure.Persistance;
 using Testcontainers.PostgreSql;
 using WynajemMaszyn.Infrastructure;
+using Microsoft.VisualStudio.TestPlatform.TestHost;
 
 namespace WynajemMaszyn.IntegrationTests;
 

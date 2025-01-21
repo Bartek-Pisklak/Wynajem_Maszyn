@@ -10,5 +10,4 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.CreateExcavators
                      .NotEmpty().WithMessage("Name is required");
         }
     }
-
 }

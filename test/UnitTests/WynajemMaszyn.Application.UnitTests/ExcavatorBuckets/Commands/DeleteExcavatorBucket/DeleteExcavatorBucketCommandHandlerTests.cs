@@ -14,14 +14,14 @@ namespace WynajemMaszyn.Application.UnitTests.ExcavatorBuckets.Commands.DeleteEx
         private readonly DeleteExcavatorBucketCommandHandler _handler;
         private readonly Mock<IExcavatorBucketRepository> _mockDeleteExcavatorBucketCommandHandler;
         private readonly Mock<IMachineryRepository> _mockMachineryRepositoryHandler;
-        private readonly Mock<ICurrentUserService> _mockUserService;
+        private readonly Mock<ICurrentUserService> _mockCurrentUserService;
 
         public DeleteExcavatorBucketCommandHandlerTests()
         {
             _mockDeleteExcavatorBucketCommandHandler = new Mock<IExcavatorBucketRepository>();
             _mockMachineryRepositoryHandler = new Mock<IMachineryRepository>();
-            _mockUserService = new Mock<ICurrentUserService>();
-           // _handler = new DeleteExcavatorBucketCommandHandler(_mockDeleteExcavatorBucketCommandHandler.Object, _mockUserManager.Object, _mockMachineryRepositoryHandler.Object);
+            _mockCurrentUserService = new Mock<ICurrentUserService>();
+            _handler = new DeleteExcavatorBucketCommandHandler(_mockDeleteExcavatorBucketCommandHandler.Object,_mockMachineryRepositoryHandler.Object, _mockCurrentUserService.Object);
         }
 
 
@@ -31,7 +31,8 @@ namespace WynajemMaszyn.Application.UnitTests.ExcavatorBuckets.Commands.DeleteEx
             //arange
             var deleteExcavatorBucketCommand = DeleteExcavatorBucketCommandUtils.DeleteExcavatorBucketCommand();
 
-
+            _mockCurrentUserService.Setup(x => x.UserId)
+            .Returns(value: null);
 
             //act
             var result = await _handler.Handle(deleteExcavatorBucketCommand, default);
@@ -48,7 +49,11 @@ namespace WynajemMaszyn.Application.UnitTests.ExcavatorBuckets.Commands.DeleteEx
             //arange
             var deleteExcavatorBucketCommand = DeleteExcavatorBucketCommandUtils.DeleteExcavatorBucketCommand();
 
+            _mockCurrentUserService.Setup(x => x.UserId)
+            .Returns("1");
 
+            _mockCurrentUserService.Setup(x => x.Roles)
+            .Returns(new List<string> { "Worker" });
 
             //act
             var result = await _handler.Handle(deleteExcavatorBucketCommand, default);

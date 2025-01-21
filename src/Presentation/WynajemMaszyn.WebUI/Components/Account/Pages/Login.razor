@@ -1,14 +1,15 @@
 ﻿@page "/Account/Login"
 
-
+@using MediatR
 @using System.ComponentModel.DataAnnotations
 @using Microsoft.AspNetCore.Authentication
 @using Microsoft.AspNetCore.Identity
+@using WynajemMaszyn.Application.Authentication.Commands.Login
+@using WynajemMaszyn.Application.Contracts.Authentication
 @using WynajemMaszyn.Application.Persistance.Auth
 
 
-@inject ISignInManagerService SignInManager
-@inject ILogger<Login> Logger
+@inject IMediator Mediator
 @inject NavigationManager NavigationManager
 @inject IdentityRedirectManager RedirectManager
 
@@ -19,9 +20,21 @@
         <section>
             <StatusMessage Message="@errorMessage" />
             <EditForm Model="Input" method="post" OnValidSubmit="LoginUser" FormName="login">
+                
                 <DataAnnotationsValidator />
+
                 <h2>Zaloguj się!</h2>
                 <hr />
+                @if (Errors != null && Errors.Count > 0)
+                {
+                    <ul class="text-danger">
+                        @foreach (var error in Errors)
+                        {
+                            <li>@error</li>
+                        }
+                    </ul>
+                }
+
                 <ValidationSummary class="text-danger" role="alert" />
                 <div class="form-floating mb-3">
                     <InputText @bind-Value="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
@@ -72,42 +85,60 @@
     [SupplyParameterFromQuery]
     private string? ReturnUrl { get; set; }
 
+    private string? ErrorMessage;
+    private List<string> Errors = new();
+
     protected override async Task OnInitializedAsync()
     {
+
         if (HttpMethods.IsGet(HttpContext.Request.Method))
         {
-            // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
         }
     }
 
     public async Task LoginUser()
     {
-        // This doesn't count login failures towards account lockout
-        // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+        ReturnUrl = NavigationManager.BaseUri;
+        var command = new LoginCommand(
+           Input.Email,
+           Input.Password,
+           Input.RememberMe,
+           ReturnUrl);
 
-
-        var result = await SignInManager.PasswordSignInAsync(Input.Email, Input.Password, isPersistent: false, lockoutOnFailure: false);
-        if (result.Succeeded)
+        try
         {
-            Logger.LogInformation("User logged in.");
-            RedirectManager.RedirectTo(ReturnUrl);
+            var response = await Mediator.Send(command);
+
+            var userResponse = response.Match<LoginResponse>(
+                success =>
+                {
+                    Console.WriteLine("User logged in successfully!");
+                    return success; 
+                },
+                errors =>
+                {
+                    // Obsługa błędów
+                    foreach (var error in errors)
+                    {
+                        Console.WriteLine($"Error: {error.Description} (Code: {error.Code})");
+                    }
+                    Errors = errors.Select(e => e.Description).ToList();
+
+                    // Rzucamy wyjątek w przypadku błędów
+                    throw new Exception("User login failed.");
+                }
+            );
 
         }
-        else if (result.RequiresTwoFactor)
+        catch (Exception ex)
         {
-            RedirectManager.RedirectTo(
-                "Account/LoginWith2fa",
-                new() { ["returnUrl"] = ReturnUrl, ["rememberMe"] = Input.RememberMe });
+            Console.WriteLine($"Exception occurred: {ex.Message}");
         }
-        else if (result.IsLockedOut)
+
+        if (Errors.Count == 0)
         {
-            Logger.LogWarning("User account locked out.");
-            RedirectManager.RedirectTo("Account/Lockout");
-        }
-        else
-        {
-            errorMessage = "Error: Invalid login attempt.";
+            NavigationManager.NavigateTo(ReturnUrl, forceLoad: true);
         }
 
     }
@@ -126,11 +157,4 @@
         public bool RememberMe { get; set; }
     }
 
-    private void NavigateToRegister(MouseEventArgs e)
-    {
-        Console.WriteLine("NavigateToRegister called");
-        var registerUrl = NavigationManager.GetUriWithQueryParameters("Account/Register",
-            new Dictionary<string, object?> { ["ReturnUrl"] = ReturnUrl });
-        NavigationManager.NavigateTo(registerUrl);
-    }
 }

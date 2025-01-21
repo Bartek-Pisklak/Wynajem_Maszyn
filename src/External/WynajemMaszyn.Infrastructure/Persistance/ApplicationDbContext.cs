@@ -39,10 +39,7 @@ namespace WynajemMaszyn.Infrastructure
                 .HasIndex(r => r.Email)
                 .IsUnique();
 
-            modelBuilder.Entity<ExcavatorBucketList>()
-                    .HasNoKey();
-            modelBuilder.Entity<MachineryRentalList>()
-                    .HasNoKey();
+
         // enums
         //fuel
         modelBuilder.Entity<Excavator>()

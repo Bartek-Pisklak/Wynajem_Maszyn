@@ -6,6 +6,7 @@ using WynajemMaszyn.Application.Persistance;
 using Microsoft.AspNetCore.Identity;
 using WynajemMaszyn.Domain.Entities;
 using System.Security.Claims;
+using WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.EditExcavatorBuckets;
 
 
 namespace WynajemMaszyn.Application.UnitTests.Excavators.Commands.CreateExcavator
@@ -15,15 +16,15 @@ namespace WynajemMaszyn.Application.UnitTests.Excavators.Commands.CreateExcavato
         private readonly CreateExcavatorCommandHandler _handler;
         private readonly Mock<IExcavatorRepository> _mockCreateExcavatorCommandHandler;
         private readonly Mock<IMachineryRepository> _mockMachineryRepositoryHandler;
-        private readonly Mock<ICurrentUserService> _mockUserService;
+        private readonly Mock<ICurrentUserService> _mockCurrentUserService;
 
 
         public CreateExcavatorCommandHandlerTests() 
         {
             _mockCreateExcavatorCommandHandler = new Mock<IExcavatorRepository>();
             _mockMachineryRepositoryHandler = new Mock<IMachineryRepository>();
-            _mockUserService = new Mock<ICurrentUserService>();
-            //_handler = new CreateExcavatorCommandHandler(_mockCreateExcavatorCommandHandler.Object, _mockUserManager.Object,_mockMachineryRepositoryHandler.Object);
+            _mockCurrentUserService = new Mock<ICurrentUserService>();
+            _handler = new CreateExcavatorCommandHandler(_mockCreateExcavatorCommandHandler.Object, _mockMachineryRepositoryHandler.Object, _mockCurrentUserService.Object);
 
 
         }
@@ -37,7 +38,8 @@ namespace WynajemMaszyn.Application.UnitTests.Excavators.Commands.CreateExcavato
             var createExcavatorCommand = CreateExcavatorCommandUtils.CreateExcavatorCommand();
 
 
-
+            _mockCurrentUserService.Setup(x => x.UserId)
+            .Returns(value: null);
             //act
             var result = await _handler.Handle(createExcavatorCommand, default);
 
@@ -53,7 +55,11 @@ namespace WynajemMaszyn.Application.UnitTests.Excavators.Commands.CreateExcavato
             //arange
             var createExcavatorCommand = CreateExcavatorCommandUtils.CreateExcavatorCommand();
 
+            _mockCurrentUserService.Setup(x => x.UserId)
+            .Returns("1");
 
+            _mockCurrentUserService.Setup(x => x.Roles)
+            .Returns(new List<string> { "Worker" });
 
             //act
             var result = await _handler.Handle(createExcavatorCommand, default);

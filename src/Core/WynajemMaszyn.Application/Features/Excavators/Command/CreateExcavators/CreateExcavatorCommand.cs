@@ -1,6 +1,5 @@
 ﻿using ErrorOr;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using WynajemMaszyn.Application.Contracts.ExcavatorAnswer;
 using WynajemMaszyn.Domain.Enums;
 
@@ -25,6 +24,5 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.CreateExcavators
         string ImagePath,
         string Description
                 ) : IRequest<ErrorOr<ExcavatorResponse>>;
-
 
 }

@@ -4,7 +4,6 @@ using WynajemMaszyn.Application.Contracts.ExcavatorAnswer;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Domain.Entities;
 using WynajemMaszyn.Application.Common.Errors;
-using Microsoft.AspNetCore.Identity;
 
 namespace WynajemMaszyn.Application.Features.Excavators.Command.DeleteExcavators
 {

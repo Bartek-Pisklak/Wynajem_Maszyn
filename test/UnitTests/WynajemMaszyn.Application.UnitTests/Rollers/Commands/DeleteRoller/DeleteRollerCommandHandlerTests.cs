@@ -1,11 +1,8 @@
 ﻿using FluentAssertions;
-using Microsoft.AspNetCore.Identity;
 using Moq;
-using System.Security.Claims;
 using WynajemMaszyn.Application.Features.Rollers.Command.DeleteRollers;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Application.UnitTests.Rollers.TestUtils;
-using WynajemMaszyn.Domain.Entities;
 
 namespace WynajemMaszyn.Application.UnitTests.Rollers.Commands.DeleteRoller
 {
@@ -14,14 +11,14 @@ namespace WynajemMaszyn.Application.UnitTests.Rollers.Commands.DeleteRoller
         private readonly DeleteRollerCommandHandler _handler;
         private readonly Mock<IRollerRepository> _mockDeleteRollerCommandHandler;
         private readonly Mock<IMachineryRepository> _mockMachineryRepositoryHandler;
-        private readonly Mock<ICurrentUserService> _mockUserService;
+        private readonly Mock<ICurrentUserService> _mockCurrentUserService;
 
         public DeleteRollerCommandHandlerTests()
         {
             _mockDeleteRollerCommandHandler = new Mock<IRollerRepository>();
             _mockMachineryRepositoryHandler = new Mock<IMachineryRepository>();
-            _mockUserService = new Mock<ICurrentUserService>();
-            _handler = new DeleteRollerCommandHandler(_mockDeleteRollerCommandHandler.Object, _mockMachineryRepositoryHandler.Object, _mockUserService.Object);
+            _mockCurrentUserService = new Mock<ICurrentUserService>();
+            _handler = new DeleteRollerCommandHandler(_mockDeleteRollerCommandHandler.Object, _mockMachineryRepositoryHandler.Object, _mockCurrentUserService.Object);
 
 
         }
@@ -31,9 +28,8 @@ namespace WynajemMaszyn.Application.UnitTests.Rollers.Commands.DeleteRoller
             //arange
             var deleteRollerCommand = DeleteRollerCommandUtils.DeleteRollerCommand();
 
-            //_mockUserService.userId
-
-
+            _mockCurrentUserService.Setup(x => x.UserId)
+            .Returns(value: null);
             //act
             var result = await _handler.Handle(deleteRollerCommand, default);
 
@@ -48,7 +44,11 @@ namespace WynajemMaszyn.Application.UnitTests.Rollers.Commands.DeleteRoller
             //arange
             var deleteRollerCommand = DeleteRollerCommandUtils.DeleteRollerCommand();
 
+            _mockCurrentUserService.Setup(x => x.UserId)
+            .Returns("1");
 
+            _mockCurrentUserService.Setup(x => x.Roles)
+            .Returns(new List<string> { "Worker" });
             //act
             var result = await _handler.Handle(deleteRollerCommand, default);
 

@@ -3,6 +3,7 @@ using ErrorOr;
 using WynajemMaszyn.Application.Common.Errors;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Application.Features.Excavators.Queries.DTOs;
+using WynajemMaszyn.Domain.Entities;
 
 
 namespace WynajemMaszyn.Application.Features.Excavators.Queries.GetExcavators
@@ -25,7 +26,11 @@ namespace WynajemMaszyn.Application.Features.Excavators.Queries.GetExcavators
             var excavator = await _excavatorRepository.GetExcavator(request.Id);
 
             if (excavator == null) return Errors.Excavator.NotDataToDisplay;
-            var dateBusyMachine = await _machineryRepository.GetDateOneMachineryBusy(request.Id);
+
+            var machineBusy = new Machinery();
+            machineBusy.ExcavatorId = request.Id;
+
+            var dateBusyMachine = await _machineryRepository.GetDateOneMachineryBusy(machineBusy);
 
             var workExcavators = new GetExcavatorDto
             {

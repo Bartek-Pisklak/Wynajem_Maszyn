@@ -88,8 +88,6 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
         public async Task AddMachineryIdToCart(Machinery machine, string idUser)
         {
 
-            MachineryRentalList newMachineRental = new MachineryRentalList();
-
             var cart = await _dbContext.MachineryRentals.FirstOrDefaultAsync(
                         c => c.RentalStatus == RentalStatus.koszyk &&c.UserId == idUser);
 
@@ -100,11 +98,54 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
                 cart = await CreateMachineryRental(machineryRental);
             }
 
-            newMachineRental.MachineryId = machine.Id;
+            int? idMachine = null;
+            if (machine.ExcavatorId is not null)
+            {
+                var machinery = await _dbContext.Machiners
+                    .FirstOrDefaultAsync(c => c.ExcavatorId == machine.ExcavatorId);
+                idMachine = machinery?.Id;
+            }
+            else if (machine.ExcavatorBucketId is not null)
+            {
+                var machinery = await _dbContext.Machiners
+                    .FirstOrDefaultAsync(c => c.ExcavatorBucketId == machine.ExcavatorBucketId);
+                idMachine = machinery?.Id;
+            }
+            else if (machine.RollerId is not null)
+            {
+                var machinery = await _dbContext.Machiners
+                    .FirstOrDefaultAsync(c => c.RollerId == machine.RollerId);
+                idMachine = machinery?.Id;
+            }
+            else if (machine.HarvesterId is not null)
+            {
+                var machinery = await _dbContext.Machiners
+                    .FirstOrDefaultAsync(c => c.HarvesterId == machine.HarvesterId);
+                idMachine = machinery?.Id;
+            }
+            else if (machine.WoodChipperId is not null)
+            {
+                var machinery = await _dbContext.Machiners
+                    .FirstOrDefaultAsync(c => c.WoodChipperId == machine.WoodChipperId);
+                idMachine = machinery?.Id;
+            }
+
+
+            var isMachineRental = await _dbContext.MachineryRentalLists.
+            FirstOrDefaultAsync(c => c.MachineryId == (int)idMachine && c.MachineryRentalId == cart.Id);
+
+            if(isMachineRental is not null)
+            {
+                return;
+            }
+
+            MachineryRentalList newMachineRental = new MachineryRentalList();
+            newMachineRental.MachineryId = (int)idMachine;
             newMachineRental.MachineryRentalId = cart.Id;
+
             await _dbContext.MachineryRentalLists.AddAsync(newMachineRental);
 
-            var machieneId = machine.Id;
+            var machieneId = idMachine;
 
             var rentalPrices = await _dbContext.Machiners
                 .Where(m => m.Id == machieneId) // Dopasowanie maszyny po Id
@@ -118,11 +159,18 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
                 })
                 .FirstOrDefaultAsync();
 
+            float? selectedPrice = rentalPrices.ExcavatorPrice ??
+                       rentalPrices.ExcavatorBucketPrice ??
+                       rentalPrices.RollerPrice ??
+                       rentalPrices.HarvesterPrice ??
+                       rentalPrices.WoodChipperPrice;
 
+            if (selectedPrice == null)
+            {
+                return;
+            }
 
-            cart.Cost += (rentalPrices.ExcavatorPrice ?? rentalPrices.ExcavatorBucketPrice ??
-                          rentalPrices.RollerPrice ?? rentalPrices.HarvesterPrice ??
-                          rentalPrices.WoodChipperPrice).Value;
+            cart.Cost += selectedPrice.Value;
 
             await _dbContext.SaveChangesAsync();
         }
@@ -176,9 +224,40 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
                 return;
             }
 
-            MachineryRentalList machineryDeleteCard = new MachineryRentalList();
-            machineryDeleteCard.MachineryId = (int)idMachine;
-            machineryDeleteCard.MachineryRentalId = cart.Id;
+            var machineryDeleteCard = await _dbContext.MachineryRentalLists.
+                FirstOrDefaultAsync(c =>c.MachineryId == (int)idMachine && c.MachineryRentalId == cart.Id);
+
+            if( machineryDeleteCard == null )
+            {
+                return;
+            }
+
+            var machieneId = idMachine;
+
+            var rentalPrices = await _dbContext.Machiners
+                .Where(m => m.Id == machieneId) // Dopasowanie maszyny po Id
+                .Select(m => new
+                {
+                    ExcavatorPrice = m.ExcavatorId != null ? m.Excavator.RentalPricePerDay : (float?)null,
+                    ExcavatorBucketPrice = m.ExcavatorBucketId != null ? m.ExcavatorBucket.RentalPricePerDay : (float?)null,
+                    RollerPrice = m.RollerId != null ? m.Roller.RentalPricePerDay : (float?)null,
+                    HarvesterPrice = m.HarvesterId != null ? m.Harvester.RentalPricePerDay : (float?)null,
+                    WoodChipperPrice = m.WoodChipperId != null ? m.WoodChipper.RentalPricePerDay : (float?)null
+                })
+                .FirstOrDefaultAsync();
+
+            float? selectedPrice = rentalPrices.ExcavatorPrice ??
+                       rentalPrices.ExcavatorBucketPrice ??
+                       rentalPrices.RollerPrice ??
+                       rentalPrices.HarvesterPrice ??
+                       rentalPrices.WoodChipperPrice;
+
+            if (selectedPrice == null)
+            {
+                return;
+            }
+
+            cart.Cost -= selectedPrice.Value;
 
             _dbContext.MachineryRentalLists.Remove(machineryDeleteCard);
             await _dbContext.SaveChangesAsync();

@@ -1,8 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@using WynajemMaszyn.Domain.Entities
+@using WynajemMaszyn.Application.Persistance.Auth;
 
-
-@inject SignInManager<User> SignInManager
+@inject ISignInManagerService SignInManager
 
 <ul class="nav nav-pills flex-column">
     <li class="nav-item">

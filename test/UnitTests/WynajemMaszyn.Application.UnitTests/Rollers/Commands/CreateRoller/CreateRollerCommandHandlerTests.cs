@@ -14,15 +14,15 @@ namespace WynajemMaszyn.Application.UnitTests.Rollers.Commands.CreateRoller
         private readonly CreateRollerCommandHandler _handler;
         private readonly Mock<IRollerRepository> _mockCreateRollerCommandHandler;
         private readonly Mock<IMachineryRepository> _mockMachineryRepositoryHandler;
-        private readonly Mock<ICurrentUserService> _mockUserService;
+        private readonly Mock<ICurrentUserService> _mockCurrentUserService;
 
 
         public CreateRollerCommandHandlerTests() 
         {
             _mockCreateRollerCommandHandler = new Mock<IRollerRepository>();
             _mockMachineryRepositoryHandler = new Mock<IMachineryRepository>();
-            _mockUserService = new Mock<ICurrentUserService>();
-            _handler = new CreateRollerCommandHandler(_mockCreateRollerCommandHandler.Object,_mockMachineryRepositoryHandler.Object, _mockUserService.Object);
+            _mockCurrentUserService = new Mock<ICurrentUserService>();
+            _handler = new CreateRollerCommandHandler(_mockCreateRollerCommandHandler.Object,_mockMachineryRepositoryHandler.Object, _mockCurrentUserService.Object);
         }
 
 
@@ -32,7 +32,8 @@ namespace WynajemMaszyn.Application.UnitTests.Rollers.Commands.CreateRoller
             //arange
             var createRollerCommand = CreateRollerCommandUtils.CreateRollerCommand();
 
-
+            _mockCurrentUserService.Setup(x => x.UserId)
+            .Returns(value: null);
 
             //act
             var result = await _handler.Handle(createRollerCommand, default);
@@ -49,7 +50,11 @@ namespace WynajemMaszyn.Application.UnitTests.Rollers.Commands.CreateRoller
             var createRollerCommand = CreateRollerCommandUtils.CreateRollerCommand();
 
 
+            _mockCurrentUserService.Setup(x => x.UserId)
+            .Returns("1");
 
+            _mockCurrentUserService.Setup(x => x.Roles)
+            .Returns(new List<string> { "Worker" });
             //act
             var result = await _handler.Handle(createRollerCommand, default);
 

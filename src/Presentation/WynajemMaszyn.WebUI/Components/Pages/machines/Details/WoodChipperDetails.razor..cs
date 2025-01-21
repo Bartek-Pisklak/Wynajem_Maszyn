@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
+using WynajemMaszyn.Application.Features.MachineryRentals.Command.AddMachineryCard;
+using WynajemMaszyn.Application.Features.MachineryRentals.Command.DeleteMachineryCard;
 using WynajemMaszyn.Application.Features.WoodChippers.Queries.DTOs;
 using WynajemMaszyn.Application.Features.WoodChippers.Queries.GetWoodChippers;
 
@@ -49,9 +51,23 @@ namespace WynajemMaszyn.WebUI.Components.Pages.machines.Details
         }
 
 
-        private void AddMachineToCard()
+        private async void AddMachineToCard()
         {
+            var command = new AddMachineryCardCommand(
+                        (int)IdMachine,
+                        "WoodChipper"
+                       );
+            var response = await Mediator.Send(command);
 
+        }
+
+        private async void DeleteMachineToCard()
+        {
+            var command = new DeleteMachineryCardCommand(
+                        (int)IdMachine,
+                        "WoodChipper"
+                       );
+            var response = await Mediator.Send(command);
 
         }
 

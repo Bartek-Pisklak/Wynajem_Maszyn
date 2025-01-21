@@ -9,4 +9,6 @@ public record RegisterCommand(
     string LastName,
     string Email,
     string Password,
-    string ConfirmPassword) : IRequest<ErrorOr<RegisterResponse>>;
+    string ConfirmPassword,
+    string ReturnUrl
+    ) : IRequest<ErrorOr<RegisterResponse>>;

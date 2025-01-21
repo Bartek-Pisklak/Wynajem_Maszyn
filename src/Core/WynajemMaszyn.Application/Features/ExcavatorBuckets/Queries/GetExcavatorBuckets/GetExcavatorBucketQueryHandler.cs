@@ -26,9 +26,12 @@ namespace WynajemMaszyn.Application.Features.ExcavatorBuckets.Queries.GetExcavat
 
             excavatorBucket = await _excavatorBucketRepository.GetExcavatorBucket(request.Id);
 
-            var dateBusyMachine = await _machineryRepository.GetDateOneMachineryBusy(request.Id);
-
             if (excavatorBucket == null) return Errors.ExcavatorBucket.NotDataToDisplay;
+
+            var machineBusy = new Machinery();
+            machineBusy.ExcavatorBucketId = request.Id;
+
+            var dateBusyMachine = await _machineryRepository.GetDateOneMachineryBusy(machineBusy);
 
             GetExcavatorBucketDto workExcavatorBucket = (new GetExcavatorBucketDto
             {

@@ -13,19 +13,6 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Permissions",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Permissions", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "RoleClaims",
                 columns: table => new
                 {
@@ -158,7 +145,7 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                     Gearbox = table.Column<string>(type: "text", nullable: false),
                     MaxDiggingDepth = table.Column<int>(type: "integer", nullable: false),
                     ImagePath = table.Column<string>(type: "text", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: true),
                     IsRepair = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
@@ -193,7 +180,7 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                     RentalPricePerDay = table.Column<float>(type: "real", nullable: false),
                     CompatibleExcavators = table.Column<string>(type: "text", nullable: true),
                     ImagePath = table.Column<string>(type: "text", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: true),
                     IsRepair = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
@@ -229,7 +216,7 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                     TypeChassis = table.Column<int>(type: "integer", nullable: false),
                     RentalPricePerDay = table.Column<float>(type: "real", nullable: false),
                     ImagePath = table.Column<string>(type: "text", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: true),
                     IsRepair = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
@@ -257,10 +244,10 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                     Deposit = table.Column<float>(type: "real", nullable: true),
                     LateFee = table.Column<float>(type: "real", nullable: true),
                     PaymentStatus = table.Column<string>(type: "text", nullable: false),
-                    Facture = table.Column<string>(type: "text", nullable: false),
-                    Contract = table.Column<string>(type: "text", nullable: false),
-                    PaymentMethod = table.Column<string>(type: "text", nullable: false),
-                    AdditionalNotes = table.Column<string>(type: "text", nullable: false),
+                    Facture = table.Column<string>(type: "text", nullable: true),
+                    Contract = table.Column<string>(type: "text", nullable: true),
+                    PaymentMethod = table.Column<string>(type: "text", nullable: true),
+                    AdditionalNotes = table.Column<string>(type: "text", nullable: true),
                     IsReturned = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
@@ -299,7 +286,7 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                     IsVibratory = table.Column<bool>(type: "boolean", nullable: false),
                     KnigeAsfalt = table.Column<bool>(type: "boolean", nullable: false),
                     ImagePath = table.Column<string>(type: "text", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: true),
                     IsRepair = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
@@ -337,7 +324,7 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                     MachineWidth = table.Column<int>(type: "integer", nullable: false),
                     FlowMaterial = table.Column<int>(type: "integer", nullable: false),
                     ImagePath = table.Column<string>(type: "text", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: true),
                     IsRepair = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
@@ -355,11 +342,14 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                 name: "ExcavatorBucketLists",
                 columns: table => new
                 {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     ExcavatorId = table.Column<int>(type: "integer", nullable: true),
                     ExcavatorBucketId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("PK_ExcavatorBucketLists", x => x.Id);
                     table.ForeignKey(
                         name: "FK_ExcavatorBucketLists_ExcavatorsBuckets_ExcavatorBucketId",
                         column: x => x.ExcavatorBucketId,
@@ -419,11 +409,14 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                 name: "MachineryRentalLists",
                 columns: table => new
                 {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     MachineryRentalId = table.Column<int>(type: "integer", nullable: false),
                     MachineryId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("PK_MachineryRentalLists", x => x.Id);
                     table.ForeignKey(
                         name: "FK_MachineryRentalLists_Machiners_MachineryId",
                         column: x => x.MachineryId,
@@ -528,9 +521,6 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
 
             migrationBuilder.DropTable(
                 name: "MachineryRentalLists");
-
-            migrationBuilder.DropTable(
-                name: "Permissions");
 
             migrationBuilder.DropTable(
                 name: "RoleClaims");

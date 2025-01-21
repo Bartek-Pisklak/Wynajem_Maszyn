@@ -19,6 +19,6 @@ public abstract class BaseIntegrationTest : IClassFixture<IntegrationTestWebAppF
         Sender = _scope.ServiceProvider.GetRequiredService<ISender>();
         DbContext = _scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
         DbContext.Database.Migrate();
-        seeder.SeedPermissionsAsync();
+        seeder.SeedRolesAsync();
     }
 }

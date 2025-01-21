@@ -3,6 +3,7 @@ using MediatR;
 using WynajemMaszyn.Application.Features.Rollers.Queries.DTOs;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Application.Common.Errors;
+using WynajemMaszyn.Domain.Entities;
 
 namespace WynajemMaszyn.Application.Features.Rollers.Queries.GetRollers
 {
@@ -20,12 +21,14 @@ namespace WynajemMaszyn.Application.Features.Rollers.Queries.GetRollers
 
         public async Task<ErrorOr<GetRollerDto>> Handle(GetRollerQuery request, CancellationToken cancellationToken)
         {
-            
-
             var roller = await _rollerRepository.GetRoller(request.Id);
 
             if (roller == null) return Errors.Roller.NotDataToDisplay;
-            var dateBusyMachine = await _machineryRepository.GetDateOneMachineryBusy(request.Id);
+
+            var machineBusy = new Machinery();
+            machineBusy.RollerId = request.Id;
+
+            var dateBusyMachine = await _machineryRepository.GetDateOneMachineryBusy(machineBusy);
 
             var workRoller = new GetRollerDto
             {

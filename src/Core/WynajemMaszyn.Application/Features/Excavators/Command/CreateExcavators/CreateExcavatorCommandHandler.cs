@@ -4,8 +4,6 @@ using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Domain.Entities;
 using WynajemMaszyn.Application.Contracts.ExcavatorAnswer;
 using WynajemMaszyn.Application.Common.Errors;
-using Microsoft.AspNetCore.Identity;
-
 
 namespace WynajemMaszyn.Application.Features.Excavators.Command.CreateExcavators
 {
@@ -14,7 +12,6 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.CreateExcavators
         private readonly IExcavatorRepository _excavatorRepository;
         private readonly IMachineryRepository _machineryRepository;
         private readonly ICurrentUserService _currentUserService;
-
 
         public CreateExcavatorCommandHandler(IExcavatorRepository excavatorRepository,
             IMachineryRepository machineryRepository,
@@ -34,7 +31,6 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.CreateExcavators
             {
                 return Errors.ExcavatorBucket.UserDoesNotLogged;
             }
-
 
             var excavator = new Excavator
             {
@@ -56,8 +52,6 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.CreateExcavators
                 ImagePath = request.ImagePath,
                 Description = request.Description
         };
-
-
             int idNewMahine = await _excavatorRepository.CreateExcavator(excavator);
             var machine = new Machinery
             {
@@ -65,7 +59,6 @@ namespace WynajemMaszyn.Application.Features.Excavators.Command.CreateExcavators
                 ExcavatorId=idNewMahine
             };
             await _machineryRepository.CreateMachinery(machine);
-
 
             return new ExcavatorResponse("Excavator added");
         }

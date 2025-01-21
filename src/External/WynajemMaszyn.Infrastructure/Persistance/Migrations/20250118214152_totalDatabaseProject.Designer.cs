@@ -12,7 +12,7 @@ using WynajemMaszyn.Infrastructure;
 namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250115224016_totalDatabaseProject")]
+    [Migration("20250118214152_totalDatabaseProject")]
     partial class totalDatabaseProject
     {
         /// <inheritdoc />
@@ -148,7 +148,6 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("DrivingSpeed")
@@ -239,7 +238,6 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("ImagePath")
@@ -291,11 +289,19 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
 
             modelBuilder.Entity("WynajemMaszyn.Domain.Entities.ExcavatorBucketList", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
                     b.Property<int?>("ExcavatorBucketId")
                         .HasColumnType("integer");
 
                     b.Property<int?>("ExcavatorId")
                         .HasColumnType("integer");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("ExcavatorBucketId");
 
@@ -316,7 +322,6 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("DrivingSpeed")
@@ -430,14 +435,12 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("AdditionalNotes")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("BeginRent")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Contract")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<float>("Cost")
@@ -450,7 +453,6 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Facture")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<bool>("IsReturned")
@@ -460,7 +462,6 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                         .HasColumnType("real");
 
                     b.Property<string>("PaymentMethod")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("PaymentStatus")
@@ -484,34 +485,25 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
 
             modelBuilder.Entity("WynajemMaszyn.Domain.Entities.MachineryRentalList", b =>
                 {
-                    b.Property<int>("MachineryId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("MachineryRentalId")
-                        .HasColumnType("integer");
-
-                    b.HasIndex("MachineryId");
-
-                    b.HasIndex("MachineryRentalId");
-
-                    b.ToTable("MachineryRentalLists");
-                });
-
-            modelBuilder.Entity("WynajemMaszyn.Domain.Entities.Permission", b =>
-                {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("MachineryId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("MachineryRentalId")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Permissions");
+                    b.HasIndex("MachineryId");
+
+                    b.HasIndex("MachineryRentalId");
+
+                    b.ToTable("MachineryRentalLists");
                 });
 
             modelBuilder.Entity("WynajemMaszyn.Domain.Entities.Roller", b =>
@@ -523,7 +515,6 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("DrivingSpeed")
@@ -673,7 +664,6 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("DrivingSpeed")

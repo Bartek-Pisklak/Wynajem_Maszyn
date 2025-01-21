@@ -3,6 +3,7 @@ using MediatR;
 using WynajemMaszyn.Application.Features.WoodChippers.Queries.DTOs;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Application.Common.Errors;
+using WynajemMaszyn.Domain.Entities;
 
 namespace WynajemMaszyn.Application.Features.WoodChippers.Queries.GetWoodChippers
 {
@@ -22,7 +23,10 @@ namespace WynajemMaszyn.Application.Features.WoodChippers.Queries.GetWoodChipper
             var woodChipper = await _woodChipperRepository.GetWoodChipper(request.Id);
 
             if (woodChipper == null) return Errors.WoodChipper.NotDataToDisplay;
-            var dateBusyMachine = await _machineryRepository.GetDateOneMachineryBusy(request.Id);
+
+            var machineBusy = new Machinery();
+            machineBusy.WoodChipperId = request.Id;
+            var dateBusyMachine = await _machineryRepository.GetDateOneMachineryBusy(machineBusy);
 
             var workwoodChipper = new GetWoodChipperDto
             {

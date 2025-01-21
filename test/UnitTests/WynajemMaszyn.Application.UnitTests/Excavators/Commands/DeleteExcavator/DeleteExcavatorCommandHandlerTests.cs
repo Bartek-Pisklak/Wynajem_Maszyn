@@ -15,14 +15,14 @@ namespace WynajemMaszyn.Application.UnitTests.Excavators.Commands.DeleteExcavato
         private readonly DeleteExcavatorCommandHandler _handler;
         private readonly Mock<IExcavatorRepository> _mockDeleteExcavatorCommandHandler;
         private readonly Mock<IMachineryRepository> _mockMachineryRepositoryHandler;
-        private readonly Mock<ICurrentUserService> _mockUserService;
+        private readonly Mock<ICurrentUserService> _mockCurrentUserService;
 
         public DeleteExcavatorCommandHandlerTests()
         {
             _mockDeleteExcavatorCommandHandler = new Mock<IExcavatorRepository>();
             _mockMachineryRepositoryHandler = new Mock<IMachineryRepository>();
-            _mockUserService = new Mock<ICurrentUserService>();
-            //_handler = new DeleteExcavatorCommandHandler(_mockDeleteExcavatorCommandHandler.Object, _mockUserManager.Object, _mockMachineryRepositoryHandler.Object);
+            _mockCurrentUserService = new Mock<ICurrentUserService>();
+            _handler = new DeleteExcavatorCommandHandler(_mockDeleteExcavatorCommandHandler.Object, _mockMachineryRepositoryHandler.Object, _mockCurrentUserService.Object);
 
         }
 
@@ -33,6 +33,8 @@ namespace WynajemMaszyn.Application.UnitTests.Excavators.Commands.DeleteExcavato
             //arange
             var deleteExcavatorCommand = DeleteExcavatorCommandUtils.DeleteExcavatorCommand();
 
+            _mockCurrentUserService.Setup(x => x.UserId)
+            .Returns(value: null);
 
 
             //act
@@ -50,6 +52,11 @@ namespace WynajemMaszyn.Application.UnitTests.Excavators.Commands.DeleteExcavato
             //arange
             var deleteExcavatorCommand = DeleteExcavatorCommandUtils.DeleteExcavatorCommand();
 
+            _mockCurrentUserService.Setup(x => x.UserId)
+            .Returns("1");
+
+            _mockCurrentUserService.Setup(x => x.Roles)
+            .Returns(new List<string> { "Worker" });
 
             //act
             var result = await _handler.Handle(deleteExcavatorCommand, default);

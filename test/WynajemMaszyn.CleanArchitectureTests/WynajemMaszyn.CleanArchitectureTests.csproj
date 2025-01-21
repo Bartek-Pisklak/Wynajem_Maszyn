@@ -31,6 +31,7 @@
     <Using Include="Xunit" />
 		<ProjectReference Include="..\..\src\Core\WynajemMaszyn.Application\WynajemMaszyn.Application.csproj" />
 		<ProjectReference Include="..\..\src\External\WynajemMaszyn.Infrastructure\WynajemMaszyn.Infrastructure.csproj" />
+		<ProjectReference Include="..\..\src\Presentation\WynajemMaszyn.WebUI\WynajemMaszyn.WebUI.csproj" />
 	</ItemGroup>
 
 </Project>

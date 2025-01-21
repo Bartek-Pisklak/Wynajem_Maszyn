@@ -1,8 +1,5 @@
-﻿using System.Reflection;
-using FluentAssertions;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel;
+﻿using FluentAssertions;
 using NetArchTest.Rules;
-using WynajemMaszyn.Domain;
 
 namespace WynajemMaszyn.CleanArchitectureTests;
 
@@ -79,6 +76,32 @@ public class CleanArchitectureTests
         var otherProjects = new[]
         {
             WebUINamespace
+        };
+
+        // Act
+
+        var testResult = Types
+            .InAssembly(assembly)
+            .ShouldNot()
+            .HaveDependencyOnAny(otherProjects)
+            .GetResult()
+            .IsSuccessful;
+
+        // Assert
+
+        testResult.Should().BeTrue();
+    }
+
+    [Fact]
+    public void WebUI_Should_Not_HaveDependencyOnOtherProjects()
+    {
+        // Arrange
+
+        var assembly = typeof(WynajemMaszyn.WebUI.AssemblyReference).Assembly;
+
+        var otherProjects = new[]
+        {
+            DomainNamespace
         };
 
         // Act

@@ -14,14 +14,14 @@ namespace WynajemMaszyn.Application.UnitTests.Harvesters.Commands.CreateHarveste
         private readonly CreateHarvesterCommandHandler _handler;
         private readonly Mock<IHarvesterRepository> _mockCreateHarvesterCommandHandler;
         private readonly Mock<IMachineryRepository> _mockMachineryRepositoryHandler;
-        private readonly Mock<ICurrentUserService> _mockUserService;
+        private readonly Mock<ICurrentUserService> _mockCurrentUserService;
 
         public CreateHarvesterCommandHandlerTests()
         {
             _mockCreateHarvesterCommandHandler = new Mock<IHarvesterRepository>();
             _mockMachineryRepositoryHandler = new Mock<IMachineryRepository>();
-            _mockUserService = new Mock<ICurrentUserService>();
-          //  _handler = new CreateHarvesterCommandHandler(_mockCreateHarvesterCommandHandler.Object, _mockUserManager.Object, _mockMachineryRepositoryHandler.Object);
+            _mockCurrentUserService = new Mock<ICurrentUserService>();
+            _handler = new CreateHarvesterCommandHandler(_mockCreateHarvesterCommandHandler.Object,_mockMachineryRepositoryHandler.Object, _mockCurrentUserService.Object);
 
         }
 
@@ -31,7 +31,8 @@ namespace WynajemMaszyn.Application.UnitTests.Harvesters.Commands.CreateHarveste
             //arange
             var createHarvesterCommand = CreateHarvesterCommandUtils.CreateHarvesterCommand();
 
-
+            _mockCurrentUserService.Setup(x => x.UserId)
+            .Returns(value: null);
             //act
             var result = await _handler.Handle(createHarvesterCommand, default);
 
@@ -47,7 +48,11 @@ namespace WynajemMaszyn.Application.UnitTests.Harvesters.Commands.CreateHarveste
             //arange
             var createHarvesterCommand = CreateHarvesterCommandUtils.CreateHarvesterCommand();
 
+            _mockCurrentUserService.Setup(x => x.UserId)
+            .Returns("1");
 
+            _mockCurrentUserService.Setup(x => x.Roles)
+            .Returns(new List<string> { "Worker" });
             //act
             var result = await _handler.Handle(createHarvesterCommand, default);
 

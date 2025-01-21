@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using WynajemMaszyn.WebUI.Components;
 using WynajemMaszyn.WebUI.Components.Account;
 using WynajemMaszyn.Infrastructure;
@@ -29,7 +28,10 @@ builder.Services.AddSingleton<IEmailSender<User>, IdentityNoOpEmailSender>();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 
-
+builder.Services.AddAntiforgery(options =>
+{
+    options.HeaderName = "X-CSRF-TOKEN"; 
+});
 
 var app = builder.Build();
 
@@ -55,9 +57,9 @@ using (var scope = app.Services.CreateScope())
 
 app.UseHttpsRedirection();
 
+
 app.UseStaticFiles();
 app.UseAntiforgery();
-
 
 app.UseAuthentication();
 app.UseAuthorization();

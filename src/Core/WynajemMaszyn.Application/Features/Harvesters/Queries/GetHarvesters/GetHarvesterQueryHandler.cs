@@ -3,6 +3,7 @@ using ErrorOr;
 using WynajemMaszyn.Application.Features.Harvesters.Queries.DTOs;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Application.Common.Errors;
+using WynajemMaszyn.Domain.Entities;
 
 namespace WynajemMaszyn.Application.Features.Harvesters.Queries.GetHarvesters
 {
@@ -24,7 +25,10 @@ namespace WynajemMaszyn.Application.Features.Harvesters.Queries.GetHarvesters
 
 
             if (harvester == null) return Errors.Harvester.NotDataToDisplay;
-            var dateBusyMachine = await _machineryRepository.GetDateOneMachineryBusy(request.Id);
+            var machineBusy = new Machinery();
+            machineBusy.HarvesterId = request.Id;
+
+            var dateBusyMachine = await _machineryRepository.GetDateOneMachineryBusy(machineBusy);
 
             var workHarvester = new GetHarvesterDto
             {

@@ -14,14 +14,14 @@ namespace WynajemMaszyn.Application.UnitTests.WoodChippers.Commands.CreateWoodCh
         private readonly CreateWoodChipperCommandHandler _handler;
         private readonly Mock<IWoodChipperRepository> _mockCreateWoodChipperCommandHandler;
         private readonly Mock<IMachineryRepository> _mockMachineryRepositoryHandler;
-        private readonly Mock<ICurrentUserService> _mockUserService;
+        private readonly Mock<ICurrentUserService> _mockCurrentUserService;
 
         public CreateWoodChipperCommandHandlerTests()
         {
             _mockCreateWoodChipperCommandHandler = new Mock<IWoodChipperRepository>();
             _mockMachineryRepositoryHandler = new Mock<IMachineryRepository>();
-            _mockUserService = new Mock<ICurrentUserService>();
-            _handler = new CreateWoodChipperCommandHandler(_mockCreateWoodChipperCommandHandler.Object, _mockMachineryRepositoryHandler.Object, _mockUserService.Object);
+            _mockCurrentUserService = new Mock<ICurrentUserService>();
+            _handler = new CreateWoodChipperCommandHandler(_mockCreateWoodChipperCommandHandler.Object, _mockMachineryRepositoryHandler.Object, _mockCurrentUserService.Object);
 
         }
 
@@ -31,7 +31,8 @@ namespace WynajemMaszyn.Application.UnitTests.WoodChippers.Commands.CreateWoodCh
             //arange
             var createWoodChipperCommand = CreateWoodChipperCommandUtils.CreateWoodChipperCommand();
 
-
+            _mockCurrentUserService.Setup(x => x.UserId)
+            .Returns(value: null);
 
             //act
             var result = await _handler.Handle(createWoodChipperCommand, default);
@@ -48,7 +49,11 @@ namespace WynajemMaszyn.Application.UnitTests.WoodChippers.Commands.CreateWoodCh
             //arange
             var createWoodChipperCommand = CreateWoodChipperCommandUtils.CreateWoodChipperCommand();
 
+            _mockCurrentUserService.Setup(x => x.UserId)
+            .Returns("1");
 
+            _mockCurrentUserService.Setup(x => x.Roles)
+            .Returns(new List<string> { "Worker" });
 
             //act
             var result = await _handler.Handle(createWoodChipperCommand, default);

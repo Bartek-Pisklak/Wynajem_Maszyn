@@ -6,7 +6,7 @@ namespace WynajemMaszyn.Application.UnitTests.TestUtils.Constants
     {
         public static class User
         {
-            public const int  Id = 1;
+            public const string  Id = "1";
         }
     }
 }

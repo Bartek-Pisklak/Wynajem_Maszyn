@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Reflection.PortableExecutable;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Domain.Entities;
 
@@ -35,7 +36,7 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
             }
 
             var rentalDates = await _dbContext.MachineryRentalLists
-                        .Where(rl => machineList.Contains(rl.MachineryId)) // Dopasuj maszyny na podstawie Id
+                        .Where(rl => machineList.Contains(rl.MachineryId))
                         .Select(rl => new
                         {  
                             rl.MachineryRental.BeginRent,
@@ -68,11 +69,42 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
         }
 
 
-        public async Task<IEnumerable<(DateTime Start, DateTime End)?>?> GetDateOneMachineryBusy(int IdMachinery)
+        public async Task<IEnumerable<(DateTime Start, DateTime End)?>?> GetDateOneMachineryBusy(Machinery wHatMachinery)
         {
+            int? idMachine = null;
+            if (wHatMachinery.ExcavatorId is not null)
+            {
+                var machinery = await _dbContext.Machiners
+                    .FirstOrDefaultAsync(c => c.ExcavatorId == wHatMachinery.ExcavatorId);
+                idMachine = machinery?.Id;
+            }
+            else if (wHatMachinery.ExcavatorBucketId is not null)
+            {
+                var machinery = await _dbContext.Machiners
+                    .FirstOrDefaultAsync(c => c.ExcavatorBucketId == wHatMachinery.ExcavatorBucketId);
+                idMachine = machinery?.Id;
+            }
+            else if (wHatMachinery.RollerId is not null)
+            {
+                var machinery = await _dbContext.Machiners
+                    .FirstOrDefaultAsync(c => c.RollerId == wHatMachinery.RollerId);
+                idMachine = machinery?.Id;
+            }
+            else if (wHatMachinery.HarvesterId is not null)
+            {
+                var machinery = await _dbContext.Machiners
+                    .FirstOrDefaultAsync(c => c.HarvesterId == wHatMachinery.HarvesterId);
+                idMachine = machinery?.Id;
+            }
+            else if (wHatMachinery.WoodChipperId is not null)
+            {
+                var machinery = await _dbContext.Machiners
+                    .FirstOrDefaultAsync(c => c.WoodChipperId == wHatMachinery.WoodChipperId);
+                idMachine = machinery?.Id;
+            }
 
             var rentalDates = await _dbContext.MachineryRentalLists
-                        .Where(rl => rl.MachineryId == IdMachinery)
+                        .Where(rl => rl.MachineryId == idMachine)
                         .Select(rl => new
                         {
                             rl.MachineryRental.BeginRent,
