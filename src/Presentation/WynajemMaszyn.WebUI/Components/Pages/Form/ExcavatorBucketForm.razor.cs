@@ -7,7 +7,6 @@ using WynajemMaszyn.Application.Features.ExcavatorBuckets.Queries.GetExcavatorBu
 using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 
-
 namespace WynajemMaszyn.WebUI.Components.Pages.Form
 {
     public partial class ExcavatorBucketForm
@@ -24,10 +23,6 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
         private FileUploud fileUploud = new FileUploud();
         private List<string> validationErrors = new();
         private List<string> ImagePaths = new();
-
-
-
-
 
 
         protected override void OnParametersSet()
@@ -142,7 +137,7 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
                 {
                     validationErrors.Add($"Nie udało się przesłać pliku {file.Name}.");
                 }
-            
+
             }
         }
 
@@ -151,8 +146,8 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
             string imagePaths = "";
             foreach (var i in ImagePaths)
             {
-                imagePaths+= i;
-                imagePaths+= ",";
+                imagePaths += i;
+                imagePaths += ",";
             }
             imagePaths = imagePaths.Substring(0, imagePaths.Length - 1);
 
@@ -183,8 +178,8 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
             string imagePaths = "";
             foreach (var i in ImagePaths)
             {
-                imagePaths+= i;
-                imagePaths+= ",";
+                imagePaths += i;
+                imagePaths += ",";
             }
             imagePaths = imagePaths.Substring(0, imagePaths.Length - 1);
 

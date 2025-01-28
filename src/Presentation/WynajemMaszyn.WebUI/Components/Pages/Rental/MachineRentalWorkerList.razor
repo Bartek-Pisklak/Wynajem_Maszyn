@@ -1,0 +1,57 @@
+﻿@using MediatR
+@using Microsoft.AspNetCore.Authorization
+@rendermode InteractiveServer
+@inject IMediator Mediator
+@inject NavigationManager navigationManager
+
+@page "/MachineRentalWorkerList"
+
+
+
+<AuthorizeView Roles="Admin, Worker">
+        <Authorized Context="authWorker">
+
+            <h3>Lista Wynajmów</h3>
+
+        <label for="statusFilter">Filtruj według statusu:</label>
+        <select id="statusFilter" @bind="SelectedStatus">
+            <option value="">Wszystkie</option>
+            @foreach (var status in StatusRental)
+            {
+                @if(status !="koszyk")
+                {
+                    <option value="@status">@status</option>
+                }
+            }
+        </select>
+
+            <ul>
+            @if (FilteredRentals.Any())
+                {
+                @foreach (var rental in FilteredRentals)
+                    {
+                        <li>
+                            <strong>Data początkowa:</strong> @rental.BeginRent.ToShortDateString() <br />
+                            <strong>Data końcowa:</strong> @rental.EndRent.ToShortDateString() <br />
+                            <strong>Status wypożyczenia:</strong> @rental.RentalStatus <br />
+                            <strong>Status płatności:</strong> @rental.PaymentStatus <br />
+                            <strong>Koszt:</strong> @rental.Cost zł <br />
+                            <strong>Zwrócono:</strong> @(rental.IsReturned ? "Tak" : "Nie") <br />
+                            <hr />
+                        </li>
+                    }
+                }
+                else
+                {
+                    <p>Brak wyników dla wybranego statusu.</p>
+                }
+            </ul>
+
+
+
+    </Authorized>
+    <NotAuthorized>
+        <p>Nie masz uprawnień do przeglądania tego formularza.</p>
+        <p>You have no power here.</p>
+    </NotAuthorized>
+</AuthorizeView>

@@ -2,9 +2,9 @@ using FluentValidation;
 
 namespace WynajemMaszyn.Application.Authentication.Commands.Login;
 
-public class LoginValidator : AbstractValidator<LoginCommand>
+public class LoginCommandValidator : AbstractValidator<LoginCommand>
 {
-    public LoginValidator()
+    public LoginCommandValidator()
     {
         RuleFor(x => x.Email)
             .NotEmpty()

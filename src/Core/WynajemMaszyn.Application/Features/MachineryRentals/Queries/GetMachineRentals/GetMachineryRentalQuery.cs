@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ErrorOr;
+using MediatR;
+using WynajemMaszyn.Application.Features.MachineryRentals.Queries.DTOs;
 
 namespace WynajemMaszyn.Application.Features.MachineryRentals.Queries.GetMachineRentals
 {
-    internal class GetMachineryRentalQuery
-    {
-    }
+    public record GetMachineryRentalQuery(
+        int IdCard
+        ) : IRequest<ErrorOr<GetMachineryRentalDto>>;
 }

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -56,13 +55,6 @@ public static class DependencyInjection
         services.AddScoped<IWoodChipperRepository, WoodChipperRepository>();
 
         services.AddHttpContextAccessor();
-
-        return services;
-    }
-
-    public static IServiceCollection AddAuthorization(this IServiceCollection services, IConfiguration configuration)
-    {
-
 
         return services;
     }

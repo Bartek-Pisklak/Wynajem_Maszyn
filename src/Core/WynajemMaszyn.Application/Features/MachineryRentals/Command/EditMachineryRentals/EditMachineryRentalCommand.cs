@@ -1,12 +1,11 @@
 ﻿using ErrorOr;
 using MediatR;
 using WynajemMaszyn.Application.Contracts.MachineryRentalAnswer;
-using WynajemMaszyn.Domain.Entities;
+
 
 namespace WynajemMaszyn.Application.Features.MachineryRentals.Command.EditMachineRentals
 {
-    public record EditMachineRentalCommand(
-            User user
+    public record EditMachineryRentalCommand(
 
     ) : IRequest<ErrorOr<MachineryRentalResponse>>;
 }

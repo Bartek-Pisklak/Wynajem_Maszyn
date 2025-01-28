@@ -9,5 +9,6 @@ public static partial class Constants
         public const string Email = "RegisterEmail@gmail.com";
         public const string Password = "Register Password";
         public const string ConfirmPassword = "Register Password";
+        public const string ReturnUrl = "/";
     }
 }

@@ -8,13 +8,11 @@ using WynajemMaszyn.Infrastructure.Persistance.Seeders;
 using Microsoft.AspNetCore.Authentication;
 
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
-
 
 builder.Services.AddSingleton<TimeProvider>(TimeProvider.System);
 builder.Services.AddCascadingAuthenticationState();
@@ -28,10 +26,7 @@ builder.Services.AddSingleton<IEmailSender<User>, IdentityNoOpEmailSender>();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 
-builder.Services.AddAntiforgery(options =>
-{
-    options.HeaderName = "X-CSRF-TOKEN"; 
-});
+
 
 var app = builder.Build();
 

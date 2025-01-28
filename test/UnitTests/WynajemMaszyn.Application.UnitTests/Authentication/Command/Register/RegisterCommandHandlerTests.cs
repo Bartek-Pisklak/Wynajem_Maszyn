@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WynajemMaszyn.Application.Features.MachineryRentals.Queries.DTOs
+namespace WynajemMaszyn.Application.UnitTests.Authentication.Command.Register
 {
-    internal class GetMachineryRental
+    internal class RegisterCommandHandlerTests
     {
     }
 }

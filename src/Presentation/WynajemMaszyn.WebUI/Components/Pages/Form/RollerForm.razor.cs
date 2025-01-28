@@ -6,7 +6,6 @@ using WynajemMaszyn.Application.Features.Rollers.Command.CreateRollers;
 using WynajemMaszyn.Application.Features.Rollers.Command.EditRollers;
 using WynajemMaszyn.Application.Features.Rollers.Queries.DTOs;
 using WynajemMaszyn.Application.Features.Rollers.Queries.GetRollers;
-using static System.Net.Mime.MediaTypeNames;
 
 
 namespace WynajemMaszyn.WebUI.Components.Pages.Form
@@ -27,7 +26,6 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
         [SupplyParameterFromQuery]
         public string? Action { get; set; }
 
-        private string uploadedFileEdit;
 
         private readonly List<string> listTypeRoller = new List<string>();
         private readonly List<string> listFuelType = new List<string>();

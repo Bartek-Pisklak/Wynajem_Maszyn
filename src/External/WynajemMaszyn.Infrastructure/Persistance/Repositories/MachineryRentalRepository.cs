@@ -44,7 +44,7 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
 
         public async Task<IEnumerable<MachineryRental?>> GetAllMachineryRentalWorker()
         {
-            var machineryRentalList = await _dbContext.MachineryRentals.ToListAsync();
+            var machineryRentalList = await _dbContext.MachineryRentals.Where(c => c.RentalStatus != RentalStatus.koszyk).ToListAsync();
 
             return machineryRentalList;
         }
@@ -263,5 +263,17 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
+        public async Task<bool> ConfirmIdCardUser(int idCard, string idUser)
+        {
+            var card = await _dbContext.MachineryRentals.FirstOrDefaultAsync(
+            c => c.Id == idCard && c.UserId == idUser);
+
+            if( card is not null )
+            { 
+                return true;
+            }
+
+            return false;
+        }
     }
 }
