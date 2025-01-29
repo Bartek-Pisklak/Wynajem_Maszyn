@@ -5,7 +5,7 @@ using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Application.Common.Errors;
 
 
-namespace WynajemMaszyn.Application.Features.MachineryRentals.Queries.GetAllMachineRentals
+namespace WynajemMaszyn.Application.Features.MachineryRentals.Queries.GetAllMachineRentalClients
 {
     public class GetAllMachineryRentalClientQueryHandler : IRequestHandler<GetAllMachineryRentalClientQuery, ErrorOr<List<GetAllMachineryRentalDto>>>
     {

@@ -7,7 +7,7 @@ using WynajemMaszyn.Application.Features.MachineryRentals.Queries.GetAllMachineR
 
 namespace WynajemMaszyn.WebUI.Components.Pages.Rental
 {
-    public partial class MachineRentalWorker
+    public partial class MachineRentalWorkerList
     {
         private List<string> StatusRental = new List<string>();
         private List<GetAllMachineryRentalDto> MachineryRentals = new List<GetAllMachineryRentalDto>();

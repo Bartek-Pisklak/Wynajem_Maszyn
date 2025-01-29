@@ -3,11 +3,6 @@ using FluentAssertions;
 using WynajemMaszyn.Application.UnitTests.Excavators.TestUtils;
 using WynajemMaszyn.Application.Features.Excavators.Command.CreateExcavators;
 using WynajemMaszyn.Application.Persistance;
-using Microsoft.AspNetCore.Identity;
-using WynajemMaszyn.Domain.Entities;
-using System.Security.Claims;
-using WynajemMaszyn.Application.Features.ExcavatorBuckets.Command.EditExcavatorBuckets;
-
 
 namespace WynajemMaszyn.Application.UnitTests.Excavators.Commands.CreateExcavator
 {
@@ -18,18 +13,14 @@ namespace WynajemMaszyn.Application.UnitTests.Excavators.Commands.CreateExcavato
         private readonly Mock<IMachineryRepository> _mockMachineryRepositoryHandler;
         private readonly Mock<ICurrentUserService> _mockCurrentUserService;
 
-
         public CreateExcavatorCommandHandlerTests() 
         {
             _mockCreateExcavatorCommandHandler = new Mock<IExcavatorRepository>();
             _mockMachineryRepositoryHandler = new Mock<IMachineryRepository>();
             _mockCurrentUserService = new Mock<ICurrentUserService>();
-            _handler = new CreateExcavatorCommandHandler(_mockCreateExcavatorCommandHandler.Object, _mockMachineryRepositoryHandler.Object, _mockCurrentUserService.Object);
-
-
+            _handler = new CreateExcavatorCommandHandler(_mockCreateExcavatorCommandHandler.Object, 
+                _mockMachineryRepositoryHandler.Object, _mockCurrentUserService.Object);
         }
-
-
 
         [Fact]
         public async Task Handle_Should_ReturnErrorCreateExcavator_WhenIsNotValue()
@@ -37,17 +28,16 @@ namespace WynajemMaszyn.Application.UnitTests.Excavators.Commands.CreateExcavato
             //arange
             var createExcavatorCommand = CreateExcavatorCommandUtils.CreateExcavatorCommand();
 
-
             _mockCurrentUserService.Setup(x => x.UserId)
             .Returns(value: null);
+            _mockCurrentUserService.Setup(x => x.Roles)
+            .Returns(new List<string> { "Client" });
             //act
             var result = await _handler.Handle(createExcavatorCommand, default);
 
             //Assert
             result.IsError.Should().BeTrue();
-
         }
-
 
         [Fact]
         public async Task Handle_Should_ReturnCreateExcavator_WhenIsValue()
@@ -57,7 +47,6 @@ namespace WynajemMaszyn.Application.UnitTests.Excavators.Commands.CreateExcavato
 
             _mockCurrentUserService.Setup(x => x.UserId)
             .Returns("1");
-
             _mockCurrentUserService.Setup(x => x.Roles)
             .Returns(new List<string> { "Worker" });
 
@@ -66,8 +55,6 @@ namespace WynajemMaszyn.Application.UnitTests.Excavators.Commands.CreateExcavato
 
             //Assert
             result.IsError.Should().BeFalse();
-
         }
-
     }
 }

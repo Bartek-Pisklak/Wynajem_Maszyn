@@ -8,9 +8,6 @@ namespace WynajemMaszyn.WebUI.Components.Pages.machines.Worker
 {
     public partial class ExcavatorWorker
     {
-        [CascadingParameter]
-        private HttpContext HttpContext { get; set; } = default!;
-
         private List<GetAllExcavatorDto>? excavator;
 
         protected override async Task OnInitializedAsync()

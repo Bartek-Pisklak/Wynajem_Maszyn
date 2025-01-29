@@ -1,4 +1,5 @@
-﻿using WynajemMaszyn.Domain.Enums;
+﻿using WynajemMaszyn.Domain.Entities;
+using WynajemMaszyn.Domain.Enums;
 
 namespace WynajemMaszyn.Application.Features.MachineryRentals.Queries.DTOs
 {
@@ -16,5 +17,7 @@ namespace WynajemMaszyn.Application.Features.MachineryRentals.Queries.DTOs
         public string? PaymentMethod { get; set; }
         public string? AdditionalNotes { get; set; }
         public bool IsReturned { get; set; } = false;
+
+        public List<Machinery> MachineryInCard { get; set; }
     }
 }

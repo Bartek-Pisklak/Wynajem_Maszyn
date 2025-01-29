@@ -1,5 +1,5 @@
 ﻿@inherits LayoutComponentBase
-
+@inject NavigationManager navigationManager
 
 <div class="page">
     <div class="sidebar">
@@ -10,33 +10,43 @@
         <div class="top-row px-4 header" style="background-color: #046287;">
             <AuthorizeView>
                 <NotAuthorized>
-                    <div class="nav-item px-3" >
-                        <NavLink class="nav-link" href="Account/Login">
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link btn btn-primary btn-lg shadow-lg" href="Account/Login">
                             <span class="oi oi-list-rich" aria-hidden="true"></span> Login
                         </NavLink>
                     </div>
                 </NotAuthorized>
 
                 <Authorized>
-                    <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                            Konto
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-                            <li>
-                                <NavLink class="dropdown-item text-dark" href="Account/Manage">
-                                    <span class="bi bi-person-circle"></span> Konto
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink class="dropdown-item" href="MyOrders">Moje zamówienia</NavLink>
-                            </li>
-                            <li>
-                                <NavLink class="nav-link" href="Account/Logout">
-                                    <span class="bi bi-person-fill-nav-menu" aria-hidden="true"></span> Wyloguj się
-                                </NavLink>
-                            </li>
-                        </ul>
+                    <div style="display: flex; justify-content: flex-start; margin-right: 2cm;">
+                        <div class="cart-container">
+                            <button class="btn btn-link" style="background-color: white; color: #046287; border: 1px solid #046287;" @onclick="NavigateToCart">
+                                <i class="fas fa-shopping-cart"></i> (<span>@CartItemCount</span>)
+                            </button>
+                        </div>
+
+                        <div class="dropdown" style="margin-left: 20px;">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                Konto
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                                <li>
+                                    <NavLink class="dropdown-item text-dark" href="Account/Manage">
+                                        <span class="bi bi-person-circle"></span> Konto
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink class="dropdown-item" href="/MachineryRentalClientList">
+                                        <span class="bi bi-person-circle"></span> Moje zamówienia
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink class="nav-link" href="Account/Logout">
+                                        <span class="bi bi-person-fill-nav-menu" aria-hidden="true"></span> Wyloguj się
+                                    </NavLink>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </Authorized>
             </AuthorizeView>
@@ -55,3 +65,14 @@
     <a href="" class="reload">Reload</a>
     <a class="dismiss">🗙</a>
 </div>
+
+@code {
+
+    private int CartItemCount => 0; 
+
+    private void NavigateToCart()
+    {
+
+        navigationManager.NavigateTo("/MachineRentalClient");
+    }
+}

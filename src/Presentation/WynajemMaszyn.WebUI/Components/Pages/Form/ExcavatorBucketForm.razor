@@ -38,9 +38,15 @@
         </div>
 
         <div class="form-group">
-            <label for="bucketType">Typ łyżki</label>
-            <InputText id="bucketType" class="form-control" @bind-Value="machinery.BucketType" />
+            <label for="type">Typ łyżki</label>
+            <InputSelect id="type" class="form-control" @bind-Value="machinery.BucketType">
+                @foreach (var type in listBucketTypes)
+                {
+                    <option value="@type">@type</option>
+                }
+            </InputSelect>
         </div>
+
 
         <div class="form-group">
             <label for="productionYear">Rok produkcji</label>

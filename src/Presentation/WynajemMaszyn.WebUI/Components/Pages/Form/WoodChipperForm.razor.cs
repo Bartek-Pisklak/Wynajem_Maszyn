@@ -5,6 +5,7 @@ using WynajemMaszyn.Application.Features.WoodChippers.Command.CreateWoodChippers
 using WynajemMaszyn.Application.Features.WoodChippers.Command.EditWoodChippers;
 using Microsoft.JSInterop;
 using WynajemMaszyn.Application.Features.WoodChippers.Queries.GetWoodChippers;
+using WynajemMaszyn.Application.Features.Enums;
 
 
 
@@ -61,6 +62,9 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
 
         protected override async Task OnInitializedAsync()
         {
+            EnumsCustomer enumsCustomer = new EnumsCustomer();
+            listFuelType.Clear();
+            listFuelType.AddRange(enumsCustomer.GetFuelType());
             if (Action == "edit")
             {
                 var command = new GetWoodChipperQuery(

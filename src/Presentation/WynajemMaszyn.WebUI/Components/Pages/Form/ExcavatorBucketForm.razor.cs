@@ -24,6 +24,7 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
         private List<string> validationErrors = new();
         private List<string> ImagePaths = new();
 
+        private List<string> listBucketTypes = new();
 
         protected override void OnParametersSet()
         {
@@ -33,6 +34,8 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Form
         protected override async Task OnInitializedAsync()
         {
             EnumsCustomer enumsCustomer = new EnumsCustomer();
+            listBucketTypes.Clear();
+            listBucketTypes.AddRange(enumsCustomer.GetBucketType());
 
 
             if (Action == "edit")

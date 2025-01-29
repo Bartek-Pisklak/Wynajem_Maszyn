@@ -4,18 +4,76 @@
 @inject NavigationManager navigationManager
 @inject IMediator Mediator
 
-
-
 <div class="container mt-4">
-    <h2 class="text-center mb-4">Lista Harvesterów</h2>
+    <h2 class="text-center mb-4">Lista Koparek</h2>
+
+    <!--  Filtry -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-2">
+            <input type="number" class="form-control" placeholder="Min rok" @bind="minYear">
+        </div>
+        <div class="col-md-2">
+            <input type="number" class="form-control" placeholder="Max rok" @bind="maxYear">
+        </div>
+
+        <div class="col-md-2">
+            <input type="number" class="form-control" placeholder="Min moc (KM)" @bind="minPower">
+        </div>
+        <div class="col-md-2">
+            <input type="number" class="form-control" placeholder="Max moc (KM)" @bind="maxPower">
+        </div>
+
+        <div class="col-md-2">
+            <input type="number" class="form-control" placeholder="Min prędkość (km/h)" @bind="minSpeed">
+        </div>
+        <div class="col-md-2">
+            <input type="number" class="form-control" placeholder="Max prędkość (km/h)" @bind="maxSpeed">
+        </div>
+
+        <div class="col-md-2">
+            <input type="number" class="form-control" placeholder="Min waga (kg)" @bind="minWeight">
+        </div>
+        <div class="col-md-2">
+            <input type="number" class="form-control" placeholder="Max waga (kg)" @bind="maxWeight">
+        </div>
+
+        <div class="col-md-2">
+            <input type="number" step="0.01" class="form-control" placeholder="Min cena (zł)" @bind="minPrice">
+        </div>
+        <div class="col-md-2">
+            <input type="number" step="0.01" class="form-control" placeholder="Max cena (zł)" @bind="maxPrice">
+        </div>
+
+        <div class="col-md-2">
+            <input type="date" class="form-control" @bind="startDate">
+        </div>
+        <div class="col-md-2">
+            <input type="date" class="form-control" @bind="endDate">
+        </div>
+
+        <div class="col-md-2 d-flex align-items-center">
+            <input type="checkbox" class="form-check-input me-2" id="showRepair" @bind="showInRepair">
+            <label class="form-check-label" for="showRepair">Pokaż w naprawie</label>
+        </div>
+
+        <div class="col-md-2">
+            <button class="btn btn-primary w-100" @onclick="SearchMachines">Szukaj</button>
+        </div>
+
+        <div class="col-md-2">
+            <button class="btn btn-primary w-100" @onclick="ResetSearchMachines">Reset</button>
+        </div>
+    </div>
+
+    <!--  Lista maszyn -->
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        @if (harvester == null)
+        @if (filteredHarvesters == null || !filteredHarvesters.Any())
         {
-            <p><em>Brak łyzek do koparek</em></p>
+            <p><em>Brak koparek spełniających kryteria</em></p>
         }
         else
         {
-            @foreach (var machine in harvester)
+            @foreach (var machine in filteredHarvesters)
             {
                 <div class="col">
                     <div class="card shadow-sm">
@@ -23,15 +81,14 @@
                         <div class="card-body">
                             <h5 class="card-title">@machine.Name</h5>
                             <p class="card-text">Rok Produkcji: @machine.ProductionYear</p>
-                            <p class="card-text">Silnik: @machine.Engine</p>
-                            <p class="card-text">Moc: @machine.EnginePower KM </p>
-                            <p class="card-text">Prędkość Jazdy: @machine.DrivingSpeed km/h</p>
-                            <p class="card-text">Cena Wynajmu na dobe: @machine.RentalPricePerDay złotych</p>
+                            <p class="card-text">Moc: @machine.EnginePower KM</p>
+                            <p class="card-text">Prędkość: @machine.DrivingSpeed km/h</p>
+                            <p class="card-text">Waga: @machine.Weight kg</p>
+                            <p class="card-text">Cena Wynajmu: @machine.RentalPricePerDay zł</p>
                             @if (machine.IsRepair)
                             {
-                                <p class="card-text">W naprawie</p>
+                                <p class="card-text text-danger"><strong>W naprawie</strong></p>
                             }
-
                             <button class="btn btn-primary" @onclick="() => NavigateToDetails(machine.Id)">Zobacz szczegóły</button>
                         </div>
                     </div>

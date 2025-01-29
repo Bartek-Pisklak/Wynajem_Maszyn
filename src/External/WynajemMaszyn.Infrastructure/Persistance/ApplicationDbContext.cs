@@ -77,6 +77,10 @@ namespace WynajemMaszyn.Infrastructure
                    .Property(m => m.TypeExcavator)
                    .HasConversion<string>();
 
+            // excavatorBucket
+            modelBuilder.Entity<ExcavatorBucket>()
+                   .Property(m => m.BucketType)
+                   .HasConversion<string>();
 
 
             // identity
