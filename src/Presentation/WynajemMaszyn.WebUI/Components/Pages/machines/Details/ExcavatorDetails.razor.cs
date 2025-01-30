@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using System.Net.Sockets;
 using WynajemMaszyn.Application.Features.Enums;
 using WynajemMaszyn.Application.Features.Excavators.Queries.DTOs;
 using WynajemMaszyn.Application.Features.Excavators.Queries.GetExcavators;
@@ -18,6 +19,21 @@ namespace WynajemMaszyn.WebUI.Components.Pages.machines.Details
         [Parameter]
         [SupplyParameterFromQuery]
         public int? IdMachine { get; set; }
+
+        private string CheckDate(DateTime date)
+        {
+            if (machinery.DateBusy is not null)
+            {
+                foreach ((DateTime start, DateTime end) m in machinery.DateBusy)
+                {
+                    if (m.start <= date && m.end >= date)
+                    {
+                        return "busy-day";
+                    }
+                }
+            }
+            return string.Empty;
+        }
 
 
         protected override async Task OnInitializedAsync()

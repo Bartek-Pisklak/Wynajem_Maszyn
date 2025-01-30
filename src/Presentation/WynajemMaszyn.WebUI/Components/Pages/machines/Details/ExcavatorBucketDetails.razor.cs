@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using MudBlazor;
 using WynajemMaszyn.Application.Features.Enums;
 using WynajemMaszyn.Application.Features.ExcavatorBuckets.Queries.DTOs;
 using WynajemMaszyn.Application.Features.ExcavatorBuckets.Queries.GetExcavatorBuckets;
@@ -13,6 +14,24 @@ namespace WynajemMaszyn.WebUI.Components.Pages.machines.Details
         private List<string> ImagePathList= new();
         private string CurrentImage { get; set; } = string.Empty;
         private bool IsLightboxVisible { get; set; } = false;
+
+
+        private string CheckDate(DateTime date)
+        {
+            if( bucket.DateBusy is not null)
+            {
+                foreach ((DateTime start, DateTime end) m in bucket.DateBusy)
+                {
+                    if (m.start <= date && m.end >= date)
+                    {
+                        return "busy-day";
+                    }
+                }
+            }
+            return string.Empty;
+        }
+
+
 
         [Parameter]
         [SupplyParameterFromQuery]
@@ -51,6 +70,7 @@ namespace WynajemMaszyn.WebUI.Components.Pages.machines.Details
             bucket = ExcavatorBucket;
             ImagePathList= ExcavatorBucket.ImagePath;
             CurrentImage = ImagePathList[0];
+
         }
 
 

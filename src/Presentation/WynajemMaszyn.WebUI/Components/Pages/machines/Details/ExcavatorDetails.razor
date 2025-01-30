@@ -1,5 +1,6 @@
 ﻿@page "/ExcavatorDetails"
 @using MediatR
+@using MudBlazor
 @rendermode InteractiveServer
 @inject NavigationManager navigationManager
 @inject IMediator Mediator
@@ -53,12 +54,16 @@
                 </div>
                 @if (!machinery.IsRepair)
                 {
+                    <AuthorizeView Roles="Admin,Worker,Client">
+                        <Authorized Context="authClient">
                     <div class="text-center mt-3">
                         <button class="btn btn-primary btn-lg" @onclick="AddMachineToCard">Dodaj do koszyka</button>
                     </div>
                     <div class="text-center mt-3">
                         <button class="btn btn-primary btn-lg" @onclick="DeleteMachineToCard">Usuń z koszyka</button>
                     </div>
+                        </Authorized>
+                    </AuthorizeView>
                 }
             </div>
         </div>
@@ -73,6 +78,18 @@
             </div>
         }
 
+    </div>
+
+
+        <div class="col-md-3">
+            <h3 class="text-center">Dostępność Łyżki</h3>
+            <MudDatePicker PickerVariant="PickerVariant.Static"
+                           ReadOnly="false"
+                           Rounded="true"
+                           Elevation="1"
+                           Label="Color Dates"
+                           AdditionalDateClassesFunc="CheckDate"
+                           />
     </div>
 
 

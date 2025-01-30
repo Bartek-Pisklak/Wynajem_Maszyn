@@ -75,3 +75,8 @@
 		transform: scale(1.05);
 		cursor: pointer;
 	}
+
+
+.busy-day {
+	color: red !important;
+}

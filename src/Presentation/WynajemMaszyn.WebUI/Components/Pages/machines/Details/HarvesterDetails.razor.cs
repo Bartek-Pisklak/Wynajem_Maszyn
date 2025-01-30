@@ -19,7 +19,20 @@ namespace WynajemMaszyn.WebUI.Components.Pages.machines.Details
         [SupplyParameterFromQuery]
         public int? IdMachine { get; set; }
 
-
+        private string CheckDate(DateTime date)
+        {
+            if (machinery.DateBusy is not null)
+            {
+                foreach ((DateTime start, DateTime end) m in machinery.DateBusy)
+                {
+                    if (m.start <= date && m.end >= date)
+                    {
+                        return "busy-day";
+                    }
+                }
+            }
+            return string.Empty;
+        }
 
         protected override async Task OnInitializedAsync()
         {

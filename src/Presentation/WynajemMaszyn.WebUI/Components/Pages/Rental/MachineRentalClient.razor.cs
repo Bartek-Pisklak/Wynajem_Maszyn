@@ -2,6 +2,7 @@
 
 
 using Microsoft.AspNetCore.Components;
+using MudBlazor;
 using WynajemMaszyn.Application.Features.Enums;
 using WynajemMaszyn.Application.Features.MachineryRentals.Queries.DTOs;
 using WynajemMaszyn.Application.Features.MachineryRentals.Queries.GetMachineRentals;
@@ -11,6 +12,9 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Rental
     partial class MachineRentalClient
     {
         private GetMachineryRentalDto MachineRentals = new GetMachineryRentalDto();
+
+        private MudDateRangePicker _picker;
+        private DateRange _dateRange = new DateRange(DateTime.Now.Date.AddMonths(-3), DateTime.Now.AddMonths(-3).AddDays(5).Date);
 
         [Parameter]
         [SupplyParameterFromQuery]

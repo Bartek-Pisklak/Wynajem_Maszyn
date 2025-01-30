@@ -1,47 +1,69 @@
 ﻿@page "/MachineRentalClient"
 @using MediatR
+@using MudBlazor
 @rendermode InteractiveServer
 @inject NavigationManager navigationManager
 @inject IMediator Mediator
 
 
+<AuthorizeView Roles="Admin,Worker,Client">
+    <Authorized Context="authClient">
 
-<h3>Wynajem koszyka</h3>
+    <h3>Wynajem koszyka</h3>
 
-@if (MachineRentals is not null)
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Koszt</th>
-                <th>Data rozpoczęcia</th>
-                <th>Data zakończenia</th>
-                <th>Status wynajmu</th>
-                <th>Kaucja</th>
-                <th>Status płatności</th>
-                <th>Faktura</th>
-                <th>Umowa</th>
-                <th>Metoda płatności</th>
-                <th>Dodatkowe uwagi</th>
-                <th>Zwrócono</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>@MachineRentals.Cost zł</td>
-                <td>@MachineRentals.BeginRent.ToShortDateString()</td>
-                <td>@MachineRentals.EndRent.ToShortDateString()</td>
-                <td>@MachineRentals.RentalStatus</td>
-                <td>@(MachineRentals.Deposit.HasValue ? $"{MachineRentals.Deposit.Value} zł" : "Brak")</td>
-                <td>@(MachineRentals.LateFee.HasValue ? $"{MachineRentals.LateFee.Value} zł" : "Brak")</td>
-                <td>@MachineRentals.PaymentStatus</td>
-                <td>@(string.IsNullOrEmpty(MachineRentals.Facture) ? "Nie dotyczy" : MachineRentals.Facture)</td>
-                <td>@(string.IsNullOrEmpty(MachineRentals.Contract) ? "Nie dotyczy" : MachineRentals.Contract)</td>
-                <td>@(string.IsNullOrEmpty(MachineRentals.PaymentMethod) ? "Nie podano" : MachineRentals.PaymentMethod)</td>
-                <td>@(string.IsNullOrEmpty(MachineRentals.AdditionalNotes) ? "Brak" : MachineRentals.AdditionalNotes)</td>
-                <td>@(MachineRentals.IsReturned ? "Tak" : "Nie")</td>
-            </tr>
+    @if (MachineRentals is not null)
+    {
+
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Koszt</th>
+                    <th>Data rozpoczęcia</th>
+                    <th>Data zakończenia</th>
+                    <th>Status wynajmu</th>
+                    <th>Kaucja</th>
+                    <th>Status płatności</th>
+                    <th>Faktura</th>
+                    <th>Umowa</th>
+                    <th>Metoda płatności</th>
+                    <th>Dodatkowe uwagi</th>
+                    <th>Zwrócono</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@MachineRentals.Cost zł</td>
+                    <td>@MachineRentals.BeginRent.ToShortDateString()</td>
+                    <td>@MachineRentals.EndRent.ToShortDateString()</td>
+                    <td>@MachineRentals.RentalStatus</td>
+                    <td>@(MachineRentals.Deposit.HasValue ? $"{MachineRentals.Deposit.Value} zł" : "Brak")</td>
+                    <td>@(MachineRentals.LateFee.HasValue ? $"{MachineRentals.LateFee.Value} zł" : "Brak")</td>
+                    <td>@MachineRentals.PaymentStatus</td>
+                    <td>@(string.IsNullOrEmpty(MachineRentals.Facture) ? "Nie dotyczy" : MachineRentals.Facture)</td>
+                    <td>@(string.IsNullOrEmpty(MachineRentals.Contract) ? "Nie dotyczy" : MachineRentals.Contract)</td>
+                    <td>@(string.IsNullOrEmpty(MachineRentals.PaymentMethod) ? "Nie podano" : MachineRentals.PaymentMethod)</td>
+                    <td>@(string.IsNullOrEmpty(MachineRentals.AdditionalNotes) ? "Brak" : MachineRentals.AdditionalNotes)</td>
+                    <td>@(MachineRentals.IsReturned ? "Tak" : "Nie")</td>
+                </tr>
             
-        </tbody>
-    </table>
-}
+            </tbody>
+        </table>
+
+    <MudCard>
+        <MudCardContent>
+            <h3 class="text-center">Dostępność Łyżki</h3>
+                <MudStack>
+                    <MudDateRangePicker PickerVariant="PickerVariant.Dialog" Label="Dialog range picker" @bind-DateRange="_dateRange" />
+                    <br />
+                    <MudText>Static range picker</MudText>
+                    <MudDateRangePicker PickerVariant="PickerVariant.Static" @bind-DateRange="_dateRange" />
+                </MudStack>
+
+        </MudCardContent>
+    </MudCard>
+    }
+
+
+    </Authorized>
+</AuthorizeView>
