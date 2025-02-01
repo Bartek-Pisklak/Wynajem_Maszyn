@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Authentication;
 using MudBlazor.Services;
 using WynajemMaszyn.Application.Contracts.Authentication;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -26,10 +25,7 @@ builder.Services.AddMudServices();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 
-
-
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -49,17 +45,11 @@ using (var scope = app.Services.CreateScope())
 
     await seeder.SeedRolesAsync();
 }
-
 app.UseHttpsRedirection();
-
-
 app.UseStaticFiles();
 app.UseAntiforgery();
-
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
-
 app.Run();

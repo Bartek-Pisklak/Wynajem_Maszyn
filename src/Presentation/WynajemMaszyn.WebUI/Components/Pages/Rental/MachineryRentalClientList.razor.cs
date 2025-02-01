@@ -40,7 +40,7 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Rental
                     Console.WriteLine($"Error: {error.Description} (Code: {error.Code})");
                 }
 
-                throw new Exception("Failed to retrieve excavator.");
+                throw new Exception("Failed to retrieve list rental");
             });
 
             MachineryRentals = machinery;

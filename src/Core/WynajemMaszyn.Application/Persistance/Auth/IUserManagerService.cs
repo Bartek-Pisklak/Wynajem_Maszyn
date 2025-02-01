@@ -1,18 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿
 using Microsoft.AspNetCore.Identity;
-using System.Runtime.CompilerServices;
 using System.Security.Claims;
 using WynajemMaszyn.Application.Contracts.Authentication;
-using WynajemMaszyn.Domain.Entities;
 
 namespace WynajemMaszyn.Application.Persistance.Auth
 {
     public interface IUserManagerService
     {
-
-        Task<IdentityResult> CreateAsync(User user);
-        Task<IdentityResult> CreateAsync(User user, string password);
-        Task<IdentityResult> AddLoginAsync(User user, UserLoginInfo login);
         Task<string> GetUserIdAsync(UserRegister user);
         Task<string> GenerateEmailConfirmationTokenAsync(UserRegister user);
         Task<UserRegister> FindByEmailAsync(string email);
@@ -25,8 +19,6 @@ namespace WynajemMaszyn.Application.Persistance.Auth
         bool SupportsUserEmail();
         Task<string?> GetUserNameAsync(UserRegister userRegister);
         Task<string?> GetPhoneNumberAsync(UserRegister userRegister);
-        Task<IList<UserLoginInfo>> GetLoginsAsync(User user);
-        Task<IdentityResult> RemoveLoginAsync(User user, string loginProvider, string providerKey);
         Task<bool> VerifyTwoFactorTokenAsync(UserRegister user, string tokenProvider, string token);
         Task<IdentityResult> SetPhoneNumberAsync(UserRegister userRegister, string? phoneNumber);
         Task<IEnumerable<string>?> GenerateNewTwoFactorRecoveryCodesAsync(UserRegister userRegister, int number);

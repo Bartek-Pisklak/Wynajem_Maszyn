@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.WebUtilities;
+﻿using Microsoft.AspNetCore.WebUtilities;
 using WynajemMaszyn.Application.Features.Excavators.Command.DeleteExcavators;
 using WynajemMaszyn.Application.Features.Excavators.Queries.DTOs;
 using WynajemMaszyn.Application.Features.Excavators.Queries.GetAllExcavators;
@@ -17,11 +16,9 @@ namespace WynajemMaszyn.WebUI.Components.Pages.machines.Worker
                 var query = new GetAllExcavatorQuery();
                 var response = await Mediator.Send(query);
 
-
                 excavator = response.Match(
                 excavatorResponse =>
                 {
-                    // Zwraca listę koparek, jeśli żadne błędy nie wystąpiły
                     return excavatorResponse;
                 },
                 errors =>
@@ -30,8 +27,6 @@ namespace WynajemMaszyn.WebUI.Components.Pages.machines.Worker
                     {
                         Console.WriteLine($"Error: {error.Description} (Code: {error.Code})");
                     }
-
-                    // Możesz zwrócić pustą listę lub obsłużyć błędy w inny sposób
                     throw new Exception("Failed to retrieve excavators.");
                 }
                 );
@@ -48,7 +43,6 @@ namespace WynajemMaszyn.WebUI.Components.Pages.machines.Worker
 
         private void AddExcavator()
         {
-            // Przekierowanie do strony z formularzem dodawania koparki
             navigationManager.NavigateTo("/ExcavatorForm");
         }
 
@@ -63,11 +57,11 @@ namespace WynajemMaszyn.WebUI.Components.Pages.machines.Worker
             navigationManager.NavigateTo(url);
         }
 
-        private void DeleteExcavator(int idMachine)
+        private async void DeleteExcavator(int idMachine)
         {
             var command = new DeleteExcavatorCommand( idMachine);
 
-            var response = Mediator.Send(command);
+            var response = await Mediator.Send(command);
             navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
             Console.WriteLine(response.ToString());
         }

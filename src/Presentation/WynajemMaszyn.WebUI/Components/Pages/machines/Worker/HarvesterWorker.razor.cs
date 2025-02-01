@@ -65,11 +65,11 @@ namespace WynajemMaszyn.WebUI.Components.Pages.machines.Worker
             navigationManager.NavigateTo(url);
         }
 
-        private void DeleteHarvester(int idMachine)
+        private async void DeleteHarvester(int idMachine)
         {
             var command = new DeleteHarvesterCommand( idMachine);
 
-            var response = Mediator.Send(command);
+            var response = await Mediator.Send(command);
             navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
             Console.WriteLine(response.ToString());
         }

@@ -53,7 +53,7 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Rental
         }
 
 
-            private async void AddMachineRental()
+        private async void AddMachineRental()
         {
             try
             {
@@ -79,7 +79,7 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Rental
                         Console.WriteLine($"Error: {error.Description} (Code: {error.Code})");
                     }
 
-                    throw new Exception("Failed to retrieve ExcavatorBucket.");
+                    throw new Exception("Failed send card to system.");
                 }
                 );
             }
@@ -92,7 +92,8 @@ namespace WynajemMaszyn.WebUI.Components.Pages.Rental
                 Console.WriteLine($"Unhandled exception: {ex.Message}");
             }
 
-            
+            navigationManager.NavigateTo("/MachineryRentalClientForm", forceLoad: true);
+
         }
 
         protected override async Task OnInitializedAsync()

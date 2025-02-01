@@ -60,11 +60,11 @@ namespace WynajemMaszyn.WebUI.Components.Pages.machines.Worker
             });
             navigationManager.NavigateTo(url);
         }
-        private void DeleteRoller(int idMachine)
+        private async void DeleteRoller(int idMachine)
         {
             var command = new DeleteRollerCommand(idMachine);
 
-            var response = Mediator.Send(command);
+            var response = await Mediator.Send(command);
             navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
             Console.WriteLine(response.ToString());
         }

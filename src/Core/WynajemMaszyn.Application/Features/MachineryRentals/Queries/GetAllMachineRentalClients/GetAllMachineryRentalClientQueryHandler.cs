@@ -26,7 +26,7 @@ namespace WynajemMaszyn.Application.Features.MachineryRentals.Queries.GetAllMach
             var userId = _currentUserService.UserId;
             var roles = _currentUserService.Roles;
 
-            if (string.IsNullOrEmpty(userId) || !roles.Contains("Client"))
+            if (string.IsNullOrEmpty(userId) || !(roles.Contains("Client") || roles.Contains("Worker")))
             {
                 return Errors.MachineRental.UserDoesNotLogged;
             }
