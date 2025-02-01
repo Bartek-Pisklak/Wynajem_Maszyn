@@ -1,4 +1,6 @@
-﻿using WynajemMaszyn.Domain.Entities;
+﻿using Microsoft.AspNetCore.Identity;
+using WynajemMaszyn.Application.Features.MachineryRentals.Queries.DTOs;
+using WynajemMaszyn.Domain.Entities;
 namespace WynajemMaszyn.Application.Persistance
 {
     public interface IMachineryRentalRepository
@@ -12,9 +14,12 @@ namespace WynajemMaszyn.Application.Persistance
         Task EditMachineryRental(int id,MachineryRental editedMachineryRental);
         Task<bool> ConfirmIdCardUser(int idCard, string idUser);
 
+
+        Task CreateRental(MachineryRental machineryRental);
+        Task<int> GetIdCardUser(string idUser);
         Task<MachineryRental> CreateMachineryRental(MachineryRental machineryRental);
         Task AddMachineryIdToCart(Machinery idMachine, string idUser);
         Task DeleteMachineryIdToCart(Machinery idMachine, string idUser);
-
+        Task<IEnumerable<GetMachineDto>> GetMachinerySmallDetails(int id);
     }
 }

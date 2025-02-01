@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using System.Diagnostics.CodeAnalysis;
+using WynajemMaszyn.Application.Contracts.Authentication;
 using WynajemMaszyn.Application.Persistance.Auth;
 using WynajemMaszyn.Domain.Entities;
 
@@ -52,10 +53,31 @@ namespace WynajemMaszyn.Infrastructure.Authentication
             return result;
         }
 
-        public async Task<User?> GetTwoFactorAuthenticationUserAsync()
+        public async Task<UserRegister?> GetTwoFactorAuthenticationUserAsync()
         {
-            var result = await _signInManager.GetTwoFactorAuthenticationUserAsync();
-            return result;
+            var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
+
+            UserRegister userRegister = new UserRegister
+            {
+                Id = user.Id,
+                UserName = user.UserName,
+                NormalizedUserName = user.NormalizedUserName,
+                Email = user.Email,
+                NormalizedEmail = user.NormalizedEmail,
+                EmailConfirmed = user.EmailConfirmed,
+                PasswordHash = user.PasswordHash,
+                SecurityStamp = user.SecurityStamp,
+                ConcurrencyStamp = user.ConcurrencyStamp,
+                PhoneNumber = user.PhoneNumber,
+                PhoneNumberConfirmed = user.PhoneNumberConfirmed,
+                TwoFactorEnabled = user.TwoFactorEnabled,
+                LockoutEnd = user.LockoutEnd,
+                LockoutEnabled = user.LockoutEnabled,
+                AccessFailedCount = user.AccessFailedCount,
+                FirstName = user.FirstName,
+                LastName = user.LastName
+            };
+            return userRegister;
         }
 
         public async Task<bool> IsTwoFactorClientRememberedAsync(User user)
@@ -77,8 +99,30 @@ namespace WynajemMaszyn.Infrastructure.Authentication
             return result;
         }
 
-        public async Task RefreshSignInAsync(User user)
+        public async Task RefreshSignInAsync(UserRegister userRegister)
         {
+
+            User user = new User
+            {
+                Id = userRegister.Id,
+                UserName = userRegister.UserName,
+                NormalizedUserName = userRegister.NormalizedUserName,
+                Email = userRegister.Email,
+                NormalizedEmail = userRegister.NormalizedEmail,
+                EmailConfirmed = userRegister.EmailConfirmed,
+                PasswordHash = userRegister.PasswordHash,
+                SecurityStamp = userRegister.SecurityStamp,
+                ConcurrencyStamp = userRegister.ConcurrencyStamp,
+                PhoneNumber = userRegister.PhoneNumber,
+                PhoneNumberConfirmed = userRegister.PhoneNumberConfirmed,
+                TwoFactorEnabled = userRegister.TwoFactorEnabled,
+                LockoutEnd = userRegister.LockoutEnd,
+                LockoutEnabled = userRegister.LockoutEnabled,
+                AccessFailedCount = userRegister.AccessFailedCount,
+                FirstName = userRegister.FirstName,
+                LastName = userRegister.LastName
+            };
+
             await _signInManager.RefreshSignInAsync(user);
         }
 

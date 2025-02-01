@@ -5,6 +5,6 @@ using WynajemMaszyn.Application.Features.MachineryRentals.Queries.DTOs;
 namespace WynajemMaszyn.Application.Features.MachineryRentals.Queries.GetMachineRentals
 {
     public record GetMachineryRentalQuery(
-        int IdCard
+        int? IdCard
         ) : IRequest<ErrorOr<GetMachineryRentalDto>>;
 }

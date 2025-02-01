@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
+using WynajemMaszyn.Application.Contracts.Authentication;
 using WynajemMaszyn.Domain.Entities;
 
 
@@ -18,11 +19,11 @@ namespace WynajemMaszyn.Application.Persistance.Auth
 
         Task<SignInResult> ExternalLoginSignInAsync(string loginProvider, string providerKey, bool isPersistent);
         Task<SignInResult> ExternalLoginSignInAsync(string loginProvider, string providerKey, bool isPersistent, bool bypassTwoFactor);
-        Task RefreshSignInAsync(User user);
+        Task RefreshSignInAsync(UserRegister user);
         Task<SignInResult> PasswordSignInAsync(User user, string password, bool isPersistent, bool lockoutOnFailure);
         Task<SignInResult> PasswordSignInAsync(string userName, string password, bool isPersistent, bool lockoutOnFailure);
         Task<IEnumerable<AuthenticationScheme>> GetExternalAuthenticationSchemesAsync();
-        Task<User?> GetTwoFactorAuthenticationUserAsync();
+        Task<UserRegister?> GetTwoFactorAuthenticationUserAsync();
         Task ForgetTwoFactorClientAsync();
         Task SignOutAsync();
         IUserManagerService UserManager { get; set; }

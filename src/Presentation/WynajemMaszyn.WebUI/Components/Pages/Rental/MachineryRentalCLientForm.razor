@@ -1,12 +1,86 @@
-﻿@page "/MachineRentalClient"
+﻿@page "/MachineryRentalClientForm"
 @using MediatR
 @using MudBlazor
 @rendermode InteractiveServer
 @inject NavigationManager navigationManager
 @inject IMediator Mediator
 
+<AuthorizeView Roles="Admin, Worker, Client">
+        <Authorized Context="authClient">
 
 
 
-<h3>MachineryRentalCLientForm</h3>
+        <EditForm Model="Rental" OnValidSubmit="HandleValidSubmit">
+        <label for="cost">Koszt wynajmu:</label>
+            <input type="text" value="@CostTotal" class="form-control" disabled />
 
+        <label for="deposit">Kaucja:</label>
+            <input type="text" value="@CostTotal" class="form-control" disabled />
+
+        <label for="facture">Faktura:</label>
+        <input type="text" value="@Rental.Facture" class="form-control" disabled />
+
+        <label for="payment">Metoda płatności:</label>
+        <select @bind="Rental.PaymentMethod" class="form-control">
+            <option value="">Wybierz metodę</option>
+            <option value="Karta">Karta</option>
+            <option value="Przelew">Przelew</option>
+        </select>
+
+
+            <h4>Maszyny do wypożyczenia</h4>
+@if (Rental.MachineryInCard == null)
+{
+    <p><em>Brak maszyn</em></p>
+}
+else
+{
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Zdjęcie</th>
+                <th>Name</th>
+                <th>RentalPricePerDay</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var machine in Rental.MachineryInCard)
+            {
+                <tr>
+                    <td>
+                        @if (!string.IsNullOrEmpty(machine.ImagePath))
+                        {
+                            <img src="@machine.ImagePath" alt="Machine Image" style="max-width: 100px; max-height: 100px; object-fit: cover;" />
+                        }
+                        else
+                        {
+                            <span>No Image</span>
+                        }
+                    </td>
+                    <td>@machine.Name</td>
+                    <td>@machine.RentalPricePerDay</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    }
+        <button type="submit" class="btn btn-primary">Zarezerwuj</button>
+    </EditForm>
+
+    <MudCard>
+        <MudCardContent>
+            <h3 class="text-center">Dostępność</h3>
+            <MudStack>
+                <MudText>Static range picker</MudText>
+                <MudDateRangePicker PickerVariant="PickerVariant.Static" 
+                                        @bind-DateRange="_dateRange"
+                                        AdditionalDateClassesFunc="CheckDate" />
+            </MudStack>
+
+        </MudCardContent>
+    </MudCard>
+
+</Authorized>
+</AuthorizeView>

@@ -35,7 +35,7 @@ namespace WynajemMaszyn.Application.Features.MachineryRentals.Command.AddMachine
 
             Machinery machinery = new Machinery();
             
-            if(request.TypeMachine == "Excavatr")
+            if(request.TypeMachine == "Excavator")
             {
                 machinery.ExcavatorId = request.IdMachine;
             }

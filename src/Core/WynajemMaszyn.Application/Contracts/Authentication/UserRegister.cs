@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace WynajemMaszyn.Application.Contracts.Authentication
 {
-    public class UserDto : IdentityUser
+    public class UserRegister : IdentityUser
     {
             public string FirstName { get; set; }
             public string LastName { get; set; }
-        }
     }
+}

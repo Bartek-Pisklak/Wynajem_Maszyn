@@ -3,14 +3,12 @@
 @using System.Text
 @using Microsoft.AspNetCore.Identity
 @using Microsoft.AspNetCore.WebUtilities
+@using WynajemMaszyn.Application.Contracts.Authentication
 @using WynajemMaszyn.Application.Persistance.Auth
-@using WynajemMaszyn.Domain.Entities
-@using WynajemMaszyn.Infrastructure.Authentication
-
 
 @inject IUserManagerService UserManager
 
-@inject IEmailSender<User> EmailSender
+@inject IEmailSender<UserRegister> EmailSender
 
 
 @inject NavigationManager NavigationManager

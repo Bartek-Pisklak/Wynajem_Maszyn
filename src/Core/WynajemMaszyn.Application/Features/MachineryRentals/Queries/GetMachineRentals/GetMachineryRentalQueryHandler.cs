@@ -4,6 +4,7 @@ using WynajemMaszyn.Application.Features.MachineryRentals.Queries.DTOs;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Application.Common.Errors;
 
+
 namespace WynajemMaszyn.Application.Features.MachineryRentals.Queries.GetMachineRentals
 {
     public class GetMachineryRentalQueryHandler : IRequestHandler<GetMachineryRentalQuery, ErrorOr<GetMachineryRentalDto>>
@@ -28,10 +29,20 @@ namespace WynajemMaszyn.Application.Features.MachineryRentals.Queries.GetMachine
             {
                 return Errors.MachineRental.UserDoesNotLogged;
             }
- 
-            if(roles.Contains("Client"))
+
+            int IdCard;
+            if(request.IdCard is null)
             {
-                var haveIdConfirmed = await _machineryRentalRepository.ConfirmIdCardUser(request.IdCard, userId);
+                IdCard = await _machineryRentalRepository.GetIdCardUser(userId);
+            }
+            else
+            {
+                IdCard =(int)request.IdCard;
+            }
+
+            if (roles.Contains("Client"))
+            {
+                var haveIdConfirmed = await _machineryRentalRepository.ConfirmIdCardUser(IdCard, userId);
 
                 if (!haveIdConfirmed)
                 {
@@ -39,8 +50,9 @@ namespace WynajemMaszyn.Application.Features.MachineryRentals.Queries.GetMachine
                 }
             }
 
+            var machine = await _machineryRentalRepository.GetMachinerySmallDetails(IdCard);
 
-            var machineryRentalDetails = await _machineryRentalRepository.GetMachineryRental(request.IdCard);
+            var machineryRentalDetails = await _machineryRentalRepository.GetMachineryRental(IdCard);
 
             if (string.IsNullOrEmpty(userId))
             {
@@ -60,7 +72,8 @@ namespace WynajemMaszyn.Application.Features.MachineryRentals.Queries.GetMachine
                 Contract = machineryRentalDetails.Contract,
                 PaymentMethod = machineryRentalDetails.PaymentMethod,
                 AdditionalNotes = machineryRentalDetails.AdditionalNotes,
-                IsReturned = machineryRentalDetails.IsReturned
+                IsReturned = machineryRentalDetails.IsReturned,
+                MachineryInCard = machine.ToList()
             };
 
             return machineryRentalOne;

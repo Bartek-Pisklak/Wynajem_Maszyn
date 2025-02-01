@@ -3,10 +3,10 @@ using WynajemMaszyn.WebUI.Components;
 using WynajemMaszyn.WebUI.Components.Account;
 using WynajemMaszyn.Infrastructure;
 using WynajemMaszyn.Application;
-using WynajemMaszyn.Domain.Entities;
 using WynajemMaszyn.Infrastructure.Persistance.Seeders;
 using Microsoft.AspNetCore.Authentication;
 using MudBlazor.Services;
+using WynajemMaszyn.Application.Contracts.Authentication;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,7 +20,7 @@ builder.Services.AddCascadingAuthenticationState();
 builder.Services.AddSingleton<IAuthenticationSchemeProvider, AuthenticationSchemeProvider>();
 builder.Services.AddScoped<IdentityRedirectManager>();
 builder.Services.AddScoped<IdentityUserAccessor>();
-builder.Services.AddSingleton<IEmailSender<User>, IdentityNoOpEmailSender>();
+builder.Services.AddSingleton<IEmailSender<UserRegister>, IdentityNoOpEmailSender>();
 
 builder.Services.AddMudServices();
 builder.Services.AddInfrastructure(builder.Configuration);

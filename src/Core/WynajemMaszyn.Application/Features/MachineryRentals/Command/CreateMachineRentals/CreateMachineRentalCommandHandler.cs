@@ -4,7 +4,7 @@ using WynajemMaszyn.Application.Contracts.MachineryRentalAnswer;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Domain.Entities;
 using WynajemMaszyn.Application.Common.Errors;
-using Microsoft.AspNetCore.Identity;
+using WynajemMaszyn.Domain.Enums;
 
 
 namespace WynajemMaszyn.Application.Features.MachineryRentals.Command.CreateMachineRentals
@@ -12,39 +12,51 @@ namespace WynajemMaszyn.Application.Features.MachineryRentals.Command.CreateMach
     public class CreateMachineRentalCommandHandler : IRequestHandler<CreateMachineRentalCommand, ErrorOr<MachineryRentalResponse>>
     {
         private readonly IMachineryRentalRepository _machineryRentalRepository;
-        private readonly UserManager<User> _userManager;
+        private readonly ICurrentUserService _currentUserService;
 
 
         public CreateMachineRentalCommandHandler(
             IMachineryRentalRepository machineryRentalRepository,
-            UserManager<User> userManager
+            ICurrentUserService currentUserService
             )
         {
             _machineryRentalRepository = machineryRentalRepository;
-            _userManager = userManager;
+            _currentUserService = currentUserService;
         }
 
         public async Task<ErrorOr<MachineryRentalResponse>> Handle(CreateMachineRentalCommand request, CancellationToken cancellationToken)
         {
-            var user = await _userManager.GetUserAsync(request.context.User);
-            var roleUser = await _userManager.GetRolesAsync(user);
+            var userId = _currentUserService.UserId;
+            var roles = _currentUserService.Roles;
 
 
-            if (user.Id is null && roleUser.Contains("Worker"))
+            if (string.IsNullOrEmpty(userId))
             {
-                return Errors.ExcavatorBucket.UserDoesNotLogged;
+                return Errors.MachineRental.UserDoesNotLogged;
             }
 
+            int IdCard = await _machineryRentalRepository.GetIdCardUser(userId);
+
+            var machineryRentalDetails = await _machineryRentalRepository.GetMachineryRental(IdCard);
+            int days = (request.End - request.Start).Days;
 
 
             var machineryRent = new MachineryRental
             {
-
+                Id = IdCard,
+                UserId = userId,
+                RentalStatus = RentalStatus.oczekuje,
+                PaymentMethod = request.PaymentMetod,
+                Cost = machineryRentalDetails.Cost * days,
+                Deposit = machineryRentalDetails.Cost * days,
+                BeginRent = request.Start.ToUniversalTime(),
+                EndRent = request.End.ToUniversalTime(),
             };
 
 
 
-            await _machineryRentalRepository.CreateMachineryRental(machineryRent);
+
+            await _machineryRentalRepository.CreateRental(machineryRent);
 
             return new MachineryRentalResponse("Order created");
         }

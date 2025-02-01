@@ -18,6 +18,6 @@ namespace WynajemMaszyn.Application.Features.MachineryRentals.Queries.DTOs
         public string? AdditionalNotes { get; set; }
         public bool IsReturned { get; set; } = false;
 
-        public List<Machinery> MachineryInCard { get; set; }
+        public List<GetMachineDto> MachineryInCard { get; set; }
     }
 }

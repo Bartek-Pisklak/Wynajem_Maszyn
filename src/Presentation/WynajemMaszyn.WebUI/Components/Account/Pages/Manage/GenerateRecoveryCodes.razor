@@ -1,8 +1,8 @@
 ﻿@page "/Account/Manage/GenerateRecoveryCodes"
 
 @using Microsoft.AspNetCore.Identity
+@using WynajemMaszyn.Application.Contracts.Authentication
 @using WynajemMaszyn.Application.Persistance.Auth
-@using WynajemMaszyn.Domain.Entities
 
 @inject IUserManagerService UserManager
 
@@ -42,7 +42,7 @@ else
 
 @code {
     private string? message;
-    private User user = default!;
+    private UserRegister user = default!;
     private IEnumerable<string>? recoveryCodes;
 
     [CascadingParameter]

@@ -1,7 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Reflection.PortableExecutable;
+using WynajemMaszyn.Application.Features.MachineryRentals.Queries.DTOs;
 using WynajemMaszyn.Application.Persistance;
 using WynajemMaszyn.Domain.Entities;
 using WynajemMaszyn.Domain.Enums;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
 {
@@ -41,6 +44,63 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
             return machineryRentalList;
 
         }
+
+        public async Task<IEnumerable<GetMachineDto>> GetMachinerySmallDetails(int id)
+        {
+            List<Machinery?> machines = await _dbContext.MachineryRentalLists
+                .Where(c => c.MachineryRentalId == id)
+                .Select(c => c.Machinery)
+                .ToListAsync();
+
+            List<GetMachineDto> data = new List<GetMachineDto>();
+
+            foreach (var machine in machines)
+            {
+
+                GetMachineDto newData = new();
+                newData.Machine = machine;
+                newData.Name = machine.Name;
+                if (machine.ExcavatorId is not null)
+                {
+                    var machinery = await _dbContext.Excavators
+                        .FirstOrDefaultAsync(c => c.Id == machine.ExcavatorId);
+                    newData.RentalPricePerDay = machinery.RentalPricePerDay;
+                    newData.ImagePath = machinery.ImagePath.Split(",").FirstOrDefault();
+                }
+                else if (machine.ExcavatorBucketId is not null)
+                {
+                    var machinery = await _dbContext.ExcavatorsBuckets
+                        .FirstOrDefaultAsync(c => c.Id == machine.ExcavatorBucketId);
+                    newData.RentalPricePerDay = machinery.RentalPricePerDay;
+                    newData.ImagePath = machinery.ImagePath.Split(",").FirstOrDefault();
+                }
+                else if (machine.RollerId is not null)
+                {
+                    var machinery = await _dbContext.Rollers
+                        .FirstOrDefaultAsync(c => c.Id == machine.RollerId);
+                    newData.RentalPricePerDay = machinery.RentalPricePerDay;
+                    newData.ImagePath = machinery.ImagePath.Split(",").FirstOrDefault();
+                }
+                else if (machine.HarvesterId is not null)
+                {
+                    var machinery = await _dbContext.Harvesters
+                        .FirstOrDefaultAsync(c => c.Id == machine.HarvesterId);
+                    newData.RentalPricePerDay = machinery.RentalPricePerDay;
+                    newData.ImagePath = machinery.ImagePath.Split(",").FirstOrDefault();
+                }
+                else if (machine.WoodChipperId is not null)
+                {
+                    var machinery = await _dbContext.WoodChippers
+                        .FirstOrDefaultAsync(c => c.Id == machine.WoodChipperId);
+                    newData.RentalPricePerDay = machinery.RentalPricePerDay;
+                    newData.ImagePath = machinery.ImagePath.Split(",").FirstOrDefault();
+                }
+                data.Add(newData);
+            }
+
+            return data;
+        }
+
 
         public async Task<IEnumerable<MachineryRental?>> GetAllMachineryRentalWorker()
         {
@@ -274,6 +334,42 @@ namespace WynajemMaszyn.Infrastructure.Persistance.Repositories
             }
 
             return false;
+        }
+
+        public async Task<int> GetIdCardUser(string idUser)
+        {
+            var card = await _dbContext.MachineryRentals.FirstOrDefaultAsync(
+            c => c.RentalStatus == RentalStatus.koszyk && c.UserId == idUser);
+
+            if (card is null)
+            {
+                MachineryRental machineryRental = new MachineryRental();
+                machineryRental.UserId = idUser;
+                card = await CreateMachineryRental(machineryRental);
+            }
+
+            return card.Id;
+        }
+
+        public async Task CreateRental(MachineryRental machineryRental)
+        {
+            var result = await _dbContext.MachineryRentals.FirstOrDefaultAsync(
+                c => c.Id == machineryRental.Id && c.UserId == machineryRental.UserId);
+
+            if (result == null)
+            {
+                return;
+            }
+
+            result.Cost = machineryRental.Cost;
+            result.BeginRent = machineryRental.BeginRent;
+            result.EndRent = machineryRental.EndRent;
+            result.RentalStatus = machineryRental.RentalStatus;
+            result.Deposit = machineryRental.Deposit;
+            result.PaymentMethod = machineryRental.PaymentMethod;
+
+            await _dbContext.SaveChangesAsync();
+
         }
     }
 }

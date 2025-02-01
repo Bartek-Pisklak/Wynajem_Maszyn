@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Security.Claims;
+using WynajemMaszyn.Application.Contracts.Authentication;
 using WynajemMaszyn.Application.Persistance.Auth;
 using WynajemMaszyn.Domain.Entities;
 
@@ -25,32 +26,134 @@ public class UserManagerService : IUserManagerService
         return result;
     }
 
-    public async Task<IdentityResult> AddPasswordAsync(User user, string password)
+    public async Task<IdentityResult> AddPasswordAsync(UserRegister userRegister, string password)
     {
+        User user = new User
+        {
+            Id = userRegister.Id,
+            UserName = userRegister.UserName,
+            NormalizedUserName = userRegister.NormalizedUserName,
+            Email = userRegister.Email,
+            NormalizedEmail = userRegister.NormalizedEmail,
+            EmailConfirmed = userRegister.EmailConfirmed,
+            PasswordHash = userRegister.PasswordHash,
+            SecurityStamp = userRegister.SecurityStamp,
+            ConcurrencyStamp = userRegister.ConcurrencyStamp,
+            PhoneNumber = userRegister.PhoneNumber,
+            PhoneNumberConfirmed = userRegister.PhoneNumberConfirmed,
+            TwoFactorEnabled = userRegister.TwoFactorEnabled,
+            LockoutEnd = userRegister.LockoutEnd,
+            LockoutEnabled = userRegister.LockoutEnabled,
+            AccessFailedCount = userRegister.AccessFailedCount,
+            FirstName = userRegister.FirstName,
+            LastName = userRegister.LastName
+        };
         var result = await _userManager.AddPasswordAsync(user, password);
         return result;
     }
 
-    public async Task<IdentityResult> ChangeEmailAsync(User user, string newEmail, string token)
+    public async Task<IdentityResult> ChangeEmailAsync(UserRegister userRegister, string newEmail, string token)
     {
+        User user = new User
+        {
+            Id = userRegister.Id,
+            UserName = userRegister.UserName,
+            NormalizedUserName = userRegister.NormalizedUserName,
+            Email = userRegister.Email,
+            NormalizedEmail = userRegister.NormalizedEmail,
+            EmailConfirmed = userRegister.EmailConfirmed,
+            PasswordHash = userRegister.PasswordHash,
+            SecurityStamp = userRegister.SecurityStamp,
+            ConcurrencyStamp = userRegister.ConcurrencyStamp,
+            PhoneNumber = userRegister.PhoneNumber,
+            PhoneNumberConfirmed = userRegister.PhoneNumberConfirmed,
+            TwoFactorEnabled = userRegister.TwoFactorEnabled,
+            LockoutEnd = userRegister.LockoutEnd,
+            LockoutEnabled = userRegister.LockoutEnabled,
+            AccessFailedCount = userRegister.AccessFailedCount,
+            FirstName = userRegister.FirstName,
+            LastName = userRegister.LastName
+        };
         var result = await _userManager.ChangeEmailAsync(user, newEmail, token);
         return result;
     }
 
-    public async Task<IdentityResult> ChangePasswordAsync(User user, string currentPassword, string newPassword)
+    public async Task<IdentityResult> ChangePasswordAsync(UserRegister userRegister, string currentPassword, string newPassword)
     {
+        User user = new User
+        {
+            Id = userRegister.Id,
+            UserName = userRegister.UserName,
+            NormalizedUserName = userRegister.NormalizedUserName,
+            Email = userRegister.Email,
+            NormalizedEmail = userRegister.NormalizedEmail,
+            EmailConfirmed = userRegister.EmailConfirmed,
+            PasswordHash = userRegister.PasswordHash,
+            SecurityStamp = userRegister.SecurityStamp,
+            ConcurrencyStamp = userRegister.ConcurrencyStamp,
+            PhoneNumber = userRegister.PhoneNumber,
+            PhoneNumberConfirmed = userRegister.PhoneNumberConfirmed,
+            TwoFactorEnabled = userRegister.TwoFactorEnabled,
+            LockoutEnd = userRegister.LockoutEnd,
+            LockoutEnabled = userRegister.LockoutEnabled,
+            AccessFailedCount = userRegister.AccessFailedCount,
+            FirstName = userRegister.FirstName,
+            LastName = userRegister.LastName
+        };
+
+
         var result = await _userManager.ChangePasswordAsync(user, currentPassword, newPassword);
         return result;
     }
 
-    public async Task<IdentityResult> ConfirmEmailAsync(User user, string token)
+    public async Task<IdentityResult> ConfirmEmailAsync(UserRegister userRegister, string token)
     {
+        User user = new User
+        {
+            Id = userRegister.Id,
+            UserName = userRegister.UserName,
+            NormalizedUserName = userRegister.NormalizedUserName,
+            Email = userRegister.Email,
+            NormalizedEmail = userRegister.NormalizedEmail,
+            EmailConfirmed = userRegister.EmailConfirmed,
+            PasswordHash = userRegister.PasswordHash,
+            SecurityStamp = userRegister.SecurityStamp,
+            ConcurrencyStamp = userRegister.ConcurrencyStamp,
+            PhoneNumber = userRegister.PhoneNumber,
+            PhoneNumberConfirmed = userRegister.PhoneNumberConfirmed,
+            TwoFactorEnabled = userRegister.TwoFactorEnabled,
+            LockoutEnd = userRegister.LockoutEnd,
+            LockoutEnabled = userRegister.LockoutEnabled,
+            AccessFailedCount = userRegister.AccessFailedCount,
+            FirstName = userRegister.FirstName,
+            LastName = userRegister.LastName
+        };
         var result = await _userManager.ConfirmEmailAsync(user, token);
         return result;
     }
 
-    public async Task<int> CountRecoveryCodesAsync(User user)
+    public async Task<int> CountRecoveryCodesAsync(UserRegister userRegister)
     {
+        User user = new User
+        {
+            Id = userRegister.Id,
+            UserName = userRegister.UserName,
+            NormalizedUserName = userRegister.NormalizedUserName,
+            Email = userRegister.Email,
+            NormalizedEmail = userRegister.NormalizedEmail,
+            EmailConfirmed = userRegister.EmailConfirmed,
+            PasswordHash = userRegister.PasswordHash,
+            SecurityStamp = userRegister.SecurityStamp,
+            ConcurrencyStamp = userRegister.ConcurrencyStamp,
+            PhoneNumber = userRegister.PhoneNumber,
+            PhoneNumberConfirmed = userRegister.PhoneNumberConfirmed,
+            TwoFactorEnabled = userRegister.TwoFactorEnabled,
+            LockoutEnd = userRegister.LockoutEnd,
+            LockoutEnabled = userRegister.LockoutEnabled,
+            AccessFailedCount = userRegister.AccessFailedCount,
+            FirstName = userRegister.FirstName,
+            LastName = userRegister.LastName
+        };
         var result = await _userManager.CountRecoveryCodesAsync(user);
         return result;
     }
@@ -72,51 +175,215 @@ public class UserManagerService : IUserManagerService
         return result;
     }
 
-    public async Task<User> FindByEmailAsync(string email)
+    public async Task<UserRegister> FindByEmailAsync(string email)
     {
-        var result = await _userManager.FindByEmailAsync(email);
+        var user = await _userManager.FindByEmailAsync(email);
+
+        UserRegister userRegister = new UserRegister
+        {
+            Id = user.Id,
+            UserName = user.UserName,
+            NormalizedUserName = user.NormalizedUserName,
+            Email = user.Email,
+            NormalizedEmail = user.NormalizedEmail,
+            EmailConfirmed = user.EmailConfirmed,
+            PasswordHash = user.PasswordHash,
+            SecurityStamp = user.SecurityStamp,
+            ConcurrencyStamp = user.ConcurrencyStamp,
+            PhoneNumber = user.PhoneNumber,
+            PhoneNumberConfirmed = user.PhoneNumberConfirmed,
+            TwoFactorEnabled = user.TwoFactorEnabled,
+            LockoutEnd = user.LockoutEnd,
+            LockoutEnabled = user.LockoutEnabled,
+            AccessFailedCount = user.AccessFailedCount,
+            FirstName = user.FirstName,
+            LastName = user.LastName
+        };
+        return userRegister;
+    }
+
+    public async Task<UserRegister?> FindByIdAsync(string userId)
+    {
+        var user = await _userManager.FindByIdAsync(userId);
+
+        UserRegister userRegister = new UserRegister
+        {
+            Id = user.Id,
+            UserName = user.UserName,
+            NormalizedUserName = user.NormalizedUserName,
+            Email = user.Email,
+            NormalizedEmail = user.NormalizedEmail,
+            EmailConfirmed = user.EmailConfirmed,
+            PasswordHash = user.PasswordHash,
+            SecurityStamp = user.SecurityStamp,
+            ConcurrencyStamp = user.ConcurrencyStamp,
+            PhoneNumber = user.PhoneNumber,
+            PhoneNumberConfirmed = user.PhoneNumberConfirmed,
+            TwoFactorEnabled = user.TwoFactorEnabled,
+            LockoutEnd = user.LockoutEnd,
+            LockoutEnabled = user.LockoutEnabled,
+            AccessFailedCount = user.AccessFailedCount,
+            FirstName = user.FirstName,
+            LastName = user.LastName
+        };
+        return userRegister;
+    }
+
+    public async Task<string> GenerateChangeEmailTokenAsync(UserRegister userRegister, string newEmail)
+    {
+        User user = new User
+        {
+            Id = userRegister.Id,
+            UserName = userRegister.UserName,
+            NormalizedUserName = userRegister.NormalizedUserName,
+            Email = userRegister.Email,
+            NormalizedEmail = userRegister.NormalizedEmail,
+            EmailConfirmed = userRegister.EmailConfirmed,
+            PasswordHash = userRegister.PasswordHash,
+            SecurityStamp = userRegister.SecurityStamp,
+            ConcurrencyStamp = userRegister.ConcurrencyStamp,
+            PhoneNumber = userRegister.PhoneNumber,
+            PhoneNumberConfirmed = userRegister.PhoneNumberConfirmed,
+            TwoFactorEnabled = userRegister.TwoFactorEnabled,
+            LockoutEnd = userRegister.LockoutEnd,
+            LockoutEnabled = userRegister.LockoutEnabled,
+            AccessFailedCount = userRegister.AccessFailedCount,
+            FirstName = userRegister.FirstName,
+            LastName = userRegister.LastName
+        };
+
+        var result = await _userManager.GenerateChangeEmailTokenAsync(user, newEmail);
         return result;
     }
 
-    public async Task<User?> FindByIdAsync(string userId)
+    public async Task<string> GenerateEmailConfirmationTokenAsync(UserRegister userRegister)
     {
-        var result = await _userManager.FindByIdAsync(userId);
-        return result;
-    }
+        User user = new User
+        {
+            Id = userRegister.Id,
+            UserName = userRegister.UserName,
+            NormalizedUserName = userRegister.NormalizedUserName,
+            Email = userRegister.Email,
+            NormalizedEmail = userRegister.NormalizedEmail,
+            EmailConfirmed = userRegister.EmailConfirmed,
+            PasswordHash = userRegister.PasswordHash,
+            SecurityStamp = userRegister.SecurityStamp,
+            ConcurrencyStamp = userRegister.ConcurrencyStamp,
+            PhoneNumber = userRegister.PhoneNumber,
+            PhoneNumberConfirmed = userRegister.PhoneNumberConfirmed,
+            TwoFactorEnabled = userRegister.TwoFactorEnabled,
+            LockoutEnd = userRegister.LockoutEnd,
+            LockoutEnabled = userRegister.LockoutEnabled,
+            AccessFailedCount = userRegister.AccessFailedCount,
+            FirstName = userRegister.FirstName,
+            LastName = userRegister.LastName
+        };
 
-    public async Task<string> GenerateChangeEmailTokenAsync(User user, string newEmail)
-    {
-        var result = await GenerateChangeEmailTokenAsync(user, newEmail);
-        return result;
-    }
-
-    public async Task<string> GenerateEmailConfirmationTokenAsync(User user)
-    {
         var result = await _userManager.GenerateEmailConfirmationTokenAsync(user);
         return result;
     }
 
-    public async Task<IEnumerable<string>?> GenerateNewTwoFactorRecoveryCodesAsync(User user, int number)
+    public async Task<IEnumerable<string>?> GenerateNewTwoFactorRecoveryCodesAsync(UserRegister userRegister, int number)
     {
+        User user = new User
+        {
+            Id = userRegister.Id,
+            UserName = userRegister.UserName,
+            NormalizedUserName = userRegister.NormalizedUserName,
+            Email = userRegister.Email,
+            NormalizedEmail = userRegister.NormalizedEmail,
+            EmailConfirmed = userRegister.EmailConfirmed,
+            PasswordHash = userRegister.PasswordHash,
+            SecurityStamp = userRegister.SecurityStamp,
+            ConcurrencyStamp = userRegister.ConcurrencyStamp,
+            PhoneNumber = userRegister.PhoneNumber,
+            PhoneNumberConfirmed = userRegister.PhoneNumberConfirmed,
+            TwoFactorEnabled = userRegister.TwoFactorEnabled,
+            LockoutEnd = userRegister.LockoutEnd,
+            LockoutEnabled = userRegister.LockoutEnabled,
+            AccessFailedCount = userRegister.AccessFailedCount,
+            FirstName = userRegister.FirstName,
+            LastName = userRegister.LastName
+        };
         var result = await _userManager.GenerateNewTwoFactorRecoveryCodesAsync(user, number);
         return result;
         
     }
 
-    public async Task<string> GeneratePasswordResetTokenAsync(User user)
+    public async Task<string> GeneratePasswordResetTokenAsync(UserRegister userRegister)
     {
+        User user = new User
+        {
+            Id = userRegister.Id,
+            UserName = userRegister.UserName,
+            NormalizedUserName = userRegister.NormalizedUserName,
+            Email = userRegister.Email,
+            NormalizedEmail = userRegister.NormalizedEmail,
+            EmailConfirmed = userRegister.EmailConfirmed,
+            PasswordHash = userRegister.PasswordHash,
+            SecurityStamp = userRegister.SecurityStamp,
+            ConcurrencyStamp = userRegister.ConcurrencyStamp,
+            PhoneNumber = userRegister.PhoneNumber,
+            PhoneNumberConfirmed = userRegister.PhoneNumberConfirmed,
+            TwoFactorEnabled = userRegister.TwoFactorEnabled,
+            LockoutEnd = userRegister.LockoutEnd,
+            LockoutEnabled = userRegister.LockoutEnabled,
+            AccessFailedCount = userRegister.AccessFailedCount,
+            FirstName = userRegister.FirstName,
+            LastName = userRegister.LastName
+        };
         var result = await _userManager.GeneratePasswordResetTokenAsync(user);
         return result;
     }
 
-    public async Task<string?> GetAuthenticatorKeyAsync(User user)
+    public async Task<string?> GetAuthenticatorKeyAsync(UserRegister userRegister)
     {
+        User user = new User
+        {
+            Id = userRegister.Id,
+            UserName = userRegister.UserName,
+            NormalizedUserName = userRegister.NormalizedUserName,
+            Email = userRegister.Email,
+            NormalizedEmail = userRegister.NormalizedEmail,
+            EmailConfirmed = userRegister.EmailConfirmed,
+            PasswordHash = userRegister.PasswordHash,
+            SecurityStamp = userRegister.SecurityStamp,
+            ConcurrencyStamp = userRegister.ConcurrencyStamp,
+            PhoneNumber = userRegister.PhoneNumber,
+            PhoneNumberConfirmed = userRegister.PhoneNumberConfirmed,
+            TwoFactorEnabled = userRegister.TwoFactorEnabled,
+            LockoutEnd = userRegister.LockoutEnd,
+            LockoutEnabled = userRegister.LockoutEnabled,
+            AccessFailedCount = userRegister.AccessFailedCount,
+            FirstName = userRegister.FirstName,
+            LastName = userRegister.LastName
+        };
         var result = await _userManager.GetAuthenticatorKeyAsync(user);
         return result;
     }
 
-    public async Task<string?> GetEmailAsync(User user)
+    public async Task<string?> GetEmailAsync(UserRegister userRegister)
     {
+        User user = new User
+        {
+            Id = userRegister.Id,
+            UserName = userRegister.UserName,
+            NormalizedUserName = userRegister.NormalizedUserName,
+            Email = userRegister.Email,
+            NormalizedEmail = userRegister.NormalizedEmail,
+            EmailConfirmed = userRegister.EmailConfirmed,
+            PasswordHash = userRegister.PasswordHash,
+            SecurityStamp = userRegister.SecurityStamp,
+            ConcurrencyStamp = userRegister.ConcurrencyStamp,
+            PhoneNumber = userRegister.PhoneNumber,
+            PhoneNumberConfirmed = userRegister.PhoneNumberConfirmed,
+            TwoFactorEnabled = userRegister.TwoFactorEnabled,
+            LockoutEnd = userRegister.LockoutEnd,
+            LockoutEnabled = userRegister.LockoutEnabled,
+            AccessFailedCount = userRegister.AccessFailedCount,
+            FirstName = userRegister.FirstName,
+            LastName = userRegister.LastName
+        };
         var result = await _userManager.GetEmailAsync(user);
         return result;
     }
@@ -127,28 +394,110 @@ public class UserManagerService : IUserManagerService
         return result;
     }
 
-    public async Task<string?> GetPhoneNumberAsync(User user)
+    public async Task<string?> GetPhoneNumberAsync(UserRegister userRegister)
     {
+        User user = new User
+        {
+            Id = userRegister.Id,
+            UserName = userRegister.UserName,
+            NormalizedUserName = userRegister.NormalizedUserName,
+            Email = userRegister.Email,
+            NormalizedEmail = userRegister.NormalizedEmail,
+            EmailConfirmed = userRegister.EmailConfirmed,
+            PasswordHash = userRegister.PasswordHash,
+            SecurityStamp = userRegister.SecurityStamp,
+            ConcurrencyStamp = userRegister.ConcurrencyStamp,
+            PhoneNumber = userRegister.PhoneNumber,
+            PhoneNumberConfirmed = userRegister.PhoneNumberConfirmed,
+            TwoFactorEnabled = userRegister.TwoFactorEnabled,
+            LockoutEnd = userRegister.LockoutEnd,
+            LockoutEnabled = userRegister.LockoutEnabled,
+            AccessFailedCount = userRegister.AccessFailedCount,
+            FirstName = userRegister.FirstName,
+            LastName = userRegister.LastName
+        };
         var result = await _userManager.GetPhoneNumberAsync(user);
         return result;
     }
 
-    public async Task<string> GetSecurityStampAsync(User user)
+    public async Task<string> GetSecurityStampAsync(UserRegister userRegister)
     {
+        User user = new User
+        {
+            Id = userRegister.Id,
+            UserName = userRegister.UserName,
+            NormalizedUserName = userRegister.NormalizedUserName,
+            Email = userRegister.Email,
+            NormalizedEmail = userRegister.NormalizedEmail,
+            EmailConfirmed = userRegister.EmailConfirmed,
+            PasswordHash = userRegister.PasswordHash,
+            SecurityStamp = userRegister.SecurityStamp,
+            ConcurrencyStamp = userRegister.ConcurrencyStamp,
+            PhoneNumber = userRegister.PhoneNumber,
+            PhoneNumberConfirmed = userRegister.PhoneNumberConfirmed,
+            TwoFactorEnabled = userRegister.TwoFactorEnabled,
+            LockoutEnd = userRegister.LockoutEnd,
+            LockoutEnabled = userRegister.LockoutEnabled,
+            AccessFailedCount = userRegister.AccessFailedCount,
+            FirstName = userRegister.FirstName,
+            LastName = userRegister.LastName
+        };
         var result = await _userManager.GetSecurityStampAsync(user);
         return result;
     }
 
-    public async Task<bool> GetTwoFactorEnabledAsync(User user)
+    public async Task<bool> GetTwoFactorEnabledAsync(UserRegister userRegister)
     {
+        User user = new User
+        {
+            Id = userRegister.Id,
+            UserName = userRegister.UserName,
+            NormalizedUserName = userRegister.NormalizedUserName,
+            Email = userRegister.Email,
+            NormalizedEmail = userRegister.NormalizedEmail,
+            EmailConfirmed = userRegister.EmailConfirmed,
+            PasswordHash = userRegister.PasswordHash,
+            SecurityStamp = userRegister.SecurityStamp,
+            ConcurrencyStamp = userRegister.ConcurrencyStamp,
+            PhoneNumber = userRegister.PhoneNumber,
+            PhoneNumberConfirmed = userRegister.PhoneNumberConfirmed,
+            TwoFactorEnabled = userRegister.TwoFactorEnabled,
+            LockoutEnd = userRegister.LockoutEnd,
+            LockoutEnabled = userRegister.LockoutEnabled,
+            AccessFailedCount = userRegister.AccessFailedCount,
+            FirstName = userRegister.FirstName,
+            LastName = userRegister.LastName
+        };
         var result = await _userManager.GetTwoFactorEnabledAsync(user);
         return result;
     }
 
-    public async Task<User> GetUserAsync(ClaimsPrincipal principal)
+    public async Task<UserRegister> GetUserAsync(ClaimsPrincipal principal)
     {
-        var result = await _userManager.GetUserAsync(principal);
-        return result;
+        var user = await _userManager.GetUserAsync(principal);
+
+        UserRegister userRegister = new UserRegister
+        {
+            Id = user.Id,
+            UserName = user.UserName,
+            NormalizedUserName = user.NormalizedUserName,
+            Email = user.Email,
+            NormalizedEmail = user.NormalizedEmail,
+            EmailConfirmed = user.EmailConfirmed,
+            PasswordHash = user.PasswordHash,
+            SecurityStamp = user.SecurityStamp,
+            ConcurrencyStamp = user.ConcurrencyStamp,
+            PhoneNumber = user.PhoneNumber,
+            PhoneNumberConfirmed = user.PhoneNumberConfirmed,
+            TwoFactorEnabled = user.TwoFactorEnabled,
+            LockoutEnd = user.LockoutEnd,
+            LockoutEnabled = user.LockoutEnabled,
+            AccessFailedCount = user.AccessFailedCount,
+            FirstName = user.FirstName,
+            LastName = user.LastName
+        };
+
+        return userRegister;
     }
 
     public string? GetUserId(ClaimsPrincipal principal)
@@ -157,26 +506,107 @@ public class UserManagerService : IUserManagerService
         return result;
     }
 
-    public async Task<string> GetUserIdAsync(User user)
+    public async Task<string> GetUserIdAsync(UserRegister userRegister)
     {
+        User user = new User
+        {
+            Id = userRegister.Id,
+            UserName = userRegister.UserName,
+            NormalizedUserName = userRegister.NormalizedUserName,
+            Email = userRegister.Email,
+            NormalizedEmail = userRegister.NormalizedEmail,
+            EmailConfirmed = userRegister.EmailConfirmed,
+            PasswordHash = userRegister.PasswordHash,
+            SecurityStamp = userRegister.SecurityStamp,
+            ConcurrencyStamp = userRegister.ConcurrencyStamp,
+            PhoneNumber = userRegister.PhoneNumber,
+            PhoneNumberConfirmed = userRegister.PhoneNumberConfirmed,
+            TwoFactorEnabled = userRegister.TwoFactorEnabled,
+            LockoutEnd = userRegister.LockoutEnd,
+            LockoutEnabled = userRegister.LockoutEnabled,
+            AccessFailedCount = userRegister.AccessFailedCount,
+            FirstName = userRegister.FirstName,
+            LastName = userRegister.LastName
+        };
+
         var result = await _userManager.GetUserIdAsync(user);
         return result;
     }
 
-    public async Task<string?> GetUserNameAsync(User user)
+    public async Task<string?> GetUserNameAsync(UserRegister userRegister)
     {
+        User user = new User
+        {
+            Id = userRegister.Id,
+            UserName = userRegister.UserName,
+            NormalizedUserName = userRegister.NormalizedUserName,
+            Email = userRegister.Email,
+            NormalizedEmail = userRegister.NormalizedEmail,
+            EmailConfirmed = userRegister.EmailConfirmed,
+            PasswordHash = userRegister.PasswordHash,
+            SecurityStamp = userRegister.SecurityStamp,
+            ConcurrencyStamp = userRegister.ConcurrencyStamp,
+            PhoneNumber = userRegister.PhoneNumber,
+            PhoneNumberConfirmed = userRegister.PhoneNumberConfirmed,
+            TwoFactorEnabled = userRegister.TwoFactorEnabled,
+            LockoutEnd = userRegister.LockoutEnd,
+            LockoutEnabled = userRegister.LockoutEnabled,
+            AccessFailedCount = userRegister.AccessFailedCount,
+            FirstName = userRegister.FirstName,
+            LastName = userRegister.LastName
+        };
         var result = await _userManager.GetUserNameAsync(user);
         return result;
     }
 
-    public async Task<bool> HasPasswordAsync(User user)
+    public async Task<bool> HasPasswordAsync(UserRegister userRegister)
     {
+        User user = new User
+        {
+            Id = userRegister.Id,
+            UserName = userRegister.UserName,
+            NormalizedUserName = userRegister.NormalizedUserName,
+            Email = userRegister.Email,
+            NormalizedEmail = userRegister.NormalizedEmail,
+            EmailConfirmed = userRegister.EmailConfirmed,
+            PasswordHash = userRegister.PasswordHash,
+            SecurityStamp = userRegister.SecurityStamp,
+            ConcurrencyStamp = userRegister.ConcurrencyStamp,
+            PhoneNumber = userRegister.PhoneNumber,
+            PhoneNumberConfirmed = userRegister.PhoneNumberConfirmed,
+            TwoFactorEnabled = userRegister.TwoFactorEnabled,
+            LockoutEnd = userRegister.LockoutEnd,
+            LockoutEnabled = userRegister.LockoutEnabled,
+            AccessFailedCount = userRegister.AccessFailedCount,
+            FirstName = userRegister.FirstName,
+            LastName = userRegister.LastName
+        };
         var result = await _userManager.HasPasswordAsync(user);
         return result;
     }
 
-    public async Task<bool> IsEmailConfirmedAsync(User user)
+    public async Task<bool> IsEmailConfirmedAsync(UserRegister userRegister)
     {
+        User user = new User
+        {
+            Id = userRegister.Id,
+            UserName = userRegister.UserName,
+            NormalizedUserName = userRegister.NormalizedUserName,
+            Email = userRegister.Email,
+            NormalizedEmail = userRegister.NormalizedEmail,
+            EmailConfirmed = userRegister.EmailConfirmed,
+            PasswordHash = userRegister.PasswordHash,
+            SecurityStamp = userRegister.SecurityStamp,
+            ConcurrencyStamp = userRegister.ConcurrencyStamp,
+            PhoneNumber = userRegister.PhoneNumber,
+            PhoneNumberConfirmed = userRegister.PhoneNumberConfirmed,
+            TwoFactorEnabled = userRegister.TwoFactorEnabled,
+            LockoutEnd = userRegister.LockoutEnd,
+            LockoutEnabled = userRegister.LockoutEnabled,
+            AccessFailedCount = userRegister.AccessFailedCount,
+            FirstName = userRegister.FirstName,
+            LastName = userRegister.LastName
+        };
         var result = await _userManager.IsEmailConfirmedAsync(user);
         return result;
     }
@@ -187,32 +617,133 @@ public class UserManagerService : IUserManagerService
         return result;
     }
 
-    public async Task<IdentityResult> ResetAuthenticatorKeyAsync(User user)
+    public async Task<IdentityResult> ResetAuthenticatorKeyAsync(UserRegister userRegister)
     {
+        User user = new User
+        {
+            Id = userRegister.Id,
+            UserName = userRegister.UserName,
+            NormalizedUserName = userRegister.NormalizedUserName,
+            Email = userRegister.Email,
+            NormalizedEmail = userRegister.NormalizedEmail,
+            EmailConfirmed = userRegister.EmailConfirmed,
+            PasswordHash = userRegister.PasswordHash,
+            SecurityStamp = userRegister.SecurityStamp,
+            ConcurrencyStamp = userRegister.ConcurrencyStamp,
+            PhoneNumber = userRegister.PhoneNumber,
+            PhoneNumberConfirmed = userRegister.PhoneNumberConfirmed,
+            TwoFactorEnabled = userRegister.TwoFactorEnabled,
+            LockoutEnd = userRegister.LockoutEnd,
+            LockoutEnabled = userRegister.LockoutEnabled,
+            AccessFailedCount = userRegister.AccessFailedCount,
+            FirstName = userRegister.FirstName,
+            LastName = userRegister.LastName
+        };
         var result = await _userManager.ResetAuthenticatorKeyAsync(user);
         return result;
     }
 
-    public async Task<IdentityResult> ResetPasswordAsync(User user, string token, string newPassword)
+    public async Task<IdentityResult> ResetPasswordAsync(UserRegister userRegister, string token, string newPassword)
     {
+
+        User user = new User
+        {
+            Id = userRegister.Id,
+            UserName = userRegister.UserName,
+            NormalizedUserName = userRegister.NormalizedUserName,
+            Email = userRegister.Email,
+            NormalizedEmail = userRegister.NormalizedEmail,
+            EmailConfirmed = userRegister.EmailConfirmed,
+            PasswordHash = userRegister.PasswordHash,
+            SecurityStamp = userRegister.SecurityStamp,
+            ConcurrencyStamp = userRegister.ConcurrencyStamp,
+            PhoneNumber = userRegister.PhoneNumber,
+            PhoneNumberConfirmed = userRegister.PhoneNumberConfirmed,
+            TwoFactorEnabled = userRegister.TwoFactorEnabled,
+            LockoutEnd = userRegister.LockoutEnd,
+            LockoutEnabled = userRegister.LockoutEnabled,
+            AccessFailedCount = userRegister.AccessFailedCount,
+            FirstName = userRegister.FirstName,
+            LastName = userRegister.LastName
+        };
         var result = await _userManager.ResetPasswordAsync(user, token, newPassword);
         return result;
     }
 
-    public async Task<IdentityResult> SetPhoneNumberAsync(User user, string? phoneNumber)
+    public async Task<IdentityResult> SetPhoneNumberAsync(UserRegister userRegister, string? phoneNumber)
     {
+        User user = new User
+        {
+            Id = userRegister.Id,
+            UserName = userRegister.UserName,
+            NormalizedUserName = userRegister.NormalizedUserName,
+            Email = userRegister.Email,
+            NormalizedEmail = userRegister.NormalizedEmail,
+            EmailConfirmed = userRegister.EmailConfirmed,
+            PasswordHash = userRegister.PasswordHash,
+            SecurityStamp = userRegister.SecurityStamp,
+            ConcurrencyStamp = userRegister.ConcurrencyStamp,
+            PhoneNumber = userRegister.PhoneNumber,
+            PhoneNumberConfirmed = userRegister.PhoneNumberConfirmed,
+            TwoFactorEnabled = userRegister.TwoFactorEnabled,
+            LockoutEnd = userRegister.LockoutEnd,
+            LockoutEnabled = userRegister.LockoutEnabled,
+            AccessFailedCount = userRegister.AccessFailedCount,
+            FirstName = userRegister.FirstName,
+            LastName = userRegister.LastName
+        };
         var result = await _userManager.SetPhoneNumberAsync(user, phoneNumber);
         return result;
     }
 
-    public async Task<IdentityResult> SetTwoFactorEnabledAsync(User user, bool enabled)
+    public async Task<IdentityResult> SetTwoFactorEnabledAsync(UserRegister userRegister, bool enabled)
     {
+        User user = new User
+        {
+            Id = userRegister.Id,
+            UserName = userRegister.UserName,
+            NormalizedUserName = userRegister.NormalizedUserName,
+            Email = userRegister.Email,
+            NormalizedEmail = userRegister.NormalizedEmail,
+            EmailConfirmed = userRegister.EmailConfirmed,
+            PasswordHash = userRegister.PasswordHash,
+            SecurityStamp = userRegister.SecurityStamp,
+            ConcurrencyStamp = userRegister.ConcurrencyStamp,
+            PhoneNumber = userRegister.PhoneNumber,
+            PhoneNumberConfirmed = userRegister.PhoneNumberConfirmed,
+            TwoFactorEnabled = userRegister.TwoFactorEnabled,
+            LockoutEnd = userRegister.LockoutEnd,
+            LockoutEnabled = userRegister.LockoutEnabled,
+            AccessFailedCount = userRegister.AccessFailedCount,
+            FirstName = userRegister.FirstName,
+            LastName = userRegister.LastName
+        };
         var result = await _userManager.SetTwoFactorEnabledAsync(user, enabled);
         return result;
     }
 
-    public async Task<IdentityResult> SetUserNameAsync(User user, string? userName)
+    public async Task<IdentityResult> SetUserNameAsync(UserRegister userRegister, string? userName)
     {
+        User user = new User
+        {
+            Id = userRegister.Id,
+            UserName = userRegister.UserName,
+            NormalizedUserName = userRegister.NormalizedUserName,
+            Email = userRegister.Email,
+            NormalizedEmail = userRegister.NormalizedEmail,
+            EmailConfirmed = userRegister.EmailConfirmed,
+            PasswordHash = userRegister.PasswordHash,
+            SecurityStamp = userRegister.SecurityStamp,
+            ConcurrencyStamp = userRegister.ConcurrencyStamp,
+            PhoneNumber = userRegister.PhoneNumber,
+            PhoneNumberConfirmed = userRegister.PhoneNumberConfirmed,
+            TwoFactorEnabled = userRegister.TwoFactorEnabled,
+            LockoutEnd = userRegister.LockoutEnd,
+            LockoutEnabled = userRegister.LockoutEnabled,
+            AccessFailedCount = userRegister.AccessFailedCount,
+            FirstName = userRegister.FirstName,
+            LastName = userRegister.LastName
+        };
         var result = await _userManager.SetUserNameAsync(user, userName);
         return result;
     }
@@ -238,8 +769,28 @@ public class UserManagerService : IUserManagerService
         return _userManager.Options.Tokens.AuthenticatorTokenProvider;
     }
 
-    public async Task<bool> VerifyTwoFactorTokenAsync(User user, string tokenProvider, string token)
+    public async Task<bool> VerifyTwoFactorTokenAsync(UserRegister userRegister, string tokenProvider, string token)
     {
+        User user = new User
+        {
+            Id = userRegister.Id,
+            UserName = userRegister.UserName,
+            NormalizedUserName = userRegister.NormalizedUserName,
+            Email = userRegister.Email,
+            NormalizedEmail = userRegister.NormalizedEmail,
+            EmailConfirmed = userRegister.EmailConfirmed,
+            PasswordHash = userRegister.PasswordHash,
+            SecurityStamp = userRegister.SecurityStamp,
+            ConcurrencyStamp = userRegister.ConcurrencyStamp,
+            PhoneNumber = userRegister.PhoneNumber,
+            PhoneNumberConfirmed = userRegister.PhoneNumberConfirmed,
+            TwoFactorEnabled = userRegister.TwoFactorEnabled,
+            LockoutEnd = userRegister.LockoutEnd,
+            LockoutEnabled = userRegister.LockoutEnabled,
+            AccessFailedCount = userRegister.AccessFailedCount,
+            FirstName = userRegister.FirstName,
+            LastName = userRegister.LastName
+        };
         var result = await _userManager.VerifyTwoFactorTokenAsync(user, tokenProvider, token);
         return result;
     }

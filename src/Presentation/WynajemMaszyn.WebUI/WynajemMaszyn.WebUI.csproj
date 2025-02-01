@@ -41,19 +41,7 @@
 
 
 	<ItemGroup>
-	  <None Include="Components\Pages\Rental\MachineryRentalClientList.razor" />
 	  <None Include="wwwroot\Details.css" />
 	</ItemGroup>
-
-
-	<ItemGroup>
-	  <UpToDateCheckInput Remove="Components\Pages\Rental\MachineryRentalClientList.razor" />
-	</ItemGroup>
-
-
-	<ItemGroup>
-	  <_ContentIncludedByDefault Remove="Components\Pages\Rental\MachineryRentalClientList.razor" />
-	</ItemGroup>
-
 
 </Project>

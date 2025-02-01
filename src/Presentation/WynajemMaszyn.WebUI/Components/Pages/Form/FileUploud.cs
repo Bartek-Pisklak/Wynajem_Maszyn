@@ -1,6 +1,4 @@
-﻿
-
-using Microsoft.AspNetCore.Components.Forms;
+﻿using Microsoft.AspNetCore.Components.Forms;
 
 namespace WynajemMaszyn.WebUI.Components.Pages.Form
 {
